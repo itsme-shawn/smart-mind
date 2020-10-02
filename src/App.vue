@@ -7,8 +7,7 @@
     >
       <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
 
-      <v-toolbar-title>정신차렷!</v-toolbar-title>
-
+			<site-title :title="myTitle"></site-title>
       <v-spacer></v-spacer>
 
       <v-btn icon to="/about">
@@ -29,50 +28,34 @@
       </v-list-item>
 
       <v-divider></v-divider>
-
-      <v-list
-        dense
-        nav
-      >
-        <v-list-item
-          v-for="item in items"
-          :key="item.title"
-          link
-        >
-          <v-list-item-icon>
-            <v-icon>{{ item.icon }}</v-icon>
-          </v-list-item-icon>
-
-          <v-list-item-content>
-            <v-list-item-title>{{ item.title }}</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-      </v-list>	
+			
+			<site-menu></site-menu>
+      
 		</v-navigation-drawer>
 		<v-content>
 			<router-view/>
 		</v-content>
-		<v-footer app color="primary" dark absolute>
-			<v-spacer></v-spacer>
-			<div>
-					{{ new Date().getFullYear() }}
-			</div>	
-		</v-footer>
+		<site-footer :footer="myFooter"></site-footer>
   </v-app>
 </template>
 
 <script>
+	
+	// vue 에서는 현재위치를 @로 표시
+	import SiteTitle from '@/views/site/title'
+	import SiteFooter from '@/views/site/footer'
+	import SiteMenu from '@/views/site/menu'
+
   export default {
-		name : '#app',
+		components: {SiteTitle, SiteFooter, SiteMenu},
+		name : 'App',
     data () {
       return {
-				items: [
-          { title: 'Dashboard', icon: 'mdi-view-dashboard' },
-          { title: 'Photos', icon: 'mdi-image' },
-          { title: 'About', icon: 'mdi-help-box' },
-        ],
+				
         right: null,
-				drawer: false
+				drawer: false,
+				myTitle: '정신차렷!',
+				myFooter : 'Copyright by Hyeon Soo Choi'
 			}
 		}
   }
