@@ -39,8 +39,5 @@
     "ui": {
       "enabled": false
     }
-  },
-  "remoteconfig": {
-    "template": "remoteconfig.template.json"
   }
 }

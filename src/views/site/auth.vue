@@ -20,6 +20,7 @@
 			<v-btn icon v-on="on">
 				<v-avatar size="30">
 					<v-img :src="$store.state.fireUser.photoURL"></v-img>
+					<!-- store/index.js 에 저장된 값 -->
 				</v-avatar>
 			</v-btn>
 		</template>
