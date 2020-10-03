@@ -6,7 +6,7 @@ var serviceAccount = require("./key.json");
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
-  databaseURL: "https://osam-hackathon.firebaseio.com"
+  databaseURL: functions.config().admin.db_url //"https://osam-hackathon.firebaseio.com"
 });
 
 const db = admin.database()
@@ -18,7 +18,7 @@ exports.createUser = functions.auth.user().onCreate(async(user) => {
 		email,
 		displayName,
 		photoURL,
-		createdAt: new Date()
+		level: email === functions.config().admin.email ? 0 : 5 // admin 계정의 level 이 0
 	}
 	db.ref('users').child(uid).set(u)
 });
