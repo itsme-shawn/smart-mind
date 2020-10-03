@@ -9,6 +9,7 @@
 
 			<site-title :title="myTitle"></site-title>
       <v-spacer></v-spacer>
+			
 
       <v-btn icon to="/about">
         <v-icon>mdi-magnify</v-icon>
@@ -26,6 +27,9 @@
       
 		</v-navigation-drawer>
 		<v-main>
+			<v-btn @click="write">write test</v-btn>
+			<v-btn @click="read">read test</v-btn>
+			<v-btn @click="readOnce">read oncde test</v-btn>
 			<router-view/>
 		</v-main>
 		<site-footer :footer="myFooter"></site-footer>
@@ -50,6 +54,29 @@
 				myTitle: '정신차렷!',
 				myFooter : 'Copyright by Hyeon Soo Choi'
 			}
+		},
+		mounted(){
+			console.log(this.$firebase)
+		},
+		methods: {
+			write () {
+				console.log('write')
+				this.$firebase.database().ref().child('abcd').set({
+					title: 'abc', text:'ttt'
+				})
+			},
+			read () { // database 를 리스닝하고 있다가 database 가 바뀔 때마다 자동으로 실행
+				console.log('read')
+				// sn : snapshot
+				this.$firebase.database().ref().child('abcd').on('value', (sn) => {
+					console.log(sn.val())
+				})
+			},
+			async readOnce() { // database 에 일회성(once) 로 data 받아옴 (변할때 실시간으로 반영 x)
+				const sn = await this.$firebase.database().ref().child('abcd').once('value')
+				console.log(sn.val())
+				}
+			}
 		}
-  }
+  
 </script>
