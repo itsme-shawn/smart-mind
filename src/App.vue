@@ -25,9 +25,11 @@
       
 		</v-navigation-drawer>
 		<v-main>
+			<!--
 			<v-btn @click="write">write test</v-btn>
 			<v-btn @click="read">read test</v-btn>
-			<v-btn @click="readOnce">read oncde test</v-btn>
+			<v-btn @click="readOnce">read once test</v-btn>
+			-->
 			<router-view/>
 			<site-footer :footer="site.myFooter"></site-footer>
 		</v-main>
