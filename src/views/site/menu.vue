@@ -5,8 +5,8 @@
       >
 		<v-list-item>
 			<v-list-item-content>
-				<v-list-item-title class="title">Dashboard</v-list-item-title>
-				<v-list-item-subtitle>정신차렷!</v-list-item-subtitle>
+				<v-list-item-title class="subtitle-1" >정신차렷</v-list-item-title>
+				<v-list-item-subtitle>ver 1.0.0</v-list-item-subtitle>
 			</v-list-item-content>
 		</v-list-item>
 
@@ -37,8 +37,8 @@
         </template>
 
         <v-list-item
-          v-for="subItem in item.subItems"
-          :key="subItem.title"
+          v-for="(subItem,j) in item.subItems"
+          :key="j"
 					:to="subItem.to"
         >
           <v-list-item-content>
@@ -49,6 +49,8 @@
     </v-list>
 	</v-list>	
 </template>
+
+
 
 <script>
 	export default {

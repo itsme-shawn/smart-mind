@@ -7,7 +7,7 @@
     >
       <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
 
-			<site-title :title="myTitle"></site-title>
+			<site-title :title="site.myTitle"></site-title>
       <v-spacer></v-spacer>
 			
 
@@ -15,15 +15,13 @@
         <v-icon>mdi-magnify</v-icon>
       </v-btn>
 			
-			<v-btn icon>
-        <v-icon>mdi-dots-vertical</v-icon>
-      </v-btn>
+			<site-auth></site-auth>
     </v-app-bar>
 		
 		<v-navigation-drawer app v-model="drawer">
 			
 			
-			<site-menu></site-menu>
+			<site-menu :items="site.menu"></site-menu>
       
 		</v-navigation-drawer>
 		<v-main>
@@ -31,8 +29,9 @@
 			<v-btn @click="read">read test</v-btn>
 			<v-btn @click="readOnce">read oncde test</v-btn>
 			<router-view/>
+			<site-footer :footer="site.myFooter"></site-footer>
 		</v-main>
-		<site-footer :footer="myFooter"></site-footer>
+		
   </v-app>
 </template>
 
@@ -42,17 +41,20 @@
 	import SiteTitle from '@/views/site/title'
 	import SiteFooter from '@/views/site/footer'
 	import SiteMenu from '@/views/site/menu'
-
+	import SiteAuth from '@/views/site/auth'
+	
   export default {
-		components: {SiteTitle, SiteFooter, SiteMenu},
+		components: {SiteTitle, SiteFooter, SiteMenu, SiteAuth},
 		name : 'App',
     data () {
       return {
-				
+				site : {
+					myTitle: '정신차렷!',
+					myFooter : 'Copyright by Hyeon Soo Choi',
+					menu: []
+				},
         right: null,
 				drawer: false,
-				myTitle: '정신차렷!',
-				myFooter : 'Copyright by Hyeon Soo Choi'
 			}
 		},
 		mounted(){
@@ -72,7 +74,7 @@
 					console.log(sn.val())
 				})
 			},
-			async readOnce() { // database 에 일회성(once) 로 data 받아옴 (변할때 실시간으로 반영 x)
+			async readOnce() { // database 에 일회성(once) 로 data 받아옴 (변할때 즉각적으로 반영 x)
 				const sn = await this.$firebase.database().ref().child('abcd').once('value')
 				console.log(sn.val())
 				}
