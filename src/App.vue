@@ -15,7 +15,7 @@
         <v-icon>mdi-magnify</v-icon>
       </v-btn>
     </v-app-bar>
-		
+
 		<v-navigation-drawer app v-model="drawer">
 			<v-list-item>
         <v-list-item-content>
@@ -47,7 +47,7 @@
             <v-list-item-title>{{ item.title }}</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
-      </v-list>	
+      </v-list>
 		</v-navigation-drawer>
 		<v-content>
 			<router-view/>
@@ -56,24 +56,24 @@
 			<v-spacer></v-spacer>
 			<div>
 					{{ new Date().getFullYear() }}
-			</div>	
+			</div>
 		</v-footer>
   </v-app>
 </template>
 
 <script>
-  export default {
-		name : '#app',
-    data () {
-      return {
-				items: [
-          { title: 'Dashboard', icon: 'mdi-view-dashboard' },
-          { title: 'Photos', icon: 'mdi-image' },
-          { title: 'About', icon: 'mdi-help-box' },
-        ],
-        right: null,
-				drawer: false
-			}
+export default {
+	name: '#app',
+	data () {
+		return {
+			items: [
+				{ title: 'Dashboard', icon: 'mdi-view-dashboard' },
+				{ title: 'Photos', icon: 'mdi-image' },
+				{ title: 'About', icon: 'mdi-help-box' }
+			],
+			right: null,
+			drawer: false
 		}
-  }
+	}
+}
 </script>
