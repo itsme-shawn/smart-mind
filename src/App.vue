@@ -39,7 +39,7 @@
 
 <script>
 	
-	// vue 에서는 현재위치를 @로 표시
+	// vue 에서는 src를 @로 표시
 	import SiteTitle from '@/views/site/title'
 	import SiteFooter from '@/views/site/footer'
 	import SiteMenu from '@/views/site/menu'
