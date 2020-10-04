@@ -5,6 +5,7 @@
 		<v-data-table
 			:headers="headers"
 			:items="items"
+			:items-per-page="5"
 		>
 			<template v-slot:item.id="{item}">
 				<v-btn icon @click="openDialog(item)"><v-icon>mdi-pencil</v-icon></v-btn> <!-- 수정 폼 생성 -->
@@ -14,6 +15,8 @@
 		<v-card-actions>
 			<v-btn @click="openDialog(null)" ><v-icon left>mdi-pencil</v-icon></v-btn> <!-- 쓰기 폼 생성 -->
 		</v-card-actions>
+
+		<!-- dialog -->
 		<v-dialog max-width="500" v-model="dialog">
 			<v-card>
 				<v-form>
@@ -29,6 +32,8 @@
 				</v-form>
 			</v-card>
 		</v-dialog>
+		<!--dialog end-->
+
 	</v-card>
 </template>
 
@@ -39,7 +44,7 @@ export default {
 			headers: [
 				{ value: 'title', text: '제목'}, // value : 파라미터기능 , text : 실제 표시되는 내용
 				{ value: 'content', text: '내용'},
-				{ value: 'id', text: 'id'}
+				{ value: 'id', text: '수정/삭제'}
 			],
 			items: [], // created 훅에 의해서 DB에 있던 정보들이 저장됨
 			form: {
@@ -48,7 +53,8 @@ export default {
 			},
 			dialog: false,
 			selectedItem : null,
-			unsubscribe: null
+			unsubscribe: null,
+			unsubscribeCount: null
 		}
 		
 	},
@@ -57,6 +63,7 @@ export default {
 	},
 	destroyed() {
 		if(this.unsubscribe) this.unsubscribe() // 다른 페이지로 가면 DB구독해지
+		if(this.unsubscribeCount) this.unsubscribeCount()
 	},
 	methods: {
 		openDialog(item) {
@@ -84,6 +91,11 @@ export default {
 					id : v.id, title : item.title, content: item.content
 				}
 			})
+		}),
+				
+		this.unsubscribeCount = this.$firebase.firestore().collection('meta').doc('boards').onSnapshot((doc) => {
+			if (!doc.exitsts) return
+			this.serverItemsLength = doc.data().count
 		})
 		},
 		
