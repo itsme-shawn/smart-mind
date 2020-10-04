@@ -1,19 +1,20 @@
-<!-- views/contents/index.vue : 메인컨텐츠들이 모여있는 대시보드 -->
+<!-- views/contents/index.vue : 주간정신전력교육 컨텐츠 -->
 
 <template>
-	<v-card>대시보드 테스트
+	<v-card>정신전력교육 컨텐츠 목록 테스트
 		<v-data-table
 			:headers="headers"
 			:items="items"
 			:items-per-page="5"
 		>
 			<template v-slot:item.id="{item}">
-				<v-btn icon @click="openDialog(item)"><v-icon>mdi-pencil</v-icon></v-btn> <!-- 수정 폼 생성 -->
-				<v-btn icon @click="remove(item)"><v-icon>mdi-delete</v-icon></v-btn> <!-- 삭제 -->
+				<v-btn icon @click="openDialog(item)"><v-icon>mdi-pencil</v-icon>수정</v-btn> <!-- 수정 폼 생성 -->
+				<v-spacer/>
+				<v-btn icon @click="remove(item)"><v-icon>mdi-delete</v-icon>삭제</v-btn> <!-- 삭제 -->
 			</template>
 		</v-data-table>
 		<v-card-actions>
-			<v-btn @click="openDialog(null)" ><v-icon left>mdi-pencil</v-icon></v-btn> <!-- 쓰기 폼 생성 -->
+			<v-btn @click="openDialog(null)" ><v-icon left>mdi-pencil</v-icon>작성</v-btn> <!-- 쓰기 폼 생성 -->
 		</v-card-actions>
 
 		<!-- dialog -->
@@ -21,13 +22,13 @@
 			<v-card>
 				<v-form>
 					<v-card-text>
-						<v-text-field v-model="form.title"></v-text-field>
-						<v-text-field v-model="form.content"></v-text-field>
+						제목<v-text-field v-model="form.title"></v-text-field>
+						내용<v-text-field v-model="form.content"></v-text-field>
 					</v-card-text>
 					<v-card-actions>
 						<v-spacer/>
-						<v-btn @click="update" v-if="selectedItem">update</v-btn> <!-- 수정 -->
-						<v-btn @click="add" v-else>add</v-btn> <!-- 쓰기 -->
+						<v-btn @click="update" v-if="selectedItem">수정</v-btn> <!-- 수정 -->
+						<v-btn @click="add" v-else>저장</v-btn> <!-- 쓰기 -->
 					</v-card-actions>
 				</v-form>
 			</v-card>

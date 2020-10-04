@@ -1,3 +1,5 @@
+<!-- 인증과 관련된 컴포넌트 -->
+
 <template>
 	<v-progress-circular indeterminate v-if="loading"></v-progress-circular>
 

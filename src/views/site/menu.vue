@@ -65,19 +65,19 @@
 						subItems: [
 							{
 								title: '대시보드',
-								to: '/contents'
+								to: '/dashboard'
 							},
 							{
 								title: '주간정신전력교육',
-								to: '/contents/weekly_jungsin'
+								to: '/jungsin'
 							},
 							{
 								title: '데일리 역사 상식',
-								to: '/contents/daily_history'
+								to: '/daily_history'
 							},
 							{
 								title: '컨텐츠3',
-								to: '/3'
+								to: '/temp'
 							}
 						]
 					},
@@ -87,15 +87,15 @@
 						subItems: [
 							{
 								title: '가이드',
-								to: '/4'
+								to: '/guide'
 							},
 							{
 								title: 'FAQ',
-								to: '/5'
+								to: '/FAQ'
 							},
 							{
 								title: '기획의도',
-								to: '/6'
+								to: '/intentions'
 							}
 						]
 					},
