@@ -44,6 +44,7 @@ export default {
 			headers: [
 				{ value: 'title', text: '제목'}, // value : 파라미터기능 , text : 실제 표시되는 내용
 				{ value: 'content', text: '내용'},
+				{ value: 'createdAt', text: '작성일'},
 				{ value: 'id', text: '수정/삭제'}
 			],
 			items: [], // created 훅에 의해서 DB에 있던 정보들이 저장됨
@@ -88,7 +89,9 @@ export default {
 			this.items = sn.docs.map(v => {
 				const item = v.data()
 				return {
-					id : v.id, title : item.title, content: item.content
+					id : v.id, title : item.title, content: item.content, createdAt : this.convert(item.createdAt)
+				
+					
 				}
 			})
 		}),
@@ -97,10 +100,14 @@ export default {
 			if (!doc.exitsts) return
 			this.serverItemsLength = doc.data().count
 		})
-		},
+		}
+		,
 		
 		add(){ // create 기능
-			this.$firebase.firestore().collection('boards').add(this.form)
+			const item = {}
+			Object.assign(item, this.form)
+			item.createdAt = new Date()
+			this.$firebase.firestore().collection('boards').add(item)
 			this.dialog = false
 		},
 		
@@ -112,6 +119,33 @@ export default {
 		remove(item){ // delete 기능
 			this.$firebase.firestore().collection('boards').doc(item.id).delete()
 			this.dialog = false
+		},
+		
+		convert(timestamp) {
+                var d = new Date(timestamp * 1000), // Convert the passed timestamp to milliseconds
+                yyyy = d.getFullYear()- 1969,
+                mm = ('0' + (d.getMonth() + 1)).slice(-2),  // Months are zero based. Add leading 0.
+                dd = ('0' + d.getDate()).slice(-2),         // Add leading 0.
+                hh = d.getHours(),
+                h = hh,
+                min = ('0' + d.getMinutes()).slice(-2),     // Add leading 0.
+                ampm = 'AM',
+                time;
+                    
+                if (hh > 12) {
+                    h = hh - 12;
+                    ampm = 'PM';
+                } else if (hh === 12) {
+                    h = 12;
+                    ampm = 'PM';
+                } else if (hh == 0) {
+                    h = 12;
+                }
+                
+                // ie: 2013-02-18, 8:35 AM  
+                time = yyyy + '년' + mm + '월' + dd + '일 ' + h + ':' + min + ' ' + ampm;
+                    
+                return time;
 		}
 	}
 }
