@@ -12,7 +12,6 @@
 			</template>
 		</v-data-table>
 		<v-card-actions>
-			<v-btn @click="read" ><v-icon left>mdi-page-next</v-icon></v-btn> <!-- 읽기 -->
 			<v-btn @click="openDialog(null)" ><v-icon left>mdi-pencil</v-icon></v-btn> <!-- 쓰기 폼 생성 -->
 		</v-card-actions>
 		<v-dialog max-width="500" v-model="dialog">
@@ -48,12 +47,16 @@ export default {
 				content: ''
 			},
 			dialog: false,
-			selectedItem : null
+			selectedItem : null,
+			unsubscribe: null
 		}
 		
 	},
 	created() {
-		this.read()
+		this.subscribe() // 데이터를 실시간으로 리스닝(read)
+	},
+	destroyed() {
+		if(this.unsubscribe) this.unsubscribe() // 다른 페이지로 가면 DB구독해지
 	},
 	methods: {
 		openDialog(item) {
@@ -67,27 +70,13 @@ export default {
 				this.form.content = item.content
 			}
 		},
-		add(){
-			this.$firebase.firestore().collection('boards').add(this.form)
-			this.dialog = false
-		},
-		update(){
-			this.$firebase.firestore().collection('boards').doc(this.selectedItem.id).update(this.form)
-			this.dialog = false
-		},
-		remove(item){
-			this.$firebase.firestore().collection('boards').doc(item.id).delete()
-			this.dialog = false
-		},
-		async read(){
-			const sn = await this.$firebase.firestore().collection('boards').get()
-			/*
-			sn.docs.forEach(v => {
-				console.log(v.id) // zgPoncu7ftCraiPBvhkT
-				console.log(v.data()) // {title: "a1", content: "b1"}
-			})
-			*/
-			
+		
+		subscribe() { // read 기능
+			this.unsubscribe = this.$firebase.firestore().collection('boards').onSnapshot((sn) => {
+			if(sn.empty){
+				this.items = []
+				return
+			}
 			// 불편하므로 map 함수를 사용해서, items 객체에 v.id 와 v.data() 묶어버림
 			this.items = sn.docs.map(v => {
 				const item = v.data()
@@ -95,7 +84,22 @@ export default {
 					id : v.id, title : item.title, content: item.content
 				}
 			})
-			console.log(this.items)
+		})
+		},
+		
+		add(){ // create 기능
+			this.$firebase.firestore().collection('boards').add(this.form)
+			this.dialog = false
+		},
+		
+		update(){ // update 기능
+			this.$firebase.firestore().collection('boards').doc(this.selectedItem.id).update(this.form)
+			this.dialog = false
+		},
+		
+		remove(item){ // delete 기능
+			this.$firebase.firestore().collection('boards').doc(item.id).delete()
+			this.dialog = false
 		}
 	}
 }
