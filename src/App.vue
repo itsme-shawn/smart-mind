@@ -6,8 +6,7 @@
       dark
     >
       <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
-
-			<site-title :title="site.myTitle"></site-title>
+		<site-title :title="site.myTitle"></site-title>
       <v-spacer></v-spacer>
 
       <v-btn icon to="/about">
