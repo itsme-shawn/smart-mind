@@ -6,6 +6,7 @@
 			:headers="headers"
 			:items="items"
 			:items-per-page="5"
+			:options.sync="options"
 		>
 			<template v-slot:item.id="{item}">
 				<v-btn icon @click="openDialog(item)"><v-icon>mdi-pencil</v-icon>수정</v-btn> <!-- 수정 폼 생성 -->
@@ -46,7 +47,7 @@ export default {
 				{ value: 'title', text: '제목'}, // value : 파라미터기능 , text : 실제 표시되는 내용
 				{ value: 'content', text: '내용'},
 				{ value: 'createdAt', text: '작성일'},
-				{ value: 'id', text: '수정/삭제'}
+				{ value: 'id', text: '수정/삭제', sortable: false}
 			],
 			items: [], // created 훅에 의해서 DB에 있던 정보들이 저장됨
 			form: {
@@ -56,7 +57,11 @@ export default {
 			dialog: false,
 			selectedItem : null,
 			unsubscribe: null,
-			unsubscribeCount: null
+			unsubscribeCount: null,
+			options: {
+				sortBy : ['createdAt'],
+				sortDesc : [true] // 처음 default 값은 내림차순으로
+			}
 		}
 		
 	},
