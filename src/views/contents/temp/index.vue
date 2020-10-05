@@ -1,6 +1,6 @@
 <template>
 	<div class="text-center" style="font-size:50px">
-		임시 - storage 연습용df
+		임시 - storage 연습용
 
 		<v-sheet>
 		<v-btn @click="write">write</v-btn>
