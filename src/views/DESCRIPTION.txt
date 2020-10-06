@@ -1,0 +1,27 @@
+views 폴더 구조
+
+views
+	├── DESCRIPTION.txt			// 설명 txt 파일
+	├── Home.vue						// 홈 화면
+	├── contents						// 메인컨텐츠 폴더
+	│   ├── daily_history
+	│   │   └── index.vue
+	│   ├── dashboard
+	│   │   └── index.vue
+	│   ├── jungsin
+	│   │   └── index.vue
+	│   └── temp
+	│       └── index.vue
+	├── help								// 도움말
+	│   ├── FAQ
+	│   │   └── index.vue
+	│   ├── guide
+	│   │   └── index.vue
+	│   └── intentions
+	│       └── index.vue
+	└── site								// 화면 메인 UI 컴포넌트
+			├── auth.vue
+			├── footer.vue
+			├── menu.vue
+			└── title.vue
+
