@@ -8,22 +8,20 @@
 
 	</div>
 
-
-
 </template>
 
 <script>
 export default {
-	data() {
+	data () {
 		return {
-			text : ''
+			text: ''
 		}
 	},
 	methods: {
-		async write() {
+		async write () {
 			const sn = await this.$firebase.storage().ref().child('xxx.test').putString('abcd')
 			console.log(sn)
-			}
+		}
 	}
 }
 </script>
