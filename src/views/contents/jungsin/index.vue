@@ -13,6 +13,7 @@
 		>
 			<template v-slot:item.id="{item}" >
 				<v-icon small class="mr-2" @click="openDialog(item)">mdi-pencil</v-icon>
+				<v-icon small @click="deleteItem(item)">mdi-delete</v-icon>
 				<v-icon small @click="remove(item)">mdi-delete</v-icon>
 			</template>
 		</v-data-table>
@@ -38,6 +39,19 @@
 		</v-dialog>
 		<!--dialog end-->
 
+		<!-- dialog 삭제할 때 삭제할 건지 한 번 더 묻는 dialog-->
+		<v-dialog v-model="dialogDelete" max-width="500px">
+          <v-card>
+            <v-card-title class="headline">이 글을 지우시겠습니까?</v-card-title>
+            <v-card-actions>
+              <v-spacer></v-spacer>
+              <v-btn color="blue darken-1" text @click="closeDelete">취소</v-btn>
+              <v-btn color="blue darken-1" text @click="deleteItemConfirm">예</v-btn>
+              <v-spacer></v-spacer>
+            </v-card-actions>
+          </v-card>
+        </v-dialog>
+		<!--dialog end-->
 	</v-card>
 </template>
 
@@ -56,7 +70,13 @@ export default {
 				title: '',
 				content: ''
 			},
+			tempIndex: -1,
+			tempForm: {
+				title: '',
+				content: ''
+			},
 			dialog: false,
+			dialogDelete: false,
 			selectedItem: null,
 			unsubscribe: null,
 			unsubscribeCount: null,
@@ -84,6 +104,30 @@ export default {
 				this.form.title = item.title
 				this.form.content = item.content
 			}
+		},
+		deleteItem (item) {
+			this.tempIndex = this.items.indexOf(item)
+			console.log(this.tempIndex)
+			this.tempForm = Object.assign({}, item)
+			console.log(this.tempForm.title, this.tempForm.content)
+
+			this.dialogDelete = true
+		},
+		openDeleteDialog (item) {
+			// 정말 삭제할건지 묻는 dialog 띄움
+			this.dialogDelete = true
+		},
+		closeDelete () {
+			// 취소 버튼 눌렀을 때 그냥 띄워진 dialog 닫으면 됨
+			this.dialogDelete = false
+		},
+		deleteItemConfirm (item) {
+			// 확인 버튼 눌렀을 때 실제로 삭제해야 함
+			// this.items.splice(this.tempindex, 1)
+			console.log(item.title)
+
+			// 정말 삭제할건지 묻는 dialog 내림
+			this.closeDelete()
 		},
 
 		subscribe () { // read 기능
