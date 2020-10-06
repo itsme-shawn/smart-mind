@@ -4,16 +4,16 @@ import Vuex from 'vuex'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
-  state: {
+	state: {
 		fireUser: null
-  },
-  mutations: {
+	},
+	mutations: {
 		setFireUser (state, fu) {
 			state.fireUser = fu // fu : firebaseUser
 		}
-  },
-  actions: {
-  },
-  modules: {
-  }
+	},
+	actions: {
+	},
+	modules: {
+	}
 })
