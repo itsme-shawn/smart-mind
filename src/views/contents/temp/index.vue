@@ -12,22 +12,20 @@
 
 	</div>
 
-
-
 </template>
 
 <script>
 import axios from 'axios'
 
 export default {
-	data() {
+	data () {
 		return {
       text : '',
       url : ''
 		}
 	},
 	methods: {
-		async write() {
+		async write () {
 			const sn = await this.$firebase.storage().ref().child('xxx.test').putString('abcd')
       const url = await sn.ref.getDownloadURL()
       this.url = url
