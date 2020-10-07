@@ -19,11 +19,11 @@ export default {
 			text : ''
 		}
 	},
-	methods: {
+	methods: { // gc 로 corn 해야함
 		async write() {
 			const sn = await this.$firebase.storage().ref().child('xxx.test').putString('abcd')
 			console.log(sn)
 			}
-	}
+  }
 }
 </script>
