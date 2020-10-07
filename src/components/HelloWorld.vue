@@ -5,14 +5,14 @@
       <v-img
         contain
         :src="require('../assets/soldier.svg')"
-        max-height="300"
-        max-width="2000"
+        min-height="100"
+        max-width="1000"
       >
       </v-img>
         
       </v-col>
 
-      <v-col class="mb-4">
+      <v-col class="mb-4" cols="12">
         <h1 class="display-2 font-weight-bold mb-3">
           정신차렷!
         </h1>
@@ -22,17 +22,33 @@
           
         </p>
         <p>
-        <button>시작하기</button></p>
+        <v-btn
+        color="primary"
+        elevation="8"
+        medium
+        @click="dashboard"
+        >시작하기</v-btn></p>
       </v-col>
-
-      <v-col
-        class="mb-5"
-        cols="12"
-      >
+      
+      
+      <v-row class="text-center">
+        <v-col class="mb-5" cols="12">
+        <v-img
+        contain
+        :src="require('../assets/you.jpg')"
+        max-width="500"
+        ></v-img>
+        </v-col>
+      
+        <v-col>
         <h2 class="headline font-weight-bold mb-3">
-          What's next?
+          주간 정신전력 교육
         </h2>
-
+        <p class="subheading font-weight-regular">
+          유관순 blahblah~~
+        </p>
+        </v-col>
+      </v-row>
         <v-row justify="center">
           <a
             v-for="(next, i) in whatsNext"
@@ -44,14 +60,14 @@
             {{ next.text }}
           </a>
         </v-row>
-      </v-col>
+      
 
       <v-col
         class="mb-5"
         cols="12"
       >
         <h2 class="headline font-weight-bold mb-3">
-          Important Links
+          
         </h2>
 
         <v-row justify="center">
@@ -72,7 +88,7 @@
         cols="12"
       >
         <h2 class="headline font-weight-bold mb-3">
-          Ecosystem
+          
         </h2>
 
         <v-row justify="center">
@@ -94,58 +110,11 @@
 <script>
 export default {
 	name: 'HelloWorld',
-
-	data: () => ({
-		ecosystem: [
-			{
-				text: 'vuetify-loader',
-				href: 'https://github.com/vuetifyjs/vuetify-loader'
-			},
-			{
-				text: 'github',
-				href: 'https://github.com/vuetifyjs/vuetify'
-			},
-			{
-				text: 'awesome-vuetify',
-				href: 'https://github.com/vuetifyjs/awesome-vuetify'
-			}
-		],
-		importantLinks: [
-			{
-				text: 'Documentation',
-				href: 'https://vuetifyjs.com'
-			},
-			{
-				text: 'Chat',
-				href: 'https://community.vuetifyjs.com'
-			},
-			{
-				text: 'Made with Vuetify',
-				href: 'https://madewithvuejs.com/vuetify'
-			},
-			{
-				text: 'Twitter',
-				href: 'https://twitter.com/vuetifyjs'
-			},
-			{
-				text: 'Articles',
-				href: 'https://medium.com/vuetify'
-			}
-		],
-		whatsNext: [
-			{
-				text: 'Explore components',
-				href: 'https://vuetifyjs.com/components/api-explorer'
-			},
-			{
-				text: 'Select a layout',
-				href: 'https://vuetifyjs.com/getting-started/pre-made-layouts'
-			},
-			{
-				text: 'Frequently Asked Questions',
-				href: 'https://vuetifyjs.com/getting-started/frequently-asked-questions'
-			}
-		]
-	})
+  
+  methods: {
+    dashboard:function(event){
+      this.$router.push('/dashboard')
+    }
+  }
 }
 </script>
