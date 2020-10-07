@@ -13,7 +13,7 @@
 		>
 			<template v-slot:item.id="{item}" >
 				<v-icon small class="mr-2" @click="openDialog(item)">mdi-pencil</v-icon>
-				<v-icon small @click="deleteItem(item)">mdi-delete</v-icon>
+				<v-icon small @click="openDeleteDialog(item)">mdi-delete</v-icon>
 				<v-icon small @click="remove(item)">mdi-delete</v-icon>
 			</template>
 		</v-data-table>
@@ -106,16 +106,20 @@ export default {
 			}
 		},
 		deleteItem (item) {
-			this.tempIndex = this.items.indexOf(item)
-			console.log(this.tempIndex)
+			// this.tempIndex = this.items.indexOf(item)
+			// console.log(this.tempIndex)
 			this.tempForm = Object.assign({}, item)
-			console.log(this.tempForm.title, this.tempForm.content)
+			console.log(this.item.title, this.item.content)
+			console.log(this.item.id)
 
 			this.dialogDelete = true
+			return this.tempForm
 		},
 		openDeleteDialog (item) {
 			// 정말 삭제할건지 묻는 dialog 띄움
 			this.dialogDelete = true
+			this.tempForm = item
+			console.log(this.tempForm.title, this.tempForm.content, this.tempForm.title.id)
 		},
 		closeDelete () {
 			// 취소 버튼 눌렀을 때 그냥 띄워진 dialog 닫으면 됨
@@ -169,7 +173,6 @@ export default {
 
 		remove (item) { // delete 기능
 			this.$firebase.firestore().collection('boards').doc(item.id).delete()
-			this.dialog = false
 		},
 
 		convert (timestamp) {
