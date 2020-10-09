@@ -1,9 +1,9 @@
 <template>
   <v-container class="text-center">
     <v-layout column>
-      <v-flex xs12>
+      <v-flex xs12 md6>
         <v-col cols="12" align="center">
-          <v-img 
+          <v-img
             contain
             :src="require('../assets/soldier.svg')"
             min-height="100"
@@ -11,7 +11,8 @@
           >
           </v-img>
         </v-col>
-
+      </v-flex>
+      <v-flex xs12 md6>
         <v-col class="mb-4" cols="12">
           <h1 class="display-2 font-weight-bold mb-3">정신차렷!</h1>
 
@@ -31,7 +32,7 @@
         </v-col>
       </v-flex>
       <br />
-      <v-flex>
+      <v-flex xs12 md6>
         <v-row class="text-center" :style="myContainer">
           <v-layout row>
             <v-flex xs6>
@@ -50,7 +51,7 @@
           </v-layout>
         </v-row>
       </v-flex>
-      <v-flex xs12>
+      <v-flex xs12 md6>
         <h2 class="headline font-weight-bold mb-3"><br />우리 역사 바로알기</h2>
         <v-row>
           <v-col v-for="n in 9" :key="n" class="d-flex child-flex" cols="4">
@@ -72,38 +73,26 @@
           </v-col>
         </v-row>
       </v-flex>
-      <v-flex xs12>
+      <v-flex xs12 md12>
         <h2 class="headline font-weight-bold mb-3"><br />이달의 정신전력</h2>
         <v-row no-gutters>
-      
-      <v-col cols="4">
-        <v-card
-          class="pa-2"
-          outlined
-          tile
-        >
-          best1<br>Since 9 + 4 = 13 &gt; 12, this 4-column-wide div gets wrapped onto a new line as one contiguous unit.
-        </v-card>
-      </v-col>
-      <v-col cols="6" rows="5">
-        <v-card
-          class="pa-2"
-          outlined
-          tile
-        >
-          .col-6<br>Subsequent columns continue along the new line.
-        </v-card>
-      </v-col>
-      <v-col cols="6">
-        <v-card
-          class="pa-2"
-          outlined
-          tile
-        >
-          .col-6<br>Subsequent columns continue along the new line.
-        </v-card>
-      </v-col>
-    </v-row>
+          <v-col cols="4">
+            <v-card class="pa-2" outlined tile>
+              best1<br />Since 9 + 4 = 13 &gt; 12, this 4-column-wide div gets
+              wrapped onto a new line as one contiguous unit.
+            </v-card>
+          </v-col>
+          <v-col cols="6" rows="5">
+            <v-card class="pa-2" outlined tile>
+              .col-6<br />Subsequent columns continue along the new line.
+            </v-card>
+          </v-col>
+          <v-col cols="6">
+            <v-card class="pa-2" outlined tile>
+              .col-6<br />Subsequent columns continue along the new line.
+            </v-card>
+          </v-col>
+        </v-row>
       </v-flex>
       <v-col class="mb-5" cols="12">
         <h2 class="headline font-weight-bold mb-3"></h2>
