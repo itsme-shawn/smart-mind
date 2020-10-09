@@ -1,9 +1,9 @@
 <template>
   <v-container class="text-center">
     <v-layout column>
-      <v-flex>
-        <v-col cols="12">
-          <v-img
+      <v-flex xs12>
+        <v-col cols="12" align="center">
+          <v-img 
             contain
             :src="require('../assets/soldier.svg')"
             min-height="100"
@@ -34,23 +34,23 @@
       <v-flex>
         <v-row class="text-center" :style="myContainer">
           <v-layout row>
-            <v-flex>
+            <v-flex xs6>
               <v-sheet class="mb-5">
                 <v-img
                   contain
                   :src="require('../assets/you.jpg')"
-                  max-width="500"
+                  max-width="700"
                 ></v-img>
               </v-sheet>
             </v-flex>
-            <v-flex>
+            <v-flex xs6>
               <h2 class="headline font-weight-bold mb-3">주간 정신전력 교육</h2>
               <p class="subheading font-weight-regular">유관순 blahblah~~</p>
             </v-flex>
           </v-layout>
         </v-row>
       </v-flex>
-      <v-flex>
+      <v-flex xs12>
         <h2 class="headline font-weight-bold mb-3"><br />우리 역사 바로알기</h2>
         <v-row>
           <v-col v-for="n in 9" :key="n" class="d-flex child-flex" cols="4">
@@ -72,7 +72,7 @@
           </v-col>
         </v-row>
       </v-flex>
-      <v-flex>
+      <v-flex xs12>
         <h2 class="headline font-weight-bold mb-3"><br />이달의 정신전력</h2>
         <v-row no-gutters>
       
