@@ -153,7 +153,18 @@ export default {
 			const item = {}
 			Object.assign(item, this.form)
       item.createdAt = new Date()
-      this.dialog = false
+
+      // Add a new document with a generated id.
+      // itemRef 는 DB 경로와 관련된 객체임
+      var itemRef = this.$firebase.firestore().collection('boards').doc();
+
+      // item 객체에 id 값 저장
+      item.id = itemRef.id
+
+      // DB경로에다가 item 저장
+      itemRef.set(item);
+      this.$firebase.firestore().collection('boards').doc(itemRef.id).update(item)
+			this.dialog = false
 		},
 
     update () { // update 기능
