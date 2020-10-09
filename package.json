@@ -8,6 +8,7 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "@diracleo/vue-enlargeable-image": "0.0.7",
     "@toast-ui/vue-editor": "^2.4.0",
     "ansi-regex": "^5.0.0",
     "axios": "^0.20.0",

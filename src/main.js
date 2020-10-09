@@ -6,9 +6,10 @@ import vuetify from './plugins/vuetify'
 import './plugins/firebase.js'
 import './error'
 import './plugins/editor'
-
+import EnlargeableImage from '@diracleo/vue-enlargeable-image'
 
 Vue.config.productionTip = false
+Vue.use(EnlargeableImage)
 
 new Vue({
 	router,
@@ -16,3 +17,4 @@ new Vue({
 	vuetify,
 	render: h => h(App)
 }).$mount('#app')
+

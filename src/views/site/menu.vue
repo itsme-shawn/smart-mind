@@ -72,13 +72,33 @@
 								to: '/jungsin'
 							},
 							{
-								title: '데일리 역사 상식',
+								title: '이달의 정신전력',
 								to: '/daily_history'
 							},
 							{
-								title: '컨텐츠3',
+								title: '우리 역사 바로알기',
 								to: '/temp'
 							}
+						]
+					},
+					{
+						title: '마이페이지',
+						icon : 'mdi-account',
+						to : '/',
+						subItems: [
+							{
+								title: '개인정보수정',
+								to: '/account'
+							},
+							{
+								title: '정신전력 현황',
+								to: '/condition'
+							},
+							{
+								title: '부대관리',
+								to: '/budae'
+							}
+							
 						]
 					},
           { 

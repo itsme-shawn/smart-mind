@@ -37,6 +37,24 @@ const routes = [
 		name: 'Temp',
 		component: () => import('../views/contents/temp/index.vue')
 	},
+	// 개인정보수정
+	{
+		path: '/account',
+		name: 'Account',
+		component: () => import('../views/mypage/account/index.vue')
+	},
+	// 정신전력현황
+	{
+		path: '/condition',
+		name: 'Condition',
+		component: () => import('../views/mypage/condition/index.vue')
+	},
+	// 부대관리
+	{
+		path: '/budae',
+		name: 'Budae',
+		component: () => import('../views/mypage/budae/index.vue')
+	},
 
 	// 가이드
 	{

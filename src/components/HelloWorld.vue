@@ -3,56 +3,51 @@
     <v-row class="text-center">
       <v-col cols="12">
         <v-img
-          :src="require('../assets/logo.svg')"
-          class="my-3"
           contain
-          height="200"
-        />
+          :src="require('../assets/soldier.svg')"
+          min-height="100"
+          max-width="1000"
+        >
+        </v-img>
       </v-col>
 
-      <v-col class="mb-4">
-        <h1 class="display-2 font-weight-bold mb-3">
-          Welcome to Vuetify
-        </h1>
+      <v-col class="mb-4" cols="12">
+        <h1 class="display-2 font-weight-bold mb-3">정신차렷!</h1>
 
         <p class="subheading font-weight-regular">
-          For help and collaboration with other Vuetify developers,
-          <br>please join our online
-          <a
-            href="https://community.vuetifyjs.com"
-            target="_blank"
-          >Discord Community</a>
+          정신차렷!은 언제, 어디서나 정신전력 컨텐츠를 즐길 수 있는
+          플랫폼입니다.
+        </p>
+        <p>
+          <v-btn color="cyan lighten-4" elevation="8" medium @click="dashboard"
+            >시작하기</v-btn
+          >
         </p>
       </v-col>
 
-      <v-col
-        class="mb-5"
-        cols="12"
-      >
-        <h2 class="headline font-weight-bold mb-3">
-          What's next?
-        </h2>
+      <v-row class="text-center" :style="myContainer">
+        <v-layout row>
+          <v-flex>
+            <v-sheet class="mb-5">
+              <v-img
+                contain
+                :src="require('../assets/you.jpg')"
+                max-width="500"
+              ></v-img>
+            </v-sheet>
+          </v-flex>
+          <v-flex>
+            <h2 class="headline font-weight-bold mb-3">주간 정신전력 교육</h2>
+            <p class="subheading font-weight-regular">유관순 blahblah~~</p>
+          </v-flex>
+        </v-layout>
+      </v-row>
+      <v-row justify="center">
+         <enlargeable-image :src="require('../assets/you.jpg')" :src_large="require('../assets/you.jpg')" />
+      </v-row>
 
-        <v-row justify="center">
-          <a
-            v-for="(next, i) in whatsNext"
-            :key="i"
-            :href="next.href"
-            class="subheading mx-3"
-            target="_blank"
-          >
-            {{ next.text }}
-          </a>
-        </v-row>
-      </v-col>
-
-      <v-col
-        class="mb-5"
-        cols="12"
-      >
-        <h2 class="headline font-weight-bold mb-3">
-          Important Links
-        </h2>
+      <v-col class="mb-5" cols="12">
+        <h2 class="headline font-weight-bold mb-3"></h2>
 
         <v-row justify="center">
           <a
@@ -67,13 +62,8 @@
         </v-row>
       </v-col>
 
-      <v-col
-        class="mb-5"
-        cols="12"
-      >
-        <h2 class="headline font-weight-bold mb-3">
-          Ecosystem
-        </h2>
+      <v-col class="mb-5" cols="12">
+        <h2 class="headline font-weight-bold mb-3"></h2>
 
         <v-row justify="center">
           <a
@@ -93,59 +83,19 @@
 
 <script>
 export default {
-	name: 'HelloWorld',
+  name: "HelloWorld",
 
-	data: () => ({
-		ecosystem: [
-			{
-				text: 'vuetify-loader',
-				href: 'https://github.com/vuetifyjs/vuetify-loader'
-			},
-			{
-				text: 'github',
-				href: 'https://github.com/vuetifyjs/vuetify'
-			},
-			{
-				text: 'awesome-vuetify',
-				href: 'https://github.com/vuetifyjs/awesome-vuetify'
-			}
-		],
-		importantLinks: [
-			{
-				text: 'Documentation',
-				href: 'https://vuetifyjs.com'
-			},
-			{
-				text: 'Chat',
-				href: 'https://community.vuetifyjs.com'
-			},
-			{
-				text: 'Made with Vuetify',
-				href: 'https://madewithvuejs.com/vuetify'
-			},
-			{
-				text: 'Twitter',
-				href: 'https://twitter.com/vuetifyjs'
-			},
-			{
-				text: 'Articles',
-				href: 'https://medium.com/vuetify'
-			}
-		],
-		whatsNext: [
-			{
-				text: 'Explore components',
-				href: 'https://vuetifyjs.com/components/api-explorer'
-			},
-			{
-				text: 'Select a layout',
-				href: 'https://vuetifyjs.com/getting-started/pre-made-layouts'
-			},
-			{
-				text: 'Frequently Asked Questions',
-				href: 'https://vuetifyjs.com/getting-started/frequently-asked-questions'
-			}
-		]
-	})
-}
+  methods: {
+    dashboard: function (event) {
+      this.$router.push("/dashboard");
+    },
+  },
+  data() {
+    return{
+      myContainer:{
+        Width:'100%'
+      }
+    }
+  }
+};
 </script>
