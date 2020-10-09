@@ -30,7 +30,7 @@
           </p>
         </v-col>
       </v-flex>
-      <br>
+      <br />
       <v-flex>
         <v-row class="text-center" :style="myContainer">
           <v-layout row>
@@ -51,7 +51,7 @@
         </v-row>
       </v-flex>
       <v-flex>
-        <h2 class="headline font-weight-bold mb-3"><br>우리 역사 바로알기</h2>
+        <h2 class="headline font-weight-bold mb-3"><br />우리 역사 바로알기</h2>
         <v-row>
           <v-col v-for="n in 9" :key="n" class="d-flex child-flex" cols="4">
             <v-img
@@ -71,6 +71,39 @@
             </v-img>
           </v-col>
         </v-row>
+      </v-flex>
+      <v-flex>
+        <h2 class="headline font-weight-bold mb-3"><br />이달의 정신전력</h2>
+        <v-row no-gutters>
+      
+      <v-col cols="4">
+        <v-card
+          class="pa-2"
+          outlined
+          tile
+        >
+          best1<br>Since 9 + 4 = 13 &gt; 12, this 4-column-wide div gets wrapped onto a new line as one contiguous unit.
+        </v-card>
+      </v-col>
+      <v-col cols="6" rows="5">
+        <v-card
+          class="pa-2"
+          outlined
+          tile
+        >
+          .col-6<br>Subsequent columns continue along the new line.
+        </v-card>
+      </v-col>
+      <v-col cols="6">
+        <v-card
+          class="pa-2"
+          outlined
+          tile
+        >
+          .col-6<br>Subsequent columns continue along the new line.
+        </v-card>
+      </v-col>
+    </v-row>
       </v-flex>
       <v-col class="mb-5" cols="12">
         <h2 class="headline font-weight-bold mb-3"></h2>
