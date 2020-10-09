@@ -57,7 +57,14 @@ const routes = [
 		path: '/intentions',
 		name: 'Intentions',
 		component: () => import('../views/help/intentions/index.vue')
-	}
+  },
+
+  // 지정하지 않은 라우터 => 에러처리
+  {
+    path: '*',
+    name: 'error',
+    component: () => import('../views/error_page')
+  }
 ]
 
 const router = new VueRouter({

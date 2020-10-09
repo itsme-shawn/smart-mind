@@ -1,6 +1,8 @@
 .DS_Store
 node_modules
 /dist
+.theia
+google-cloud-sdk
 
 
 # local env files
