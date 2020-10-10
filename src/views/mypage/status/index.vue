@@ -68,10 +68,10 @@
 										<!--해당 주차에 해당되는 제목 필요-->
 										<v-card-text class="text--primary">
 										<div>
-											<span class="white--text"><h3>믿음직하고 든든한 국군, ‘대체불가’ 특수전부대</h3></span>
+											<span class="white--text"><h3>해당 주차에 해당하는 제목필요</h3></span>
 										</div>
 
-										<span class="white--text">김 관 용 이데일리 정치부 외교안보팀장</span>
+										<span class="white--text">해당 주차에 해당하는 저자 혹은 작성일자</span>
 										</v-card-text>
 									</v-responsive>
 								</v-card>
