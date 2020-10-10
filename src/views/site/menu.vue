@@ -18,7 +18,8 @@
         <v-list-item-icon>
           <v-icon>mdi-home</v-icon>
         </v-list-item-icon>
-      	<v-list-item-title>홈</v-list-item-title>
+
+ <v-list-item-title>홈</v-list-item-title>
       </v-list-item>
 
       <v-list-group
@@ -49,13 +50,11 @@
 	</v-list>
 </template>
 
-
-
 <script>
-	export default {
-		data() {
-			return {
-			pathHome : '/',
+export default {
+	data () {
+		return {
+			pathHome: '/',
 			items: [
 
 					{

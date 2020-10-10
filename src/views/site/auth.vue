@@ -28,38 +28,47 @@
 		</template>
 
 		<v-card>
-			<v-card-title>프로필</v-card-title>
+			<v-card-title>
+				<div>
+					<router-link to='/account'>
+						<v-icon left>mdi-account</v-icon>프로필
+					</router-link>
+				</div>
+			</v-card-title>
 			<v-divider></v-divider>
 			<v-card-actions>
 				<v-btn color="" dark small block @click="signOut" >로그아웃</v-btn>
 			</v-card-actions>
 		</v-card>
 	</v-menu>
-	
+
 </template>
 
 <script>
-	export default {
-		data () {
-			return {
-				loading: false
+export default {
+	data () {
+		return {
+			loading: false
+		}
+	},
+	methods: {
+		async signInWithGoogle () {
+			const provider = new this.$firebase.auth.GoogleAuthProvider()
+			this.$firebase.auth().languageCode = 'ko'
+			this.loading = true
+			try {
+				const sn = await this.$firebase.auth().signInWithPopup(provider)
+				this.$store.commit('setFireUser', sn.user)
+			} finally {
+				this.loading = false
 			}
 		},
-		methods: {
-			async signInWithGoogle () {
-				const provider = new this.$firebase.auth.GoogleAuthProvider();
-				this.$firebase.auth().languageCode = 'ko'
-				this.loading = true
-				try {
-					const sn = await this.$firebase.auth().signInWithPopup(provider)
-					this.$store.commit('setFireUser', sn.user)
-				} finally{
-					this.loading = false
-				}
-			},
-			signOut() {
-				this.$firebase.auth().signOut()
-			}
+		signOut () {
+			this.$firebase.auth().signOut()
+		},
+		link (event) {
+			this.$router.push('/views/mypage/account/index.vue')
 		}
 	}
+}
 </script>
