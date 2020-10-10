@@ -4,12 +4,12 @@
   <learning-dashboard
     v-if="collection === 'learning' && document === 'dashboard'">
   </learning-dashboard>
-  <learning-content
+  <learning-board
     v-else-if="collection === 'learning' && !action" :document="document">
-  </learning-content>
-  <learning-form
+  </learning-board>
+  <learning-board-form
     v-else-if="collection === 'learning' && action" :document="document" :action="action">
-  </learning-form>
+  </learning-board-form>
 
   <mypage-account v-else-if="collection === 'mypage' && document === 'account'"></mypage-account>
   <mypage-status v-else-if="collection === 'mypage' && document === 'status'"></mypage-status>
@@ -26,8 +26,8 @@
 
 // Learning (수강하기 배너)
 import LearningDashboard from '../views/learning/dashboard/index.vue'
-import LearningContent from '../views/learning/content'
-import LearningForm from '../views/learning/form'
+import LearningBoard from '../views/learning/board'
+import LearningBoardForm from '../views/learning/board-form'
 
 
 // Mypage (마이페이지 배너)
@@ -45,7 +45,7 @@ import ErrorPage from '../views/error_page'
 
 export default {
   components : {
-    LearningDashboard, LearningContent, LearningForm,
+    LearningDashboard, LearningBoard, LearningBoardForm,
     MypageAccount, MypageBudae, MypageStatus,
     HelpFaq, HelpGuide, HelpIntentions,
     ErrorPage
