@@ -11,9 +11,17 @@ const routes = [
   },
 
   // 동적 라우팅 생성 ( renderer.vue 를 통해 렌더링 )
+
+  // ex ) /learning/jungsin : collection == 'learning' , document == 'jungsin'
   {
-    path: '/:category/:document',
+    path: '/:collection/:document',
     name: 'Dynamic routing',
+    component: () => import('./renderer.vue')
+  },
+
+  // action (read,write 등) 동적라우터 추가
+  {
+    path: '/:collection/:document/:action',
     component: () => import('./renderer.vue')
   },
 

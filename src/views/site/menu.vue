@@ -64,19 +64,19 @@
 						subItems: [
 							{
 								title: '대시보드',
-								to: '/contents/dashboard'
+								to: '/learning/dashboard'
 							},
 							{
 								title: '주간정신전력교육',
-								to: '/contents/jungsin'
+								to: '/learning/jungsin'
 							},
 							{
 								title: '우리 역사 바로알기',
-								to: '/contents/daily_history'
+								to: '/learning/daily_history'
 							},
 							{
 								title: '임시',
-								to: '/contents/temp'
+								to: '/learning/temp'
 							}
 						]
 					},
