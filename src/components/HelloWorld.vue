@@ -2,38 +2,48 @@
   <v-container class="text-center">
     <v-layout column>
       <v-layout row wrap :style="myContainer">
-        <v-flex xs12 md6 lg6 class="order-lg-2">
-          <v-col align="center">
+        <v-flex xs12 md12 lg12 class="order-lg-2">
+          <v-col align="left">
             <v-img
-              contain
-              :src="require('../assets/soldier.svg')"
+              :src="require('../assets/cat.jpg')"
               min-height="100"
-              max-width="1000"
             >
-            </v-img>
-          </v-col>
-        </v-flex>
-        <v-layout align-center justify-center>
-          <v-flex xs12 md6 lg6 class="order-lg-1">
-            <v-col>
-              <h1 class="display-2 font-weight-bold mb-3">정신차렷!</h1>
-
-              <p class="subheading font-weight-regular">
-                정신차렷!은 언제, 어디서나 정신전력 컨텐츠를 즐길 수 있는
-                플랫폼입니다.
-              </p>
-              <p>
-                <v-btn
-                  color="lime lighten-3"
+            
+				<v-layout column align-start justify-center class="white--text" fill-height>
+					<v-img :src="require('../assets/lamp2.png')" contain max-height="400"></v-img>
+					<h1 class="white--text font-weight-bold mb-2 display-2 text-left">정신차렷!</h1>
+					<div class="subheading mb-4 text-left">정신차렷!은 언제, 어디서나 정신전력 컨텐츠를 즐길 수 있는
+                플랫폼입니다.<br>
+                </div>
+                <div>
+                  <v-btn
+                  color="grey-draken-3"
                   elevation="8"
                   medium
                   @click="dashboard"
                   >시작하기</v-btn
                 >
+                <br><br>
+                </div>
+                
+				</v-layout>
+			</v-img>
+         </v-col>
+        </v-flex>
+      <!--  <v-layout align-center justify-center>
+          <v-flex xs12 md6 lg6 class="order-lg-1">
+            <v-col>
+              <h1 class="display-2 font-weight-bold mb-3"></h1>
+
+              <p class="subheading font-weight-regular">
+                
+              </p>
+              <p>
+                
               </p>
             </v-col>
           </v-flex>
-        </v-layout>
+        </v-layout>-->
       </v-layout>
       <br />
       <v-flex xs12 md6>
@@ -108,7 +118,7 @@
         </v-row>
       </v-flex>
       <v-flex xs12 md12>
-        <v-card class="mx-auto" max-width="500">
+        <!--<v-card class="mx-auto" max-width="500">
           <v-container fluid>
             <v-row dense>
               <v-col v-for="card in cards" :key="card.title" :cols="card.flex">
@@ -133,7 +143,7 @@
               </v-col>
             </v-row>
           </v-container>
-        </v-card>
+        </v-card>-->
       </v-flex>
     </v-layout>
   </v-container>
