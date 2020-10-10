@@ -19,7 +19,7 @@
                         나의 회원정보
                         </v-list-item-title>
                         <v-card-actions>
-                            <v-btn outlined rounded text>
+                            <v-btn outlined rounded text @click="dialog = true">
                                 정보수정
                             </v-btn>
                         </v-card-actions>
@@ -72,6 +72,107 @@
             </v-simple-table>
         </v-card>
 
+        <!--dialog로 회원 정보 수정 form 만들 예정. -->
+        <v-row justify="center">
+            <v-dialog v-model="dialog" persistent max-width="600px">
+            <v-card>
+                <v-card-title>
+                <span class="headline">회원정보수정</span>
+                </v-card-title>
+                <v-divider></v-divider>
+                <v-card-text>
+                <v-container>
+                    <v-row>
+                        <v-col cols="12" sm="6" md="4">
+                            <v-text-field
+                            label="아이디*"
+                            required
+                            ></v-text-field>
+                        </v-col>
+                        <v-col cols="12" sm="6" md="4">
+                            <v-text-field
+                            label="비밀번호"
+                            type="password"
+                            hint="*변경 시에만 입력해주세요"
+                            ></v-text-field>
+                        </v-col>
+                        <v-col cols="12" sm="6" md="4">
+                            <v-text-field
+                            label="비밀번호 확인*"
+                            type="password"
+                            required
+                            ></v-text-field>
+                        </v-col>
+                        <v-col cols="12">
+                            <v-text-field
+                            label="Email*"
+                            required
+                            ></v-text-field>
+                        </v-col>
+                        <v-col cols="12">
+                            <v-text-field
+                            label="소속 부대(중대급까지)*"
+                            type="password"
+                            required
+                            ></v-text-field>
+                        </v-col>
+                        <v-col
+                            cols="12"
+                            sm="6"
+                        >
+                            <v-select
+                            :items="['국방부', '국방부 직할부대', '육군', '해군','해병대','공군','생도','후보생','군무원']"
+                            label="회원분류*"
+                            required
+                            ></v-select>
+                        </v-col>
+                        <v-col
+                            cols="12"
+                            sm="6"
+                        >
+                            <v-select
+                            :items="['간부','병장','상등병','일등병','이등병']"
+                            label="계급/등급*"
+                            required
+                            ></v-select>
+                        </v-col>
+                        <v-col cols="12">
+                            <v-text-field
+                            label="생년월일(ex-19981117)"
+                            required
+                            ></v-text-field>
+                        </v-col>
+                        <v-col cols="12" sm="6" md="4">
+                            <v-select
+                            :items="['남성','여성']"
+                            label="성별*"
+                            required
+                            ></v-select>
+                        </v-col>
+                        <v-col cols="12" sm="6" md="8">
+                            <v-text-field
+                            label="휴대폰"
+                            type="password"
+                            hint="*변경 시에만 입력해주세요"
+                            ></v-text-field>
+                        </v-col>
+                    </v-row>
+                </v-container>
+                <small>*indicates required field</small>
+                </v-card-text>
+                <v-card-actions>
+                <v-spacer></v-spacer>
+                <v-btn color="blue darken-1" text @click="dialog = false">
+                    취소
+                </v-btn>
+                <v-btn color="blue darken-1" text @click="dialog = false">
+                    저장
+                </v-btn>
+                </v-card-actions>
+            </v-card>
+            </v-dialog>
+        </v-row>
+
     </div>
 </template>
 
@@ -79,6 +180,7 @@
 export default {
 	data () {
 		return {
+			dialog: false,
 			task: [
 				{
 					name: '국가안보의 중요성',

@@ -29,7 +29,6 @@ import LearningDashboard from '../views/learning/dashboard/index.vue'
 import LearningContent from '../views/learning/content'
 import LearningForm from '../views/learning/form'
 
-
 // Mypage (마이페이지 배너)
 import MypageAccount from '../views/mypage/account/index.vue'
 import MypageStatus from '../views/mypage/status/index.vue'
@@ -44,22 +43,28 @@ import HelpIntentions from '../views/help/intentions/index.vue'
 import ErrorPage from '../views/error_page'
 
 export default {
-  components : {
-    LearningDashboard, LearningContent, LearningForm,
-    MypageAccount, MypageBudae, MypageStatus,
-    HelpFaq, HelpGuide, HelpIntentions,
-    ErrorPage
-  },
-  computed : {
-    collection () {
-      return this.$route.params.collection
-    },
-    document () {
-      return this.$route.params.document
-    },
-    action () {
-      return this.$route.params.action
-    }
-  }
+	components: {
+		LearningDashboard,
+		LearningContent,
+		LearningForm,
+		MypageAccount,
+		MypageBudae,
+		MypageStatus,
+		HelpFaq,
+		HelpGuide,
+		HelpIntentions,
+		ErrorPage
+	},
+	computed: {
+		collection () {
+			return this.$route.params.collection
+		},
+		document () {
+			return this.$route.params.document
+		},
+		action () {
+			return this.$route.params.action
+		}
+	}
 }
 </script>
