@@ -5,7 +5,7 @@
     v-if="collection === 'learning' && document === 'dashboard'">
   </learning-dashboard>
   <learning-board
-    v-else-if="collection === 'learning' && !action" :document="document">
+    v-else-if="collection === 'learning' && !action" :document="document">  <!-- doument props 에는 jungsin, daily_history 등이 들어가서 동적으로 각각의 게시판을 생성한다. -->
   </learning-board>
   <learning-board-form
     v-else-if="collection === 'learning' && action === 'board-write'" :document="document" :action="action">

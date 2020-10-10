@@ -24,7 +24,6 @@ export default {
     return {
       unsubscribe: null,
       form: {
-        category: '',
         title: '',
         description: ''
       },
@@ -47,20 +46,17 @@ export default {
   methods: {
     subscribe () {
       if (this.unsubscribe) this.unsubscribe()
-      this.ref = this.$firebase.firestore().collection('learing').doc(this.document)
+      this.ref = this.$firebase.firestore().collection('learning').doc(this.document)
       this.unsubscribe = this.ref.onSnapshot(doc => {
         this.exists = doc.exists
         if (this.exists) {
-          const item = doc.data()
-          //this.form.category = item.category // category 정보는 필요없을것 같아서 일단 주석처리
-          this.form.title = item.title
-          this.form.description = item.description
+          this.form.title = doc.data().title
+          this.form.description = doc.data().description
         }
       })
     },
-    async save () {
+    async save () { // 비동기로 처리해줘야하는 로직을 포함하고있음
       const form = {
-        //category: this.form.category,
         title: this.form.title,
         description: this.form.description,
         updatedAt: new Date()

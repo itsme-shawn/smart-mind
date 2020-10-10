@@ -12,8 +12,8 @@
       <v-toolbar color="accent" dense flat dark>
         <v-toolbar-title v-text="info.title"></v-toolbar-title>
       <v-spacer/>
-      <v-btn icon @click="board_write"><v-icon>mdi-pencil</v-icon></v-btn> <!-- 강의실 정보 수정 -->
-      <v-btn icon @click="article_write"><v-icon>mdi-plus</v-icon></v-btn> <!-- 게시물 작성 버튼 -->
+      <v-btn color="gray" @click="board_write" ><v-icon>mdi-pencil</v-icon>강의실 정보 수정</v-btn> <!-- 강의실 정보 수정 -->
+      <v-btn color="gray" @click="article_write"><v-icon>mdi-plus</v-icon>게시물 작성</v-btn> <!-- 게시물 작성 버튼 -->
       </v-toolbar>
       <v-card-text v-if="info.createdAt">
         <v-alert icon="mdi-information-outline" text elevation="5" border="top" color="green lighten-2" dark dismissible>
@@ -60,9 +60,9 @@ export default {
   methods: {
     subscribe () {
       if (this.unsubscribe) this.unsubscribe()
-      const ref = this.$firebase.firestore().collection('learing').doc(this.document)
+      const ref = this.$firebase.firestore().collection('learning').doc(this.document)
       this.unsubscribe = ref.onSnapshot(doc => {
-        if (!doc.exists) return this.write()
+        if (!doc.exists) return this.board_write() // 해당 게시판의 title 과 description 이 없으면 게시판 정보를 작성하는 페이지로 이동시킨다.
         this.info = doc.data()
       })
     },
@@ -74,7 +74,8 @@ export default {
       this.$router.push(
         {
           path : this.$route.path + '/article-write',
-          query : { articleId : 'new' }
+          query : { articleId : '' }
+          // 쿼리문을 이용 ( ex.  /article-write?articleId='foo' )
         }
       )
     }
