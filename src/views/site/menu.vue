@@ -11,16 +11,17 @@
 		</v-list-item>
 
 		<v-divider></v-divider>
-	
+
 		<v-list>
-			
+
 			<v-list-item :to="pathHome">
         <v-list-item-icon>
           <v-icon>mdi-home</v-icon>
         </v-list-item-icon>
-      	<v-list-item-title>홈</v-list-item-title>
+
+ <v-list-item-title>홈</v-list-item-title>
       </v-list-item>
-			
+
       <v-list-group
         v-for="(item, i) in items"
         :key="i"
@@ -46,62 +47,78 @@
         </v-list-item>
       </v-list-group>
     </v-list>
-	</v-list>	
+	</v-list>
 </template>
 
-
-
 <script>
-	export default {
-		data() {
-			return {
-			pathHome : '/',
+export default {
+	data () {
+		return {
+			pathHome: '/',
 			items: [
-          
+
 					{
 						title: '수강하기',
 						icon : 'mdi-school',
-						to : '/',
 						subItems: [
 							{
 								title: '대시보드',
-								to: '/dashboard'
+								to: '/learning/dashboard'
 							},
 							{
 								title: '주간정신전력교육',
-								to: '/jungsin'
+								to: '/learning/jungsin'
 							},
 							{
-								title: '데일리 역사 상식',
-								to: '/daily_history'
+								title: '우리 역사 바로알기',
+								to: '/learning/daily_history'
 							},
 							{
-								title: '컨텐츠3',
-								to: '/temp'
+								title: '임시',
+								to: '/learning/temp'
 							}
 						]
 					},
-          { 
-						title: '도움말', 
+					{
+						title: '마이페이지',
+						icon : 'mdi-account',
+						subItems: [
+							{
+								title: '개인정보수정',
+								to: '/mypage/account'
+							},
+							{
+								title: '정신전력 현황',
+								to: '/mypage/status'
+							},
+							{
+								title: '부대관리',
+								to: '/mypage/budae'
+							}
+
+						]
+					},
+          {
+						title: '도움말',
 						icon: 'mdi-help-box',
 						subItems: [
 							{
 								title: '가이드',
-								to: '/guide'
+								to: '/help/guide'
 							},
 							{
 								title: 'FAQ',
-								to: '/FAQ'
+								to: '/help/FAQ'
 							},
 							{
 								title: '기획의도',
-								to: '/intentions'
+								to: '/help/intentions'
 							}
 						]
 					},
         ]
 			}
 		}
-		
+
 	}
 </script>

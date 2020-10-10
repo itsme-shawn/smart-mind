@@ -39,13 +39,13 @@
 		<!--dialog end-->
 
 		<!-- dialog 삭제할 때 삭제할 건지 한 번 더 묻는 dialog-->
-		<v-dialog v-model="dialogDelete" max-width="500px">
+		<v-dialog v-model="dialogDelete" max-width="500px" @keydown.enter="deleteItemConfirm(tempForm)" @keydown.esc="closeDelete" >
           <v-card>
             <v-card-title class="headline">이 글을 지우시겠습니까?</v-card-title>
             <v-card-actions>
               <v-spacer></v-spacer>
               <v-btn color="blue darken-1" text @click="closeDelete">취소</v-btn>
-              <v-btn color="blue darken-1" text @click="deleteItemConfirm(tempForm)">예</v-btn>
+              <v-btn color="blue darken-1" text @click="deleteItemConfirm(tempForm)" >예</v-btn>
               <v-spacer></v-spacer>
             </v-card-actions>
           </v-card>
@@ -111,7 +111,7 @@ export default {
 			// 삭제를 위해 임시로 담아두는 변수 -> tempForm
 			this.tempForm = item
 			// console.log('item id : ', item.id)
-			console.log(this.tempForm.title, this.tempForm.content, this.tempForm.id)
+			// console.log('1',this.tempForm.title, this.tempForm.content, this.tempForm.id)
 		},
 		closeDelete () {
 			// 취소 버튼 눌렀을 때 그냥 띄워진 dialog 닫으면 됨
@@ -153,7 +153,17 @@ export default {
 			const item = {}
 			Object.assign(item, this.form)
 			item.createdAt = new Date()
-			this.$firebase.firestore().collection('boards').add(item)
+
+			// Add a new document with a generated id.
+			// itemRef 는 DB 경로와 관련된 객체임
+			var itemRef = this.$firebase.firestore().collection('boards').doc()
+
+			// item 객체에 id 값 저장
+			item.id = itemRef.id
+
+			// DB경로에다가 item 저장
+			itemRef.set(item)
+			this.$firebase.firestore().collection('boards').doc(itemRef.id).update(item)
 			this.dialog = false
 		},
 
