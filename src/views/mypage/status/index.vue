@@ -41,7 +41,47 @@
                 <v-toolbar-title class="font-weight-bold ml-5">지난 정신전력</v-toolbar-title>
             </v-card-text>
         </div>
-		
+		<v-divider></v-divider>
+		<div class="mb-12 mt-5">
+			<template>
+				<v-card class="mx-auto" max-width="600">
+					<v-carousel v-model="model" hide-delimiters>
+						<v-carousel-item
+						v-for="(color, i) in colors"
+						:key="color"
+						>
+						<v-sheet :color="color" height="100%" tile>
+							<v-row class="fill-height" align="center" justify="center">
+								<v-card >
+									<v-responsive :aspect-ratio="16/9">
+									<!--해당 컨텐츠에 맞게 이미지를 넣어야 함-->
+										<v-img class="white--text align-top" max-height="400"
+										src="https://picsum.photos/510/300?random">
+										<v-card-title>{{i + 1}}주차 정신전력 교육</v-card-title>
+										</v-img>
+									<!--해당 컨텐츠에 맞게 이미지를 넣어야 함-->
+
+										<!--이번이 몇 주차인지 알 수 있게 하기 위해 변동되어야 하는 부분-->
+										<v-card-subtitle class="pb-2">
+										9월 {{i + 1}}주차
+										</v-card-subtitle>
+										<!--해당 주차에 해당되는 제목 필요-->
+										<v-card-text class="text--primary">
+										<div>
+											<span class="white--text"><h3>믿음직하고 든든한 국군, ‘대체불가’ 특수전부대</h3></span>
+										</div>
+
+										<span class="white--text">김 관 용 이데일리 정치부 외교안보팀장</span>
+										</v-card-text>
+									</v-responsive>
+								</v-card>
+							</v-row>
+						</v-sheet>
+						</v-carousel-item>
+					</v-carousel>
+				</v-card>
+			</template>
+		</div>
   </div>
 </template>
 
@@ -51,12 +91,12 @@ export default {
 		overlay: false,
 		model: 0,
 		colors: [
-			'primary',
 			'secondary',
+			'green',
 			'yellow darken-2',
 			'red',
-			'orange',
-		],
+			'orange'
+		]
 	})
 }
 </script>
