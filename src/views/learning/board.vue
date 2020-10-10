@@ -1,10 +1,19 @@
+<!--
+    각 content 게시판들의 공통 컴포넌트
+
+    동적 라우팅 파라미터로 받은 document 값을
+    props : ['document'] 로 받아서
+    renderer.vue 에서 document 값에 따라 알맞은 게시판으로 동적으로 렌더링해준다.
+-->
+
 <template>
   <v-container fluid>
     <v-card>
       <v-toolbar color="accent" dense flat dark>
         <v-toolbar-title v-text="info.title"></v-toolbar-title>
       <v-spacer/>
-      <v-btn icon @click="write"><v-icon>mdi-pencil</v-icon></v-btn> <!-- 강의실 정보 수정 -->
+      <v-btn icon @click="board_write"><v-icon>mdi-pencil</v-icon></v-btn> <!-- 강의실 정보 수정 -->
+      <v-btn icon @click="article_write"><v-icon>mdi-plus</v-icon></v-btn> <!-- 게시물 작성 버튼 -->
       </v-toolbar>
       <v-card-text v-if="info.createdAt">
         <v-alert icon="mdi-information-outline" text elevation="5" border="top" color="green lighten-2" dark dismissible>
@@ -57,8 +66,17 @@ export default {
         this.info = doc.data()
       })
     },
-    async write () {
-      this.$router.push(this.$route.path + '/write')
+    async board_write () {
+      this.$router.push(this.$route.path + '/board-write')
+      // '/board-write' 는 action 라우트 파라미터로 들어감
+    },
+    async article_write () {
+      this.$router.push(
+        {
+          path : this.$route.path + '/article-write',
+          query : { articleId : 'new' }
+        }
+      )
     }
   }
 }
