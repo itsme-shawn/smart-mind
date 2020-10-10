@@ -4,7 +4,7 @@
       <v-toolbar color="accent" dense flat dark>
         <v-toolbar-title v-text="info.title"></v-toolbar-title>
       <v-spacer/>
-      <v-btn icon @click="write"><v-icon>mdi-pencil</v-icon></v-btn>
+      <v-btn icon @click="write"><v-icon>mdi-pencil</v-icon></v-btn> <!-- 강의실 정보 수정 -->
       </v-toolbar>
       <v-card-text v-if="info.createdAt">
         <v-alert icon="mdi-information-outline" text elevation="5" border="top" color="green lighten-2" dark dismissible>
@@ -16,17 +16,19 @@
         </v-alert>
       </v-card-text>
       <v-card-text>
-        articles
+        article
       </v-card-text>
     </v-card>
   </v-container>
 </template>
 <script>
 export default {
-  props: ['document'], // document == 'daily_history' , collection == 'learning'
+  props: ['document'],
+  // ex ) /learning/daily_history 주소로 접속하면 ,
+  // document == 'daily_history' , collection == 'learning' 이다.
   data () {
     return {
-      unsubscribe: null,
+      unsubscribe: null,  // 초기값은 null 로 주고, subscribe 시 unsubscribe 에 값을 저장한다.
       info: {
         category: '',
         title: '',

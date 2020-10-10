@@ -52,7 +52,7 @@ export default {
         this.exists = doc.exists
         if (this.exists) {
           const item = doc.data()
-          //this.form.category = item.category
+          //this.form.category = item.category // category 정보는 필요없을것 같아서 일단 주석처리
           this.form.title = item.title
           this.form.description = item.description
         }
@@ -69,6 +69,7 @@ export default {
       try {
         if (!this.exists) {
           form.createdAt = new Date()
+          form.count = 0  // 해당 컨텐츠의 article 의 갯수를 저장
           await this.ref.set(form)
         } else {
           this.ref.update(form)
