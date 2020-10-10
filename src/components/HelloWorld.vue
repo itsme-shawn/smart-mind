@@ -24,7 +24,7 @@
               </p>
               <p>
                 <v-btn
-                  color="cyan lighten-4"
+                  color="lime lighten-3"
                   elevation="8"
                   medium
                   @click="dashboard"
@@ -58,29 +58,57 @@
       <v-flex xs12 md6>
         <h2 class="headline font-weight-bold mb-3"><br />우리 역사 바로알기</h2>
         <v-row>
-          <v-col v-for="n in 9" :key="n" class="d-flex child-flex" cols="4">
-            <v-img
-              :src="`https://picsum.photos/500/300?image=${n * 5 + 10}`"
-              :lazy-src="`https://picsum.photos/10/6?image=${n * 5 + 10}`"
-              aspect-ratio="1"
-              class="grey lighten-2"
-            >
-              <template v-slot:placeholder>
-                <v-row class="fill-height ma-0" align="center" justify="center">
-                  <v-progress-circular
-                    indeterminate
-                    color="grey lighten-5"
-                  ></v-progress-circular>
-                </v-row>
-              </template>
-            </v-img>
+          <v-col v-for="n in 6" :key="n" class="d-flex child-flex" cols="4">
+            <v-card class="mx-auto">
+              <v-img
+                :src="require('../assets/'+n+'.jpg')"
+                aspect-ratio="1"
+                class="grey lighten-2"
+              >
+                <template v-slot:placeholder>
+                  <v-row
+                    class="fill-height ma-0"
+                    align="center"
+                    justify="center"
+                  >
+                    <v-progress-circular
+                      indeterminate
+                      color="grey lighten-5"
+                    ></v-progress-circular>
+                  </v-row>
+                </template>
+              </v-img>
+              <v-card-title> {{n}} </v-card-title>
+
+              <v-card-subtitle> {{n}} </v-card-subtitle>
+
+              <v-card-actions>
+                <v-btn color="orange lighten-2" text> 더보기 </v-btn>
+
+                <v-spacer></v-spacer>
+
+                <v-btn icon @click= "show[n] = !show[n]">
+                  <v-icon>{{
+                    show[n] ? "mdi-chevron-up" : "mdi-chevron-down"
+                  }}</v-icon>
+                </v-btn>
+              </v-card-actions>
+
+              <v-expand-transition>
+                <div v-show="show[n]">
+                  <v-divider></v-divider>
+
+                  <v-card-text>
+                    짐은 조선의 왕 세종이오!x
+                  </v-card-text>
+                </div>
+              </v-expand-transition>
+            </v-card>
           </v-col>
         </v-row>
       </v-flex>
       <v-flex xs12 md12>
         <v-card class="mx-auto" max-width="500">
-                  
-
           <v-container fluid>
             <v-row dense>
               <v-col v-for="card in cards" :key="card.title" :cols="card.flex">
@@ -100,8 +128,6 @@
                     <v-btn icon>
                       <v-icon>mdi-heart</v-icon>
                     </v-btn>
-
-                    
                   </v-card-actions>
                 </v-card>
               </v-col>
@@ -124,8 +150,9 @@ export default {
   },
   data() {
     return {
+      show: [true,false,false,false,false,false],
       myContainer: {
-        backgroundColor: "grey",
+        backgroundColor: "",
       },
     };
   },
