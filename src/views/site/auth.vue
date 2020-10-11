@@ -30,7 +30,7 @@
 		<v-card>
 			<v-card-title>
 				<div>
-					<router-link to='/account'>
+					<router-link to='/mypage/account'>
 						<v-icon left>mdi-account</v-icon>프로필
 					</router-link>
 				</div>

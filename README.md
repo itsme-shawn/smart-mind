@@ -51,7 +51,9 @@ $ yarn start or npm run start
 ## 팀 정보 (Team Information)
 - 최현수 (chs98105@gmail.com),  Github Id: [Keep-Going-HyeonSoo](https://github.com/Keep-Going-HyeonSoo)
 - 김현재
-- 최이현
+- 최이현 (chyh0182@naver.com), Github Id: [Choieeh]
+(https://github.com/Choieeh)
+
 
 ## 저작권 및 사용권 정보 (Copyleft / End User License)
  * [MIT](https://github.com/Keep-Going-HyeonSoo/WEB_SmartMind_CameToWin/blob/master/license.md)

@@ -33,7 +33,6 @@ import LearningBoard from '../views/learning/board'
 import LearningBoardForm from '../views/learning/board-form'
 import LearningArticleForm from '../views/learning/article-form'
 
-
 // Mypage (마이페이지 배너)
 import MypageAccount from '../views/mypage/account/index.vue'
 import MypageStatus from '../views/mypage/status/index.vue'
