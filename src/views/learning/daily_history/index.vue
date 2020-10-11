@@ -13,24 +13,21 @@
 
 <script>
 export default {
-  data() {
-    return{
-      options: {
-        language: 'ko'
-      },
-      text : '# abcdefg',
-      toggle: false
-    }
-  },
-  methods: {
-    read () {
-      this.text = this.$refs.editor.invoke('getMarkdown')
-      alert(this.$refs.editor.invoke('getMarkdown'))
-    }
-  }
+	data () {
+		return {
+			options: {
+				language: 'ko'
+			},
+			text: '# abcdefg',
+			toggle: false
+		}
+	},
+	methods: {
+		read () {
+			this.text = this.$refs.editor.invoke('getMarkdown')
+			alert(this.$refs.editor.invoke('getMarkdown'))
+		}
+	}
 }
-
-
-
 
 </script>

@@ -32,53 +32,53 @@
 </template>
 <script>
 export default {
-  props: ['document'],
-  // ex ) /learning/daily_history 주소로 접속하면 ,
-  // document == 'daily_history' , collection == 'learning' 이다.
-  data () {
-    return {
-      unsubscribe: null,  // 초기값은 null 로 주고, subscribe 시 unsubscribe 에 값을 저장한다.
-      info: {
-        category: '',
-        title: '',
-        description: ''
-      },
-      loading: false
-    }
-  },
-  watch: {
-    document () {
-      this.subscribe()
-    }
-  },
-  created () {
-    this.subscribe()
-  },
-  destroyed () {
-    if (this.unsubscribe) this.unsubscribe()
-  },
-  methods: {
-    subscribe () {
-      if (this.unsubscribe) this.unsubscribe()
-      const ref = this.$firebase.firestore().collection('learning').doc(this.document)
-      this.unsubscribe = ref.onSnapshot(doc => {
-        if (!doc.exists) return this.board_write() // 해당 게시판의 title 과 description 이 없으면 게시판 정보를 작성하는 페이지로 이동시킨다.
-        this.info = doc.data()
-      })
-    },
-    async board_write () {
-      this.$router.push(this.$route.path + '/board-write')
-      // '/board-write' 는 action 라우트 파라미터로 들어감
-    },
-    async article_write () {
-      this.$router.push(
-        {
-          path : this.$route.path + '/article-write',
-          query : { articleId : '' }
-          // 쿼리문을 이용 ( ex.  /article-write?articleId='foo' )
-        }
-      )
-    }
-  }
+	props: ['document'],
+	// ex ) /learning/daily_history 주소로 접속하면 ,
+	// document == 'daily_history' , collection == 'learning' 이다.
+	data () {
+		return {
+			unsubscribe: null, // 초기값은 null 로 주고, subscribe 시 unsubscribe 에 값을 저장한다.
+			info: {
+				category: '',
+				title: '',
+				description: ''
+			},
+			loading: false
+		}
+	},
+	watch: {
+		document () {
+			this.subscribe()
+		}
+	},
+	created () {
+		this.subscribe()
+	},
+	destroyed () {
+		if (this.unsubscribe) this.unsubscribe()
+	},
+	methods: {
+		subscribe () {
+			if (this.unsubscribe) this.unsubscribe()
+			const ref = this.$firebase.firestore().collection('learning').doc(this.document)
+			this.unsubscribe = ref.onSnapshot(doc => {
+				if (!doc.exists) return this.board_write() // 해당 게시판의 title 과 description 이 없으면 게시판 정보를 작성하는 페이지로 이동시킨다.
+				this.info = doc.data()
+			})
+		},
+		async board_write () {
+			this.$router.push(this.$route.path + '/board-write')
+			// '/board-write' 는 action 라우트 파라미터로 들어감
+		},
+		async article_write () {
+			this.$router.push(
+				{
+					path: this.$route.path + '/article-write',
+					query: { articleId: '' }
+					// 쿼리문을 이용 ( ex.  /article-write?articleId='foo' )
+				}
+			)
+		}
+	}
 }
 </script>
