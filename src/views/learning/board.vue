@@ -12,8 +12,10 @@
       <v-toolbar color="accent" dense flat dark>
         <v-toolbar-title v-text="info.title"></v-toolbar-title>
       <v-spacer/>
-      <v-btn color="gray" @click="board_write" ><v-icon>mdi-pencil</v-icon>강의실 정보 수정</v-btn> <!-- 강의실 정보 수정 -->
-      <v-btn color="gray" @click="article_write"><v-icon>mdi-plus</v-icon>게시물 작성</v-btn> <!-- 게시물 작성 버튼 -->
+      <template v-if="user">
+        <v-btn color="gray" @click="board_write" ><v-icon>mdi-pencil</v-icon>강의실 정보 수정</v-btn> <!-- 강의실 정보 수정 -->
+        <v-btn color="gray" @click="article_write"><v-icon>mdi-plus</v-icon>게시물 작성</v-btn> <!-- 게시물 작성 버튼 -->
+      </template>
       </v-toolbar>
       <v-card-text v-if="info.createdAt">
         <v-alert icon="mdi-information-outline" text elevation="5" border="top" color="green lighten-2" dark dismissible>
@@ -25,13 +27,17 @@
         </v-alert>
       </v-card-text>
       <v-card-text>
-        article
+        게시물
       </v-card-text>
+      <article-list :info="info" :document="document" ></article-list>
     </v-card>
   </v-container>
 </template>
 <script>
+import ArticleList from './article/article-list'
+
 export default {
+	components: { ArticleList },
 	props: ['document'],
 	// ex ) /learning/daily_history 주소로 접속하면 ,
 	// document == 'daily_history' , collection == 'learning' 이다.
@@ -50,6 +56,16 @@ export default {
 		document () {
 			this.subscribe()
 		}
+	},
+	computed: {
+		user () { // store.js에 저장돼있는 user 정보
+			return this.$store.state.user
+		},
+		LevelCheck () {
+			if (this.user.level === 'admin') return true // 사용자 계정이 admin 이면 true 리턴
+			else return false
+		}
+
 	},
 	created () {
 		this.subscribe()

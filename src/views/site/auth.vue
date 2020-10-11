@@ -1,4 +1,5 @@
 <!-- 인증과 관련된 컴포넌트 -->
+<!-- 인증관련 코드 : auth.vue , functions/index.js , plugins/firebase.js -->
 
 <template>
 	<v-progress-circular indeterminate v-if="loading"></v-progress-circular>

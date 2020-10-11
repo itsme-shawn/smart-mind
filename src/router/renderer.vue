@@ -31,7 +31,7 @@
 import LearningDashboard from '../views/learning/dashboard/index.vue'
 import LearningBoard from '../views/learning/board'
 import LearningBoardForm from '../views/learning/board-form'
-import LearningArticleForm from '../views/learning/article-form'
+import LearningArticleForm from '../views/learning/article/article-form'
 
 // Mypage (마이페이지 배너)
 import MypageAccount from '../views/mypage/account/index.vue'

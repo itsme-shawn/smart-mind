@@ -91,7 +91,13 @@ export default {
 					batch.update(this.ref.collection('articles').doc(this.articleId), doc)
 				}
 				await batch.commit()
-			} finally {
+			}
+			/* 나중에 에러핸들링 추가해야함
+        catch {
+				// console.error('로그인이 필요합니다')
+      }
+      */
+			finally {
 				this.loading = false
 				this.$router.push('/learning/' + this.document)
 			}
