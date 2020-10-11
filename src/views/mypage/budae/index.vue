@@ -1,5 +1,5 @@
 <template>
-	<div class="mb-12">
+	<v-container class="mb-12">
 		<div>
             <v-card-text>
                 <v-toolbar-title class="font-weight-bold ml-5">부대 관리</v-toolbar-title>
@@ -49,28 +49,47 @@
 						<v-card-title class="align-top mb-4">이번주의 참여율</v-card-title>
 						<v-card-subtitle class="pb-2">요일별 참여율 </v-card-subtitle>
 						<v-slider v-model="day" :max="6" :tick-labels="labels" class="mx-4" ticks></v-slider>
-							<v-responsive
-							:style="{ background: `rgb(233,220,216)` }"
-							height="300px"
-							class="ma-5"
-							><div>{{labels[day]}}</div></v-responsive>
+							<v-card>
+								<v-card-subtitle>{{labels[day]}}요일</v-card-subtitle>
+								<div>
+									<column-chart :data= 'date'></column-chart>
+								</div>
+							</v-card>
 				</v-card>
 				<v-card class="ml-3" max-height="600" width="400">
 						<v-card-title class="align-top">이번주의 참여율</v-card-title>
-
 				</v-card>
 			</div>
 		</v-container>
-
-	</div>
+	</v-container>
 </template>
+
 <script>
+import Vue from 'vue'
+import Chartkick from 'vue-chartkick'
+import Chart from 'chart.js'
+
+Vue.use(Chartkick.use(Chart))
+
 export default {
 	data () {
 		return {
-			labels: ['SU', 'MO', 'TU', 'WED', 'TH', 'FR', 'SA'],
-			day: 2
+			labels: ['일', '월', '화', '수', '목', '금', '토'],
+			day: 3,
+			// CHART DATA
+			date: [['Sun', 32], ['Mon', 46], ['Tue', 28], ['Wed', 21], ['Thu', 20], ['Fri', 13], ['Sat', 27]]
+		}
+	},
+	created () {
+		console.log('created')
+		this.call()
+	},
+	methods: {
+		call () {
+			console.log(this.day)
+			console.log(this.date[this.day])
 		}
 	}
+
 }
 </script>
