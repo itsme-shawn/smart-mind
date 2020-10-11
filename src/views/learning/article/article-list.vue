@@ -20,7 +20,7 @@
 import { head, last } from 'lodash'
 import DisplayTime from '@/components/display-time' // @ : src/
 export default {
-  components : { DisplayTime },
+	components: { DisplayTime },
 	props: ['info', 'document'],
 	data () {
 		return {
