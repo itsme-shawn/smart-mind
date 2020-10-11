@@ -2,7 +2,7 @@
     <div>
         <div>
             <v-card-text>
-                <v-toolbar-title>마이 페이지</v-toolbar-title>
+                <v-toolbar-title class="font-weight-bold ml-5">마이 페이지</v-toolbar-title>
             </v-card-text>
         </div>
         <v-divider></v-divider>
