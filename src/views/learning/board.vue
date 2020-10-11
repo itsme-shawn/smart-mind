@@ -13,8 +13,8 @@
         <v-toolbar-title v-text="info.title"></v-toolbar-title>
       <v-spacer/>
       <template v-if="user">
-        <v-btn color="gray" @click="board_write" ><v-icon>mdi-pencil</v-icon>강의실 정보 수정</v-btn> <!-- 강의실 정보 수정 -->
-        <v-btn color="gray" @click="article_write"><v-icon>mdi-plus</v-icon>게시물 작성</v-btn> <!-- 게시물 작성 버튼 -->
+        <v-btn color="#81C784" @click="board_write" class="mr-2" v-if="user.level == 'admin'" ><v-icon>mdi-pencil</v-icon>강의실 정보 수정</v-btn> <!-- 강의실 정보 수정 -->
+        <v-btn color="#81C784" @click="article_write" v-if="user.level == 'admin'"><v-icon>mdi-plus</v-icon>게시물 작성</v-btn> <!-- 게시물 작성 버튼 -->
       </template>
       </v-toolbar>
       <v-card-text v-if="info.createdAt">
@@ -60,10 +60,6 @@ export default {
 	computed: {
 		user () { // store.js에 저장돼있는 user 정보
 			return this.$store.state.user
-		},
-		LevelCheck () {
-			if (this.user.level === 'admin') return true // 사용자 계정이 admin 이면 true 리턴
-			else return false
 		}
 
 	},

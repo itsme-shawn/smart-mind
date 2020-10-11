@@ -3,7 +3,7 @@ import Vuex from 'vuex'
 
 Vue.use(Vuex)
 
-// firebase.js 참고
+// firebase.js 에서 setFireUser, setUser 호출
 
 export default new Vuex.Store({
 	state: {
@@ -16,6 +16,7 @@ export default new Vuex.Store({
 		},
 		setUser (state, user) {
 			state.user = user
+			console.log(state.user)
 		}
 	},
 	actions: {
