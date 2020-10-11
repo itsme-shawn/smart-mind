@@ -7,15 +7,16 @@
             <v-img
               :src="require('../assets/cat.jpg')"
               min-height="100"
+              full-size
             >
             
-				<v-layout column align-start justify-center class="white--text" fill-height>
+				<v-layout column align-end justify-center class="white--text" fill-height>
 					<v-img :src="require('../assets/lamp2.png')" contain max-height="400"></v-img>
 					<h1 class="white--text font-weight-bold mb-2 display-2 text-left">정신차렷!</h1>
 					<div class="subheading mb-4 text-left">정신차렷!은 언제, 어디서나 정신전력 컨텐츠를 즐길 수 있는
-                플랫폼입니다.<br>
-                </div>
-                <div>
+                플랫폼입니다.<br><br>
+                
+                <div align="center">
                   <v-btn
                   color="grey-draken-3"
                   elevation="8"
@@ -25,6 +26,7 @@
                 >
                 <br><br>
                 </div>
+					</div>
                 
 				</v-layout>
 			</v-img>
