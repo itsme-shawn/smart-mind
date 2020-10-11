@@ -6,6 +6,7 @@ import vuetify from './plugins/vuetify'
 import './plugins/firebase.js'
 import './error'
 import './plugins/editor'
+import './plugins/moment'
 import EnlargeableImage from '@diracleo/vue-enlargeable-image'
 
 Vue.config.productionTip = false

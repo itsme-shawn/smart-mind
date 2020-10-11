@@ -91,6 +91,7 @@ export default {
 					batch.update(this.ref.collection('articles').doc(this.articleId), doc)
 				}
 				await batch.commit()
+			// eslint-disable-next-line brace-style
 			}
 			/* 나중에 에러핸들링 추가해야함
         catch {
