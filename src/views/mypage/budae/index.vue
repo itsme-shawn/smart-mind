@@ -51,15 +51,25 @@
 						<v-slider v-model="day" :max="6" :tick-labels="labels" class="mx-4" ticks></v-slider>
 							<v-card>
 								<v-card-subtitle>{{labels[day]}}요일</v-card-subtitle>
-								<div>
+								<div v-if="day===0">
 									<column-chart :data= 'date'></column-chart>
 								</div>
 							</v-card>
 				</v-card>
 				<v-card class="ml-3" max-height="600" width="400">
-						<v-card-title class="align-top">이번주의 참여율</v-card-title>
+						<v-card-title class="align-top mb-4">이번주의 퀴즈 점수</v-card-title>
+						<v-card-subtitle class="pb-12">병사별 퀴즈 점수</v-card-subtitle>
+							<v-card class="pt-4">
+								<v-card-subtitle>만점 : 100</v-card-subtitle>
+								<div>
+									<column-chart :data= 'score'></column-chart>
+								</div>
+							</v-card>
 				</v-card>
 			</div>
+			<v-card>
+				hello
+			</v-card>
 		</v-container>
 	</v-container>
 </template>
@@ -75,9 +85,19 @@ export default {
 	data () {
 		return {
 			labels: ['일', '월', '화', '수', '목', '금', '토'],
-			day: 3,
+			day: 0,
 			// CHART DATA
-			date: [['Sun', 32], ['Mon', 46], ['Tue', 28], ['Wed', 21], ['Thu', 20], ['Fri', 13], ['Sat', 27]]
+			date: [['Sun', 32], ['Mon', 46], ['Tue', 28], ['Wed', 21], ['Thu', 20], ['Fri', 13], ['Sat', 27]],
+			score: {
+				현수: 100,
+				현재: 70,
+				이현: 80,
+				수현: 90,
+				재현: 80,
+				현이: 100,
+				철수: 90,
+				영희: 100
+			}
 		}
 	},
 	created () {
@@ -86,8 +106,7 @@ export default {
 	},
 	methods: {
 		call () {
-			console.log(this.day)
-			console.log(this.date[this.day])
+			console.log(this.date[0][0])
 		}
 	}
 
