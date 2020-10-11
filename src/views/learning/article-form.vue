@@ -3,15 +3,14 @@
     <v-form>
       <v-card :loading="loading">
         <v-toolbar color="accent" dense flat dark>
-          <v-toolbar-title>강의실 정보 작성</v-toolbar-title>
+          <v-toolbar-title>게시물 작성</v-toolbar-title>
         <v-spacer/>
         <v-btn icon @click="$router.push('/learning/' + document)"><v-icon>mdi-arrow-left</v-icon></v-btn>
         <v-btn icon @click="save"><v-icon>mdi-content-save</v-icon></v-btn>
         </v-toolbar>
         <v-card-text>
-          <!--<v-text-field v-model="form.category" outlined label="종류"></v-text-field>-->
           <v-text-field v-model="form.title" outlined label="제목"></v-text-field>
-          <v-textarea v-model="form.description" outlined label="설명"></v-textarea>
+          <editor :initialValue="form.content"></editor>
         </v-card-text>
       </v-card>
     </v-form>
@@ -24,17 +23,21 @@ export default {
     return {
       unsubscribe: null,
       form: {
-        category: '',
         title: '',
-        description: ''
+        content: '' // content 는 이미지,동영상 같은 파일들이므로 Storage 에 넣어야 함
       },
       exists: false,
       loading: false,
       ref: null
     }
   },
+  computed: {
+    articleId () {
+      return this.$route.query.articleId // articleId 는 board.vue 에서 넘어온 쿼리값
+    }
+  },
   watch: {
-    document () {
+    document () { // document 값이 바뀔 때마다, subscribe() 함수를 실행시켜줌으로써 화면에 실시간 렌더링
       this.subscribe()
     }
   },
@@ -46,37 +49,27 @@ export default {
   },
   methods: {
     subscribe () {
+      // articleId 쿼리값이 없을 때
+      if(!this.articleId) return
+
+      // articleId 쿼리값이 있을 때
+
       if (this.unsubscribe) this.unsubscribe()
-      this.ref = this.$firebase.firestore().collection('learing').doc(this.document)
+      this.ref = this.$firebase.firestore().collection('learing').doc(this.document).collection('articles').doc(this.articleId)
       this.unsubscribe = this.ref.onSnapshot(doc => {
         this.exists = doc.exists
         if (this.exists) {
-          const item = doc.data()
-          //this.form.category = item.category
-          this.form.title = item.title
-          this.form.description = item.description
+          this.form.title = doc.data().title
         }
       })
     },
-    async save () {
-      const form = {
-        //category: this.form.category,
-        title: this.form.title,
-        description: this.form.description,
-        updatedAt: new Date()
-      }
+    async save () { // 비동기
       this.loading = true
-      try {
-        if (!this.exists) {
-          form.createdAt = new Date()
-          await this.ref.set(form)
-        } else {
-          this.ref.update(form)
-        }
-        this.$router.push('/learning/'+ this.document)
-      } finally {
-        this.loading = false
-      }
+      /* to do : 1. firestore 레퍼런스 더 읽어보기
+                 2. 위지윅 에디터로 content 를 fire 스토리지에 저장하기
+                  3. async / await 사용해야할때를 명확히 파악하기
+      */
+
     }
   }
 }
