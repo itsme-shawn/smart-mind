@@ -44,16 +44,29 @@
             </v-card-text>
         </div>
 		<v-container>
-			<div class="d-flex justify-center">
+			<div class="d-flex justify-center mb-12">
 				<v-card class="mr-3" max-height="600" width="400">
 						<v-card-title class="align-top mb-4">이번주의 참여율</v-card-title>
-						<v-card-subtitle class="pb-2">요일별 참여율 </v-card-subtitle>
-						<v-slider v-model="day" :max="6" :tick-labels="labels" class="mx-4" ticks></v-slider>
-							<v-card>
-								<v-card-subtitle>{{labels[day]}}요일</v-card-subtitle>
-								<div v-if="day===0">
-									<column-chart :data= 'date'></column-chart>
-								</div>
+						<v-card-subtitle class="pb-12">요일별 참여율 </v-card-subtitle>
+							<v-slider v-model="day" :max="6" :tick-labels="labels" class="mx-4" ticks></v-slider>
+							<v-card class="pt-4" color="green" dark>
+								<v-card-text>
+								<v-sheet color="rgba(0, 0, 0, .12)">
+									<v-sparkline
+									:labels="labels"
+									:value="value"
+									color="rgba(255, 255, 255, .7)"
+									height="200"
+									padding="12"
+									stroke-linecap="round"
+									smooth
+									>
+									<template v-slot:label="item">
+										{{ item.value }}
+									</template>
+									</v-sparkline>
+								</v-sheet>
+								</v-card-text>
 							</v-card>
 				</v-card>
 				<v-card class="ml-3" max-height="600" width="400">
@@ -87,7 +100,6 @@ export default {
 			labels: ['일', '월', '화', '수', '목', '금', '토'],
 			day: 0,
 			// CHART DATA
-			date: [['Sun', 32], ['Mon', 46], ['Tue', 28], ['Wed', 21], ['Thu', 20], ['Fri', 13], ['Sat', 27]],
 			score: {
 				현수: 100,
 				현재: 70,
@@ -97,7 +109,16 @@ export default {
 				현이: 100,
 				철수: 90,
 				영희: 100
-			}
+			},
+			value: [
+				423,
+				446,
+				675,
+				510,
+				590,
+				610,
+				760
+			]
 		}
 	},
 	created () {
@@ -106,7 +127,6 @@ export default {
 	},
 	methods: {
 		call () {
-			console.log(this.date[0][0])
 		}
 	}
 
