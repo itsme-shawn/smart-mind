@@ -4,12 +4,15 @@
   <learning-dashboard
     v-if="collection === 'learning' && document === 'dashboard'">
   </learning-dashboard>
-  <learning-content
-    v-else-if="collection === 'learning' && !action" :document="document">
-  </learning-content>
-  <learning-form
-    v-else-if="collection === 'learning' && action" :document="document" :action="action">
-  </learning-form>
+  <learning-board
+    v-else-if="collection === 'learning' && !action" :document="document">  <!-- doument props 에는 jungsin, daily_history 등이 들어가서 동적으로 각각의 게시판을 생성한다. -->
+  </learning-board>
+  <learning-board-form
+    v-else-if="collection === 'learning' && action === 'board-write'" :document="document" :action="action">
+  </learning-board-form>
+  <learning-article-form
+    v-else-if="collection === 'learning' && action === 'article-write'" :document="document" :action="action">
+  </learning-article-form>
 
   <mypage-account v-else-if="collection === 'mypage' && document === 'account'"></mypage-account>
   <mypage-status v-else-if="collection === 'mypage' && document === 'status'"></mypage-status>
@@ -26,8 +29,9 @@
 
 // Learning (수강하기 배너)
 import LearningDashboard from '../views/learning/dashboard/index.vue'
-import LearningContent from '../views/learning/content'
-import LearningForm from '../views/learning/form'
+import LearningBoard from '../views/learning/board'
+import LearningBoardForm from '../views/learning/board-form'
+import LearningArticleForm from '../views/learning/article-form'
 
 // Mypage (마이페이지 배너)
 import MypageAccount from '../views/mypage/account/index.vue'
@@ -43,28 +47,22 @@ import HelpIntentions from '../views/help/intentions/index.vue'
 import ErrorPage from '../views/error_page'
 
 export default {
-	components: {
-		LearningDashboard,
-		LearningContent,
-		LearningForm,
-		MypageAccount,
-		MypageBudae,
-		MypageStatus,
-		HelpFaq,
-		HelpGuide,
-		HelpIntentions,
-		ErrorPage
-	},
-	computed: {
-		collection () {
-			return this.$route.params.collection
-		},
-		document () {
-			return this.$route.params.document
-		},
-		action () {
-			return this.$route.params.action
-		}
-	}
+  components : {
+    LearningDashboard, LearningBoard, LearningBoardForm, LearningArticleForm,
+    MypageAccount, MypageBudae, MypageStatus,
+    HelpFaq, HelpGuide, HelpIntentions,
+    ErrorPage
+  },
+  computed : {
+    collection () {
+      return this.$route.params.collection
+    },
+    document () {
+      return this.$route.params.document
+    },
+    action () {
+      return this.$route.params.action
+    }
+  }
 }
 </script>
