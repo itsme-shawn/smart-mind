@@ -1,26 +1,36 @@
 <template>
-  <v-data-table
-    :headers="headers"
-    :items="items"
-    :server-items-length="info.count"
-    :options.sync="options"
-    :items-per-page="5"
-    :footer-props="{
-      'items-per-page-options':[5, 10, 20, 30, 50],
-    }"
-    must-sort
-    item-key="id"
-  >
-    <template v-slot:item.createdAt="{item}">
-      <display-time :time="item.createdAt"></display-time>
-    </template>
-  </v-data-table>
+  <div>
+    <v-data-table
+      :headers="headers"
+      :items="items"
+      :server-items-length="info.count"
+      :options.sync="options"
+      :items-per-page="5"
+      :footer-props="{
+        'items-per-page-options':[5, 10, 20, 30, 50],
+      }"
+      must-sort
+      item-key="id"
+    >
+      <template v-slot:item.title="{item}">
+        <a @click="openDialog(item)">{{item.title}}</a>
+      </template>
+      <template v-slot:item.createdAt="{item}">
+        <display-time :time="item.createdAt"></display-time>
+      </template>
+    </v-data-table>
+    <v-dialog v-if="selectedItem" v-model="dialog"> <!-- selectedItem 이 들어올 때만 dialog 가 렌더링돼야함 (안 그러면 오류) -->
+      <display-content :item="selectedItem" @close="dialog=false"></display-content>
+    </v-dialog>
+  </div>
 </template>
 <script>
 import { head, last } from 'lodash'
 import DisplayTime from '@/components/display-time' // @ : src/
+import DisplayContent from '@/components/display-content' // @ : src/
+
 export default {
-	components: { DisplayTime },
+	components: { DisplayTime, DisplayContent },
 	props: ['info', 'document'],
 	data () {
 		return {
@@ -34,7 +44,9 @@ export default {
 				sortBy: ['createdAt'],
 				sortDesc: [true]
 			},
-			docs: []
+			docs: [],
+			dialog: false,
+			selectedItem: null
 		}
 	},
 	watch: {
@@ -56,7 +68,10 @@ export default {
 				this.subscribe(arrow)
 			},
 			deep: true
-		}
+		},
+    dialog (n) {  // dialog 컴포넌트를 감시하면서 해지하기 위함
+      if (!n) this.selectedItem = null 
+    }
 	},
 	created () {
 		// this.subscribe(0)
@@ -94,7 +109,12 @@ export default {
 					return item
 				})
 			})
-		}
+		},
+    openDialog (item) {
+		this.selectedItem = item
+		this.dialog = true
 	}
+	},
+	
 }
 </script>

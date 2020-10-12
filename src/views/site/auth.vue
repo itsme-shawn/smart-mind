@@ -33,11 +33,11 @@
 				<div>
 					<router-link to='/mypage/account'>
 						<v-icon left>mdi-account</v-icon>프로필
-            <div v-if="user"> <!-- user.level 에 따른 관리자/학생 구분 ui 디자인 다시 해주세요! -->
+					</router-link>
+            <div v-if="user" class="mt-5 text-center"> <!-- user.level 에 따른 관리자/학생 구분 ui 디자인 다시 해주세요! -->
               <v-btn v-if="user.level == 'admin'">관리자</v-btn>
               <v-btn v-else-if="user.level == 'normal'">학생</v-btn>
             </div>
-					</router-link>
 				</div>
 			</v-card-title>
 			<v-divider></v-divider>

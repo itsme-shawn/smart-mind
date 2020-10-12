@@ -58,10 +58,9 @@ export default {
 		}
 	},
 	computed: {
-		user () { // store.js에 저장돼있는 user 정보
+		user () { // Vuex state에 저장돼있는 user 정보
 			return this.$store.state.user
 		}
-
 	},
 	created () {
 		this.subscribe()
