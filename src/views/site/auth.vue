@@ -1,4 +1,5 @@
 <!-- 인증과 관련된 컴포넌트 -->
+<!-- 인증관련 코드 : auth.vue , functions/index.js , plugins/firebase.js -->
 
 <template>
 	<v-progress-circular indeterminate v-if="loading"></v-progress-circular>
@@ -32,6 +33,10 @@
 				<div>
 					<router-link to='/mypage/account'>
 						<v-icon left>mdi-account</v-icon>프로필
+            <div v-if="user"> <!-- user.level 에 따른 관리자/학생 구분 ui 디자인 다시 해주세요! -->
+              <v-btn v-if="user.level == 'admin'">관리자</v-btn>
+              <v-btn v-else-if="user.level == 'normal'">학생</v-btn>
+            </div>
 					</router-link>
 				</div>
 			</v-card-title>
@@ -51,6 +56,13 @@ export default {
 			loading: false
 		}
 	},
+	computed: {
+		user () { // store.js에 저장돼있는 user 정보
+			return this.$store.state.user
+		}
+
+	},
+
 	methods: {
 		async signInWithGoogle () {
 			const provider = new this.$firebase.auth.GoogleAuthProvider()

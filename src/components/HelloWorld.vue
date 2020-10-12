@@ -83,10 +83,10 @@
               <h1 class="display-2 font-weight-bold mb-3"></h1>
 
               <p class="subheading font-weight-regular">
-                
+
               </p>
               <p>
-                
+
               </p>
             </v-col>
           </v-flex>
