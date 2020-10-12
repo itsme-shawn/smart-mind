@@ -8,8 +8,10 @@ import './error'
 import './plugins/editor'
 import EnlargeableImage from '@diracleo/vue-enlargeable-image'
 
+import './components/hello.css'
+
 Vue.config.productionTip = false
-Vue.use(EnlargeableImage)
+
 
 new Vue({
 	router,

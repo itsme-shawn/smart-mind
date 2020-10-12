@@ -1,7 +1,39 @@
 <template>
   <v-container class="text-center">
     <v-layout column>
-      <v-layout row wrap :style="myContainer">
+      <v-parallax
+      class="fullpage-container"
+        :height="height"
+        dark
+        :src="require('../assets/cat.jpg')"
+      >
+     <!-- src="https://cdn.vuetifyjs.com/images/parallax/material.jpg"-->
+        <v-row align="center" justify="center">
+          <div class="text-center order-lg-2" xs12 sm12 md12 lg6>
+            <v-img
+                  :src="require('../assets/lamp2.png')"
+                  contain
+                  max-height="500"
+                ></v-img>
+        <!--  </div>
+          
+          <div class="text-center order-lg-1" xs12 sm12 md12 lg6>-->
+            <h1 class="display-1 font-weight-bold mb-4">정신차렷!</h1>
+            <h4 class="subheading">정신차렷!은 언제, 어디서나 정신전력 컨텐츠를 즐길 수 있는
+                  플랫폼입니다.</h4>
+                  <div align="center">
+                    <v-btn
+                      color="grey-draken-3"
+                      elevation="8"
+                      medium
+                      @click="dashboard"
+                      >시작하기</v-btn
+                    >
+                  </div>
+          </div>
+        </v-row>
+      </v-parallax>
+    <!--  <v-layout row wrap>
         <v-flex xs12 md12 lg12 class="order-lg-2">
           <v-col align="left">
             <v-img
@@ -9,30 +41,43 @@
               min-height="100"
               full-size
             >
-            
-				<v-layout column align-end justify-center class="white--text" fill-height>
-					<v-img :src="require('../assets/lamp2.png')" contain max-height="400"></v-img>
-					<h1 class="white--text font-weight-bold mb-2 display-2 text-left">정신차렷!</h1>
-					<div class="subheading mb-4 text-left">정신차렷!은 언제, 어디서나 정신전력 컨텐츠를 즐길 수 있는
-                플랫폼입니다.<br><br>
-                
-                <div align="center">
-                  <v-btn
-                  color="grey-draken-3"
-                  elevation="8"
-                  medium
-                  @click="dashboard"
-                  >시작하기</v-btn
+              <v-layout
+                column
+                align-end
+                justify-center
+                class="white--text"
+                fill-height
+              >
+                <v-img
+                  :src="require('../assets/lamp2.png')"
+                  contain
+                  max-height="400"
+                ></v-img>
+                <h1
+                  class="white--text font-weight-bold mb-2 display-2 text-left"
                 >
-                <br><br>
+                  정신차렷!
+                </h1>
+                <div class="subheading mb-4 text-left">
+                  정신차렷!은 언제, 어디서나 정신전력 컨텐츠를 즐길 수 있는
+                  플랫폼입니다.<br /><br />
+
+                  <div align="center">
+                    <v-btn
+                      color="grey-draken-3"
+                      elevation="8"
+                      medium
+                      @click="dashboard"
+                      >시작하기</v-btn
+                    >
+                    <br /><br />
+                  </div>
                 </div>
-					</div>
-                
-				</v-layout>
-			</v-img>
-         </v-col>
+              </v-layout>
+            </v-img>
+          </v-col>
         </v-flex>
-      <!--  <v-layout align-center justify-center>
+          <v-layout align-center justify-center>
           <v-flex xs12 md6 lg6 class="order-lg-1">
             <v-col>
               <h1 class="display-2 font-weight-bold mb-3"></h1>
@@ -45,8 +90,8 @@
               </p>
             </v-col>
           </v-flex>
-        </v-layout>-->
-      </v-layout>
+        </v-layout>
+      </v-layout>-->
       <br />
       <v-flex xs12 md6>
         <v-row class="text-center">
@@ -73,7 +118,7 @@
           <v-col v-for="n in 6" :key="n" class="d-flex child-flex" cols="4">
             <v-card class="mx-auto">
               <v-img
-                :src="require('../assets/'+n+'.jpg')"
+                :src="require('../assets/' + n + '.jpg')"
                 aspect-ratio="1"
                 class="grey lighten-2"
               >
@@ -90,16 +135,16 @@
                   </v-row>
                 </template>
               </v-img>
-              <v-card-title> {{n}} </v-card-title>
+              <v-card-title> {{ n }} </v-card-title>
 
-              <v-card-subtitle> {{n}} </v-card-subtitle>
+              <v-card-subtitle> {{ n }} </v-card-subtitle>
 
               <v-card-actions>
                 <v-btn color="orange lighten-2" text> 더보기 </v-btn>
 
                 <v-spacer></v-spacer>
 
-                <v-btn icon @click= "show[n] = !show[n]">
+                <v-btn icon @click="show[n] = !show[n]">
                   <v-icon>{{
                     show[n] ? "mdi-chevron-up" : "mdi-chevron-down"
                   }}</v-icon>
@@ -110,9 +155,7 @@
                 <div v-show="show[n]">
                   <v-divider></v-divider>
 
-                  <v-card-text>
-                    짐은 조선의 왕 세종이오!x
-                  </v-card-text>
+                  <v-card-text> 짐은 조선의 왕 세종이오!x </v-card-text>
                 </div>
               </v-expand-transition>
             </v-card>
@@ -150,23 +193,34 @@
     </v-layout>
   </v-container>
 </template>
-
 <script>
 export default {
   name: "HelloWorld",
 
   methods: {
     dashboard: function (event) {
-      this.$router.push("/dashboard");
+      this.$router.push("/learning/dashboard");
     },
   },
-  data() {
-    return {
-      show: [true,false,false,false,false,false],
-      myContainer: {
-        backgroundColor: "",
-      },
-    };
+  data () {
+		return {
+			show: [true, false, false, false, false, false],
+			myContainer: {
+				backgroundColor: ''
+			},
+      
+    }
   },
+  computed: {
+      height () {
+        switch (this.$vuetify.breakpoint.name) {
+          case 'xs': return 900
+          case 'sm': return 900
+          case 'md': return 900
+          case 'lg': return 1000
+          case 'xl': return 1000
+        }
+      },
+    }
 };
 </script>
