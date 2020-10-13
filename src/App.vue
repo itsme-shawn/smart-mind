@@ -2,23 +2,24 @@
   <v-app>
     <v-app-bar
 			app
-      color="black"
+      color="white"
       dark
+	  :style="{color:fontcolor}"
     >
-      <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
-		<site-title :title="site.myTitle"></site-title>
+      <v-app-bar-nav-icon @click="drawer = !drawer" :style="{color:fontcolor}"></v-app-bar-nav-icon>
+		<site-title :title="site.myTitle" ></site-title>
       <v-spacer></v-spacer>
 
       <v-btn icon to="/about">
-        <v-icon>mdi-magnify</v-icon>
+        <v-icon :style="{color:fontcolor}">mdi-magnify</v-icon>
       </v-btn>
 
-			<site-auth></site-auth>
+			<site-auth :style="{color:fontcolor}"></site-auth>
     </v-app-bar>
 
-		<v-navigation-drawer app v-model="drawer">
+		<v-navigation-drawer app v-model="drawer" :style="{color:fontcolor}">
 
-			<site-menu :items="site.menu"></site-menu>
+			<site-menu :items="site.menu" ></site-menu>
 
 		</v-navigation-drawer>
 		<v-main>
@@ -28,7 +29,9 @@
 			<v-btn @click="readOnce">read once test</v-btn>
 			-->
 			<router-view/>
-			<site-footer :footer="site.myFooter"></site-footer>
+			<site-footer :footer="site.myFooter"
+			
+	  style="color:white"></site-footer>
 		</v-main>
 
   </v-app>
@@ -53,7 +56,9 @@ export default {
 				menu: []
 			},
 			right: null,
-			drawer: false
+			drawer: false,
+			fontcolor: 'black',
+			solid : '1px'
 		}
 	},
 	mounted () {

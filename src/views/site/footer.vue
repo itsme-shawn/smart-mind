@@ -1,5 +1,5 @@
 <template>
-	<v-footer app color="primary" dark absolute :footer="footer">
+	<v-footer app color="gray" dark absolute :footer="footer">
 	<v-spacer></v-spacer>
 	<div>
 			{{ new Date().getFullYear() + ' ' + footer }}

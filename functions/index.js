@@ -10,45 +10,48 @@ admin.initializeApp({
 })
 
 // realtime db control
-
 const db = admin.database()
 
-// 사용자가 로그인할 때, realtime DB 에 사용자 정보를 저장
+// firestore DB control
+const fdb = admin.firestore()
+
+// 사용자가 로그인할 때, db와 fdb에 사용자 정보를 저장
 exports.createUser = functions.auth.user().onCreate(async (user) => {
 	const { uid, email, displayName, photoURL } = user // uid 는 고유한 값
+	const time = new Date()
 	const u = {
 		email,
 		displayName,
 		photoURL,
-		level: email === functions.config().admin.email ? 0 : 5 // admin 계정의 level 이 0
+		createdAt: time,
+		level: email === functions.config().admin.email ? 'admin' : 'normal' // 관리자(admin) 와 일반사용자(normal) 구분
 	}
-	db.ref('users').child(uid).set(u)
+	await fdb.collection('users').doc(uid).set(u)
+	u.createdAt = time.getTime() // fdb 에는 타임스탬프 타입으로 저장불가
+	await db.ref('users').child(uid).set(u)
 })
 
 exports.deleteUser = functions.auth.user().onDelete(async (user) => {
 	const { uid } = user
-	db.ref('users').child(uid).remove()
+	await fdb.collection('users').child(uid).delete()
+	await db.ref('users').child(uid).remove()
 })
-
-// firestore DB control
-
-const fdb = admin.firestore()
 
 // incrementBoardCount() : 게시판의 글 갯수 증가 fdb 에 반영
 // decrementBoardCount() : 게시판의 글 갯수 감소 fdb 에 반영
 
 exports.incrementBoardCount = functions.firestore
-	.document('boards/{bid}') // firestore 컬렉션 주소
+	.document('learning/{bid}') // firestore 컬렉션 주소
 	.onCreate(async (snap, context) => {
 		try {
-			await fdb.collection('meta').doc('boards').update('count', admin.firestore.FieldValue.increment(1))
+			await fdb.collection('meta').doc('learning').update('count', admin.firestore.FieldValue.increment(1))
 		} catch (e) {
-			await fdb.collection('meta').doc('boards').set({ count: 1 })
+			await fdb.collection('meta').doc('learning').set({ count: 1 })
 		}
 	})
 
 exports.decrementBoardCount = functions.firestore
-	.document('boards/{bid}') // firestore 컬렉션 주소
+	.document('learning/{bid}') // firestore 컬렉션 주소
 	.onDelete(async (snap, context) => {
-		await fdb.collection('meta').doc('boards').update('count', admin.firestore.FieldValue.increment(-1))
+		await fdb.collection('meta').doc('learning').update('count', admin.firestore.FieldValue.increment(-1))
 	})
