@@ -6,7 +6,7 @@
 
 	<v-menu offset-y v-else-if="!$store.state.fireUser">
 		<template v-slot:activator="{on}">
-			<v-btn icon v-on="on"><v-icon>mdi-account</v-icon></v-btn>
+			<v-btn icon v-on="on" ><v-icon style="color:black">mdi-account</v-icon></v-btn>
 		</template>
 
 		<v-card>

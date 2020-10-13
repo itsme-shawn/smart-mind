@@ -1,5 +1,5 @@
 <template>
-  <div class="home">
+  <div class="home" style="padding:0%">
     <HelloWorld msg="Welcome 정신차렷!"/>
   </div>
 </template>
