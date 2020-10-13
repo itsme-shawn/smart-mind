@@ -20,10 +20,11 @@
           <div class="text-center order-lg-1" xs12 sm12 md12 lg6>-->
             <h1 class="display-1 font-weight-bold mb-4">정신차렷!</h1>
             <h4 class="subheading">정신차렷!은 언제, 어디서나 정신전력 컨텐츠를 즐길 수 있는
-                  플랫폼입니다.</h4>
+                  플랫폼입니다.</h4><br/>
                   <div align="center">
-                    <v-btn
-                      color="grey-draken-3"
+                    <v-btn class="font-weight-bold"
+                      color="white"
+                      outlined
                       elevation="8"
                       medium
                       @click="dashboard"
@@ -91,7 +92,7 @@
             </v-col>
           </v-flex>
         </v-layout>
-      </v-layout>-->
+      </v-layout>
       <br />
       <v-flex xs12 md6>
         <v-row class="text-center">
@@ -111,7 +112,33 @@
             </v-flex>
           </v-layout>
         </v-row>
-      </v-flex>
+      </v-flex>-->
+      <v-parallax
+      class="fullpage-container"
+        :height="height"
+        dark
+        src="https://cdn.vuetifyjs.com/images/parallax/material.jpg"
+      >
+        <v-row align="center" justify="end">
+          <div class="text-center order-lg-2" xs12 sm12 md12 lg6>
+                    
+            <h1 class="display-1 font-weight-bold mb-4">주간정신전력</h1>
+            <h4 class="subheading">이번주의 정신전력을 간단하게 확인하고 평가할 수 있습니다!</h4><br/>
+                  <div align="center">
+                    <v-btn class="font-weight-bold"
+                      color="white"
+                      outlined
+                      elevation="8"
+                      medium
+                      @click="dashboard"
+                      >확인하기</v-btn
+                    >
+                  </div>
+          </div>
+        </v-row>
+      </v-parallax>
+
+
       <v-flex xs12 md6>
         <h2 class="headline font-weight-bold mb-3"><br />우리 역사 바로알기</h2>
         <v-row>
@@ -201,6 +228,9 @@ export default {
     dashboard: function (event) {
       this.$router.push("/learning/dashboard");
     },
+    mover: function(event) {
+
+    }
   },
   data () {
 		return {
