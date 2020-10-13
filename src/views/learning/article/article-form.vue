@@ -67,7 +67,7 @@ export default {
 				}
 			})
 		},
-		async save () { // 비동기 로직 포함
+		async save () { // 비동기 로직 포함 ( firestore DB에 저장 )
 			this.loading = true
 			try {
 				const now = new Date()

@@ -20,7 +20,7 @@
       </template>
     </v-data-table>
     <v-dialog v-if="selectedItem" v-model="dialog"> <!-- selectedItem 이 들어올 때만 dialog 가 렌더링돼야함 (안 그러면 오류) -->
-      <display-content :item="selectedItem" @close="dialog=false"></display-content>
+      <display-content :item="selectedItem" @close="dialog=false"></display-content> <!-- components/display-content.vue -->
     </v-dialog>
   </div>
 </template>
@@ -69,9 +69,9 @@ export default {
 			},
 			deep: true
 		},
-    dialog (n) {  // dialog 컴포넌트를 감시하면서 해지하기 위함
-      if (!n) this.selectedItem = null 
-    }
+		dialog (n) { // dialog 컴포넌트를 감시하면서 해지하기 위함
+			if (!n) this.selectedItem = null
+		}
 	},
 	created () {
 		// this.subscribe(0)
@@ -95,26 +95,30 @@ export default {
 			default: query = ref.limit(limit)
 				break
 			}
+			// 📌this.items 에 DB에 있던 데이터들 저장
 			this.unsubscribe = query.onSnapshot(sn => {
 				if (sn.empty) {
 					this.items = []
 					return
 				}
 				this.docs = sn.docs
+				// console.log('sn.docs', sn.docs)
 				this.items = sn.docs.map(doc => {
+					// console.log('doc', doc)
 					const item = doc.data()
-					item.id = doc.id
-					item.createdAt = item.createdAt.toDate()
-					item.updatedAt = item.updatedAt.toDate()
+					// console.log('doc.data()', doc.data()) // doc.data() 에는 title, url 과 타임스태프형식의 cratedAt,updatedAt 이 존재
+					item.id = doc.id // item 을 다루기 쉽게 id 값 추가
+					item.createdAt = item.createdAt.toDate() // 타임스탬프를 일반 시간으로 변환
+					item.updatedAt = item.updatedAt.toDate() // 마찬가지
 					return item
 				})
 			})
 		},
-    openDialog (item) {
-		this.selectedItem = item
-		this.dialog = true
+		openDialog (item) {
+			this.selectedItem = item
+			this.dialog = true
+		}
 	}
-	},
-	
+
 }
 </script>
