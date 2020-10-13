@@ -1,3 +1,13 @@
+<!--
+    views/learning/article/article-form.vue 기능 설명
+
+    board.vue(게시판 메인)에서 글 생성버튼을 누르면 렌더링 되는 페이지 코드이다.
+    즉, 실질적인 강의자료나 게시물들을 작성하는 form 이다. ( toast editor (위지윅 모드) 사용)
+
+    이 컴포넌트 안에서 게시물 최초 작성과 수정을 할 수 있게끔 하였다. (v-if 이용)
+-->
+
+
 <template>
   <v-container fluid>
     <v-form>
@@ -5,26 +15,38 @@
         <v-toolbar color="accent" dense flat dark>
           <v-toolbar-title>게시물 작성</v-toolbar-title>
         <v-spacer/>
-        <v-btn icon @click="$router.push('/learning/' + document)"><v-icon>mdi-arrow-left</v-icon></v-btn>
+        <v-btn icon @click="$router.push('/learning/' + document)"><v-icon>mdi-arrow-left</v-icon></v-btn> <!-- 뒤로가기 -->
         <v-btn icon @click="save"><v-icon>mdi-content-save</v-icon></v-btn>
         </v-toolbar>
         <v-card-text>
           <v-text-field v-model="form.title" outlined label="제목"></v-text-field>
-          <editor initialEditType='wysiwyg' :options="editor_options" :initialValue="form.content" ref="editor"></editor>
+          <!-- articleId 가 없다는 것은 글 최초 작성 -->
+          <editor v-if="!articleId" initialEditType='wysiwyg' :options="editor_options" :initialValue="form.content" ref="editor"></editor>
+          <!-- aritcleId 가 있다는 것은 글 수정, 따라서 기존의 title 과 content 를 렌더링해줘야한다. -->
+          <template v-else>
+            <editor v-if="form.content" initialEditType='wysiwyg' :options="editor_options" :initialValue="form.content" ref="editor"></editor>
+            <!-- v-else 로 들어온다는 것은 아직 form.content에 값이 안들어온 것(axios로 데이터 가져오는데 시간필요)이므로 로딩 ui 생성 -->
+            <v-container v-else>
+              <v-row justify="center" align="center">
+                <v-progress-circular indeterminate></v-progress-circular>
+              </v-row>
+            </v-container>
+          </template>
         </v-card-text>
       </v-card>
     </v-form>
   </v-container>
 </template>
 <script>
+import axios from 'axios'
 export default {
 	props: ['document', 'action'],
 	data () {
 		return {
 			editor_options: {
-				language: 'ko'
+				language: 'ko',
+        hideModeSwitch: true
 			},
-			unsubscribe: null,
 			form: {
 				title: '',
 				content: '' // content 는 이미지,동영상 같은 파일들이므로 Storage 에 넣어야 함
@@ -36,36 +58,32 @@ export default {
 	},
 	computed: {
 		articleId () {
-			return this.$route.query.articleId // articleId 는 board.vue 에서 넘어온 쿼리값
+			return this.$route.query.articleId // articleId 는 board.vue 에서 넘어온 쿼리값 (수정할때만 id 값이 넘어온다)
 		}
 	},
-	watch: {
-		document () { // document 값이 바뀔 때마다, subscribe() 함수를 실행시켜줌으로써 화면에 실시간 렌더링
-			this.subscribe()
+	watch: { // document 값이 바뀔 때, fetch() 함수를 실행시켜서 일회성으로 DB 에서 데이터 받아옴
+		document () {
+			this.fetch()
 		}
 	},
 	created () {
-		this.subscribe()
-	},
-	destroyed () {
-		if (this.unsubscribe) this.unsubscribe()
+		this.fetch()
 	},
 	methods: {
-		subscribe () {
+		async fetch () {
 			this.ref = this.$firebase.firestore().collection('learning').doc(this.document)
 
-			// articleId 쿼리값이 없을 때
+			// articleId 쿼리값이 없을 때 ( 글 최초작성)
 			if (!this.articleId) return
 
-			// articleId 쿼리값이 있을 때 ( 문서의 id 값이 존재)
-
-			if (this.unsubscribe) this.unsubscribe()
-			this.unsubscribe = this.ref.collection('articles').doc(this.articleId).onSnapshot(doc => {
-				this.exists = doc.exists
-				if (this.exists) {
-					this.form.title = doc.data().title
-				}
-			})
+			// articleId 쿼리값이 있을 때 ( 글 수정)
+			const doc = await this.ref.collection('articles').doc(this.articleId).get()
+			this.exists = doc.exists
+			if (!this.exists) return // doc 가 없으면 종료
+			const item = doc.data() // 임시변수 item 사용
+			this.form.title = item.title
+			const r = await axios.get(item.url)
+			this.form.content = r.data
 		},
 		async save () { // 비동기 로직 포함 ( firestore DB에 저장 )
 			this.loading = true

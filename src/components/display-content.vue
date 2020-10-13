@@ -7,6 +7,7 @@
         {{item.title}}
       </v-toolbar-title>
       <v-spacer/>
+      <v-btn @click="article_update" icon><v-icon>mdi-pencil</v-icon></v-btn> <!-- $emit 으로 부모컴포넌트에 데이터 전달 -->
       <v-btn @click="$emit('close')" icon><v-icon>mdi-close</v-icon></v-btn> <!-- $emit 으로 부모컴포넌트에 데이터 전달 -->
     </v-toolbar>
       <!-- 게시물 내용 표시 -->
@@ -47,13 +48,22 @@ export default {
 		}
 	},
 	mounted () {
-		console.log('mounted')
+		// console.log('mounted')
 		this.fetch()
 	},
 	methods: {
 		async fetch () {
 			const r = await axios.get(this.item.url)
 			this.content = r.data
+		},
+		async article_update () { // 게시물 수정 함수
+			this.$router.push(
+				{
+					path: this.$route.path + '/article-update',
+					query: { articleId: this.item.id }
+					// 쿼리문을 이용 ( ex.  /article-write?articleId='foo' )
+				}
+			)
 		}
 	}
 
