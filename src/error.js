@@ -7,7 +7,7 @@ Vue.use(VueToast, {
 })
 
 Vue.config.errorHandler = e => {
-	//console.error(e.message)
+	console.error(e.message)
 	Vue.$toast.open({
 		message: 'Something went wrong!',
 		type: 'error'

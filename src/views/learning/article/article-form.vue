@@ -45,7 +45,7 @@ export default {
 		return {
 			editor_options: {
 				language: 'ko',
-        hideModeSwitch: true
+                hideModeSwitch: true
 			},
 			form: {
 				title: '',

@@ -7,8 +7,9 @@
         {{item.title}}
       </v-toolbar-title>
       <v-spacer/>
-      <v-btn @click="article_update" icon><v-icon>mdi-pencil</v-icon></v-btn> <!-- $emit 으로 부모컴포넌트에 데이터 전달 -->
-      <v-btn @click="$emit('close')" icon><v-icon>mdi-close</v-icon></v-btn> <!-- $emit 으로 부모컴포넌트에 데이터 전달 -->
+      <v-btn @click="article_update" icon><v-icon>mdi-pencil</v-icon></v-btn> 
+      <v-btn @click="remove" icon><v-icon>mdi-delete</v-icon></v-btn> 
+      <v-btn @click="$emit('close')" icon><v-icon>mdi-close</v-icon></v-btn> <!-- $emit 으로 부모컴포넌트(article-list.vue)에 close 이벤트 전달 -->
     </v-toolbar>
       <!-- 게시물 내용 표시 -->
       <v-card-text>
@@ -41,10 +42,11 @@ import DisplayTime from '@/components/display-time' // @ : src/
 
 export default {
 	components: { DisplayTime },
-	props: ['item'],
+	props: ['document','item'],
 	data () {
 		return {
-			content: ''
+			content: '',
+            ref: this.$firebase.firestore().collection('learning').doc(this.document)
 		}
 	},
 	mounted () {
@@ -64,7 +66,17 @@ export default {
 					// 쿼리문을 이용 ( ex.  /article-write?articleId='foo' )
 				}
 			)
-		}
+		},
+        async remove() {  // 트랜잭션 처리를 위해 batch 사용
+            const batch = this.$firebase.firestore().batch()
+            batch.update(this.ref, { count : this.$firebase.firestore.FieldValue.increment(-1)})
+            batch.delete(this.ref.collection('articles').doc(this.item.id))
+            await batch.commit()
+            //await this.ref.collection('articles').doc(this.item.id).delete() // Firestore 에서 삭제 (title,시간정보들만 삭제됨)
+            await this.$firebase.storage().ref().child('learning').child(this.document).child(this.item.id + '.html').delete() 
+            // Storage에 저장된 html 파일까지 삭제 완료
+            this.$emit('close')
+        }
 	}
 
 }
