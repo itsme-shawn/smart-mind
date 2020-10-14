@@ -9,7 +9,7 @@ import './plugins/editor'
 import './plugins/moment'
 import EnlargeableImage from '@diracleo/vue-enlargeable-image'
 
-import './components/hello.css'
+import '.././public/css/hello.css'
 
 Vue.config.productionTip = false
 
