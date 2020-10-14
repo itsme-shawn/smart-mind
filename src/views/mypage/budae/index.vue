@@ -56,7 +56,7 @@
 								<v-card color="green">
 									<v-sparkline
 										height="250"
-										:value="value"
+										:value="monthlyScore[0].현수"
 										line-width="2"
 										padding="12"
 										smooth="100"
@@ -64,7 +64,7 @@
 										color="rgba(255,255,255,.7)"
 										gradient-direction="top"
 										type="trend"
-										fill="true"
+										:fill= "fill"
 										auto-draw
 									><template v-slot:label="item">{{item.value}}</template>
 									</v-sparkline>
@@ -105,7 +105,7 @@
 									<img
 										v-if="message.avatar"
 										alt="Avatar"
-										src="https://avatars0.githubusercontent.com/u/9064066?v=4&s=460"
+										src="https://lh3.googleusercontent.com/ogw/ADGmqu92A3GO29sPEXyfoYIwCWRHIbhljaLOVkAyePpz=s32-c-mo"
 									>
 									<v-icon
 										v-else
@@ -182,7 +182,8 @@ export default {
 		return {
 			labels: ['일', '월', '화', '수', '목', '금', '토'],
 			day: 0,
-			// CHART DATA
+			fill: true,
+			// 이번주의 퀴즈 점수 데이터
 			score: {
 				현수: 100,
 				현재: 70,
@@ -208,6 +209,19 @@ export default {
 			// 어떻게 해야할지 모르겠다
 			value: [80, 70, 90, 100],
 
+			monthlyScore: [
+				{
+					현수: [80, 70, 90, 100]
+				},
+				{
+					현재: [100, 90, 70, 80]
+				},
+				{
+					이현: [100, 60, 80, 90]
+				}
+			],
+			select: '현수',
+
 			ticksLables: [
 				'1주차',
 				'2주차',
@@ -225,8 +239,8 @@ export default {
 					excerpt: 'Thank you for joining our community...'
 				},
 				{
-					color: 'red',
-					icon: 'mdi-account-multiple',
+					color: 'teal',
+					icon: 'mdi-account',
 					name: 'Social',
 					new: 1,
 					total: 3,
@@ -234,12 +248,12 @@ export default {
 				},
 				{
 					color: 'teal',
-					icon: 'mdi-tag',
+					icon: 'mdi-account',
 					name: 'Promos',
 					new: 2,
 					total: 4,
 					title: 'Shop your way',
-					exceprt: 'New deals available, Join Today'
+					excerpt: 'New deals available, Join Today'
 				}
 			],
 			lorem: 'Lorem ipsum dolor sit amet, at aliquam vivendum vel, everti delicatissimi cu eos. Dico iuvaret debitis mel an, et cum zril menandri. Eum in consul legimus accusam. Ea dico abhorreant duo, quo illum minimum incorrupte no, nostro voluptaria sea eu. Suas eligendi ius at, at nemore equidem est. Sed in error hendrerit, in consul constituam cum.'
@@ -247,14 +261,11 @@ export default {
 	},
 	created () {
 		console.log('created')
+		this.call()
 	},
 	methods: {
-		submit () {
-			this.$v.$touch()
-		},
-		clear () {
-			this.$v.$reset()
-			this.select = null
+		call () {
+			console.log(this.monthlyScore[0].현수)
 		}
 	}
 
