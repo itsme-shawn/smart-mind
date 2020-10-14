@@ -45,7 +45,7 @@
         </div>
 		<v-container>
 			<div class="d-flex justify-center mb-12">
-				<v-card class="mr-3" max-height="600" width="400">
+				<v-card class="mr-3" max-height="600" width="400" min-width="400">
 						<v-card-title class="align-top mb-4">월간 퀴즈 점수</v-card-title>
 							<v-select
 								v-model="select"
@@ -82,8 +82,97 @@
 							</v-card>
 				</v-card>
 			</div>
-			<v-card>
-				hello
+			<v-card color="transparent">
+				<v-card-title class="align-top mb-4">병사별 정신전력 교육 현황</v-card-title>
+				<v-slider max="4" step="1" ticks="always" tick-size="4" :tick-labels="ticksLables"></v-slider>
+				<template>
+					<v-container fluid>
+						<v-row justify="center">
+						<v-subheader>Today</v-subheader>
+
+						<v-expansion-panels popout>
+							<v-expansion-panel
+							v-for="(message, i) in messages"
+							:key="i"
+							hide-actions
+							>
+							<v-expansion-panel-header>
+								<v-row
+								align="center"
+								class="spacer"
+								no-gutters
+								>
+								<v-col
+									cols="4"
+									sm="2"
+									md="1"
+								>
+									<v-avatar
+									size="36px"
+									>
+									<img
+										v-if="message.avatar"
+										alt="Avatar"
+										src="https://avatars0.githubusercontent.com/u/9064066?v=4&s=460"
+									>
+									<v-icon
+										v-else
+										:color="message.color"
+										v-text="message.icon"
+									></v-icon>
+									</v-avatar>
+								</v-col>
+
+								<v-col
+									class="hidden-xs-only"
+									sm="5"
+									md="3"
+								>
+									<strong v-html="message.name"></strong>
+									<span
+									v-if="message.total"
+									class="grey--text"
+									>
+									&nbsp;({{ message.total }})
+									</span>
+								</v-col>
+
+								<v-col
+									class="text-no-wrap"
+									cols="5"
+									sm="3"
+								>
+									<v-chip
+									v-if="message.new"
+									:color="`${message.color} lighten-4`"
+									class="ml-0 mr-2 black--text"
+									label
+									small
+									>
+									{{ message.new }} new
+									</v-chip>
+									<strong v-html="message.title"></strong>
+								</v-col>
+
+								<v-col
+									v-if="message.excerpt"
+									class="grey--text text-truncate hidden-sm-and-down"
+								>
+									&mdash;
+									{{ message.excerpt }}
+								</v-col>
+								</v-row>
+							</v-expansion-panel-header>
+
+							<v-expansion-panel-content>
+								<v-divider></v-divider>
+								<v-card-text v-text="lorem"></v-card-text>
+							</v-expansion-panel-content>
+							</v-expansion-panel>
+						</v-expansion-panels>
+						</v-row>
+					</v-container>
+					</template>
 			</v-card>
 		</v-container>
 	</v-container>
@@ -125,7 +214,43 @@ export default {
 			// 월간 퀴즈 점수 병사 점수인데 dropdown으로 선택했을 때 해당 병사의
 			// 월간 퀴즈 점수 최신 4개를 가져와서 value에 넣고, 해당하는 그래프를 그리면 되는데
 			// 어떻게 해야할지 모르겠다
-			value: [80, 70, 90, 100]
+			value: [80, 70, 90, 100],
+
+			ticksLables: [
+				'1주차',
+				'2주차',
+				'3주차',
+				'4주차',
+				'5주차'
+			],
+
+			// 병사별 주간정신전력 현황 데이터
+			messages: [
+				{
+					avatar: 'https://avatars0.githubusercontent.com/u/9064066?v=4&s=460',
+					name: 'John Leider',
+					title: 'Welcome to Vuetify!',
+					excerpt: 'Thank you for joining our community...'
+				},
+				{
+					color: 'red',
+					icon: 'mdi-account-multiple',
+					name: 'Social',
+					new: 1,
+					total: 3,
+					title: 'Twitter'
+				},
+				{
+					color: 'teal',
+					icon: 'mdi-tag',
+					name: 'Promos',
+					new: 2,
+					total: 4,
+					title: 'Shop your way',
+					exceprt: 'New deals available, Join Today'
+				}
+			],
+			lorem: 'Lorem ipsum dolor sit amet, at aliquam vivendum vel, everti delicatissimi cu eos. Dico iuvaret debitis mel an, et cum zril menandri. Eum in consul legimus accusam. Ea dico abhorreant duo, quo illum minimum incorrupte no, nostro voluptaria sea eu. Suas eligendi ius at, at nemore equidem est. Sed in error hendrerit, in consul constituam cum.'
 		}
 	},
 	created () {
