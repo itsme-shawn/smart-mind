@@ -1,4 +1,5 @@
 <template>
+  
   <v-container class="text-center">
     <v-layout column>
       <v-parallax
@@ -18,16 +19,17 @@
         <!--  </div>
           
           <div class="text-center order-lg-1" xs12 sm12 md12 lg6>-->
-            <h1 class="display-1 font-weight-bold mb-4">정신차렷!</h1>
-            <h4 class="subheading">정신차렷!은 언제, 어디서나 정신전력 컨텐츠를 즐길 수 있는
+            <div class="display-1 font-weight-bold mb-4" >정신차렷!</div>
+            <h4 class="subheading">정신차렷!은 언제, 어디서나<br>정신전력 컨텐츠를 즐길 수 있는
                   플랫폼입니다.</h4><br/>
                   <div align="center">
-                    <v-btn class="font-weight-bold"
+                    <v-btn class="font-weight-bold custom2"
                       color="white"
                       outlined
                       elevation="8"
                       medium
                       @click="dashboard"
+                      
                       >시작하기</v-btn
                     >
                   </div>
@@ -117,13 +119,13 @@
       class="fullpage-container"
         :height="height"
         dark
-        src="https://cdn.vuetifyjs.com/images/parallax/material.jpg"
+        :src="require('../assets/bulb1.jpg')"
       >
         <v-row align="center" justify="end">
           <div class="text-center order-lg-2" xs12 sm12 md12 lg6>
                     
-            <h1 class="display-1 font-weight-bold mb-4">주간정신전력</h1>
-            <h4 class="subheading">이번주의 정신전력을 간단하게 확인하고 평가할 수 있습니다!</h4><br/>
+            <h1 class="display-1 font-weight-bold mb-4 custom1">주간정신전력</h1>
+            <h4 class="subheading custom2">이번주의 정신전력을 간단하게 확인하고 평가할 수 있습니다!</h4><br/>
                   <div align="center">
                     <v-btn class="font-weight-bold"
                       color="white"
@@ -131,6 +133,7 @@
                       elevation="8"
                       medium
                       @click="dashboard"
+                      custom2
                       >확인하기</v-btn
                     >
                   </div>
@@ -237,7 +240,7 @@ export default {
 			show: [true, false, false, false, false, false],
 			myContainer: {
 				backgroundColor: ''
-			},
+      },
       
     }
   },
@@ -251,6 +254,16 @@ export default {
           case 'xl': return 1000
         }
       },
+      size1 () {
+        switch (this.$vuetify.breakpoint.name) {
+          case 'xs': return '1px'
+          case 'sm': return '2px'
+          case 'md': return '3px'
+          case 'lg': return '4px'
+          case 'xl': return '5px'
+        }
+      }
     }
 };
 </script>
+
