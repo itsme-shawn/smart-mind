@@ -56,7 +56,7 @@
 								<v-card color="green">
 									<v-sparkline
 										height="250"
-										:value="monthlyScore[0].현수"
+										:value="monthlyScore[1].현재"
 										line-width="2"
 										padding="12"
 										smooth="100"
