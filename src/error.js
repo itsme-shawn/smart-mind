@@ -12,5 +12,5 @@ Vue.config.errorHandler = e => {
 		message: 'Something went wrong!',
 		type: 'error'
 	})
-	console.log('Here')
+	//console.log('Here')
 }

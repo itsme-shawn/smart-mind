@@ -11,7 +11,7 @@
     v-else-if="collection === 'learning' && action === 'board-write'" :document="document" :action="action">
   </learning-board-form>
   <learning-article-form
-    v-else-if="collection === 'learning' && action === 'article-write'" :document="document" :action="action">
+    v-else-if="collection === 'learning' && (action === 'article-write' || action==='article-update') " :document="document" :action="action"> <!-- 게시물 작성과 수정을 같은 컴포넌트로 재활용 -->
   </learning-article-form>
 
   <mypage-account v-else-if="collection === 'mypage' && document === 'account'"></mypage-account>
@@ -31,7 +31,7 @@
 import LearningDashboard from '../views/learning/dashboard/index.vue'
 import LearningBoard from '../views/learning/board'
 import LearningBoardForm from '../views/learning/board-form'
-import LearningArticleForm from '../views/learning/article-form'
+import LearningArticleForm from '../views/learning/article/article-form'
 
 // Mypage (마이페이지 배너)
 import MypageAccount from '../views/mypage/account/index.vue'
