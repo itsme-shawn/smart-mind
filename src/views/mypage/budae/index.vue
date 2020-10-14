@@ -84,12 +84,14 @@
 			</div>
 			<v-card color="transparent">
 				<v-card-title class="align-top mb-4">병사별 정신전력 교육 현황</v-card-title>
-				<v-slider max="4" step="1" ticks="always" tick-size="4" :tick-labels="ticksLables"></v-slider>
+				<v-slider v-model="day" max="4" step="1" ticks="always" tick-size="4" :tick-labels="ticksLables"></v-slider>
+
+				<!--데이터가 들어가는 리스트 부분 시작, 데이터가 주차가 안되어 없다면 v-if로 div만들어서 아직 자료가 없다고 표시하게 만들 예정-->
 				<template>
 					<v-container fluid>
 						<v-row justify="center">
-						<v-subheader>Today</v-subheader>
-
+						<v-subheader>{{day + 1}}주차</v-subheader>
+						<v-subheader>(위의 슬라이더로 주차를 변경해도 밑의 리스트가 바뀌지 않는 이유는 모든 주차의 데이터가 같기 때문, 각 주차별로 데이터를 달리하면 바뀜)</v-subheader>
 						<v-expansion-panels popout>
 							<v-expansion-panel
 							v-for="(message, i) in messages"
@@ -97,19 +99,9 @@
 							hide-actions
 							>
 							<v-expansion-panel-header>
-								<v-row
-								align="center"
-								class="spacer"
-								no-gutters
-								>
-								<v-col
-									cols="4"
-									sm="2"
-									md="1"
-								>
-									<v-avatar
-									size="36px"
-									>
+								<v-row align="center" class="spacer" no-gutters>
+								<v-col cols="4" sm="2" md="1">
+									<v-avatar size="36px">
 									<img
 										v-if="message.avatar"
 										alt="Avatar"
