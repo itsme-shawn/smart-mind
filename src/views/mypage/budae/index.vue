@@ -46,28 +46,30 @@
 		<v-container>
 			<div class="d-flex justify-center mb-12">
 				<v-card class="mr-3" max-height="600" width="400">
-						<v-card-title class="align-top mb-4">이번주의 참여율</v-card-title>
-						<v-card-subtitle class="pb-12">요일별 참여율 </v-card-subtitle>
-							<v-slider v-model="day" :max="6" :tick-labels="labels" class="mx-4" ticks></v-slider>
-							<v-card class="pt-4" color="green" dark>
-								<v-card-text>
-								<v-sheet color="rgba(0, 0, 0, .12)">
+						<v-card-title class="align-top mb-4">월간 퀴즈 점수</v-card-title>
+							<v-select
+								v-model="select"
+								:items="items"
+								label="병사를 선택하세요"
+							></v-select>
+							<template>
+								<v-card color="green">
 									<v-sparkline
-									:labels="labels"
-									:value="value"
-									color="rgba(255, 255, 255, .7)"
-									height="200"
-									padding="12"
-									stroke-linecap="round"
-									smooth
-									>
-									<template v-slot:label="item">
-										{{ item.value }}
-									</template>
+										height="250"
+										:value="value"
+										line-width="2"
+										padding="12"
+										smooth="100"
+										stroke-linecap="round"
+										color="rgba(255,255,255,.7)"
+										gradient-direction="top"
+										type="trend"
+										fill="true"
+										auto-draw
+									><template v-slot:label="item">{{item.value}}</template>
 									</v-sparkline>
-								</v-sheet>
-								</v-card-text>
-							</v-card>
+								</v-card>
+							</template>
 				</v-card>
 				<v-card class="ml-3" max-height="600" width="400">
 						<v-card-title class="align-top mb-4">이번주의 퀴즈 점수</v-card-title>
@@ -110,23 +112,32 @@ export default {
 				철수: 90,
 				영희: 100
 			},
-			value: [
-				423,
-				446,
-				675,
-				510,
-				590,
-				610,
-				760
-			]
+			items: [
+				'현수',
+				'현재',
+				'이현',
+				'수현',
+				'재현',
+				'현이',
+				'철수',
+				'영희'
+			],
+			// 월간 퀴즈 점수 병사 점수인데 dropdown으로 선택했을 때 해당 병사의
+			// 월간 퀴즈 점수 최신 4개를 가져와서 value에 넣고, 해당하는 그래프를 그리면 되는데
+			// 어떻게 해야할지 모르겠다
+			value: [80, 70, 90, 100]
 		}
 	},
 	created () {
 		console.log('created')
-		this.call()
 	},
 	methods: {
-		call () {
+		submit () {
+			this.$v.$touch()
+		},
+		clear () {
+			this.$v.$reset()
+			this.select = null
 		}
 	}
 
