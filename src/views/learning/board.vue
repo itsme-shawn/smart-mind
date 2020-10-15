@@ -15,8 +15,8 @@
         <v-toolbar-title v-text="info.title"></v-toolbar-title>
       <v-spacer/>
       <template v-if="user">
-        <v-btn color="#81C784" @click="board_write" class="mr-2" v-if="user.level == 'admin'" ><v-icon>mdi-pencil</v-icon>강의실 정보 수정</v-btn> <!-- 강의실 정보 수정 -->
-        <v-btn color="#81C784" @click="article_write" v-if="user.level == 'admin'"><v-icon>mdi-plus</v-icon>게시물 작성</v-btn> <!-- 게시물 작성 버튼 -->
+        <v-btn color="#81C784" @click="board_write" class="mr-2" v-if="user.level == 'admin'"  ><v-icon>mdi-pencil</v-icon>강의실 정보 수정</v-btn> <!-- 강의실 정보 수정 -->
+        <v-btn color="#81C784" @click="article_write" v-if="user.level == 'admin'" ><v-icon>mdi-plus</v-icon>게시물 작성</v-btn> <!-- 게시물 작성 버튼 -->
       </template>
       </v-toolbar>
       <v-card-text v-if="info.createdAt">
@@ -82,11 +82,14 @@ export default {
 			})
 		},
 		async board_write () {
+			// 관리자만 가능해야함
+			if (this.user.level !== 'admin') throw Error('관리자만 가능합니다!')
 			this.$router.push(this.$route.path + '/board-write')
 			// '/board-write' 는 action 라우트 파라미터로 들어감
 			// board-form.vue 를 렌더링하게 된다.
 		},
 		async article_write () {
+			if (this.user.level !== 'admin') throw Error('관리자만 가능합니다!')
 			this.$router.push(
 				{
 					path: this.$route.path + '/article-write',

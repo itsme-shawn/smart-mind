@@ -64,6 +64,7 @@ export default {
 			})
 		},
 		async save () { // 비동기로 처리해줘야하는 로직을 포함하고있음
+			if (this.user.level !== 'admin') throw Error('관리자만 가능합니다!')
 			const form = {
 				title: this.form.title,
 				description: this.form.description,

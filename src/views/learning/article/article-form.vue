@@ -7,7 +7,6 @@
     이 컴포넌트 안에서 게시물 최초 작성과 수정을 할 수 있게끔 하였다. (v-if 이용)
 -->
 
-
 <template>
   <v-container fluid>
     <v-form>
@@ -45,7 +44,7 @@ export default {
 		return {
 			editor_options: {
 				language: 'ko',
-                hideModeSwitch: true
+				hideModeSwitch: true
 			},
 			form: {
 				title: '',
@@ -59,6 +58,9 @@ export default {
 	computed: {
 		articleId () {
 			return this.$route.query.articleId // articleId 는 board.vue 에서 넘어온 쿼리값 (수정할때만 id 값이 넘어온다)
+		},
+		user () { // Vuex state에 저장돼있는 user 정보
+			return this.$store.state.user
 		}
 	},
 	watch: { // document 값이 바뀔 때, fetch() 함수를 실행시켜서 일회성으로 DB 에서 데이터 받아옴
@@ -85,7 +87,8 @@ export default {
 			const r = await axios.get(item.url)
 			this.form.content = r.data
 		},
-		async save () { // 비동기 로직 포함 ( firestore DB에 저장 )
+		async save () { // 작성한 글 저장 함수 : 비동기 로직 포함 ( firestore DB에 저장 )
+			if (this.user.level !== 'admin') throw Error('관리자만 가능합니다!') // 권한 확인
 			this.loading = true
 			try {
 				const now = new Date()
@@ -96,7 +99,8 @@ export default {
 				const doc = {
 					title: this.form.title,
 					updatedAt: now,
-					url: url
+					url: url,
+					author: this.user.uid
 				}
 
 				const batch = await this.$firebase.firestore().batch()
@@ -109,21 +113,10 @@ export default {
 					batch.update(this.ref.collection('articles').doc(this.articleId), doc)
 				}
 				await batch.commit()
-			// eslint-disable-next-line brace-style
-			}
-			/* 나중에 에러핸들링 추가해야함
-        catch {
-				// console.error('로그인이 필요합니다')
-      }
-      */
-			finally {
+			} finally {
 				this.loading = false
 				this.$router.push('/learning/' + this.document)
 			}
-			/* to do : 1. firestore 레퍼런스 더 읽어보기
-                 2. 위지윅 에디터로 content 를 fire 스토리지에 저장하기
-                  3. async / await 사용해야할때를 명확히 파악하기
-      */
 		}
 	}
 }
