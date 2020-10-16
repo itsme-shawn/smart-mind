@@ -10,6 +10,11 @@ const routes = [
 		component: () => import('../views/Home.vue')
 	},
 
+	{
+		path: '/login',
+		component: () => import('../views/login.vue')
+	},
+
 	// 동적 라우팅 생성 ( renderer.vue 를 통해 렌더링 )
 
 	// ex ) /learning/jungsin : collection == 'learning' , document == 'jungsin'

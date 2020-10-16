@@ -74,7 +74,6 @@
             </v-simple-table>
         </v-card>
 
-
         <!--dialog로 회원 정보 수정 form 만들 예정. -->
         <!--
         <v-row justify="center">
