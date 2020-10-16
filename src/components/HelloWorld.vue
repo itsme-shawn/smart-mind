@@ -1,42 +1,60 @@
 <template>
-  
   <v-container class="text-center">
     <v-layout column>
       <v-parallax
-      class="fullpage-container"
+        class="fullpage-container"
         :height="height"
         dark
-        :src="require('../assets/cat.jpg')"
+        :src="require('../assets/main-1-3.jpg')"
       >
-     <!-- src="https://cdn.vuetifyjs.com/images/parallax/material.jpg"-->
-        <v-row align="center" justify="center">
-          <div class="text-center order-lg-2" xs12 sm12 md12 lg6>
+        <!-- src="https://cdn.vuetifyjs.com/images/parallax/material.jpg"-->
+      <v-row align="center" justify="center">
+        <div class="text-center" xs12 sm12 md12 lg12>
+          <v-card
+            align="center"
+            justify="center"
+            color="rgb(224,224,224,0.5)"
+            max-width="1000"
+          >
             <v-img
-                  :src="require('../assets/lamp2.png')"
-                  contain
-                  max-height="500"
-                ></v-img>
-        <!--  </div>
+              :src="require('../assets/lamp2.png')"
+              contain
+              max-height="500"
+            ></v-img>
+            <!--  </div>
           
           <div class="text-center order-lg-1" xs12 sm12 md12 lg6>-->
-            <div class="display-1 font-weight-bold mb-4" >정신차렷!</div>
-            <h4 class="subheading">정신차렷!은 언제, 어디서나<br>정신전력 컨텐츠를 즐길 수 있는
-                  플랫폼입니다.</h4><br/>
-                  <div align="center">
-                    <v-btn class="font-weight-bold custom2"
-                      color="white"
-                      outlined
-                      elevation="8"
-                      medium
-                      @click="dashboard"
-                      
-                      >시작하기</v-btn
-                    >
-                  </div>
-          </div>
-        </v-row>
+            <v-card
+              class="transparent elevation-0"
+              :style="{ color: fontcolor }"
+            >
+              <div class="display-1 font-weight-bold mb-4">정신차렷!</div>
+              <hr />
+              <br />
+              <h3 class="subheading">
+                정신차렷!은 언제, 어디서나<br />정신전력 컨텐츠를 즐길 수 있는
+                플랫폼입니다.
+              </h3>
+              <br />
+              <div align="center">
+                <v-btn
+                  class="font-weight-bold custom2"
+                  color="white"
+                  outlined
+                  elevation="8"
+                  medium
+                  @click="dashboard"
+                  >시작하기</v-btn
+                >
+                
+              </div>
+              <br/>
+            </v-card>
+          </v-card>
+        </div>
+      </v-row>
       </v-parallax>
-    <!--  <v-layout row wrap>
+      <!--  <v-layout row wrap>
         <v-flex xs12 md12 lg12 class="order-lg-2">
           <v-col align="left">
             <v-img
@@ -116,31 +134,36 @@
         </v-row>
       </v-flex>-->
       <v-parallax
-      class="fullpage-container"
+        class="fullpage-container"
         :height="height"
         dark
-        :src="require('../assets/bulb1.jpg')"
+        :src="require('../assets/main3-1.jpg')"
       >
         <v-row align="center" justify="end">
           <div class="text-center order-lg-2" xs12 sm12 md12 lg6>
-                    
-            <h1 class="display-1 font-weight-bold mb-4 custom1">주간정신전력</h1>
-            <h4 class="subheading custom2">이번주의 정신전력을 간단하게 확인하고 평가할 수 있습니다!</h4><br/>
-                  <div align="center">
-                    <v-btn class="font-weight-bold"
-                      color="white"
-                      outlined
-                      elevation="8"
-                      medium
-                      @click="dashboard"
-                      custom2
-                      >확인하기</v-btn
-                    >
-                  </div>
+            <h1 class="display-1 font-weight-bold mb-4 custom1">
+              주간정신전력
+            </h1>
+            <h4 class="subheading custom2">
+              이번주의 정신전력을 간단하게 확인하고 평가할 수 있습니다!
+            </h4>
+            <br />
+            <div align="center">
+              <v-btn
+                class="font-weight-bold"
+                color="white"
+                outlined
+                elevation="8"
+                medium
+                @click="dashboard"
+                custom2
+                >확인하기</v-btn
+              >
+              
+            </div>
           </div>
         </v-row>
       </v-parallax>
-
 
       <v-flex xs12 md6>
         <h2 class="headline font-weight-bold mb-3"><br />우리 역사 바로알기</h2>
@@ -231,39 +254,47 @@ export default {
     dashboard: function (event) {
       this.$router.push("/learning/dashboard");
     },
-    mover: function(event) {
-
-    }
+    mover: function (event) {},
   },
-  data () {
-		return {
-			show: [true, false, false, false, false, false],
-			myContainer: {
-				backgroundColor: ''
+  data() {
+    return {
+      show: [true, false, false, false, false, false],
+      myContainer: {
+        backgroundColor: "",
       },
-      
-    }
+      fontcolor: "black",
+    };
   },
   computed: {
-      height () {
-        switch (this.$vuetify.breakpoint.name) {
-          case 'xs': return 900
-          case 'sm': return 900
-          case 'md': return 900
-          case 'lg': return 1000
-          case 'xl': return 1000
-        }
-      },
-      size1 () {
-        switch (this.$vuetify.breakpoint.name) {
-          case 'xs': return '1px'
-          case 'sm': return '2px'
-          case 'md': return '3px'
-          case 'lg': return '4px'
-          case 'xl': return '5px'
-        }
+    height() {
+      switch (this.$vuetify.breakpoint.name) {
+        case "xs":
+          return 920;
+        case "sm":
+          return 920;
+        case "md":
+          return 920;
+        case "lg":
+          return 1020;
+        case "xl":
+          return 1000;
       }
-    }
+    },
+    size1() {
+      switch (this.$vuetify.breakpoint.name) {
+        case "xs":
+          return "1px";
+        case "sm":
+          return "2px";
+        case "md":
+          return "3px";
+        case "lg":
+          return "4px";
+        case "xl":
+          return "5px";
+      }
+    },
+  },
 };
 </script>
 
