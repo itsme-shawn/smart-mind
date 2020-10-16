@@ -1,6 +1,6 @@
 <template>
-    <div>
-        <div>
+    <div v-if="user">
+        <div >
             <v-card-text>
                 <v-toolbar-title class="font-weight-bold ml-5">마이 페이지</v-toolbar-title>
             </v-card-text>
@@ -12,17 +12,19 @@
                 tile
                 size="80"
                 color="grey"
-                ><v-icon size="60">mdi-account</v-icon></v-list-item-avatar>
+                ><v-img :src="user.photoURL"></v-img></v-list-item-avatar>
                 <v-list-item-content>
                     <v-container class="d-flex flex-row">
                         <v-list-item-title class="headline mt-2">
                         나의 회원정보
                         </v-list-item-title>
+                        <!--
                         <v-card-actions>
                             <v-btn outlined rounded text @click="dialog = true">
                                 정보수정
                             </v-btn>
                         </v-card-actions>
+                        -->
                     </v-container>
 
                 <v-divider></v-divider>
@@ -31,9 +33,9 @@
                 </div>
 
                 <v-list-item-action-text class="mt-5">
-                    <h4>회원명</h4><br>
-                    <h4>이메일</h4><br>
-                    <h4>휴대폰</h4><br>
+                    <h4>회원명 {{user.displayName}}</h4><br>
+                    <h4>이메일 {{user.email}}</h4><br>
+                    <h4>권한 {{user.level}}</h4><br>
                 </v-list-item-action-text>
                 </v-list-item-content>
 
@@ -72,7 +74,9 @@
             </v-simple-table>
         </v-card>
 
+
         <!--dialog로 회원 정보 수정 form 만들 예정. -->
+        <!--
         <v-row justify="center">
             <v-dialog v-model="dialog" persistent max-width="600px">
             <v-card>
@@ -82,27 +86,9 @@
                 <v-divider></v-divider>
                 <v-card-text>
                 <v-container>
+
                     <v-row>
-                        <v-col cols="12" sm="6" md="4">
-                            <v-text-field
-                            label="아이디*"
-                            required
-                            ></v-text-field>
-                        </v-col>
-                        <v-col cols="12" sm="6" md="4">
-                            <v-text-field
-                            label="비밀번호"
-                            type="password"
-                            hint="*변경 시에만 입력해주세요"
-                            ></v-text-field>
-                        </v-col>
-                        <v-col cols="12" sm="6" md="4">
-                            <v-text-field
-                            label="비밀번호 확인*"
-                            type="password"
-                            required
-                            ></v-text-field>
-                        </v-col>
+
                         <v-col cols="12">
                             <v-text-field
                             label="Email*"
@@ -157,6 +143,7 @@
                             ></v-text-field>
                         </v-col>
                     </v-row>
+
                 </v-container>
                 <small>*indicates required field</small>
                 </v-card-text>
@@ -172,6 +159,7 @@
             </v-card>
             </v-dialog>
         </v-row>
+        -->
 
     </div>
 </template>
@@ -213,6 +201,11 @@ export default {
 					complete: 'O'
 				}
 			]
+		}
+	},
+	computed: {
+		user () { // Vuex state에 저장돼있는 user 정보
+			return this.$store.state.user
 		}
 	}
 }
