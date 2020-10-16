@@ -13,7 +13,6 @@ import '.././public/css/hello.css'
 
 Vue.config.productionTip = false
 
-
 new Vue({
 	router,
 	store,

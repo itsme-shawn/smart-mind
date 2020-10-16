@@ -13,6 +13,7 @@
       </v-btn>
 
       <site-auth :style="{ color: fontcolor }"></site-auth>
+
     </v-app-bar>
 
     <v-navigation-drawer app v-model="drawer" :style="{ color: fontcolor }">

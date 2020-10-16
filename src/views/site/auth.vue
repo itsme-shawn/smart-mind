@@ -10,11 +10,11 @@
 		</template>
 
 		<v-card>
-			<v-card-title>로그인</v-card-title>
-			<v-divider></v-divider>
-			<v-card-actions>
-				<v-btn color="red" dark small block @click="signInWithGoogle" ><v-icon left>mdi-google</v-icon>Sign with Google</v-btn>
+			<!--<v-card-title to="/login">로그인</v-card-title>-->
+      <v-card-actions>
+				<v-btn color="" dark small block to="/login" >로그인</v-btn>
 			</v-card-actions>
+			<v-divider></v-divider>
 		</v-card>
 	</v-menu>
 
@@ -60,9 +60,7 @@ export default {
 		user () { // store.js에 저장돼있는 user 정보
 			return this.$store.state.user
 		}
-
 	},
-
 	methods: {
 		async signInWithGoogle () {
 			const provider = new this.$firebase.auth.GoogleAuthProvider()

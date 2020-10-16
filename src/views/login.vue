@@ -32,6 +32,9 @@
 </template>
 
 <script>
+
+// 로그인이 끝나면 사용자가 왔었던 페이지로 다시 리다이렉션
+
 export default {
 	methods: {
 		async signInWithGoogle () {
@@ -40,6 +43,7 @@ export default {
 			try {
 				const sn = await this.$firebase.auth().signInWithPopup(provider)
 				this.$store.commit('setFireUser', sn.user)
+				this.$router.go(-1)
 			} finally {
 				this.loading = false
 			}
