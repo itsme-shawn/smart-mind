@@ -75,9 +75,10 @@ export default {
 				if (!this.exists) {
 					form.createdAt = new Date()
 					form.count = 0 // 해당 컨텐츠의 article 의 갯수를 저장
+					form.uid = this.$store.state.fireUser.uid
 					await this.ref.set(form)
 				} else {
-					this.ref.update(form)
+					await this.ref.update(form)
 				}
 				this.$router.push('/learning/' + this.document)
 			} finally {

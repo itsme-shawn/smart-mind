@@ -99,14 +99,14 @@ export default {
 				const doc = {
 					title: this.form.title,
 					updatedAt: now,
-					url: url,
-					author: this.user.uid
+					url: url
 				}
 
 				const batch = await this.$firebase.firestore().batch()
 
 				if (!this.articleId) { // 새로 작성할 때
 					doc.createdAt = now
+					doc.uid = this.user.uid // 수정되면 안되는 정보이므로 일부러 새로 작성할 때만 정보 생성
 					batch.set(this.ref.collection('articles').doc(id), doc)
 					batch.update(this.ref, { count: this.$firebase.firestore.FieldValue.increment(1) })
 				} else { // 기존 게시물을 수정할 때
