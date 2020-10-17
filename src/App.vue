@@ -4,7 +4,10 @@
       <v-app-bar-nav-icon
         @click="drawer = !drawer"
         :style="{ color: fontcolor }"
+        
       ></v-app-bar-nav-icon>
+       <v-icon :title="site.myTitle" :style="{ color: fontcolor }">mdi-lightbulb-on-outline</v-icon>
+      
       <site-title :title="site.myTitle"></site-title>
       <v-spacer></v-spacer>
 
