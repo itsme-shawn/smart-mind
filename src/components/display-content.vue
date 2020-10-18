@@ -1,8 +1,10 @@
 <!-- views/learning/aritcle/article-list.vue 에서 사용하는 컴포넌트
-    게시물 내용을 표시하는 창을 띄우는 역할 -->
+    게시물 내용을 표시하는 창을 띄우는 역할
+    survey 모듈도 포함돼있음
+-->
 <template>
   <v-card>
-    <v-toolbar color="primary" dark>
+    <v-toolbar dark>
       <v-toolbar-title>
         {{item.title}}
       </v-toolbar-title>
@@ -20,6 +22,9 @@
           </v-row>
         </v-container>
       </v-card-text>
+      <div id='surveyElement' >
+        <survey :survey="surveyModel"></survey> <!-- surveyJS 컴포넌트에 surveyModel을 넣는다 -->
+      </div>
       <v-card-actions>
         <v-spacer/>
         <span class="font-italic caption">
@@ -33,20 +38,39 @@
         </span>
       </v-card-actions>
       <!-- 게시물 내용 표시 끝 -->
+
     </v-card>
 </template>
 
 <script>
 import axios from 'axios'
 import DisplayTime from '@/components/display-time' // @ : src/
+import * as SurveyVue from 'survey-vue' // surveyJS를 import한다
+import surveyJSON from '@/assets/survey/survey.json' // 설문조사 JSON 문항을 불러온다
+import 'survey-vue/modern.css'
+
+const Survey = SurveyVue.Survey // surveyJS에서 Survey 컴포넌트만 따로 빼낸다
+Survey.cssType = 'modern'
 
 export default {
-	components: { DisplayTime },
+	components: { DisplayTime, Survey },
 	props: ['document', 'item'],
 	data () {
 		return {
 			content: '',
 			ref: this.$firebase.firestore().collection('learning').doc(this.document)
+		}
+	},
+	computed: {
+		// data에 surveyModel을 넣어도 좋지만
+		// vuex의 값에 따라 설문조사 문항을 변경하는 경우가 많아서
+		// computed에 surveyModel을 정의했다
+		surveyModel () {
+			const surveyModel = new SurveyVue.Model(surveyJSON) // 설문조사 JSON 문항을 model로 넣는다
+			surveyModel.onComplete.add(function (result) { // Complete 버튼을 누르면 실행할 콜백 함수를 넣는다
+				alert(`result: ${JSON.stringify(result.data)}`)
+			})
+			return surveyModel
 		}
 	},
 	mounted () {

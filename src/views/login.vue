@@ -43,7 +43,7 @@ export default {
 			try {
 				const sn = await this.$firebase.auth().signInWithPopup(provider)
 				this.$store.commit('setFireUser', sn.user)
-				this.$router.go(-1)
+				this.$router.push('/')
 			} finally {
 				this.loading = false
 			}
