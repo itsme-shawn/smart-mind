@@ -1,5 +1,7 @@
 <!-- views/learning/aritcle/article-list.vue 에서 사용하는 컴포넌트
-    게시물 내용을 표시하는 창을 띄우는 역할 -->
+    게시물 내용을 표시하는 창을 띄우는 역할
+    survey 모듈도 포함돼있음
+-->
 <template>
   <v-card>
     <v-toolbar dark>
@@ -24,9 +26,6 @@
         <survey :survey="surveyModel"></survey> <!-- surveyJS 컴포넌트에 surveyModel을 넣는다 -->
       </div>
       <v-card-actions>
-        <v-btn x-large color="primary" class="mx-auto">제출</v-btn>
-      </v-card-actions>
-      <v-card-actions>
         <v-spacer/>
         <span class="font-italic caption">
           게시일 : <display-time :time="item.createdAt"></display-time>
@@ -47,12 +46,11 @@
 import axios from 'axios'
 import DisplayTime from '@/components/display-time' // @ : src/
 import * as SurveyVue from 'survey-vue' // surveyJS를 import한다
-import surveyJSON from '@/assets/survey/survey2.json' // 설문조사 JSON 문항을 불러온다
+import surveyJSON from '@/assets/survey/survey.json' // 설문조사 JSON 문항을 불러온다
+import 'survey-vue/modern.css'
 
-let Survey = SurveyVue.Survey // surveyJS에서 Survey 컴포넌트만 따로 빼낸다
-Survey.cssType = 'bootstrap'
-
-
+const Survey = SurveyVue.Survey // surveyJS에서 Survey 컴포넌트만 따로 빼낸다
+Survey.cssType = 'modern'
 
 export default {
 	components: { DisplayTime, Survey },
@@ -68,7 +66,7 @@ export default {
 		// vuex의 값에 따라 설문조사 문항을 변경하는 경우가 많아서
 		// computed에 surveyModel을 정의했다
 		surveyModel () {
-			let surveyModel = new SurveyVue.Model(surveyJSON) // 설문조사 JSON 문항을 model로 넣는다
+			const surveyModel = new SurveyVue.Model(surveyJSON) // 설문조사 JSON 문항을 model로 넣는다
 			surveyModel.onComplete.add(function (result) { // Complete 버튼을 누르면 실행할 콜백 함수를 넣는다
 				alert(`result: ${JSON.stringify(result.data)}`)
 			})
