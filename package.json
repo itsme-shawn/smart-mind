@@ -25,6 +25,8 @@
     "firebase-tools": "^8.12.1",
     "fullpage-vue": "^2.1.1",
     "moment": "^2.29.1",
+    "survey-vue": "^1.8.9",
+    "surveyjs-widgets": "^1.8.9",
     "v-fullpage": "^0.9.2",
     "vue": "^2.6.11",
     "vue-chartkick": "^0.6.1",

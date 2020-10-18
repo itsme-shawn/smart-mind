@@ -11,6 +11,7 @@
       }"
       must-sort
       item-key="id"
+
     >
       <template v-slot:item.title="{item}">
         <a @click="openDialog(item)">{{item.title}}</a>
@@ -19,7 +20,7 @@
         <display-time :time="item.createdAt"></display-time> <!-- moment 모듈로 시간을 user friendly 하게 표시 -->
       </template>
     </v-data-table>
-    <v-dialog v-if="selectedItem" v-model="dialog"> <!-- selectedItem 이 들어올 때만 dialog 가 렌더링돼야함 (안 그러면 오류) -->
+    <v-dialog v-if="selectedItem" v-model="dialog" max-width="800"> <!-- selectedItem 이 들어올 때만 dialog 가 렌더링돼야함 (안 그러면 오류) -->
       <display-content :document="document" :item="selectedItem" @close="dialog=false"></display-content> <!-- components/display-content.vue : 게시물 내용 표시 컴포넌트 -->
     </v-dialog>
   </div>

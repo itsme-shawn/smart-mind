@@ -8,15 +8,17 @@
     게시물들의 리스트를 보여주기 위해 article-list.vue 를 컴포넌트로 사용한다
 -->
 
+
 <template>
-  <v-container fluid>
-    <v-card>
-      <v-toolbar color="accent" dense flat dark>
+  <v-container fluid :grid-list-md="!$vuetify.breakpoint.xs" :class="$vuetify.breakpoint.xs ? 'pa-0' : ''">
+
+    <v-card class="mx-auto" max-width="1200" elevation="4">
+      <v-toolbar dense flat dark elevation="4" rounded>
         <v-toolbar-title v-text="info.title"></v-toolbar-title>
       <v-spacer/>
       <template v-if="user">
-        <v-btn color="#81C784" @click="board_write" class="mr-2" v-if="user.level == 'admin'"  ><v-icon>mdi-pencil</v-icon>강의실 정보 수정</v-btn> <!-- 강의실 정보 수정 -->
-        <v-btn color="#81C784" @click="article_write" v-if="user.level == 'admin'" ><v-icon>mdi-plus</v-icon>게시물 작성</v-btn> <!-- 게시물 작성 버튼 -->
+        <v-btn icon @click="board_write" class="mr-2" v-if="user.level == 'admin'"  ><v-icon>mdi-pencil</v-icon></v-btn> <!-- 강의실 정보 수정 -->
+        <v-btn icon @click="article_write" v-if="user.level == 'admin'" ><v-icon>mdi-plus</v-icon></v-btn> <!-- 게시물 작성 버튼 -->
       </template>
       </v-toolbar>
       <v-card-text v-if="info.createdAt">
@@ -35,6 +37,7 @@
       <article-list :info="info" :document="document" ></article-list>
       <!---->
     </v-card>
+
   </v-container>
 </template>
 <script>
