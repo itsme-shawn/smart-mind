@@ -21,6 +21,7 @@
   <help-faq v-else-if="collection === 'help' && document === 'FAQ'"></help-faq>
   <help-guide v-else-if="collection === 'help' && document === 'guide'"></help-guide>
   <help-intentions v-else-if="collection === 'help' && document === 'intentions'"></help-intentions>
+  <help-notice v-else-if="collection === 'help' && document === 'notice'"></help-notice>
 
   <error-page v-else></error-page>
 </template>
@@ -42,7 +43,7 @@ import MypageBudae from '../views/mypage/budae/index.vue'
 import HelpFaq from '../views/help/FAQ/index.vue'
 import HelpGuide from '../views/help/guide/index.vue'
 import HelpIntentions from '../views/help/intentions/index.vue'
-
+import HelpNotice from '../views/help/notice/index.vue'
 // 라우팅 처리 되지 않은 주소는 에러 페이지 렌더링
 import ErrorPage from '../views/error_page'
 
@@ -58,6 +59,7 @@ export default {
 		HelpFaq,
 		HelpGuide,
 		HelpIntentions,
+		HelpNotice,
 		ErrorPage
 	},
 	computed: {
