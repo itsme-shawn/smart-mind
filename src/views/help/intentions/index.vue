@@ -12,6 +12,7 @@
 		<h3>정신차렷은 불편하고 번거로운 정신전력교육을 개선하기 위해 만들어졌습니다.</h3><br>
 		<h3>어렵고 불편한 사용법 대신 직관적이고 간편한 사용을 위해 노력했습니다.</h3><br>
 		<h3>쉽게 참여하고, 쉽게 관리/감독을 시작하세요.</h3><br>
+		<br><span class="green--text"><h1>사진 까리한걸로 배경 넣으면 끝</h1><br></span>
 
 		<v-divider></v-divider>
 	</v-sheet>
@@ -64,7 +65,36 @@
 		<v-divider></v-divider>
 	</v-sheet>
 
-	<!--캡처해서 이미지 넣기-->
+	<!--캡처해서 colors 대신에 캡처 사진 url 넣으면 끝-->
+	<template>
+	<v-carousel
+		class="mb-15"
+		cycle
+		height="400"
+		hide-delimiter-background
+		show-arrows-on-hover
+	>
+		<v-carousel-item
+		v-for="(slide, i) in slides"
+		:key="i"
+		>
+		<v-sheet
+			:color="colors[i]"
+			height="100%"
+		>
+			<v-row
+			class="fill-height"
+			align="center"
+			justify="center"
+			>
+			<div class="display-3">
+				{{ slide }} Slide
+			</div>
+			</v-row>
+		</v-sheet>
+		</v-carousel-item>
+	</v-carousel>
+	</template>
 		
 
     </v-container>
@@ -90,10 +120,25 @@
           color: 'green lighten-1',
 		  icon: 'mdi-airballoon',
 		  title: '근무나 당직으로 참여할 수 없는 병사들',
-		  content: '근무나 당직이 있을 때 장소와 시간에 구애받기 때문에 정신전력교육에 참여할 수 없습니다. 정신차렷과 함께라면 언제, 어디서나 원하는 시간에 할 수 있습니다.'
-        },
-        
-      ],
+		  content: '근무나 당직이 있을 때 장소와 시간에 구애받기 때문에 정신전력교육에 참여할 수 없습니다. 정신차렷과 함께라면 언제, 어디서나 가능한 시간대에 정신전력 교육에 참여할 수 있습니다.'
+        }
+	  ],
+	  
+	  // carousel data
+	  colors: [
+          'indigo',
+          'warning',
+          'pink darken-2',
+          'red lighten-1',
+          'deep-purple accent-4',
+        ],
+        slides: [
+          '캡처해서 배경 colors 대신에 캡처 사진 url 넣으면 끝 / First',
+          '캡처해서 배경 colors 대신에 캡처 사진 url 넣으면 끝 / Second',
+          '캡처해서 배경 colors 대신에 캡처 사진 url 넣으면 끝 / Third',
+          '캡처해서 배경 colors 대신에 캡처 사진 url 넣으면 끝 / Fourth',
+          '캡처해서 배경 colors 대신에 캡처 사진 url 넣으면 끝 / Fifth',
+        ]
     }),
   }
 </script>
