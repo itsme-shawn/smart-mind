@@ -18,7 +18,8 @@
         <v-btn icon @click="save"><v-icon>mdi-content-save</v-icon></v-btn>
         </v-toolbar>
         <v-card-text>
-          <v-text-field v-model="form.title" outlined label="제목"></v-text-field>
+          <v-text-field v-model="form.title" outlined label="게시물 제목"></v-text-field>
+          <v-toolbar-title class="mt-1">본문 작성</v-toolbar-title>
           <!-- articleId 가 없다는 것은 글 최초 작성 -->
           <editor v-if="!articleId" initialEditType='wysiwyg' :options="editor_options" :initialValue="form.content" ref="editor"></editor>
           <!-- aritcleId 가 있다는 것은 글 수정, 따라서 기존의 title 과 content 를 렌더링해줘야한다. -->
@@ -31,6 +32,12 @@
               </v-row>
             </v-container>
           </template>
+          <v-spacer/>
+          <v-container>
+          <v-toolbar-title class="mt-5">평가 질문 작성</v-toolbar-title>
+          <v-text-field v-model="form.Q1" outlined label="질문1"></v-text-field>
+          <v-text-field v-model="form.Q2" outlined label="질문2"></v-text-field>
+          </v-container>
         </v-card-text>
       </v-card>
     </v-form>
@@ -48,7 +55,9 @@ export default {
 			},
 			form: {
 				title: '',
-				content: '' // content 는 이미지,동영상 같은 파일들이므로 Storage 에 넣어야 함
+				content: '', // content 는 이미지,동영상 같은 파일들이므로 Storage 에 넣어야 함
+				Q1: '',
+				Q2: ''
 			},
 			exists: false,
 			loading: false,
@@ -84,6 +93,8 @@ export default {
 			if (!this.exists) return // doc 가 없으면 종료
 			const item = doc.data() // 임시변수 item 사용
 			this.form.title = item.title
+			this.form.Q1 = item.question.Q1
+			this.form.Q2 = item.question.Q2
 			const r = await axios.get(item.url)
 			this.form.content = r.data
 		},
@@ -99,7 +110,11 @@ export default {
 				const doc = {
 					title: this.form.title,
 					updatedAt: now,
-					url: url
+					url: url,
+					question: {
+						Q1: this.form.Q1,
+						Q2: this.form.Q2
+					}
 				}
 
 				const batch = await this.$firebase.firestore().batch()

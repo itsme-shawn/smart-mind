@@ -22,9 +22,7 @@
           </v-row>
         </v-container>
       </v-card-text>
-      <div id='surveyElement' >
-        <survey :survey="surveyModel"></survey> <!-- surveyJS 컴포넌트에 surveyModel을 넣는다 -->
-      </div>
+      <survey-viewer :question="item.question"></survey-viewer>
       <v-card-actions>
         <v-spacer/>
         <span class="font-italic caption">
@@ -45,32 +43,15 @@
 <script>
 import axios from 'axios'
 import DisplayTime from '@/components/display-time' // @ : src/
-import * as SurveyVue from 'survey-vue' // surveyJS를 import한다
-import surveyJSON from '@/assets/survey/survey.json' // 설문조사 JSON 문항을 불러온다
-import 'survey-vue/modern.css'
-
-const Survey = SurveyVue.Survey // surveyJS에서 Survey 컴포넌트만 따로 빼낸다
-Survey.cssType = 'modern'
+import SurveyViewer from '@/views/learning/survey-viewer.vue'
 
 export default {
-	components: { DisplayTime, Survey },
+	components: { DisplayTime, SurveyViewer },
 	props: ['document', 'item'],
 	data () {
 		return {
 			content: '',
 			ref: this.$firebase.firestore().collection('learning').doc(this.document)
-		}
-	},
-	computed: {
-		// data에 surveyModel을 넣어도 좋지만
-		// vuex의 값에 따라 설문조사 문항을 변경하는 경우가 많아서
-		// computed에 surveyModel을 정의했다
-		surveyModel () {
-			const surveyModel = new SurveyVue.Model(surveyJSON) // 설문조사 JSON 문항을 model로 넣는다
-			surveyModel.onComplete.add(function (result) { // Complete 버튼을 누르면 실행할 콜백 함수를 넣는다
-				alert(`result: ${JSON.stringify(result.data)}`)
-			})
-			return surveyModel
 		}
 	},
 	mounted () {
