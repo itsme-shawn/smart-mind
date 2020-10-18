@@ -6,142 +6,41 @@
             </v-card-text>
         </div>
 		<v-divider></v-divider>
-		<!--질문 시작-->
-		<v-row align="center">
-			<v-item-group
-			v-model="window"
-			class="shrink mr-6"
-			mandatory
-			tag="v-flex"
-			>
-			<v-item
-				v-for="n in length"
-				:key="n"
-				v-slot:default="{ active, toggle }"
-			>
-				<div>
-				<v-btn
-					:input-value="active"
-					icon
-					@click="toggle"
-				>
-					<v-icon>mdi-help</v-icon>
-				</v-btn>
-				</div>
-			</v-item>
-			</v-item-group>
 
-			<v-col>
-			<v-window
-				v-model="window"
-				class="elevation-1"
-				vertical
-			>
-				<v-window-item
-				v-for="n in length"
-				:key="n"
-				>
-				<v-card flat>
-					<v-card-text>
-					<v-row
-						class="mb-4"
-						align="center"
-					>
-						<v-avatar
-						color="grey"
-						class="mr-4"
-						></v-avatar>
-						<strong class="title">질문 {{ n }}</strong>
-					</v-row>
-
-					<p>
-						Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-					</p>
-
-					<p>
-						Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-					</p>
-
-					<p>
-						Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-					</p>
-					</v-card-text>
-				</v-card>
-				</v-window-item>
-			</v-window>
-			</v-col>
-		</v-row>
-
-		<!--질문 끝-->
-
-	<!--질문 시작-->
+	<!-- 대안3-->
 		<template>
-			<v-hover v-slot:default="{ hover }">
-				<v-card
-					:elevation="hover ? 16 : 2"
-					:class="{ 'on-hover': hover }"
-					class="mx-auto"
-					width="600"
-				>
-					<v-card-actions @click="show = !show">
-						<v-card-title>
-						로그인이 안 돼요.
-						</v-card-title>
-						<v-spacer></v-spacer>
-					<v-btn
-						icon
-						@click="show = !show"
+			<v-container fluid class="mt-10">
+				<v-row justify="center">
+				<v-expansion-panels popout>
+					<v-expansion-panel
+					v-for="(message, i) in messages"
+					:key="i"
+					hide-actions
 					>
-						<v-icon>{{ show ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon>
-					</v-btn>
-					</v-card-actions>
+					<v-expansion-panel-header>
+						<v-row align="center" class="spacer" no-gutters>
+						
+						<v-col
+							class="text-no-wrap"
+							cols="5"
+							sm="3"
+						>
+							<strong v-html="message.title"></strong>
+						</v-col>
+						
+						</v-row>
+					</v-expansion-panel-header>
 
-					<v-expand-transition>
-					<div v-show="show">
+					<v-expansion-panel-content>
 						<v-divider></v-divider>
-						<v-card-text>
-						Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-						</v-card-text>
-					</div>
-					</v-expand-transition>
-				</v-card>
-			</v-hover>
+						<v-card-text v-text="message.answer"></v-card-text>
+					</v-expansion-panel-content>
+					</v-expansion-panel>
+				</v-expansion-panels>
+				</v-row>
+			</v-container>
 		</template>
-	<!--질문 끝-->
-	<!--질문 시작-->
-		<template>
-			<v-hover v-slot:default="{ hover }">
-				<v-card
-					:elevation="hover ? 16 : 2"
-					:class="{ 'on-hover': hover }"
-					class="mx-auto"
-					width="600"
-				>
-					<v-card-actions @click="show = !show">
-						<v-card-title>
-						로그인이 안 돼요.
-						</v-card-title>
-						<v-spacer></v-spacer>
-					<v-btn
-						icon
-						@click="show = !show"
-					>
-						<v-icon>{{ show ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon>
-					</v-btn>
-					</v-card-actions>
 
-					<v-expand-transition>
-					<div v-show="show">
-						<v-divider></v-divider>
-						<v-card-text>
-						Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-						</v-card-text>
-					</div>
-					</v-expand-transition>
-				</v-card>
-			</v-hover>
-		</template>
-	<!--질문 끝-->
     </v-container>
 </template>
 <script>
@@ -149,7 +48,40 @@ export default {
 	data: () => ({
 		length: 3,
 		window: 0,
-		show: false
+		show: false,
+
+		//
+		messages: [
+				{
+					title: '회원가입은 어떻게 하나요?',
+					answer: '현재 구글 계정으로 로그인이 가능한 상태입니다.'
+				},
+				{
+					title: '로그인이 안 돼요.',
+					answer: '인터넷 연결이 되어있는지 확인해 보고, 비밀번호 찾기를 해 본 후에도 로그인이 되지 않으면 고객센터로 문의해 주세요.'
+				},
+				{
+					title: '비밀번호를 분실했어요. 어떻게 해야 하나요?',
+					answer: '구글 이메일의 경우 구글 비밀번호 찾기를 하고, 만약 홈페이지 이메일일 경우 비밀번호 찾기 혹은 비밀번호 찾기가 개발이 아직 되지 않았을 경우 관리자에게 문의하세요.'	
+				},
+				{
+					title: '정신전력 교육의 점수가 마음에 들지 않는데, 이미 완료한 정신전력 교육을 다시 할 수는 없나요?',
+					answer: '이미 완료한 정신전력 교육은 평가가 완료된 이후에도 언제든지 다시 수강할 수 있지만, 평가는 달라지지 않습니다.'	
+				},
+				{
+					title: '지나간 정신전력 교육을 이수하지 못했어요. 다시 수강할 수 있나요?',
+					answer: '<수강하기> 탭에서 <주간정신전력교육>으로 들어가면 지난 정신전력 교육을 이수할 수 있어요.'	
+				},
+				{
+					title: '<기획의도>를 읽고 감명을 받았어요!',
+					answer: '홈페이지 하단에 개발자들에게 연락할 수 있는 방법이 적혀있어요. 칭찬 감사합니다.'	
+				},
+				{
+					title: '<우리 역사 바로알기>에 다른 사람들이 알았으면 하는 새로운 주제가 있어요.',
+					answer: '홈페이지의 하단에 있는 관리자에게 문의하면 심의 후 추가될 수 있어요.'	
+				},
+				
+			],
 	})
 }
 </script>

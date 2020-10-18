@@ -1,6 +1,8 @@
 <template>
 <router-link style="text-decoration: none; color: inherit;" to="/">
-  <v-toolbar-title>{{ title }}</v-toolbar-title>
+  <v-toolbar-title>
+   {{ title }}
+  </v-toolbar-title>
 </router-link>
 </template>
 
@@ -9,7 +11,9 @@
 <!-- .vue 안에서 컴포넌트 요소는 한 개만 있어야한다. ex) <v-toolbar-title> 가 여러개있으면 안됨  -->
 
 <script>
+
 export default {
+  
 	props: ['title']
 }
 </script>
