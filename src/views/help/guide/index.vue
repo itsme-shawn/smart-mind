@@ -8,17 +8,16 @@
 		<v-divider></v-divider>
 
 		<template>
-			<v-card color="basil">
-				<v-card-title class="text-center justify-center py-6">
-				<h1 class="font-weight-bold display-3 basil--text">
+			<v-card>
+				<!-- <v-card-title class="text-center justify-center py-6">
+				<h1 class="display-3">
 					도움말
 				</h1>
-				</v-card-title>
+				</v-card-title> -->
 
 				<v-tabs
 				v-model="tab"
 				background-color="transparent"
-				color="basil"
 				grow
 				>
 				<v-tab
