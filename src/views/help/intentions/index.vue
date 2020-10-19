@@ -69,28 +69,24 @@
 	<v-carousel
 		class="mb-15"
 		cycle
-		height="400"
 		hide-delimiter-background
 		show-arrows-on-hover
 	>
 		<v-carousel-item
 		v-for="(slide, i) in slides"
 		:key="i"
+		:src="require('../../../assets/help_intention1.png')"
 		>
-		<v-sheet
-			:color="colors[i]"
-			height="100%"
-		>
+		
 			<v-row
-			class="fill-height"
 			align="center"
 			justify="center"
 			>
 			<div class="display-3">
-				{{ slide }} Slide
+				Slide
 			</div>
+			
 			</v-row>
-		</v-sheet>
 		</v-carousel-item>
 	</v-carousel>
 	</template>
@@ -124,20 +120,21 @@
 	  ],
 	  
 	  // carousel data
-	  colors: [
-          'indigo',
-          'warning',
-          'pink darken-2',
-          'red lighten-1',
-          'deep-purple accent-4',
+		slides: [
+          {
+            src: '../../../assets/help_intention1.jpg',
+          },
+          {
+            src: 'https://cdn.vuetifyjs.com/images/carousel/sky.jpg',
+          },
+          {
+            src: 'https://cdn.vuetifyjs.com/images/carousel/bird.jpg',
+          },
+          {
+            src: 'https://cdn.vuetifyjs.com/images/carousel/planet.jpg',
+          },
         ],
-        slides: [
-          '캡처해서 배경 colors 대신에 캡처 사진 url 넣으면 끝 / First',
-          '캡처해서 배경 colors 대신에 캡처 사진 url 넣으면 끝 / Second',
-          '캡처해서 배경 colors 대신에 캡처 사진 url 넣으면 끝 / Third',
-          '캡처해서 배경 colors 대신에 캡처 사진 url 넣으면 끝 / Fourth',
-          '캡처해서 배경 colors 대신에 캡처 사진 url 넣으면 끝 / Fifth',
-        ]
+        
     }),
   }
 </script>
