@@ -69,24 +69,23 @@
 	<v-carousel
 		class="mb-15"
 		cycle
-		height="400"
 		hide-delimiter-background
 		show-arrows-on-hover
 	>
 		<v-carousel-item
 		v-for="(slide, i) in slides"
 		:key="i"
-		:src="slide.src"
+		:src="require('../../../assets/help_intention1.png')"
 		>
 		
 			<v-row
-			class="fill-height"
 			align="center"
 			justify="center"
 			>
-			<!-- <div class="display-3">
-				{{ slide }} Slide
-			</div> -->
+			<div class="display-3">
+				Slide
+			</div>
+			
 			</v-row>
 		</v-carousel-item>
 	</v-carousel>
@@ -123,7 +122,7 @@
 	  // carousel data
 		slides: [
           {
-            src: 'https://cdn.vuetifyjs.com/images/carousel/squirrel.jpg',
+            src: '../../../assets/help_intention1.jpg',
           },
           {
             src: 'https://cdn.vuetifyjs.com/images/carousel/sky.jpg',
