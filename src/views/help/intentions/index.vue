@@ -87,7 +87,7 @@
 			justify="center"
 			>
 			<div class="display-3">
-				{{ slide }} Slide
+				<img :src="slide">
 			</div>
 			</v-row>
 		</v-sheet>
@@ -130,13 +130,15 @@
           'pink darken-2',
           'red lighten-1',
           'deep-purple accent-4',
-        ],
+		],
+		
         slides: [
+		   require('../../../assets/help_intention1.png'),
           '캡처해서 배경 colors 대신에 캡처 사진 url 넣으면 끝 / First',
           '캡처해서 배경 colors 대신에 캡처 사진 url 넣으면 끝 / Second',
           '캡처해서 배경 colors 대신에 캡처 사진 url 넣으면 끝 / Third',
           '캡처해서 배경 colors 대신에 캡처 사진 url 넣으면 끝 / Fourth',
-          '캡처해서 배경 colors 대신에 캡처 사진 url 넣으면 끝 / Fifth',
+          
         ]
     }),
   }
