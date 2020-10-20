@@ -75,7 +75,6 @@
 		<v-carousel-item
 		v-for="(slide, i) in slides"
 		:key="i"
-		:src="require('../../../assets/help_intention1.png')"
 		>
 		
 			<v-row
@@ -83,7 +82,7 @@
 			justify="center"
 			>
 			<div class="display-3">
-				<img :src="slide">
+				<img :src="slide" height="500">
 			</div>
 			
 			</v-row>
@@ -130,10 +129,10 @@
 		
         slides: [
 		   require('../../../assets/help_intention1.png'),
-          '캡처해서 배경 colors 대신에 캡처 사진 url 넣으면 끝 / First',
-          '캡처해서 배경 colors 대신에 캡처 사진 url 넣으면 끝 / Second',
-          '캡처해서 배경 colors 대신에 캡처 사진 url 넣으면 끝 / Third',
-          '캡처해서 배경 colors 대신에 캡처 사진 url 넣으면 끝 / Fourth',
+		  // require('../../../assets/help_intention2.png'),
+		  // require('../../../assets/help_intention3.png'),
+		  // require('../../../assets/help_intention4.png'),
+		  // require('../../../assets/help_intention5.png'),
           
         ]
     }),
