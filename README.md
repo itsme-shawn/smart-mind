@@ -5,12 +5,16 @@
 [https://github.com/osam2019](https://github.com/osam2019)
 **2019프로젝트, readme.md를 참고하여 개발자님의 새로운 프로젝트를 만들어주세요!**
 
-# Smaple Logo
-![Logo](https://logosbynick.com/wp-content/uploads/2018/03/final-logo-example.png)
+# 정신차렷!
+![Logo](<v-img
+                :src="require('/src/assets/LOGO.png')"
+                contain
+                max-height="500"
+              ></v-img>)
+정신전력 교육을 언제 어디에서나, 쉽고 간편하게
+정신차렷! 입니다.
 
-팀명 텍스트 및 팀명 로고 이미지 **(택1)**
-
-## 팀소개 및 프로잭트 설명 동영상
+## 팀소개 및 프로젝트 설명 동영상
 [![Watch the video](https://img.youtube.com/vi/LjX3eVQdIyk/0.jpg)](https://www.youtube.com/watch?time_continue=117&v=LjX3eVQdIyk)
 
 ## 기능 설계

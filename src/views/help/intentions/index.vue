@@ -69,28 +69,24 @@
 	<v-carousel
 		class="mb-15"
 		cycle
-		height="400"
 		hide-delimiter-background
 		show-arrows-on-hover
 	>
 		<v-carousel-item
 		v-for="(slide, i) in slides"
 		:key="i"
+		:src="require('../../../assets/help_intention1.png')"
 		>
-		<v-sheet
-			:color="colors[i]"
-			height="100%"
-		>
+		
 			<v-row
-			class="fill-height"
 			align="center"
 			justify="center"
 			>
 			<div class="display-3">
 				<img :src="slide">
 			</div>
+			
 			</v-row>
-		</v-sheet>
 		</v-carousel-item>
 	</v-carousel>
 	</template>
