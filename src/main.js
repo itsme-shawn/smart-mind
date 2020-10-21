@@ -11,8 +11,10 @@ import EnlargeableImage from '@diracleo/vue-enlargeable-image'
 
 import '.././public/css/hello.css'
 import '.././public/css/animate.css'
-import '.././public/js/WOW.js'
+import '.././public/js/wow.min.js'
 Vue.config.productionTip = false
+
+new WOW().init();
 
 new Vue({
 	router,

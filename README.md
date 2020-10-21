@@ -6,13 +6,11 @@
 **2019프로젝트, readme.md를 참고하여 개발자님의 새로운 프로젝트를 만들어주세요!**
 
 # 정신차렷!
-![Logo](<v-img
-                :src="require('/src/assets/LOGO.png')"
-                contain
-                max-height="500"
-              ></v-img>)
+![Logo]
+<img src="/src/assets/LOGO.png">
 정신전력 교육을 언제 어디에서나, 쉽고 간편하게
-정신차렷! 입니다.
+##정신차렷! 
+입니다.
 
 ## 팀소개 및 프로젝트 설명 동영상
 [![Watch the video](https://img.youtube.com/vi/LjX3eVQdIyk/0.jpg)](https://www.youtube.com/watch?time_continue=117&v=LjX3eVQdIyk)
@@ -55,8 +53,7 @@ $ yarn start or npm run start
 ## 팀 정보 (Team Information)
 - 최현수 (chs98105@gmail.com),  Github Id: [Keep-Going-HyeonSoo](https://github.com/Keep-Going-HyeonSoo)
 - 김현재
-- 최이현 (chyh0182@naver.com), Github Id: [Choieeh]
-(https://github.com/Choieeh)
+- 최이현 (chyh0182@naver.com), Github Id: [Choieeh](https://github.com/Choieeh)
 
 
 ## 저작권 및 사용권 정보 (Copyleft / End User License)
