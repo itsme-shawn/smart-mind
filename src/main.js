@@ -10,7 +10,8 @@ import './plugins/moment'
 import EnlargeableImage from '@diracleo/vue-enlargeable-image'
 
 import '.././public/css/hello.css'
-
+import '.././public/css/animate.css'
+import '.././public/js/WOW.js'
 Vue.config.productionTip = false
 
 new Vue({

@@ -75,7 +75,6 @@
 		<v-carousel-item
 		v-for="(slide, i) in slides"
 		:key="i"
-		:src="require('../../../assets/help_intention1.png')"
 		>
 		
 			<v-row
@@ -83,7 +82,7 @@
 			justify="center"
 			>
 			<div class="display-3">
-				Slide
+				<img :src="slide" height="500">
 			</div>
 			
 			</v-row>
@@ -120,21 +119,22 @@
 	  ],
 	  
 	  // carousel data
-		slides: [
-          {
-            src: '../../../assets/help_intention1.jpg',
-          },
-          {
-            src: 'https://cdn.vuetifyjs.com/images/carousel/sky.jpg',
-          },
-          {
-            src: 'https://cdn.vuetifyjs.com/images/carousel/bird.jpg',
-          },
-          {
-            src: 'https://cdn.vuetifyjs.com/images/carousel/planet.jpg',
-          },
-        ],
-        
+	  colors: [
+          'indigo',
+          'warning',
+          'pink darken-2',
+          'red lighten-1',
+          'deep-purple accent-4',
+		],
+		
+        slides: [
+		   require('../../../assets/help_intention1.png'),
+		  // require('../../../assets/help_intention2.png'),
+		  // require('../../../assets/help_intention3.png'),
+		  // require('../../../assets/help_intention4.png'),
+		  // require('../../../assets/help_intention5.png'),
+          
+        ]
     }),
   }
 </script>

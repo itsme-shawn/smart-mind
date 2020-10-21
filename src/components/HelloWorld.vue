@@ -20,6 +20,7 @@
                 :src="require('../assets/lamp2.png')"
                 contain
                 max-height="500"
+                class="animated fadeInDown"
               ></v-img>
               <!--  </div>
           
@@ -28,10 +29,10 @@
                 class="transparent elevation-0"
                 :style="{ color: fontcolor }"
               >
-                <div class="display-1 font-weight-bold mb-4">정신차렷!</div>
+                <div class="display-1 font-weight-bold mb-4 animated fadeInDown">정신차렷!</div>
                 <hr />
                 <br />
-                <h3 class="subheading">
+                <h3 class="subheading animated fadeInDown">
                   정신차렷!은 언제, 어디서나<br />정신전력 컨텐츠를 즐길 수 있는
                   플랫폼입니다.
                 </h3>
@@ -51,13 +52,22 @@
               </v-card>
             </v-card>
           </div>
+          
         </v-row>
+        <a class="scroll-link" href="#content">
+		<svg class="mouse" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 76 130" preserveAspectRatio="xMidYMid meet">
+		<g fill="none" fill-rule="evenodd">
+			<rect width="70" height="118" x="1.5" y="1.5" stroke="#FFF" stroke-width="3" rx="36"/>
+			<circle class="scroll" cx="36.5" cy="31.5" r="4.5" fill="#FFF"/>
+		</g>
+	</svg>
+	</a>
       </v-parallax>
 
       <v-row align="center" justify="center" height="700" class="px-9 py-15">
         <v-row align="center" justify="center" class="order-md-2 order-lg-2">
           <v-row align="center" justify="center" xs12 sm12 md6 lg6>
-            <div style="text-align: center; vertial-align: middle">
+            <div style="text-align: center; vertial-align: middle"> <!--class="wow animated backInDown"-->
               <div class="display-1 font-weight-bold mb-4">주간 정신전력</div>
               <hr />
               <br />
@@ -130,7 +140,7 @@
         <v-divider></v-divider>
       </div>
       <v-row align="center" justify="center" class="pa-6 py-10">
-        <div>
+        <div >
           <div class="display-1 font-weight-bold mb-4">우리 역사 바로알기</div>
           <hr />
           <br />
