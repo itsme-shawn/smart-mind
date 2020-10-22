@@ -22,7 +22,7 @@
           </v-row>
         </v-container>
       </v-card-text>
-      <survey-viewer :question="item.question"></survey-viewer>
+      <survey-viewer @complete="closeDialog" :question="item.question"></survey-viewer>
       <v-card-actions>
         <v-spacer/>
         <span class="font-italic caption">
@@ -85,7 +85,10 @@ export default {
 			await this.$firebase.storage().ref().child('learning').child(this.document).child(this.item.id + '.html').delete()
 			// Storage에 저장된 html 파일까지 삭제 완료
 			this.$emit('close')
-		}
+    },
+    closeDialog () {
+      //this.$emit('close')
+    }
 	}
 
 }

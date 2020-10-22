@@ -1,6 +1,10 @@
+<!--
+  @/components/display-content.vue 에서 사용하는 컴포넌트
+-->
+
 <template>
   <div id='surveyElement' >
-    <survey :survey="surveyModel"></survey> <!-- surveyJS 컴포넌트에 surveyModel을 넣는다 -->
+    <survey  :survey="surveyModel"></survey> <!-- surveyJS 컴포넌트에 surveyModel을 넣는다 -->
   </div>
 </template>
 
@@ -63,6 +67,7 @@ export default {
 			const surveyModel = new SurveyVue.Model(this.surveyJSON) // 설문조사 JSON 문항을 model로 넣는다
 			surveyModel.onComplete.add(function (result) { // Complete 버튼을 누르면 실행할 콜백 함수를 넣는다
 				alert(`result: ${JSON.stringify(result.data)}`)
+				//this.$emit('complete')
 			})
 			return surveyModel
 		}
