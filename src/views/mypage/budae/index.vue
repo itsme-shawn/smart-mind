@@ -114,7 +114,6 @@
 									></v-icon>
 									</v-avatar>
 								</v-col>
-
 								<v-col
 									class="hidden-xs-only"
 									sm="5"
@@ -129,37 +128,23 @@
 									</span>
 								</v-col>
 
-								<v-col
-									class="text-no-wrap"
-									cols="5"
-									sm="3"
-								>
-									<v-chip
-									v-if="message.new"
-									:color="`${message.color} lighten-4`"
-									class="ml-0 mr-2 black--text"
-									label
-									small
-									>
-									{{ message.new }} new
-									</v-chip>
+								<v-col class="text-no-wrap" cols="5" sm="3">
 									<strong v-html="message.title"></strong>
-								</v-col>
-
-								<v-col
-									v-if="message.excerpt"
-									class="grey--text text-truncate hidden-sm-and-down"
-								>
-									&mdash;
-									{{ message.excerpt }}
 								</v-col>
 								</v-row>
 							</v-expansion-panel-header>
 
 							<v-expansion-panel-content>
 								<v-divider></v-divider>
-								<v-card-text v-text="lorem"></v-card-text>
+								<v-card-title>질문</v-card-title>
+								<v-card-text v-text="question.one"></v-card-text>
+								<v-card-text v-text="question.two"></v-card-text>
+								<v-divider></v-divider>
+								<v-card-title>답변</v-card-title>
+								<v-card-text v-text="content1.현재"></v-card-text>
+								<v-card-text v-text="content2.현재"></v-card-text>
 							</v-expansion-panel-content>
+
 							</v-expansion-panel>
 						</v-expansion-panels>
 						</v-row>
@@ -233,30 +218,22 @@ export default {
 			// 병사별 주간정신전력 현황 데이터
 			messages: [
 				{
-					avatar: 'https://avatars0.githubusercontent.com/u/9064066?v=4&s=460',
-					name: 'John Leider',
-					title: 'Welcome to Vuetify!',
-					excerpt: 'Thank you for joining our community...'
+					avatar: 'https://lh3.googleusercontent.com/ogw/ADGmqu92A3GO29sPEXyfoYIwCWRHIbhljaLOVkAyePpz=s32-c-mo',
+					name: '현재',
+					title: '1주차 정신전력교육',
+					
 				},
-				{
-					color: 'teal',
-					icon: 'mdi-account',
-					name: 'Social',
-					new: 1,
-					total: 3,
-					title: 'Twitter'
-				},
-				{
-					color: 'teal',
-					icon: 'mdi-account',
-					name: 'Promos',
-					new: 2,
-					total: 4,
-					title: 'Shop your way',
-					excerpt: 'New deals available, Join Today'
-				}
 			],
-			lorem: 'Lorem ipsum dolor sit amet, at aliquam vivendum vel, everti delicatissimi cu eos. Dico iuvaret debitis mel an, et cum zril menandri. Eum in consul legimus accusam. Ea dico abhorreant duo, quo illum minimum incorrupte no, nostro voluptaria sea eu. Suas eligendi ius at, at nemore equidem est. Sed in error hendrerit, in consul constituam cum.'
+			question:{
+				one: '4차 산업혁명 기술을 우리 군에 접목하여 강한 군대를 만들 수 있는 현실성 있는 방안에 대해 말해보자',
+				two: '첨단 무기체계가 개발되고 도입되는 상항에서도 장병 개인의 전투기술 연마와 정신적 대비태세가 중요한 이유에 대해 말해보자'
+			},
+			content1: {
+				현재: '4차 산업혁명 기술을 우리 군에 접목시키려면 우선 그에 따른 인프라가 구축되어야 한다. 대표적을 IoT기술의 경우 접목시킨다면 군에서 운용하는 여러 장비들에 네트워크를 부여할 수 있게 되는데, 대표적으로 위치 정보를 가져올 수 있고, 전투복에 접목된다면 병사의 신체 능력도 알 수 있어 부상이 있을 경우 빠른 대처가 가능해진다. 그러나 네트워크를 운용해야 하기 때문에 보안 문제 해결이 가장 시급한 과제인 것으로 보인다.'
+			},
+			content2: {
+				현재: '첨단 무기쳬계가 개발되고 도입이 되더라도 그에 맞는 개인의 전투기술과 작전계획, 전술, 전략의 수립이 중요하다. 강한 군대는 병력이 많거나 무기가 좋다고 강한 군대가 아니다. 균형있게 유무형의 전력을 갖추고 제대로 싸울 준비가 되어 있어야 강한 군대이다. '
+			}
 		}
 	},
 	created () {

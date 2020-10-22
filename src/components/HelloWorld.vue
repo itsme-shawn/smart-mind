@@ -20,6 +20,7 @@
                 :src="require('../assets/lamp2.png')"
                 contain
                 max-height="500"
+                class="animated fadeInDown"
               ></v-img>
               <!--  </div>
           
@@ -28,11 +29,13 @@
                 class="transparent elevation-0"
                 :style="{ color: fontcolor }"
               >
-                <div class="display-1 font-weight-bold mb-4">정신차렷!</div>
+                <div style="font-size:35px" class="font-weight-bold mb-4 animated fadeInDown" >정신차렷!</div>
                 <hr />
                 <br />
-                <h3 class="subheading">
-                  정신차렷!은 언제, 어디서나<br />정신전력 컨텐츠를 즐길 수 있는
+                <h3 class="subheading animated fadeInDown">
+                  정신차렷!은 언제, 어디서나<br />
+                  <span style="color:black"> 정신전력</span> 
+                  컨텐츠를 즐길 수 있는
                   플랫폼입니다.
                 </h3>
                 <br />
@@ -51,25 +54,41 @@
               </v-card>
             </v-card>
           </div>
+          
         </v-row>
+        <a class="scroll-link" href="#content">
+		<svg class="mouse" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 76 130" preserveAspectRatio="xMidYMid meet">
+		<g fill="none" fill-rule="evenodd">
+			<rect width="70" height="118" x="1.5" y="1.5" stroke="#FFF" stroke-width="3" rx="36"/>
+			<circle class="scroll" cx="36.5" cy="31.5" r="4.5" fill="#FFF"/>
+		</g>
+	</svg>
+	</a>
       </v-parallax>
 
-  <!--    <v-parallax
-        class="fullpage-container"
-        :height="height"
-        dark
-        :src="require('../assets/main5-2.jpg')"
-      >-->
-        <v-row align="center" justify="center" height="700" class="px-9 py-15">
-          <v-row align="center" justify="center" class="order-md-2 order-lg-2">
-            <v-flex class="text-center" xs12 sm12 md6 lg6>
-              <h1 class="display-1 font-weight-bold mb-4 custom1">
-                주간정신전력
-              </h1>
-              <h3 class="subheading custom2">
+      <v-row align="center" justify="center" height="700" class="px-9 py-15">
+        <v-row align="center" justify="center" class="order-md-2 order-lg-2">
+          <v-row align="center" justify="center" xs12 sm12 md6 lg6>
+            <div class="wow fadeInUp" style="text-align: center; vertial-align: middle" >
+              <div class="display-1 font-weight-bold mb-4">주간 정신전력</div>
+              <hr />
+              <br />
+              <h3 class="subheading">
                 이번주의 정신전력을 간단하게 확인하고 <br />평가할 수 있습니다!
               </h3>
-              <!-- <div align="center">
+              <br />
+            </div>
+          </v-row>
+          <!--<v-flex class="text-center" xs12 sm12 md6 lg6>
+            <h1 class="display-1 font-weight-bold mb-4 custom1">
+              주간 정신전력
+            </h1>
+            <hr />
+            <br />
+            <h3 class="subheading custom2">
+              이번주의 정신전력을 간단하게 확인하고 <br />평가할 수 있습니다!
+            </h3>
+             <div align="center">
               <v-btn
                 class="font-weight-bold"
                 color="white"
@@ -81,104 +100,171 @@
                 >확인하기</v-btn
               >
               
-            </div> -->
-            </v-flex>
-          </v-row>
-          <v-flex xs12 sm12 md6 lg6 class="order-md-1 order-lg-1">
+            </div> 
+          </v-flex>-->
+        </v-row>
+        <v-flex xs12 sm12 md6 lg6 class="order-md-1 order-lg-1">
+          <v-hover>
+            <template v-slot:default="{ hover }">
+              <v-card class="mx-auto mt-5" max-width="800">
+                <v-responsive :aspect-ratio="16 / 9">
+                  <!--해당 컨텐츠에 맞게 이미지를 넣어야 함-->
+                  <v-img
+                    class="white--text"
+                    max-height="500"
+                    src="https://cdn.vuetifyjs.com/images/cards/docks.jpg"
+                  >
+                    <v-card-title>이번주의 정신전력 교육</v-card-title>
+                  </v-img>
+                  <!--해당 컨텐츠에 맞게 이미지를 넣어야 함-->
+
+                  <!--이번이 몇 주차인지 알 수 있게 하기 위해 변동되어야 하는 부분-->
+                  <v-card-subtitle class="pb-2"> 10월 2주차 </v-card-subtitle>
+                  <!--이번이 몇 주차인지 알 수 있게 하기 위해 변동되어야 하는 부분-->
+                  <v-card-text class="text--primary">
+                    <h3>믿음직하고 든든한 국군, ‘대체불가’ 특수전부대</h3>
+
+                    <div>김 관 용 이데일리 정치부 외교안보팀장</div>
+                  </v-card-text>
+                  <v-fade-transition>
+                    <v-overlay v-if="hover" absolute color="#dedede">
+                      <v-btn>참여하기</v-btn>
+                    </v-overlay>
+                  </v-fade-transition>
+                </v-responsive>
+              </v-card>
+            </template>
+          </v-hover>
+        </v-flex>
+      </v-row>
+      <!--   </v-parallax>-->
+      <div>
+        <v-divider></v-divider>
+      </div>
+      <v-row align="center" justify="center" class="pa-6 py-10">
+        <div class="wow fadeInUp">
+          <div class="display-1 font-weight-bold mb-4">우리 역사 바로알기</div>
+          <hr />
+          <br />
+          <h3 class="subheading">
+            잘못 알고 있던 대한민국의 역사를 바로잡고<br />새로운 사실을 알아갈
+            수 있습니다!
+          </h3>
+          <br />
+        </div>
+
+        <v-carousel
+          cycle
+          height="400"
+          hide-delimiter-background
+          show-arrows-on-hover
+        >
+          <v-carousel-item v-for="(slide, i) in slides" :key="i">
             <v-hover>
               <template v-slot:default="{ hover }">
-                <v-card class="mx-auto mt-5" max-width="800">
-                  <v-responsive :aspect-ratio="16 / 9">
-                    <!--해당 컨텐츠에 맞게 이미지를 넣어야 함-->
-                    <v-img
-                      class="white--text"
-                      max-height="500"
-                      src="https://cdn.vuetifyjs.com/images/cards/docks.jpg"
-                    >
-                      <v-card-title>이번주의 정신전력 교육</v-card-title>
-                    </v-img>
-                    <!--해당 컨텐츠에 맞게 이미지를 넣어야 함-->
-
-                    <!--이번이 몇 주차인지 알 수 있게 하기 위해 변동되어야 하는 부분-->
-                    <v-card-subtitle class="pb-2"> 10월 2주차 </v-card-subtitle>
-                    <!--이번이 몇 주차인지 알 수 있게 하기 위해 변동되어야 하는 부분-->
-                    <v-card-text class="text--primary">
-                      <h3>믿음직하고 든든한 국군, ‘대체불가’ 특수전부대</h3>
-
-                      <div>김 관 용 이데일리 정치부 외교안보팀장</div>
-                    </v-card-text>
-                    <v-fade-transition>
-                      <v-overlay v-if="hover" absolute color="#dedede">
-                        <v-btn>참여하기</v-btn>
-                      </v-overlay>
-                    </v-fade-transition>
-                  </v-responsive>
-                </v-card>
+                <v-sheet :color="colors[i]" height="100%">
+                  <v-row class="fill-height" align="center" justify="center">
+                    <div class="display-3">{{ slide }} Slide</div>
+                  </v-row>
+                  <v-overlay v-if="hover" absolute color="#dedede">
+                    <div style="color: black">
+                      <h1>제목</h1>
+                      <br />
+                      <h2 class="subheading">설명~~~~!!!!!!@~!~!~!~!@~</h2>
+                    </div>
+                    <v-btn>살펴보기</v-btn>
+                  </v-overlay>
+                </v-sheet>
               </template>
             </v-hover>
-          </v-flex>
-          
-        </v-row>
-   <!--   </v-parallax>-->
-   <div>
-      <v-divider></v-divider>
-   </div> 
-      <v-row align="center" justify="center" class="pa-6 py-10">
-        <div>
-        <div class="display-1 font-weight-bold mb-4">우리 역사 바로알기</div>
-        <hr />
-                <br />
-        <h3 class="subheading">
-                  잘못 알고 있던 대한민국의 역사를 바로잡고<br>새로운 사실을 알아갈 수 있습니다.
-                </h3>
-                <br/>
-        </div>
-        <v-carousel
-    cycle
-    height="400"
-    hide-delimiter-background
-    show-arrows-on-hover
-  >
-    <v-carousel-item
-      v-for="(slide, i) in slides"
-      :key="i"
-    >
-      <v-sheet
-        :color="colors[i]"
-        height="100%"
-      >
-        <v-row
-          class="fill-height"
-          align="center"
-          justify="center"
-        >
-          <div class="display-3">
-            {{ slide }} Slide
-          </div>
-        </v-row>
-      </v-sheet>
-    </v-carousel-item>
-  </v-carousel>
-       
-        </v-row>
-      
-      
+          </v-carousel-item>
+        </v-carousel>
+      </v-row>
     </v-layout>
-    <v-sheet
-        :color="gray"
-        height="100"
-      >
+    <div>
       <v-divider></v-divider>
-        <v-row
-          class="fill-height"
-          align="center"
-          justify="home"
+    </div>
+    <v-row align="center" justify="center" class="pa-6 py-10">
+      <v-row align="center" justify="center" xs12 sm12 md6 lg6>
+        <div style="text-align: center; vertial-align: middle" class="wow fadeInUp">
+          <div class="display-1 font-weight-bold mb-4">내 정신전력 현황</div>
+          <hr />
+          <br />
+          <h3 class="subheading">
+            실시간으로 내가 들은 정신전력과 <br />듣고싶은 정신전력을 확인할 수
+            있습니다!
+          </h3>
+          <br />
+        </div>
+      </v-row>
+      <v-row align="center" justify="center" xs12 sm12 md6 lg6>
+        <v-card
+          class="mx-auto ma-0"
+          max-width="700"
+          elevation="4"
+          xs12
+          sm12
+          md6
+          lg6
         >
-        <h3 class="subheading">
-           Contact Us 
-           
-           </h3>
-        </v-row>
+          <v-simple-table>
+            <template v-slot:default>
+              <thead>
+                <tr>
+                  <th class="text-left">강의명</th>
+                  <th class="text-left">학습시각</th>
+                  <th class="text-left">이수 여부</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-for="item in task" :key="item.name">
+                  <td>{{ item.name }}</td>
+                  <td>{{ item.time }}</td>
+                  <td>{{ item.complete }}</td>
+                </tr>
+              </tbody>
+            </template>
+          </v-simple-table>
+        </v-card>
+      </v-row>
+    </v-row>
+    <v-sheet min-height="200" color="yellow lighten-3">
+      <v-row class="fill-height pa-6 px-15" align="start" justify="center">
+        <div class="last" style="min-width: 170px">
+          <h3 class="subheading">Service</h3>
+          <v-divider></v-divider>
+          <router-link
+            style="text-decoration: none; color: inherit"
+            to="/help/notice"
+          >
+          <h4 class="subheading">공지사항</h4>
+          </router-link>
+          <router-link
+            style="text-decoration: none; color: inherit"
+            to="/help/FAQ"
+          >
+            <h4 class="subheading">FAQ</h4>
+          </router-link>
+          <h4 class="subheading"><br /></h4>
+        </div>
+        <div class="last" style="min-width: 170px">
+          <h3 class="subheading">Contact Us</h3>
+          <v-divider></v-divider>
+          <h4 class="subheading">
+            <v-icon :style="{ color: fontcolor }">mdi-phone</v-icon>
+            010-1234-5678
+          </h4>
+
+          <h4 class="subheading">
+            <v-icon :style="{ color: fontcolor }">mdi-email</v-icon>
+            cametowin@gmail.com
+          </h4>
+          <h4 class="subheading">
+            <v-icon :style="{ color: fontcolor }">mdi-account-group</v-icon>
+            김현재 최현수 최이현
+          </h4>
+        </div>
+      </v-row>
     </v-sheet>
   </v-container>
 </template>
@@ -200,19 +286,45 @@ export default {
       },
       fontcolor: "black",
       colors: [
-          'indigo',
-          'warning',
-          'pink darken-2',
-          'red lighten-1',
-          'deep-purple accent-4',
-        ],
-        slides: [
-          'First',
-          'Second',
-          'Third',
-          'Fourth',
-          'Fifth',
-        ],
+        "indigo",
+        "warning",
+        "pink darken-2",
+        "red lighten-1",
+        "deep-purple accent-4",
+      ],
+      slides: ["First", "Second", "Third", "Fourth", "Fifth"],
+      task: [
+        {
+          name: "국가안보의 중요성",
+          time: "2020년10월09일 10:04 PM",
+          complete: "X",
+        },
+        {
+          name: "병영생활 행동",
+          time: "2020년10월08일 10:04 PM",
+          complete: "O",
+        },
+        {
+          name: "헥소 고지",
+          time: "2020년10월09일 10:04 PM",
+          complete: "O",
+        },
+        {
+          name: "봉오동 전투",
+          time: "2020년1월09일 10:04 PM",
+          complete: "O",
+        },
+        {
+          name: "전우애를 다지자",
+          time: "2020년10월09일 10:04 PM",
+          complete: "O",
+        },
+        {
+          name: "한글날을 맞이하여",
+          time: "2020년10월09일 10:04 AM",
+          complete: "O",
+        },
+      ],
     };
   },
   computed: {
