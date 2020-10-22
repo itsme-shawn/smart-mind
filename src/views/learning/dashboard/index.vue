@@ -49,23 +49,56 @@
 		<template>
 			<v-container fluid class="mt-10 mb-10">
 				<v-card-title>나의 퀴즈 점수</v-card-title>
-					<v-row>
-						<v-col cols="12" md="8">
-							<v-card
-							class="pa-2"
-							outlined
-							tile
-							>
-							hello
+					<v-row class="justify-center" align="center">
+						<v-col cols="11" md="6">
+							<v-card class="pa-2" outlined height="445">
+								<v-card-title>이번주의 퀴즈</v-card-title>
+								<v-list two-line>
+									<v-list-item-group v-model="selected" multiple>
+										<template v-for="(item, index) in items">
+										<v-list-item :key="item.title">
+											<template>
+											<v-list-item-content>
+												<v-list-item-title v-text="item.title"></v-list-item-title>
+
+												<v-list-item-subtitle class="text--primary">정답 : {{item.headline}}</v-list-item-subtitle>
+
+												<v-list-item-subtitle>답변 : {{item.subtitle}}</v-list-item-subtitle>
+											</v-list-item-content>
+
+											<v-list-item-action>
+												<!--dialog띄우기-->
+											</v-list-item-action>
+											</template>
+										</v-list-item>
+
+										<v-divider v-if="index < items.length - 1" :key="index"></v-divider>
+										</template>
+									</v-list-item-group>
+								</v-list>
 							</v-card>
 						</v-col>
-						<v-col cols="6" md="4">
-							<v-card
-							class="pa-2"
-							outlined
-							tile
-							>
-							hi
+						<v-col cols="11" md="6">
+							<v-card class="pa-2" outlined>
+								<v-card-title>이번달의 퀴즈</v-card-title>
+									<template>
+										<v-card color="green">
+											<v-sparkline
+												height="250"
+												:value="monthlyScore[1].현재"
+												line-width="2"
+												padding="12"
+												smooth="100"
+												stroke-linecap="round"
+												color="rgba(255,255,255,.7)"
+												gradient-direction="top"
+												type="trend"
+												:fill= "fill"
+												auto-draw
+											><template v-slot:label="item">{{item.value}}</template>
+											</v-sparkline>
+										</v-card>
+									</template>
 							</v-card>
 						</v-col>
 						</v-row>
@@ -106,7 +139,33 @@
 export default {
 	data () {
 		return {
-			accountTitle: '부대명-(사용자에 따라 동적으로 수정해야 함)'
+			accountTitle: '부대명-(사용자에 따라 동적으로 수정해야 함)',
+
+			monthlyScore: [
+				{
+					현수: [80, 70, 90, 100]
+				},
+				{
+					현재: [100, 75, 100, 50]
+				},
+				{
+					이현: [100, 60, 80, 90]
+				}
+			],
+			items: [
+				{
+					title: '현재의 생일은??',
+					headline: '1117',
+					subtitle: '1117'
+
+				},
+				{
+					title: '지금 코딩하는 시간은 오후 10:29이다?',
+					headline: 'O',
+					subtitle: 'X'
+
+				}
+			]
 		}
 	}
 }
