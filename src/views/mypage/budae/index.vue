@@ -220,11 +220,11 @@ export default {
 				{
 					avatar: 'https://lh3.googleusercontent.com/ogw/ADGmqu92A3GO29sPEXyfoYIwCWRHIbhljaLOVkAyePpz=s32-c-mo',
 					name: '현재',
-					title: '1주차 정신전력교육',
-					
-				},
+					title: '1주차 정신전력교육'
+
+				}
 			],
-			question:{
+			question: {
 				one: '4차 산업혁명 기술을 우리 군에 접목하여 강한 군대를 만들 수 있는 현실성 있는 방안에 대해 말해보자',
 				two: '첨단 무기체계가 개발되고 도입되는 상항에서도 장병 개인의 전투기술 연마와 정신적 대비태세가 중요한 이유에 대해 말해보자'
 			},
