@@ -29,7 +29,7 @@
 					</v-card-text>
 					<v-fade-transition>
 					<v-overlay v-if="hover" absolute color="#dedede">
-						<v-btn>참여하기</v-btn>
+						<v-btn @click="jungsin">참여하기</v-btn>
 					</v-overlay>
 					</v-fade-transition>
 					</v-responsive>
@@ -247,14 +247,12 @@ export default {
 			}
 		}
 	},
-	created () {
-		console.log('created')
-		this.call()
-	},
 	methods: {
-		call () {
-			console.log(this.monthlyScore[0].현수)
-		}
+		jungshin: function (event) {
+			this.$router.push('../jungsin')
+			console.log('hello')
+		},
+		mover: function (event) {}
 	}
 
 }
