@@ -109,8 +109,71 @@
 	<!--분대원들의 참여 보기-->
 		<template>
 			<v-container fluid class="mt-10">
-				<v-card-title>나의 부대원들은?</v-card-title>
+				<v-card-title>이번 주 나의 부대원들은?</v-card-title>
+					<v-card>
+						<template>
+							<v-container fluid>
+								<v-row justify="center">
+								<v-subheader>{{day + 1}}주차</v-subheader>
+								<v-expansion-panels popout>
+									<v-expansion-panel
+									v-for="(message, i) in messages"
+									:key="i"
+									hide-actions
+									>
+									<v-expansion-panel-header>
+										<v-row align="center" class="spacer" no-gutters>
+										<v-col cols="4" sm="2" md="1">
+											<v-avatar size="36px">
+											<img
+												v-if="message.avatar"
+												alt="Avatar"
+												src="https://lh3.googleusercontent.com/ogw/ADGmqu92A3GO29sPEXyfoYIwCWRHIbhljaLOVkAyePpz=s32-c-mo"
+											>
+											<v-icon
+												v-else
+												:color="message.color"
+												v-text="message.icon"
+											></v-icon>
+											</v-avatar>
+										</v-col>
+										<v-col
+											class="hidden-xs-only"
+											sm="5"
+											md="3"
+										>
+											<strong v-html="message.name"></strong>
+											<span
+											v-if="message.total"
+											class="grey--text"
+											>
+											&nbsp;({{ message.total }})
+											</span>
+										</v-col>
 
+										<v-col class="text-no-wrap" cols="5" sm="3">
+											<strong v-html="message.title"></strong>
+										</v-col>
+										</v-row>
+									</v-expansion-panel-header>
+
+									<v-expansion-panel-content>
+										<v-divider></v-divider>
+										<v-card-title>질문</v-card-title>
+										<v-card-text v-text="question.one"></v-card-text>
+										<v-card-text v-text="question.two"></v-card-text>
+										<v-divider></v-divider>
+										<v-card-title>답변</v-card-title>
+										<v-card-text v-text="message.content1"></v-card-text>
+										<v-card-text v-text="message.content2"></v-card-text>
+									</v-expansion-panel-content>
+
+									</v-expansion-panel>
+								</v-expansion-panels>
+								</v-row>
+							</v-container>
+						</template>
+					</v-card>
 			</v-container>
 		</template>
 		<v-divider></v-divider>
@@ -165,7 +228,39 @@ export default {
 					subtitle: 'X'
 
 				}
-			]
+			],
+			// 병사별 주간정신전력 현황 데이터
+			messages: [
+				{
+					avatar: 'https://lh3.googleusercontent.com/ogw/ADGmqu92A3GO29sPEXyfoYIwCWRHIbhljaLOVkAyePpz=s32-c-mo',
+					name: '현재',
+					title: '1주차 정신전력교육',
+					content1: '4차 산업혁명 기술을 우리 군에 접목시키려면 우선 그에 따른 인프라가 구축되어야 한다. 대표적을 IoT기술의 경우 접목시킨다면 군에서 운용하는 여러 장비들에 네트워크를 부여할 수 있게 되는데, 대표적으로 위치 정보를 가져올 수 있고, 전투복에 접목된다면 병사의 신체 능력도 알 수 있어 부상이 있을 경우 빠른 대처가 가능해진다. 그러나 네트워크를 운용해야 하기 때문에 보안 문제 해결이 가장 시급한 과제인 것으로 보인다.',
+					content2: '첨단 무기쳬계가 개발되고 도입이 되더라도 그에 맞는 개인의 전투기술과 작전계획, 전술, 전략의 수립이 중요하다. 강한 군대는 병력이 많거나 무기가 좋다고 강한 군대가 아니다. 균형있게 유무형의 전력을 갖추고 제대로 싸울 준비가 되어 있어야 강한 군대이다. '
+
+				},
+				{
+					avatar: '',
+					name: '이현',
+					title: '1주차 정신전력교육',
+					content1: '지금까지 메인페이지 만드느라 수고해준 이현아 고맙다',
+					content2: '앞으로 오늘 제외하고 개발할 시간은 3일밖에 없는데, 조금만 더 수고해줘'
+
+				},
+				{
+					avatar: '',
+					name: '현수',
+					title: '1주차 정신전력교육',
+					content1: '너도 힘들고 바쁠텐데 데이터베이스 다루느라 고생했어',
+					content2: '마찬가지로 오늘 제외하고 개발할 시간은 3일밖에 없는데, 조금만 더 수고해줘'
+
+				}
+			],
+			question: {
+				one: '4차 산업혁명 기술을 우리 군에 접목하여 강한 군대를 만들 수 있는 현실성 있는 방안에 대해 말해보자',
+				two: '첨단 무기체계가 개발되고 도입되는 상항에서도 장병 개인의 전투기술 연마와 정신적 대비태세가 중요한 이유에 대해 말해보자'
+			},
+			day: 0
 		}
 	}
 }

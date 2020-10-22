@@ -149,7 +149,7 @@
 						</v-expansion-panels>
 						</v-row>
 					</v-container>
-					</template>
+				</template>
 			</v-card>
 		</v-container>
 	</v-container>
