@@ -7,7 +7,6 @@
     이 컴포넌트 안에서 게시물 최초 작성과 수정을 할 수 있게끔 하였다. (v-if 이용)
 -->
 
-
 <template>
   <v-container fluid>
     <v-form>
@@ -19,7 +18,8 @@
         <v-btn icon @click="save"><v-icon>mdi-content-save</v-icon></v-btn>
         </v-toolbar>
         <v-card-text>
-          <v-text-field v-model="form.title" outlined label="제목"></v-text-field>
+          <v-text-field v-model="form.title" outlined label="게시물 제목"></v-text-field>
+          <v-toolbar-title class="mt-1">본문 작성</v-toolbar-title>
           <!-- articleId 가 없다는 것은 글 최초 작성 -->
           <editor v-if="!articleId" initialEditType='wysiwyg' :options="editor_options" :initialValue="form.content" ref="editor"></editor>
           <!-- aritcleId 가 있다는 것은 글 수정, 따라서 기존의 title 과 content 를 렌더링해줘야한다. -->
@@ -32,6 +32,12 @@
               </v-row>
             </v-container>
           </template>
+          <v-spacer/>
+          <v-container>
+          <v-toolbar-title class="mt-5">평가 질문 작성</v-toolbar-title>
+          <v-text-field v-model="form.Q1" outlined label="질문1"></v-text-field>
+          <v-text-field v-model="form.Q2" outlined label="질문2"></v-text-field>
+          </v-container>
         </v-card-text>
       </v-card>
     </v-form>
@@ -45,11 +51,13 @@ export default {
 		return {
 			editor_options: {
 				language: 'ko',
-        hideModeSwitch: true
+				hideModeSwitch: true
 			},
 			form: {
 				title: '',
-				content: '' // content 는 이미지,동영상 같은 파일들이므로 Storage 에 넣어야 함
+				content: '', // content 는 이미지,동영상 같은 파일들이므로 Storage 에 넣어야 함
+				Q1: '',
+				Q2: ''
 			},
 			exists: false,
 			loading: false,
@@ -59,6 +67,9 @@ export default {
 	computed: {
 		articleId () {
 			return this.$route.query.articleId // articleId 는 board.vue 에서 넘어온 쿼리값 (수정할때만 id 값이 넘어온다)
+		},
+		user () { // Vuex state에 저장돼있는 user 정보
+			return this.$store.state.user
 		}
 	},
 	watch: { // document 값이 바뀔 때, fetch() 함수를 실행시켜서 일회성으로 DB 에서 데이터 받아옴
@@ -82,10 +93,13 @@ export default {
 			if (!this.exists) return // doc 가 없으면 종료
 			const item = doc.data() // 임시변수 item 사용
 			this.form.title = item.title
+			this.form.Q1 = item.question.Q1
+			this.form.Q2 = item.question.Q2
 			const r = await axios.get(item.url)
 			this.form.content = r.data
 		},
-		async save () { // 비동기 로직 포함 ( firestore DB에 저장 )
+		async save () { // 작성한 글 저장 함수 : 비동기 로직 포함 ( firestore DB에 저장 )
+			if (this.user.level !== 'admin') throw Error('관리자만 가능합니다!') // 권한 확인
 			this.loading = true
 			try {
 				const now = new Date()
@@ -96,34 +110,28 @@ export default {
 				const doc = {
 					title: this.form.title,
 					updatedAt: now,
-					url: url
+					url: url,
+					question: {
+						Q1: this.form.Q1,
+						Q2: this.form.Q2
+					}
 				}
 
 				const batch = await this.$firebase.firestore().batch()
 
 				if (!this.articleId) { // 새로 작성할 때
 					doc.createdAt = now
+					doc.uid = this.user.uid // 수정되면 안되는 정보이므로 일부러 새로 작성할 때만 정보 생성
 					batch.set(this.ref.collection('articles').doc(id), doc)
 					batch.update(this.ref, { count: this.$firebase.firestore.FieldValue.increment(1) })
 				} else { // 기존 게시물을 수정할 때
 					batch.update(this.ref.collection('articles').doc(this.articleId), doc)
 				}
 				await batch.commit()
-			// eslint-disable-next-line brace-style
-			}
-			/* 나중에 에러핸들링 추가해야함
-        catch {
-				// console.error('로그인이 필요합니다')
-      }
-      */
-			finally {
+			} finally {
 				this.loading = false
 				this.$router.push('/learning/' + this.document)
 			}
-			/* to do : 1. firestore 레퍼런스 더 읽어보기
-                 2. 위지윅 에디터로 content 를 fire 스토리지에 저장하기
-                  3. async / await 사용해야할때를 명확히 파악하기
-      */
 		}
 	}
 }

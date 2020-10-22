@@ -64,6 +64,7 @@ export default {
 			})
 		},
 		async save () { // 비동기로 처리해줘야하는 로직을 포함하고있음
+			if (this.user.level !== 'admin') throw Error('관리자만 가능합니다!')
 			const form = {
 				title: this.form.title,
 				description: this.form.description,
@@ -74,9 +75,10 @@ export default {
 				if (!this.exists) {
 					form.createdAt = new Date()
 					form.count = 0 // 해당 컨텐츠의 article 의 갯수를 저장
+					form.uid = this.$store.state.fireUser.uid
 					await this.ref.set(form)
 				} else {
-					this.ref.update(form)
+					await this.ref.update(form)
 				}
 				this.$router.push('/learning/' + this.document)
 			} finally {

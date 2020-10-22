@@ -21,6 +21,7 @@ const subscribe = (fu) => {
 // 로그인하면 fu 에 user 객체 저장
 firebase.auth().onAuthStateChanged((fu) => {
 	store.commit('setFireUser', fu)
+	// 현재 접속해 있는 사용자의 정보를 불러오고 싶을 때 : this.$store.state.fireUser.uid
 	if (!fu) { // fu 가 null 일 때
 		store.commit('setUser', null)
 		if (unsubscribe) unsubscribe()

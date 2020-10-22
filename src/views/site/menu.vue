@@ -105,6 +105,10 @@ export default {
 						{
 							title: '가이드',
 							to: '/help/guide'
+						},						
+						{
+							title: '공지사항',
+							to: '/help/notice'
 						},
 						{
 							title: 'FAQ',

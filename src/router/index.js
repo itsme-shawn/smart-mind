@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import store from '../store/index'
 
 Vue.use(VueRouter)
 
@@ -10,6 +11,43 @@ const routes = [
 		component: () => import('../views/Home.vue')
 	},
 
+	{
+		path: '/login',
+		component: () => import('../views/login.vue')
+	},
+
+	{
+		path: '/mypage/account',
+		component: () => import('../views/mypage/account/index.vue'),
+		// mypage 같은 페이지들은 라우팅하기 전에 로그인 상태인지 체크하고 로그인이 안돼있으면, 강제로 로그인페이지로 리다이렉션 시킴.
+		beforeEnter: function (to, from, next) {
+			if (!store.state.user) {
+				router.push('/login')
+			} else next()
+		}
+	},
+
+	{
+		path: '/mypage/budae',
+		component: () => import('../views/mypage/budae/index.vue'),
+		// mypage 같은 페이지들은 라우팅하기 전에 로그인 상태인지 체크하고 로그인이 안돼있으면, 강제로 로그인페이지로 리다이렉션 시킴.
+		beforeEnter: function (to, from, next) {
+			if (!store.state.user) {
+				router.push('/login')
+			} else next()
+		}
+	},
+	{
+		path: '/mypage/status',
+		component: () => import('../views/mypage/status/index.vue'),
+		// mypage 같은 페이지들은 라우팅하기 전에 로그인 상태인지 체크하고 로그인이 안돼있으면, 강제로 로그인페이지로 리다이렉션 시킴.
+		beforeEnter: function (to, from, next) {
+			if (!store.state.user) {
+				router.push('/login')
+			} else next()
+		}
+	},
+
 	// 동적 라우팅 생성 ( renderer.vue 를 통해 렌더링 )
 
 	// ex ) /learning/jungsin : collection == 'learning' , document == 'jungsin'
@@ -17,6 +55,7 @@ const routes = [
 		path: '/:collection/:document',
 		name: 'Dynamic routing',
 		component: () => import('./renderer.vue')
+
 	},
 
 	// action (read,write 등) 동적라우터 추가

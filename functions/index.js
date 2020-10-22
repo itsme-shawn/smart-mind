@@ -24,6 +24,7 @@ exports.createUser = functions.auth.user().onCreate(async (user) => {
 		displayName,
 		photoURL,
 		createdAt: time,
+		uid,
 		level: email === functions.config().admin.email ? 'admin' : 'normal' // 관리자(admin) 와 일반사용자(normal) 구분
 	}
 	await fdb.collection('users').doc(uid).set(u)
