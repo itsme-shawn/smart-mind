@@ -84,15 +84,14 @@
 									<template>
 										<v-card color="green">
 											<v-sparkline
+												gradient-direction="top"
 												height="250"
-												:value="monthlyScore[1].현재"
+												:value="monthlyScore"
 												line-width="2"
 												padding="12"
-												smooth="100"
 												stroke-linecap="round"
-												color="rgba(255,255,255,.7)"
-												gradient-direction="top"
-												type="trend"
+												color="rgba(255, 255, 255, .7)"
+												:type="type"
 												:fill= "fill"
 												auto-draw
 											><template v-slot:label="item">{{item.value}}</template>
@@ -180,9 +179,46 @@
 
 	<!--지난 정신전력 교육-->
 		<template>
-			<v-container fluid class="mt-10">
+			<v-container fluid class="mt-10 mb-10">
 				<v-card-title>지난 정신전력 교육</v-card-title>
+					<template>
+						<v-card class="mx-auto" max-width="600">
+							<v-carousel v-model="model" hide-delimiters>
+								<v-carousel-item
+								v-for="(color, i) in colors"
+								:key="color"
+								>
+								<v-sheet :color="color" height="100%" tile>
+									<v-row class="fill-height" align="center" justify="center">
+										<v-card >
+											<v-responsive :aspect-ratio="16/9">
+											<!--해당 컨텐츠에 맞게 이미지를 넣어야 함-->
+												<v-img class="white--text align-top" max-height="400"
+												src="https://picsum.photos/510/300?random">
+												<v-card-title>{{i + 1}}주차 정신전력 교육</v-card-title>
+												</v-img>
+											<!--해당 컨텐츠에 맞게 이미지를 넣어야 함-->
 
+												<!--이번이 몇 주차인지 알 수 있게 하기 위해 변동되어야 하는 부분-->
+												<v-card-subtitle class="pb-2">
+												9월 {{i + 1}}주차
+												</v-card-subtitle>
+												<!--해당 주차에 해당되는 제목 필요-->
+												<v-card-text class="text--primary">
+												<div>
+													<span class="white--text"><h3>해당 주차에 해당하는 제목필요</h3></span>
+												</div>
+
+												<span class="white--text">해당 주차에 해당하는 저자 혹은 작성일자</span>
+												</v-card-text>
+											</v-responsive>
+										</v-card>
+									</v-row>
+								</v-sheet>
+								</v-carousel-item>
+							</v-carousel>
+						</v-card>
+					</template>
 			</v-container>
 		</template>
 		<v-divider></v-divider>
@@ -199,22 +235,20 @@
     </v-container>
 </template>
 <script>
+
 export default {
 	data () {
 		return {
 			accountTitle: '부대명-(사용자에 따라 동적으로 수정해야 함)',
+			// sparkline (그래프 속성)
 
-			monthlyScore: [
-				{
-					현수: [80, 70, 90, 100]
-				},
-				{
-					현재: [100, 75, 100, 50]
-				},
-				{
-					이현: [100, 60, 80, 90]
-				}
-			],
+			fill: false,
+			autoLineWidth: true,
+			lineCap: 'round',
+			type: 'trend',
+
+			// 이번달의 퀴즈 점수
+			monthlyScore: [100, 75, 100, 50],
 			items: [
 				{
 					title: '현재의 생일은??',
@@ -260,7 +294,18 @@ export default {
 				one: '4차 산업혁명 기술을 우리 군에 접목하여 강한 군대를 만들 수 있는 현실성 있는 방안에 대해 말해보자',
 				two: '첨단 무기체계가 개발되고 도입되는 상항에서도 장병 개인의 전투기술 연마와 정신적 대비태세가 중요한 이유에 대해 말해보자'
 			},
-			day: 0
+			day: 0,
+
+			// 지난 정신전력 교육
+			overlay: false,
+			model: 0,
+			colors: [
+				'secondary',
+				'green',
+				'yellow darken-2',
+				'red',
+				'orange'
+			]
 		}
 	}
 }

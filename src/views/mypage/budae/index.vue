@@ -59,7 +59,6 @@
 										:value="monthlyScore[1].현재"
 										line-width="2"
 										padding="12"
-										smooth="100"
 										stroke-linecap="round"
 										color="rgba(255,255,255,.7)"
 										gradient-direction="top"
@@ -167,7 +166,7 @@ export default {
 		return {
 			labels: ['일', '월', '화', '수', '목', '금', '토'],
 			day: 0,
-			fill: true,
+			fill: false,
 			// 이번주의 퀴즈 점수 데이터
 			score: {
 				현수: 100,
