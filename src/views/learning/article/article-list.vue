@@ -32,7 +32,7 @@ import DisplayContent from '@/components/display-content' // @ : src/
 
 export default {
 	components: { DisplayTime, DisplayContent },
-	props: ['info', 'document'],
+	props: ['info', 'document', 'collection'],
 	data () {
 		return {
 			headers: [
@@ -86,7 +86,7 @@ export default {
 			const order = this.options.sortBy[0]
 			const sort = this.options.sortDesc[0] ? 'desc' : 'asc'
 			const limit = this.options.itemsPerPage
-			const ref = this.$firebase.firestore().collection('learning').doc(this.document).collection('articles').orderBy(order, sort)
+			const ref = this.$firebase.firestore().collection(this.collection).doc(this.document).collection('articles').orderBy(order, sort)
 			let query
 			switch (arrow) {
 			case -1: query = ref.endBefore(head(this.docs)).limitToLast(limit)

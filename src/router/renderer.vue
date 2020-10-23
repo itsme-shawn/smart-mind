@@ -6,13 +6,13 @@
   </learning-dashboard>
   <!-- 공지사항(collection: notice / document : posting) 게시판도 부득이하게 learning 컴포넌트를 사용하고있다. 가능하다면 추후 수정 예정-->
   <learning-board
-    v-else-if="(collection === 'learning' || collection === 'notice') && !action" :document="document">  <!-- doument props 에는 jungsin, daily_history 등이 들어가서 동적으로 각각의 게시판을 생성한다. -->
+    v-else-if="(collection === 'learning' || collection === 'notice') && !action" :collection="collection" :document="document">  <!-- doument props 에는 jungsin, daily_history 등이 들어가서 동적으로 각각의 게시판을 생성한다. -->
   </learning-board>
   <learning-board-form
-    v-else-if="(collection === 'learning' || collection === 'notice') && action === 'board-write'" :document="document" :action="action">
+    v-else-if="(collection === 'learning' || collection === 'notice') && action === 'board-write'" :collection="collection" :document="document" :action="action">
   </learning-board-form>
   <learning-article-form
-    v-else-if="(collection === 'learning' || collection === 'notice') && (action === 'article-write' || action==='article-update') " :document="document" :action="action"> <!-- 게시물 작성과 수정을 같은 컴포넌트로 재활용 -->
+    v-else-if="(collection === 'learning' || collection === 'notice') && (action === 'article-write' || action==='article-update') " :collection="collection" :document="document" :action="action"> <!-- 게시물 작성과 수정을 같은 컴포넌트로 재활용 -->
   </learning-article-form>
 
   <mypage-account v-else-if="collection === 'mypage' && document === 'account'"></mypage-account>
