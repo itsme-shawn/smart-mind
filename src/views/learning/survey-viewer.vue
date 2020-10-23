@@ -1,4 +1,4 @@
-<!--
+<!-- 나중에 삭제할 코드
   @/components/display-content.vue 에서 사용하는 컴포넌트
 -->
 
@@ -57,20 +57,27 @@ export default {
 		async WriteSurvey () {
 			this.surveyJSON.pages[0].elements[0].title = await this.question.Q1
 			this.surveyJSON.pages[0].elements[1].title = await this.question.Q2
+		},
+		closeDialog () {
+			this.$emit('complete')
 		}
 	},
 	computed: {
 		// data에 surveyModel을 넣어도 좋지만
 		// vuex의 값에 따라 설문조사 문항을 변경하는 경우가 많아서
 		// computed에 surveyModel을 정의했다
+
 		surveyModel () {
 			const surveyModel = new SurveyVue.Model(this.surveyJSON) // 설문조사 JSON 문항을 model로 넣는다
 			surveyModel.onComplete.add(function (result) { // Complete 버튼을 누르면 실행할 콜백 함수를 넣는다
 				alert(`result: ${JSON.stringify(result.data)}`)
-				//this.$emit('complete')
+
+				// this.closeDialog()
 			})
+
 			return surveyModel
 		}
+
 	}
 }
 </script>

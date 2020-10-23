@@ -22,7 +22,7 @@
           </v-row>
         </v-container>
       </v-card-text>
-      <survey-viewer @complete="closeDialog" :question="item.question"></survey-viewer>
+      <survey @submit="submitOwn" :question="item.question"></survey>
       <v-card-actions>
         <v-spacer/>
         <span class="font-italic caption">
@@ -43,10 +43,10 @@
 <script>
 import axios from 'axios'
 import DisplayTime from '@/components/display-time' // @ : src/
-import SurveyViewer from '@/views/learning/survey-viewer.vue'
+import Survey from '@/views/learning/survey.vue'
 
 export default {
-	components: { DisplayTime, SurveyViewer },
+	components: { DisplayTime, Survey },
 	props: ['document', 'item'],
 	data () {
 		return {
@@ -85,10 +85,11 @@ export default {
 			await this.$firebase.storage().ref().child('learning').child(this.document).child(this.item.id + '.html').delete()
 			// Storage에 저장된 html 파일까지 삭제 완료
 			this.$emit('close')
-    },
-    closeDialog () {
-      //this.$emit('close')
-    }
+		},
+		submitOwn () { // 자신의 생각을 제출하는 제출버튼을 눌렀을 때 실행되는 함수
+			console.log(2)
+			this.$emit('close')
+		}
 	}
 
 }
