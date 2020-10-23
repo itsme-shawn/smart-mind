@@ -62,16 +62,15 @@
 						v-for="n in steps"
 						:key="`${n}-content`"
 						:step="n">
-							<v-card
-							class="mb-12"
-							color="grey lighten-1"
-							height="200px"
-							></v-card>
-							<v-card
-							class="mb-12"
-							color="grey lighten-1"
-							height="100"
-							></v-card>
+							<v-card class="mb-12" color="#ffcdd2">
+								<v-card-title>Q1 - {{ question.one[n-1] }}</v-card-title>
+								<v-card-text class="body-1">{{ answer.one[n-1] }}</v-card-text>
+								<v-card-title>Q2 - {{ question.two[n-1] }}</v-card-title>
+								<v-card-text class="body-1">{{ answer.two[n-1] }}</v-card-text>
+							</v-card>
+							<v-card class="mb-12" color="grey lighten-1" height="100">
+
+							</v-card>
 
 							<v-btn
 							color="primary"
@@ -93,8 +92,20 @@
 export default {
 	data () {
 		return {
+			// el - 초기값은 1주차, steps는 최대 5주차까지.
 			e1: 1,
-			steps: 5
+			steps: 5,
+
+			// 질문 받아오기
+			question: {
+				one: ['1주차 질문a', 'bb', 'cc', 'dd', 'ee'],
+				two: ['1주차 질문b', 'BB', 'CC', 'DD', 'EE']
+			},
+			// 답변 받아오기
+			answer: {
+				one: ['Lorem Ipsum is simply dummy text of the printing and typesetting industry.','Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.','It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.',' It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', 'There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don\'t look even slightly believable.'],
+				two: ['It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.','The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', making it look like readable English.', 'Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for \'lorem ipsum\' will uncover many web sites still in their infancy.', 'Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).', 'If you are going to use a passage of Lorem Ipsum, you need to be sure there isn\'t anything embarrassing hidden in the middle of text. ']
+			}
 		}
 	},
 	watch: {
