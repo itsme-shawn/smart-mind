@@ -13,8 +13,9 @@
     <v-textarea v-model="a1" class="mt-3" auto-grow solo clearable clear-icon="mdi-close-circle" label="작성해주세요" ></v-textarea>
     <h3>2. {{q2}}</h3>
     <v-textarea v-model="a2" class="mt-3" auto-grow solo clearable clear-icon="mdi-close-circle" label="작성해주세요" ></v-textarea>
+    <div align="right">
     <v-btn  @click="submitOwn" dark rounded color="rgb(21, 179, 137)" large>제출</v-btn>
-
+    </div>
   </v-container>
 
 </template>
