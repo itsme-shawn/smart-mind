@@ -38,12 +38,51 @@
 		</v-hover>
 		</v-container>
 
-		<!--지난 정신전력-->
+		<!--지난 정신전력 현황, 본인이 참여했던 교육들, 퀴즈 볼 수 있도록.-->
 		<v-container>
             <v-card-text class="mt-12">
                 <v-toolbar-title class="font-weight-bold ml-5">지난 정신전력</v-toolbar-title>
             </v-card-text>
 			<v-divider></v-divider>
+			<template>
+				<v-stepper non-linear v-model="e1">
+					<v-stepper-header>
+						<template v-for="n in steps">
+							<v-stepper-step editable
+							:key="`${n}-step`"
+							:step="n">
+								{{n}}주차
+							</v-stepper-step>
+							<v-divider v-if="n !== steps" :key="n"></v-divider>
+						</template>
+					</v-stepper-header>
+
+					<v-stepper-items>
+						<v-stepper-content
+						v-for="n in steps"
+						:key="`${n}-content`"
+						:step="n">
+							<v-card
+							class="mb-12"
+							color="grey lighten-1"
+							height="200px"
+							></v-card>
+							<v-card
+							class="mb-12"
+							color="grey lighten-1"
+							height="100"
+							></v-card>
+
+							<v-btn
+							color="primary"
+							>
+							다시 보기
+							</v-btn>
+
+						</v-stepper-content>
+					</v-stepper-items>
+				</v-stepper>
+			</template>
         </v-container>
 
 		<!--지난 정신전력 현황, 본인이 참여했던 교육들, 퀴즈 볼 수 있도록.-->
@@ -52,16 +91,28 @@
 
 <script>
 export default {
-	data: () => ({
-		overlay: false,
-		model: 0,
-		colors: [
-			'secondary',
-			'green',
-			'yellow darken-2',
-			'red',
-			'orange'
-		]
-	})
+	data () {
+		return {
+			e1: 1,
+			steps: 5
+		}
+	},
+	watch: {
+		steps (val) {
+			if (this.e1 > val) {
+				this.e1 = val
+			}
+		}
+	},
+
+	methods: {
+		nextStep (n) {
+			if (n === this.steps) {
+				this.e1 = 1
+			} else {
+				this.e1 = n + 1
+			}
+		}
+	}
 }
 </script>
