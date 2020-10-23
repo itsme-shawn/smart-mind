@@ -11,7 +11,7 @@
         <v-toolbar color="accent" dense flat dark>
           <v-toolbar-title>강의실 정보 작성</v-toolbar-title>
         <v-spacer/>
-        <v-btn icon @click="$router.push('/learning/' + document)"><v-icon>mdi-arrow-left</v-icon></v-btn>
+        <v-btn icon @click="$router.push('/'+collection+ '/' + document)"><v-icon>mdi-arrow-left</v-icon></v-btn>
         <v-btn icon @click="save"><v-icon>mdi-content-save</v-icon></v-btn>
         </v-toolbar>
         <v-card-text>
@@ -25,7 +25,7 @@
 </template>
 <script>
 export default {
-	props: ['document', 'action'],
+	props: ['document', 'action', 'collection'],
 	data () {
 		return {
 			// unsubcscribe 가 참인 상태 : 현재 unsubscribe 상태이므로 DB를 불러와야함
@@ -59,7 +59,7 @@ export default {
 	methods: {
 		subscribe () {
 			if (this.unsubscribe) this.unsubscribe() // unsubscribe 가 참이면 unsubscribe 에 DB 정보를 담게된다.
-			this.ref = this.$firebase.firestore().collection('learning').doc(this.document)
+			this.ref = this.$firebase.firestore().collection(this.collection).doc(this.document)
 			this.unsubscribe = this.ref.onSnapshot(doc => {
 				this.exists = doc.exists
 				if (this.exists) {
@@ -85,7 +85,7 @@ export default {
 				} else {
 					await this.ref.update(form)
 				}
-				this.$router.push('/learning/' + this.document)
+				this.$router.push('/' + this.collection + '/' + this.document)
 			} finally {
 				this.loading = false
 			}
