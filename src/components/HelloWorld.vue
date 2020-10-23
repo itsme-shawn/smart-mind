@@ -7,7 +7,7 @@
         dark
         :src="require('../assets/main-1-3.jpg')"
       >
-        <!-- src="https://cdn.vuetifyjs.com/images/parallax/material.jpg"-->
+        
         <v-row align="center" justify="center">
           <div class="text-center" xs12 sm12 md12 lg12>
             <v-card
@@ -22,9 +22,9 @@
                 max-height="500"
                 class="animated fadeInDown"
               ></v-img>
-              <!--  </div>
+              
           
-          <div class="text-center order-lg-1" xs12 sm12 md12 lg6>-->
+          
               <v-card
                 class="transparent elevation-0"
                 :style="{ color: fontcolor }"
