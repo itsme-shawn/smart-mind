@@ -225,9 +225,31 @@
 
 	<!--우리 역사 바로알기-->
 		<template>
-			<v-container fluid class="mt-10">
+			<v-container fluid class="mt-10 mb-10">
 				<v-card-title>우리 역사 바로알기</v-card-title>
+				<v-card flat tile>
+					<v-window v-model="onboarding" vertical>
+					<v-window-item v-for="n in length" :key="`card-${n}`">
+						<v-card color="grey" height="500">
+							<v-row class="fill-height" align="center" justify="center">
+								<h1 style="font-size: 5rem;" class="white--text" > Slide {{ n }}</h1>
+							</v-row>
+						</v-card>
+					</v-window-item>
+					</v-window>
 
+					<v-card-actions class="justify-space-between">
+						<!--왼쪽 클릭 버튼-->
+						<v-btn text @click="prev">
+							<v-icon>mdi-chevron-left</v-icon>
+						</v-btn>
+
+						<!--오른쪽 클릭 버튼-->
+						<v-btn text @click="next">
+							<v-icon>mdi-chevron-right</v-icon>
+						</v-btn>
+					</v-card-actions>
+				</v-card>
 			</v-container>
 		</template>
 		<v-divider></v-divider>
@@ -305,7 +327,22 @@ export default {
 				'yellow darken-2',
 				'red',
 				'orange'
-			]
+			],
+			// 우리 역사 바로 알기
+			length: 4,
+			onboarding: 0
+		}
+	},
+	methods: {
+		next () {
+			this.onboarding = this.onboarding + 1 === this.length
+				? 0
+				: this.onboarding + 1
+		},
+		prev () {
+			this.onboarding = this.onboarding - 1 < 0
+				? this.length - 1
+				: this.onboarding - 1
 		}
 	}
 }
