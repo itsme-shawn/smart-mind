@@ -33,7 +33,7 @@
             </v-container>
           </template>
           <v-spacer/>
-          <v-container>
+          <v-container v-if="!(document === 'posting')"> <!-- 공지사항에는 렌더링 안함 -->
           <v-toolbar-title class="mt-5">평가 질문 작성</v-toolbar-title>
           <v-text-field v-model="form.Q1" outlined label="질문1"></v-text-field>
           <v-text-field v-model="form.Q2" outlined label="질문2"></v-text-field>

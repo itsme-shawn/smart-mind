@@ -22,12 +22,12 @@
 <script>
 export default {
 	props: ['question'],
-  data () {
-    return {
-      a1: '',
-      a2: ''
-    }
-  },
+	data () {
+		return {
+			a1: '',
+			a2: ''
+		}
+	},
 	computed: {
 		q1 () {
 			return this.question.Q1
@@ -38,7 +38,7 @@ export default {
 	},
 	methods: {
 		submitOwn () { // DB에 a1,a2(병사들의 의견)을 저장
-      console.log(this.a1,this.a2)
+			console.log(this.a1, this.a2)
 			this.$emit('submit')
 		}
 	}
