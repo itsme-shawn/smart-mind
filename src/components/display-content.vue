@@ -22,7 +22,7 @@
           </v-row>
         </v-container>
       </v-card-text>
-      <survey @submit="submitOwn" :question="item.question"></survey>
+      <survey @submit="$emit('close')" :question="item.question"></survey>
       <v-card-actions>
         <v-spacer/>
         <span class="font-italic caption">
@@ -84,10 +84,6 @@ export default {
 			// await this.ref.collection('articles').doc(this.item.id).delete() // Firestore 에서 삭제 (title,시간정보들만 삭제됨)
 			await this.$firebase.storage().ref().child('learning').child(this.document).child(this.item.id + '.html').delete()
 			// Storage에 저장된 html 파일까지 삭제 완료
-			this.$emit('close')
-		},
-		submitOwn () { // 자신의 생각을 제출하는 제출버튼을 눌렀을 때 실행되는 함수
-			console.log(2)
 			this.$emit('close')
 		}
 	}
