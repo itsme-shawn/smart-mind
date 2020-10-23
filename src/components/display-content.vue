@@ -22,7 +22,7 @@
           </v-row>
         </v-container>
       </v-card-text>
-      <survey-viewer :question="item.question"></survey-viewer>
+      <survey @submit="$emit('close')" :question="item.question"></survey>
       <v-card-actions>
         <v-spacer/>
         <span class="font-italic caption">
@@ -43,10 +43,10 @@
 <script>
 import axios from 'axios'
 import DisplayTime from '@/components/display-time' // @ : src/
-import SurveyViewer from '@/views/learning/survey-viewer.vue'
+import Survey from '@/views/learning/survey.vue'
 
 export default {
-	components: { DisplayTime, SurveyViewer },
+	components: { DisplayTime, Survey },
 	props: ['document', 'item'],
 	data () {
 		return {
