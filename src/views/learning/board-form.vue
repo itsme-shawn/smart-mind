@@ -40,6 +40,11 @@ export default {
 			ref: null
 		}
 	},
+	computed: {
+		user () { // Vuex state에 저장돼있는 user 정보
+			return this.$store.state.user
+		}
+	},
 	watch: {
 		document () {
 			this.subscribe()
