@@ -114,7 +114,8 @@ export default {
 					question: {
 						Q1: this.form.Q1,
 						Q2: this.form.Q2
-					}
+					},
+					articleId: id
 				}
 
 				const batch = await this.$firebase.firestore().batch()
