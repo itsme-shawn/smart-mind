@@ -178,27 +178,75 @@ import Chart from "chart.js";
 Vue.use(Chartkick.use(Chart));
 
 export default {
-  data() {
-    return {
-      labels: ["일", "월", "화", "수", "목", "금", "토"],
-      day: 0,
-      fill: false,
-      // 이번주의 퀴즈 점수 데이터
-      score: {
-        현수: 100,
-        현재: 70,
-        이현: 80,
-        수현: 90,
-        재현: 80,
-        현이: 100,
-        철수: 90,
-        영희: 100,
-      },
-      items: ["현수", "현재", "이현", "수현", "재현", "현이", "철수", "영희"],
-      // 월간 퀴즈 점수 병사 점수인데 dropdown으로 선택했을 때 해당 병사의
-      // 월간 퀴즈 점수 최신 4개를 가져와서 value에 넣고, 해당하는 그래프를 그리면 되는데
-      // 어떻게 해야할지 모르겠다
-      value: [80, 70, 90, 100],
+	data () {
+		return {
+			labels: ['일', '월', '화', '수', '목', '금', '토'],
+			day: 0,
+			fill: false,
+			// 이번주의 퀴즈 점수 데이터
+			score: {
+				현수: 100,
+				현재: 70,
+				이현: 80,
+				수현: 90,
+				재현: 80,
+				현이: 100,
+				철수: 90,
+				영희: 100
+			},
+			items: [
+				'현수',
+				'현재',
+				'이현',
+				'수현',
+				'재현',
+				'현이',
+				'철수',
+				'영희'
+			],
+			// 월간 퀴즈 점수 병사 점수인데 dropdown으로 선택했을 때 해당 병사의
+			// 월간 퀴즈 점수 최신 4개를 가져와서 value에 넣고, 해당하는 그래프를 그리면 되는데
+			// 어떻게 해야할지 모르겠다
+			value: [80, 70, 90, 100],
+
+			monthlyScore: [
+				{
+					현수: [80, 70, 90, 100]
+				},
+				{
+					현재: [100, 90, 70, 80]
+				},
+				{
+					이현: [100, 60, 80, 90]
+				}
+			],
+			select: '현수',
+
+			ticksLables: [
+				'1주차',
+				'2주차',
+				'3주차',
+				'4주차',
+				'5주차'
+			],
+
+			// 병사별 주간정신전력 현황 데이터
+			messages: [
+				/*
+				{
+					avatar: 'https://lh3.googleusercontent.com/ogw/ADGmqu92A3GO29sPEXyfoYIwCWRHIbhljaLOVkAyePpz=s32-c-mo',
+					name: '현재',
+					title: '1주차 정신전력교육',
+					content1: '4차 산업혁명 기술을 우리 군에 접목시키려면 우선 그에 따른 인프라가 구축되어야 한다. 대표적을 IoT기술의 경우 접목시킨다면 군에서 운용하는 여러 장비들에 네트워크를 부여할 수 있게 되는데, 대표적으로 위치 정보를 가져올 수 있고, 전투복에 접목된다면 병사의 신체 능력도 알 수 있어 부상이 있을 경우 빠른 대처가 가능해진다. 그러나 네트워크를 운용해야 하기 때문에 보안 문제 해결이 가장 시급한 과제인 것으로 보인다.',
+					content2: '첨단 무기쳬계가 개발되고 도입이 되더라도 그에 맞는 개인의 전투기술과 작전계획, 전술, 전략의 수립이 중요하다. 강한 군대는 병력이 많거나 무기가 좋다고 강한 군대가 아니다. 균형있게 유무형의 전력을 갖추고 제대로 싸울 준비가 되어 있어야 강한 군대이다. '
+
+				},
+				{
+					avatar: '',
+					name: '이현',
+					title: '1주차 정신전력교육',
+					content1: '지금까지 메인페이지 만드느라 수고해준 이현아 고맙다',
+					content2: '앞으로 오늘 제외하고 개발할 시간은 3일밖에 없는데, 조금만 더 수고해줘'
 
       monthlyScore: [
         {
@@ -213,7 +261,41 @@ export default {
       ],
       select: "현수",
 
-      ticksLables: ["1주차", "2주차", "3주차", "4주차", "5주차"],
+        }
+        */
+			],
+			question: {
+				one: '4차 산업혁명 기술을 우리 군에 접목하여 강한 군대를 만들 수 있는 현실성 있는 방안에 대해 말해보자',
+				two: '첨단 무기체계가 개발되고 도입되는 상항에서도 장병 개인의 전투기술 연마와 정신적 대비태세가 중요한 이유에 대해 말해보자'
+			},
+			ref: null
+		}
+	},
+	created () {
+		this.fetch()
+	},
+	computed: {
+		user () { // Vuex state에 저장돼있는 user 정보
+			return this.$store.state.user
+		}
+	},
+	methods: {
+		jungshin: function (event) {
+			this.$router.push('../jungsin')
+			console.log('hello')
+		},
+		async fetch () {
+			this.ref = this.$firebase.firestore().collection('survey_result').doc('jungsin').collection('1603020093204')
+			await this.ref.get().then((querySnapshot) => {
+				querySnapshot.forEach((doc) => {
+					// doc.data() is never undefined for query doc snapshots
+					console.log(doc.id, ' => ', doc.data())
+					this.messages.push(doc.data())
+				})
+			})
+			console.log(this.messages)
+		}
+	},
 
       // 병사별 주간정신전력 현황 데이터
       messages: [
