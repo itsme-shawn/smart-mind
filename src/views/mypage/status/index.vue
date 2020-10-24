@@ -66,7 +66,7 @@
 								취소
 							</v-btn>
 							<v-btn text color="primary"
-								@click="$refs.dialog.save(date)">
+								@click="hello">
 								확인
 							</v-btn>
 							</v-date-picker>
@@ -140,6 +140,15 @@ export default {
 			menu: false,
 			modal: false
 
+		}
+	},
+	methods: {
+		hello () {
+			// $refs.dialog.save(date)
+			this.$refs.dialog.save(this.date)
+			var a = (this.date.split('-'))
+			a = a[0] + a[1]
+			console.log(a)
 		}
 	}
 
