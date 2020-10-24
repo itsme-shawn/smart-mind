@@ -22,7 +22,7 @@
           </v-row>
         </v-container>
       </v-card-text>
-      <survey-viewer :question="item.question"></survey-viewer>
+      <survey v-if="!(document === 'posting')" @submit="$emit('close')" :question="item.question" :document="document" :collection="collection" :item="item"></survey> <!-- 공지사항에는 렌더링 안함 -->
       <v-card-actions>
         <v-spacer/>
         <span class="font-italic caption">
@@ -43,11 +43,11 @@
 <script>
 import axios from 'axios'
 import DisplayTime from '@/components/display-time' // @ : src/
-import SurveyViewer from '@/views/learning/survey-viewer.vue'
+import Survey from '@/views/learning/survey.vue'
 
 export default {
-	components: { DisplayTime, SurveyViewer },
-	props: ['document', 'item'],
+	components: { DisplayTime, Survey },
+	props: ['document', 'item', 'collection'], // 부모가 넘겨주는 속성
 	data () {
 		return {
 			content: '',

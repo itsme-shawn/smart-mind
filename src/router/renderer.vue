@@ -4,14 +4,15 @@
   <learning-dashboard
     v-if="collection === 'learning' && document === 'dashboard'">
   </learning-dashboard>
+  <!-- 공지사항(collection: notice / document : posting) 게시판도 부득이하게 learning 컴포넌트를 사용하고있다. 가능하다면 추후 수정 예정-->
   <learning-board
-    v-else-if="collection === 'learning' && !action" :document="document">  <!-- doument props 에는 jungsin, daily_history 등이 들어가서 동적으로 각각의 게시판을 생성한다. -->
+    v-else-if="(collection === 'learning' || collection === 'notice') && !action" :collection="collection" :document="document">  <!-- doument props 에는 jungsin, daily_history 등이 들어가서 동적으로 각각의 게시판을 생성한다. -->
   </learning-board>
   <learning-board-form
-    v-else-if="collection === 'learning' && action === 'board-write'" :document="document" :action="action">
+    v-else-if="(collection === 'learning' || collection === 'notice') && action === 'board-write'" :collection="collection" :document="document" :action="action">
   </learning-board-form>
   <learning-article-form
-    v-else-if="collection === 'learning' && (action === 'article-write' || action==='article-update') " :document="document" :action="action"> <!-- 게시물 작성과 수정을 같은 컴포넌트로 재활용 -->
+    v-else-if="(collection === 'learning' || collection === 'notice') && (action === 'article-write' || action==='article-update') " :collection="collection" :document="document" :action="action"> <!-- 게시물 작성과 수정을 같은 컴포넌트로 재활용 -->
   </learning-article-form>
 
   <mypage-account v-else-if="collection === 'mypage' && document === 'account'"></mypage-account>
@@ -21,7 +22,6 @@
   <help-faq v-else-if="collection === 'help' && document === 'FAQ'"></help-faq>
   <help-guide v-else-if="collection === 'help' && document === 'guide'"></help-guide>
   <help-intentions v-else-if="collection === 'help' && document === 'intentions'"></help-intentions>
-  <help-notice v-else-if="collection === 'help' && document === 'notice'"></help-notice>
 
   <error-page v-else></error-page>
 </template>
@@ -43,7 +43,6 @@ import MypageBudae from '../views/mypage/budae/index.vue'
 import HelpFaq from '../views/help/FAQ/index.vue'
 import HelpGuide from '../views/help/guide/index.vue'
 import HelpIntentions from '../views/help/intentions/index.vue'
-import HelpNotice from '../views/help/notice/index.vue'
 // 라우팅 처리 되지 않은 주소는 에러 페이지 렌더링
 import ErrorPage from '../views/error_page'
 
@@ -59,7 +58,6 @@ export default {
 		HelpFaq,
 		HelpGuide,
 		HelpIntentions,
-		HelpNotice,
 		ErrorPage
 	},
 	computed: {

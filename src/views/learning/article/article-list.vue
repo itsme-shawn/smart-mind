@@ -21,7 +21,7 @@
       </template>
     </v-data-table>
     <v-dialog v-if="selectedItem" v-model="dialog" max-width="800"> <!-- selectedItem 이 들어올 때만 dialog 가 렌더링돼야함 (안 그러면 오류) -->
-      <display-content :document="document" :item="selectedItem" @close="dialog=false"></display-content> <!-- components/display-content.vue : 게시물 내용 표시 컴포넌트 -->
+      <display-content :document="document" :collection="collection" :item="selectedItem" @close="dialog=false"></display-content> <!-- components/display-content.vue : 게시물 내용 표시 컴포넌트 -->
     </v-dialog>
   </div>
 </template>
@@ -32,7 +32,7 @@ import DisplayContent from '@/components/display-content' // @ : src/
 
 export default {
 	components: { DisplayTime, DisplayContent },
-	props: ['info', 'document'],
+	props: ['info', 'document', 'collection'], // 부모가 넘겨주는 속성
 	data () {
 		return {
 			headers: [
@@ -86,7 +86,7 @@ export default {
 			const order = this.options.sortBy[0]
 			const sort = this.options.sortDesc[0] ? 'desc' : 'asc'
 			const limit = this.options.itemsPerPage
-			const ref = this.$firebase.firestore().collection('learning').doc(this.document).collection('articles').orderBy(order, sort)
+			const ref = this.$firebase.firestore().collection(this.collection).doc(this.document).collection('articles').orderBy(order, sort)
 			let query
 			switch (arrow) {
 			case -1: query = ref.endBefore(head(this.docs)).limitToLast(limit)
@@ -108,7 +108,7 @@ export default {
 					// console.log('doc', doc)
 					const item = doc.data()
 					// console.log('doc.data()', doc.data()) // doc.data() 에는 title, url 과 타임스태프형식의 cratedAt,updatedAt 이 존재
-					item.id = doc.id // item 을 다루기 쉽게 id 값 추가
+					item.id = doc.id // item 을 다루기 쉽게 id(article_id 와 동일 ) 값 추가
 					item.createdAt = item.createdAt.toDate() // 타임스탬프를 일반 시간으로 변환
 					item.updatedAt = item.updatedAt.toDate() // 마찬가지
 					return item

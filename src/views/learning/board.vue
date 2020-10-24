@@ -34,7 +34,7 @@
         게시물
       </v-card-text>
       <!-- 게시물 목록 컴포넌트 -->
-      <article-list :info="info" :document="document" ></article-list>
+      <article-list :info="info" :collection="collection" :document="document" ></article-list>
       <!---->
     </v-card>
 
@@ -45,7 +45,7 @@ import ArticleList from './article/article-list'
 
 export default {
 	components: { ArticleList },
-	props: ['document'], // document 는 라우터 파라미터 값
+	props: ['collection', 'document'], // document 는 라우터 파라미터 값
 	// ex ) /learning/daily_history 주소로 접속하면 ,
 	// document == 'daily_history' , collection == 'learning' 이다.
 	data () {
@@ -78,7 +78,7 @@ export default {
 	methods: {
 		subscribe () {
 			if (this.unsubscribe) this.unsubscribe()
-			const ref = this.$firebase.firestore().collection('learning').doc(this.document)
+			const ref = this.$firebase.firestore().collection(this.collection).doc(this.document)
 			this.unsubscribe = ref.onSnapshot(doc => {
 				if (!doc.exists) return this.board_write() // 해당 게시판의 title 과 description 이 없으면 게시판 정보를 작성하는 페이지로 이동시킨다.
 				this.info = doc.data()

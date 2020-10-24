@@ -14,7 +14,7 @@
         <v-toolbar color="accent" dense flat dark>
           <v-toolbar-title>게시물 작성</v-toolbar-title>
         <v-spacer/>
-        <v-btn icon @click="$router.push('/learning/' + document)"><v-icon>mdi-arrow-left</v-icon></v-btn> <!-- 뒤로가기 -->
+        <v-btn icon @click="$router.push('/'+collection+ '/' + document)"><v-icon>mdi-arrow-left</v-icon></v-btn> <!-- 뒤로가기 -->
         <v-btn icon @click="save"><v-icon>mdi-content-save</v-icon></v-btn>
         </v-toolbar>
         <v-card-text>
@@ -33,7 +33,7 @@
             </v-container>
           </template>
           <v-spacer/>
-          <v-container>
+          <v-container v-if="!(document === 'posting')"> <!-- 공지사항에는 렌더링 안함 -->
           <v-toolbar-title class="mt-5">평가 질문 작성</v-toolbar-title>
           <v-text-field v-model="form.Q1" outlined label="질문1"></v-text-field>
           <v-text-field v-model="form.Q2" outlined label="질문2"></v-text-field>
@@ -46,7 +46,7 @@
 <script>
 import axios from 'axios'
 export default {
-	props: ['document', 'action'],
+	props: ['collection', 'document', 'action'],
 	data () {
 		return {
 			editor_options: {
@@ -82,7 +82,7 @@ export default {
 	},
 	methods: {
 		async fetch () {
-			this.ref = this.$firebase.firestore().collection('learning').doc(this.document)
+			this.ref = this.$firebase.firestore().collection(this.collection).doc(this.document)
 
 			// articleId 쿼리값이 없을 때 ( 글 최초작성)
 			if (!this.articleId) return
@@ -105,7 +105,7 @@ export default {
 				const now = new Date()
 				const id = now.getTime().toString() // 작성시간을 id로 사용
 				const content = this.$refs.editor.invoke('getHtml') // 에디터에서 작성한 글 (html 파일로 변환)
-				const sn = await this.$firebase.storage().ref().child('learning').child(this.document).child(id + '.html').putString(content)
+				const sn = await this.$firebase.storage().ref().child(this.collection).child(this.document).child(id + '.html').putString(content)
 				const url = await sn.ref.getDownloadURL()
 				const doc = {
 					title: this.form.title,
@@ -114,7 +114,8 @@ export default {
 					question: {
 						Q1: this.form.Q1,
 						Q2: this.form.Q2
-					}
+					},
+					article_id: id // computed 에 있는 articleId 와는 다름!
 				}
 
 				const batch = await this.$firebase.firestore().batch()
@@ -130,7 +131,7 @@ export default {
 				await batch.commit()
 			} finally {
 				this.loading = false
-				this.$router.push('/learning/' + this.document)
+				this.$router.push('/' + this.collection + '/' + this.document)
 			}
 		}
 	}
