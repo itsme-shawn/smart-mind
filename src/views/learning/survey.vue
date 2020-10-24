@@ -53,8 +53,7 @@ export default {
 		}
 	},
 	created () {
-    this.subscribe()
-    console.log(this.item)
+		this.subscribe()
 	},
 	destroyed () {
 		if (this.unsubscribe) this.unsubscribe()
@@ -64,7 +63,11 @@ export default {
 			if (this.unsubscribe) this.unsubscribe() // unsubscribe 가 참이면 unsubscribe 에 DB 정보를 담게된다.
 			const temp = await this.$firebase.firestore().collection(this.collection).doc(this.document).get()
 			this.subject_kr = temp.data().title // survey_result 컬렉션에 subject의 한글이름을 저장하기 위함
-			this.ref = this.$firebase.firestore().collection('survey_result').doc(this.document)
+			// 사용자들의 survey 제출결과가 저장될 DB 주소 : survey_result > jungsin > [article_id] > [uid]
+			this.$firebase.firestore().collection('survey_result').doc(this.document).set({
+				count: ''
+			})
+			this.ref = this.$firebase.firestore().collection('survey_result').doc(this.document).collection(this.item.article_id).doc(this.user.uid)
 			this.unsubscribe = this.ref.onSnapshot(doc => {
 				this.exists = doc.exists
 				if (this.exists) {
@@ -85,10 +88,10 @@ export default {
 			this.loading = true
 			try {
 				if (!this.exists) { // 최초 제출
-					answer.createdAt = new Date()
+					answer.submittedAt = new Date()
 					answer.subject_en = this.document
 					answer.subject_kr = this.subject_kr
-					answer.author = this.user // submit 한 user 정보
+					answer.submitAuthor = this.user // submit 한 user 정보
 					await this.ref.set(answer)
 				} else {
 					await this.ref.update(answer)
