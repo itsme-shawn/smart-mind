@@ -29,7 +29,7 @@
 					</v-card-text>
 					<v-fade-transition>
 					<v-overlay v-if="hover" absolute color="#dedede">
-						<v-btn @click="jungsin">참여하기</v-btn>
+						<v-btn @click="jungsin()">참여하기</v-btn>
 					</v-overlay>
 					</v-fade-transition>
 					</v-responsive>
@@ -118,7 +118,7 @@
 									sm="5"
 									md="3"
 								>
-									<strong v-html="message.name"></strong>
+									<strong v-html="message.submitAuthor.displayName"></strong>
 									<span
 									v-if="message.total"
 									class="grey--text"
@@ -128,20 +128,19 @@
 								</v-col>
 
 								<v-col class="text-no-wrap" cols="5" sm="3">
-									<strong v-html="message.title"></strong>
+									<strong v-html="message.subject_kr"></strong>
 								</v-col>
 								</v-row>
 							</v-expansion-panel-header>
 
 							<v-expansion-panel-content>
 								<v-divider></v-divider>
-								<v-card-title>질문</v-card-title>
-								<v-card-text v-text="question.one"></v-card-text>
-								<v-card-text v-text="question.two"></v-card-text>
-								<v-divider></v-divider>
-								<v-card-title>답변</v-card-title>
-								<v-card-text v-text="message.content1"></v-card-text>
-								<v-card-text v-text="message.content2"></v-card-text>
+								<v-card-title>제출의견 확인하기</v-card-title>
+								Q1.<v-card-text v-text="question.one"></v-card-text>
+								A1.<v-card-text v-text="message.a1"></v-card-text>
+                Q2.<v-card-text v-text="question.two"></v-card-text>
+                A2.<v-card-text v-text="message.a2"></v-card-text>
+                <v-divider></v-divider>
 							</v-expansion-panel-content>
 
 							</v-expansion-panel>
@@ -216,6 +215,7 @@ export default {
 
 			// 병사별 주간정신전력 현황 데이터
 			messages: [
+				/*
 				{
 					avatar: 'https://lh3.googleusercontent.com/ogw/ADGmqu92A3GO29sPEXyfoYIwCWRHIbhljaLOVkAyePpz=s32-c-mo',
 					name: '현재',
@@ -239,12 +239,22 @@ export default {
 					content1: '너도 힘들고 바쁠텐데 데이터베이스 다루느라 고생했어',
 					content2: '마찬가지로 오늘 제외하고 개발할 시간은 3일밖에 없는데, 조금만 더 수고해줘'
 
-				}
+        }
+        */
 			],
 			question: {
 				one: '4차 산업혁명 기술을 우리 군에 접목하여 강한 군대를 만들 수 있는 현실성 있는 방안에 대해 말해보자',
 				two: '첨단 무기체계가 개발되고 도입되는 상항에서도 장병 개인의 전투기술 연마와 정신적 대비태세가 중요한 이유에 대해 말해보자'
-			}
+			},
+			ref: null
+		}
+	},
+	created () {
+		this.fetch()
+	},
+	computed: {
+		user () { // Vuex state에 저장돼있는 user 정보
+			return this.$store.state.user
 		}
 	},
 	methods: {
@@ -252,7 +262,17 @@ export default {
 			this.$router.push('../jungsin')
 			console.log('hello')
 		},
-		mover: function (event) {}
+		async fetch () {
+			this.ref = this.$firebase.firestore().collection('survey_result').doc('jungsin').collection('1603020093204')
+			await this.ref.get().then((querySnapshot) => {
+				querySnapshot.forEach((doc) => {
+					// doc.data() is never undefined for query doc snapshots
+					console.log(doc.id, ' => ', doc.data())
+					this.messages.push(doc.data())
+				})
+			})
+			console.log(this.messages)
+		}
 	}
 
 }
