@@ -16,6 +16,11 @@ const routes = [
 		component: () => import('../views/login.vue')
 	},
 
+	{ // 새로 개발중인 login 페이지
+		path: '/login2',
+		component: () => import('../views/auth/sign.vue')
+	},
+
 	{
 		path: '/mypage/account',
 		component: () => import('../views/mypage/account/index.vue'),
