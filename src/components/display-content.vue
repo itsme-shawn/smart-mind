@@ -22,7 +22,7 @@
           </v-row>
         </v-container>
       </v-card-text>
-      <survey v-if="!(document === 'posting')" @submit="$emit('close')" :question="item.question" :document="document" :collection="collection"></survey> <!-- 공지사항에는 렌더링 안함 -->
+      <survey v-if="!(document === 'posting')" @submit="$emit('close')" :question="item.question" :document="document" :collection="collection" :item="item"></survey> <!-- 공지사항에는 렌더링 안함 -->
       <v-card-actions>
         <v-spacer/>
         <span class="font-italic caption">

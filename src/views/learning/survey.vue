@@ -22,7 +22,7 @@
 
 <script>
 export default {
-	props: ['question', 'document', 'collection'], // 부모가 넘겨주는 속성
+	props: ['question', 'document', 'collection', 'item'], // 부모가 넘겨주는 속성
 	data () {
 		return {
 			unsubscribe: null,
@@ -53,7 +53,8 @@ export default {
 		}
 	},
 	created () {
-		this.subscribe()
+    this.subscribe()
+    console.log(this.item)
 	},
 	destroyed () {
 		if (this.unsubscribe) this.unsubscribe()

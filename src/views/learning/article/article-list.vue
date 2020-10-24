@@ -108,7 +108,7 @@ export default {
 					// console.log('doc', doc)
 					const item = doc.data()
 					// console.log('doc.data()', doc.data()) // doc.data() 에는 title, url 과 타임스태프형식의 cratedAt,updatedAt 이 존재
-					item.id = doc.id // item 을 다루기 쉽게 id 값 추가
+					item.id = doc.id // item 을 다루기 쉽게 id(article_id 와 동일 ) 값 추가
 					item.createdAt = item.createdAt.toDate() // 타임스탬프를 일반 시간으로 변환
 					item.updatedAt = item.updatedAt.toDate() // 마찬가지
 					return item
