@@ -59,14 +59,10 @@ export default {
 		if (this.unsubscribe) this.unsubscribe()
 	},
 	methods: {
-		subscribe () {
+		async subscribe () {
 			if (this.unsubscribe) this.unsubscribe() // unsubscribe 가 참이면 unsubscribe 에 DB 정보를 담게된다.
-			this.$firebase.firestore().collection(this.collection).doc(this.document).onSnapshot(doc => {
-				if (doc.exists) {
-					// console.log(doc.data().title)
-					this.subject_kr = doc.data().title
-				}
-			})
+			const temp = await this.$firebase.firestore().collection(this.collection).doc(this.document).get()
+			this.subject_kr = temp.data().title // survey_result 컬렉션에 subject의 한글이름을 저장하기 위함
 			this.ref = this.$firebase.firestore().collection('survey_result').doc(this.document)
 			this.unsubscribe = this.ref.onSnapshot(doc => {
 				this.exists = doc.exists
