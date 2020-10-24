@@ -3,7 +3,7 @@
 -->
 
 <template>
-  <v-card color="transparent" height="500" flat>
+  <v-card color="transparent" width="400" height="500" flat>
     <v-form v-model="valid" ref="form" lazy-validation>
       <v-card-title primary-title>
         <span class="title">로그인</span>
@@ -14,7 +14,7 @@
         </span>
       </v-card-title>
       <v-card-actions>
-        <v-btn color="primary" block>
+        <v-btn color="error" block>
           <v-icon>mdi-google</v-icon>
           <v-divider vertical class="mx-3"></v-divider>
           Google 계정으로 로그인

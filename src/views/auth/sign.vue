@@ -1,18 +1,21 @@
 <!-- 로그인/회원가입 관련 메인 컴포넌트 -->
 
 <template>
-  <v-container grid-list-md>
-    <v-layout row wrap align-center justify-center>
-      <v-flex xs12 sm5 class="hidden-xs-only">
+  <v-container grid-list-md align-center justify-center class="mt-10">
+    <!-- 로고 이미지 -->
+    <v-row wrap align="center" justify="center" no-gutters style="height: fit-content;" >
+      <v-col cols="4" md="4" class="hidden-xs-only">
         <v-img src="../../assets/LOGO.png"></v-img>
 
-      </v-flex>
-      <v-flex xs12 sm5>
+      </v-col>
+
+      <!-- 로그인 폼과 회원가입 폼 -->
+      <v-col cols="8" md="auto" align-self="center" class="">
         <sign-in v-if="type"></sign-in>
         <sign-up v-else></sign-up>
-      </v-flex>
+      </v-col>
 
-    </v-layout>
+    </v-row>
   </v-container>
 </template>
 
