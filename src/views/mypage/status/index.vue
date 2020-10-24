@@ -4,9 +4,8 @@
             <v-card-text>
                 <v-toolbar-title class="font-weight-bold ml-5">정신전력 현황</v-toolbar-title>
             </v-card-text>
-
 		<v-divider></v-divider>
-		<v-hover>
+		<v-hover class="mb-10">
 			<template v-slot:default="{ hover }">
 				<v-card class="mx-auto mt-5" max-width="600">
 				<v-responsive :aspect-ratio="16/9">
@@ -19,7 +18,7 @@
 
 					<!--이번이 몇 주차인지 알 수 있게 하기 위해 변동되어야 하는 부분-->
 					<v-card-subtitle class="pb-2">
-					10월 2주차
+					10월 3주차
 					</v-card-subtitle>
 					<!--이번이 몇 주차인지 알 수 있게 하기 위해 변동되어야 하는 부분-->
 					<v-card-text class="text--primary">
@@ -36,6 +35,7 @@
 				</v-card>
 			</template>
 		</v-hover>
+		<v-divider></v-divider>
 		</v-container>
 
 		<!--지난 정신전력 현황, 본인이 참여했던 교육들, 퀴즈 볼 수 있도록.-->
@@ -46,6 +46,31 @@
 			<v-divider></v-divider>
 			<template>
 				<v-stepper non-linear v-model="e1">
+					<!--월 선택 버튼-->
+						<v-dialog ref="dialog" v-model="modal"
+							:return-value.sync="date" persistent width="290px">
+							<template v-slot:activator="{ on, attrs }">
+							<v-text-field
+								v-model="date"
+								label="월 선택"
+								prepend-icon="mdi-calendar"
+								readonly
+								v-bind="attrs"
+								v-on="on"
+							></v-text-field>
+							</template>
+							<v-date-picker v-model="date" type="month" scrollable>
+							<v-spacer></v-spacer>
+							<v-btn text color="primary"
+								@click="modal = false">
+								취소
+							</v-btn>
+							<v-btn text color="primary"
+								@click="$refs.dialog.save(date)">
+								확인
+							</v-btn>
+							</v-date-picker>
+						</v-dialog>
 					<v-stepper-header>
 						<template v-for="n in steps">
 							<v-stepper-step editable
@@ -78,7 +103,6 @@
 							<v-btn color="primary">
 							다시 보기
 							</v-btn>
-
 						</v-stepper-content>
 					</v-stepper-items>
 				</v-stepper>
@@ -111,14 +135,11 @@ export default {
 			quiz: {
 				answer: [5, 10, 5, 10, 5],
 				user: [4, 9, 4, 7, 4]
-			}
-		}
-	},
-	watch: {
-		steps (val) {
-			if (this.e1 > val) {
-				this.e1 = val
-			}
+			},
+			date: new Date().toISOString().substr(0, 7),
+			menu: false,
+			modal: false
+
 		}
 	}
 
