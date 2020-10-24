@@ -68,13 +68,14 @@
 								<v-card-title>Q2 - {{ question.two[n-1] }}</v-card-title>
 								<v-card-text class="body-1">{{ answer.two[n-1] }}</v-card-text>
 							</v-card>
-							<v-card class="mb-12" color="grey lighten-1" height="100">
-
+							<v-card class="mb-12" color="grey lighten-1">
+								<v-card-title>퀴즈 점수</v-card-title>
+								<v-card-text>전체 문항 수 : {{ quiz.answer[n-1] }}</v-card-text>
+								<v-card-text>정답 수 : {{ quiz.user[n-1] }}</v-card-text>
+								<v-card-text>점수 : {{ quiz.user[n-1]/quiz.answer[n-1]*100 }}</v-card-text>
 							</v-card>
 
-							<v-btn
-							color="primary"
-							>
+							<v-btn color="primary">
 							다시 보기
 							</v-btn>
 
@@ -103,8 +104,13 @@ export default {
 			},
 			// 답변 받아오기
 			answer: {
-				one: ['Lorem Ipsum is simply dummy text of the printing and typesetting industry.','Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.','It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.',' It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', 'There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don\'t look even slightly believable.'],
-				two: ['It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.','The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', making it look like readable English.', 'Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for \'lorem ipsum\' will uncover many web sites still in their infancy.', 'Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).', 'If you are going to use a passage of Lorem Ipsum, you need to be sure there isn\'t anything embarrassing hidden in the middle of text. ']
+				one: ['Lorem Ipsum is simply dummy text of the printing and typesetting industry.', 'Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.', 'It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.', ' It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', 'There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don\'t look even slightly believable.'],
+				two: ['It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.', 'The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', making it look like readable English.', 'Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for \'lorem ipsum\' will uncover many web sites still in their infancy.', 'Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).', 'If you are going to use a passage of Lorem Ipsum, you need to be sure there isn\'t anything embarrassing hidden in the middle of text. ']
+			},
+			// 해당 주차의 퀴즈 점수
+			quiz: {
+				answer: [5, 10, 5, 10, 5],
+				user: [4, 9, 4, 7, 4]
 			}
 		}
 	},
@@ -114,16 +120,7 @@ export default {
 				this.e1 = val
 			}
 		}
-	},
-
-	methods: {
-		nextStep (n) {
-			if (n === this.steps) {
-				this.e1 = 1
-			} else {
-				this.e1 = n + 1
-			}
-		}
 	}
+
 }
 </script>
