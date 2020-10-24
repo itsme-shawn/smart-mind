@@ -21,7 +21,7 @@
       </template>
     </v-data-table>
     <v-dialog v-if="selectedItem" v-model="dialog" max-width="800"> <!-- selectedItem 이 들어올 때만 dialog 가 렌더링돼야함 (안 그러면 오류) -->
-      <display-content :document="document" :item="selectedItem" @close="dialog=false"></display-content> <!-- components/display-content.vue : 게시물 내용 표시 컴포넌트 -->
+      <display-content :document="document" :collection="collection" :item="selectedItem" @close="dialog=false"></display-content> <!-- components/display-content.vue : 게시물 내용 표시 컴포넌트 -->
     </v-dialog>
   </div>
 </template>
@@ -32,7 +32,7 @@ import DisplayContent from '@/components/display-content' // @ : src/
 
 export default {
 	components: { DisplayTime, DisplayContent },
-	props: ['info', 'document', 'collection'],
+	props: ['info', 'document', 'collection'], // 부모가 넘겨주는 속성
 	data () {
 		return {
 			headers: [
