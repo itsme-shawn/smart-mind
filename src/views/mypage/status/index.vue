@@ -39,7 +39,7 @@
 		</v-container>
 
 		<!--지난 정신전력 현황, 본인이 참여했던 교육들, 퀴즈 볼 수 있도록.-->
-		<v-container>
+		<v-container class="mb-10">
             <v-card-text class="mt-12">
                 <v-toolbar-title class="font-weight-bold ml-5">지난 정신전력</v-toolbar-title>
             </v-card-text>
