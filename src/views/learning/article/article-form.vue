@@ -115,7 +115,7 @@ export default {
 						Q1: this.form.Q1,
 						Q2: this.form.Q2
 					},
-					articleId: id
+					article_id: id // computed 에 있는 articleId 와는 다름!
 				}
 
 				const batch = await this.$firebase.firestore().batch()
