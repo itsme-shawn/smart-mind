@@ -87,22 +87,28 @@
 						v-for="n in steps"
 						:key="`${n}-content`"
 						:step="n">
-							<v-card class="mb-12" color="#ffcdd2">
+						<div v-if="question.one[n-1] !== null">
+							<v-card class="mb-12" color="#e6e6e6">
 								<v-card-title>Q1 - {{ question.one[n-1] }}</v-card-title>
 								<v-card-text class="body-1">{{ answer.one[n-1] }}</v-card-text>
 								<v-card-title>Q2 - {{ question.two[n-1] }}</v-card-title>
 								<v-card-text class="body-1">{{ answer.two[n-1] }}</v-card-text>
 							</v-card>
-							<v-card class="mb-12" color="grey lighten-1">
+							<v-card class="mb-12" color="#e6e6e6">
 								<v-card-title>퀴즈 점수</v-card-title>
 								<v-card-text>전체 문항 수 : {{ quiz.answer[n-1] }}</v-card-text>
 								<v-card-text>정답 수 : {{ quiz.user[n-1] }}</v-card-text>
 								<v-card-text>점수 : {{ quiz.user[n-1]/quiz.answer[n-1]*100 }}</v-card-text>
 							</v-card>
-
 							<v-btn color="primary">
 							다시 보기
 							</v-btn>
+						</div>
+							<v-card v-else>
+								<v-card-title>아직 작성되지 않았어요!</v-card-title>
+								<img aspect-ratio="1.7" contain lazy-src="https://picsum.photos/id/11/10/6" src="https://picsum.photos/510/300?random" alt="미작성 게시물">
+							</v-card>
+
 						</v-stepper-content>
 					</v-stepper-items>
 				</v-stepper>
@@ -123,8 +129,8 @@ export default {
 
 			// 질문 받아오기
 			question: {
-				one: ['1주차 질문a', 'bb', 'cc', 'dd', 'ee'],
-				two: ['1주차 질문b', 'BB', 'CC', 'DD', 'EE']
+				one: ['1주차 질문a', 'bb', 'cc', 'dd', null],
+				two: ['1주차 질문b', 'BB', 'CC', 'DD', null]
 			},
 			// 답변 받아오기
 			answer: {
@@ -136,6 +142,7 @@ export default {
 				answer: [5, 10, 5, 10, 5],
 				user: [4, 9, 4, 7, 4]
 			},
+
 			date: new Date().toISOString().substr(0, 7),
 			menu: false,
 			modal: false
@@ -146,10 +153,11 @@ export default {
 		hello () {
 			// $refs.dialog.save(date)
 			this.$refs.dialog.save(this.date)
-			var a = (this.date.split('-'))
-			a = a[0] + a[1]
-			console.log(a)
-		}
+			var ymdate = (this.date.split('-'))
+			ymdate = 'ym' + ymdate[0] + ymdate[1]
+			console.log(ymdate)
+		},
+
 	}
 
 }
