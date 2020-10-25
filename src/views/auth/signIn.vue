@@ -10,7 +10,7 @@
         <v-spacer></v-spacer>
         <span class="caption">
           또는&nbsp;
-          <a >회원가입</a>
+          <a @click="$emit('changeType')">회원가입</a>
         </span>
       </v-card-title>
       <v-card-actions>
@@ -43,6 +43,14 @@
         <v-btn color="primary">
           로그인
         </v-btn>
+      </v-card-actions>
+
+      <v-card-actions>
+      <v-spacer></v-spacer>
+      <span class="caption">
+          &nbsp;계정이 없으신가요?
+          <a @click="$emit('changeType')">회원가입</a>
+      </span>
       </v-card-actions>
     </v-form>
   </v-card>
