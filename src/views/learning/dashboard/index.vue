@@ -7,12 +7,19 @@
             <v-layout row>
               <v-flex xs7>
                 <v-card-title primary-title>
-                  <div>
+                  <div v-if="user !== null">
                     <div class="grey--text">현재 사용자</div>
 
                     <h3 class="headline">
                       <v-icon medium color="success">mdi-account</v-icon
                       >{{ user.displayName }} 님
+                    </h3>
+                  </div>
+                  <div v-else>
+                    <div class="grey--text">현재 사용자</div>
+                    <h3 class="headline">
+                      <v-icon medium color="success">mdi-account</v-icon
+                      >로그인해주세요
                     </h3>
                   </div>
                 </v-card-title>
@@ -24,10 +31,15 @@
               </v-flex>
             </v-layout>
             <v-divider light></v-divider>
-            <v-card-actions class="pa-2">
-              <h4>권한 {{ user.level }}</h4>
-              <v-spacer></v-spacer>
-            </v-card-actions>
+            <div v-if="user !== null">
+              <v-card-actions class="pa-2">
+                <h4>권한 {{ user.level }}</h4>
+                <v-spacer></v-spacer>
+              </v-card-actions>
+            </div>
+            <div v-else>
+              <h4>권한 guest</h4>
+            </div>
           </v-container>
         </v-card>
       </v-flex>
@@ -40,20 +52,89 @@
                 :aspect-ratio="16 / 9"
                 class="white--text align-top"
                 height="462"
-                src="https://cdn.vuetifyjs.com/images/cards/docks.jpg"
+                :src="require('../../../assets/bongchang-2.jpg')"
               >
-                <v-card-title>이번주의 정신전력 교육</v-card-title>
+                <v-card-title><h3>이번주의 정신전력 교육</h3></v-card-title>
                 <v-expand-transition>
                   <div
                     v-if="hover"
                     class="d-flex transition-fast-in-fast-out v-card--reveal white--text"
                     style="
                       height: 100%;
-                      background-color: rgba(224, 224, 224, 0.5);
+                      background-color: rgba(70, 70, 70, 0.5);
                     "
                   >
                     <div>
-                      <h2>믿음직하고 든든한 국군, ‘대체불가’ 특수전부대</h2>
+                      <h2>이봉창 의사와 '애국헌신'</h2>
+                    </div>
+                    <hr/>
+                    <br />
+                    <v-btn>참여하기</v-btn>
+                  </div>
+                </v-expand-transition>
+              </v-img>
+            </v-card>
+          </template>
+        </v-hover>
+      </v-flex>
+      <v-flex xs12 md3 class="pb-2">
+        <v-hover>
+          <template v-slot:default="{ hover }">
+            <v-card height="225px">
+              <v-img
+                :aspect-ratio="16 / 9"
+                class="white--text align-top"
+                height="225"
+                :src="require('../../../assets/myeong2.jpg')"
+              >
+                <v-card-title><h5 style="color: black">9월 1주차 정신전력 교육</h5></v-card-title>
+                <v-expand-transition>
+                  <v-card
+                    v-if="hover"
+                    class="d-flex transition-fast-in-fast-out v-card--reveal white--text"
+                    style="
+                      height: 100%;
+                      background-color: rgba(70, 70, 70, 0.5);
+                    "
+                  >
+                    <v-row style="height:30%">
+                    <h3 style="width:100%"> '명량대첩' 불가능을 가능하게 하다</h3>
+                    </v-row>
+                    <v-row style="height:30%">
+                      <v-btn>참여하기</v-btn>
+                    </v-row>
+                    
+                    
+                    
+                    
+                      
+                  </v-card>
+                </v-expand-transition>
+              </v-img>
+            </v-card>
+          </template>
+        </v-hover>
+        <v-hover class="mt-3">
+          <template v-slot:default="{ hover }">
+            <v-card height="225px">
+              <v-img
+                :aspect-ratio="16 / 9"
+                class="white--text align-top"
+                height="225"
+                :src="require('../../../assets/hexo.jpg')"
+              >
+                <v-card-title><h5 style="color: black">9월 3주차 정신전력 교육</h5></v-card-title>
+                <v-expand-transition>
+                  <div
+                    v-if="hover"
+                    class="d-flex transition-fast-in-fast-out v-card--reveal white--text"
+                    style="
+                      height: 100%;
+                      background-color: rgba(70, 70, 70, 0.5);
+                    "
+                  >
+                    <div>
+                      <h2>동료애를 배우다 '핵소 고지'</h2>
                     </div>
                     <br />
                     <v-btn>참여하기</v-btn>
@@ -72,20 +153,21 @@
                 :aspect-ratio="16 / 9"
                 class="white--text align-top"
                 height="225"
-                src="https://cdn.vuetifyjs.com/images/cards/docks.jpg"
+                :src="require('../../../assets/yoon.jpg')"
+                
               >
-                <v-card-title>9월 1주차 정신전력 교육</v-card-title>
+                <v-card-title><h5 style="color: black">9월 2주차 정신전력 교육</h5></v-card-title>
                 <v-expand-transition>
                   <div
                     v-if="hover"
                     class="d-flex transition-fast-in-fast-out v-card--reveal white--text"
                     style="
                       height: 100%;
-                      background-color: rgba(224, 224, 224, 0.5);
+                      background-color: rgba(70, 70, 70, 0.5);
                     "
                   >
                     <div>
-                      <h2>믿음직하고 든든한 국군, ‘대체불가’ 특수전부대</h2>
+                      <h2>윤동주의 시에서 배우는 정신</h2>
                     </div>
                     <br />
                     <v-btn>참여하기</v-btn>
@@ -102,82 +184,20 @@
                 :aspect-ratio="16 / 9"
                 class="white--text align-top"
                 height="225"
-                src="https://cdn.vuetifyjs.com/images/cards/docks.jpg"
+                :src="require('../../../assets/won2.jpg')"
               >
-                <v-card-title>9월 3주차 정신전력 교육</v-card-title>
+                <v-card-title><h5 style="color: black">9월 4주차 정신전력 교육</h5></v-card-title>
                 <v-expand-transition>
                   <div
                     v-if="hover"
                     class="d-flex transition-fast-in-fast-out v-card--reveal white--text"
                     style="
                       height: 100%;
-                      background-color: rgba(224, 224, 224, 0.5);
+                      background-color: rgba(70, 70, 70, 0.5);
                     "
                   >
                     <div>
-                      <h2>믿음직하고 든든한 국군, ‘대체불가’ 특수전부대</h2>
-                    </div>
-                    <br />
-                    <v-btn>참여하기</v-btn>
-                  </div>
-                </v-expand-transition>
-              </v-img>
-            </v-card>
-          </template>
-        </v-hover>
-      </v-flex>
-      <v-flex xs12 md3 class="pb-2">
-        <v-hover>
-          <template v-slot:default="{ hover }">
-            <v-card height="225px">
-              <v-img
-                :aspect-ratio="16 / 9"
-                class="white--text align-top"
-                height="225"
-                src="https://cdn.vuetifyjs.com/images/cards/docks.jpg"
-              >
-                <v-card-title>9월 2주차 정신전력 교육</v-card-title>
-                <v-expand-transition>
-                  <div
-                    v-if="hover"
-                    class="d-flex transition-fast-in-fast-out v-card--reveal white--text"
-                    style="
-                      height: 100%;
-                      background-color: rgba(224, 224, 224, 0.5);
-                    "
-                  >
-                    <div>
-                      <h2>믿음직하고 든든한 국군, ‘대체불가’ 특수전부대</h2>
-                    </div>
-                    <br />
-                    <v-btn>참여하기</v-btn>
-                  </div>
-                </v-expand-transition>
-              </v-img>
-            </v-card>
-          </template>
-        </v-hover>
-        <v-hover class="mt-3">
-          <template v-slot:default="{ hover }">
-            <v-card height="225px">
-              <v-img
-                :aspect-ratio="16 / 9"
-                class="white--text align-top"
-                height="225"
-                src="https://cdn.vuetifyjs.com/images/cards/docks.jpg"
-              >
-                <v-card-title>9월 4주차 정신전력 교육</v-card-title>
-                <v-expand-transition>
-                  <div
-                    v-if="hover"
-                    class="d-flex transition-fast-in-fast-out v-card--reveal white--text"
-                    style="
-                      height: 100%;
-                      background-color: rgba(224, 224, 224, 0.5);
-                    "
-                  >
-                    <div>
-                      <h2>믿음직하고 든든한 국군, ‘대체불가’ 특수전부대</h2>
+                      <h2>징기스칸의 전술은?</h2>
                     </div>
                     <br />
                     <v-btn>참여하기</v-btn>
@@ -226,14 +246,8 @@
       </v-flex>
       <v-flex xs12 sm5 class="pb-2">
         <v-card height="370px" :color="`#${i}12345`">
-          
           <template>
-            <v-card
-              class="mx-auto text-center"
-              
-              min-width="300"
-              height="370"
-            >
+            <v-card class="mx-auto text-center" min-width="300" height="370">
               <v-card-text>
                 <v-sheet color="rgba(40, 53, 147)">
                   <v-sparkline

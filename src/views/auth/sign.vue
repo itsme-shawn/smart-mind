@@ -1,7 +1,6 @@
 <!-- 로그인/회원가입 관련 메인 컴포넌트 -->
 
 <template>
-<<<<<<< HEAD
   <v-container grid-list-md style="margin-top: 140px;">
     <v-layout align-center justify-center wrap row class="px-5" >
     <!-- 로고 이미지 -->
@@ -25,23 +24,6 @@
     
     </v-flex>
     </v-layout>
-=======
-  <v-container grid-list-md align-center justify-center style="margin-top: 40px;">
-    <!-- 로고 이미지 -->
-    <v-row wrap align="center" justify="center" no-gutters style="height: fit-content;" >
-      <v-col cols="4" md="auto" class="hidden-xs-only hidden-sm-only">
-        <v-img src="../../assets/LOGO.png"></v-img>
-
-      </v-col>
-
-      <!-- 로그인 폼과 회원가입 폼 -->
-      <v-col cols="8" md="auto" align-self="center" class="">
-        <sign-in v-if="type" @changeType="type =! type"></sign-in>
-        <sign-up v-else @changeType="type =! type"></sign-up>
-      </v-col>
-
-    </v-row>
->>>>>>> b05e05caf79ef86c110b3ab8f6f41617ebe712a4
   </v-container>
 </template>
 
