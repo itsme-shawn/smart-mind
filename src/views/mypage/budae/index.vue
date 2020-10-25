@@ -54,8 +54,8 @@
             <template>
               <v-card color="green" max-height="500">
                 <v-sparkline
-                  height="290"
-                  :value="monthlyScore.현수"
+                  height="100"
+                  :value="selectS"
                   line-width="2"
                   padding="12"
                   stroke-linecap="round"
@@ -225,6 +225,7 @@ export default {
 
 			},
 			select: '현수',
+			
 			ticksLables: [
 				'1주차',
 				'2주차',
@@ -271,6 +272,9 @@ export default {
 	computed: {
 		user () { // Vuex state에 저장돼있는 user 정보
 			return this.$store.state.user
+		},
+		selectS : function() {
+			return this.monthlyScore.select
 		}
 	},
 	methods: {
@@ -295,7 +299,8 @@ export default {
 			var ymdate = (this.date.split('-'))
 			ymdate = 'ym' + ymdate[0] + ymdate[1]
 			console.log(ymdate)
-		}
+		},
+		
 	}
 }
 </script>

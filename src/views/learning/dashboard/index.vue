@@ -1,6 +1,6 @@
 <template>
   <v-container fluid :grid-list-md="!$vuetify.breakpoint.xs" class="pa-7">
-    <v-layout wrap row>
+    <v-layout wrap row align-center justify-center>
       <v-flex xs12 class="pb-2">
         <v-card>
           <v-container pa-1>
