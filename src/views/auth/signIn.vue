@@ -3,7 +3,7 @@
 -->
 
 <template>
-  <v-card color="transparent" width="400" height="500" flat>
+  <v-card color="transparent" width="400" height="400" flat>
     <v-form v-model="valid" ref="form" lazy-validation>
       <v-card-title primary-title>
         <span class="title">로그인</span>
