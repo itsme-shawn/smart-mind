@@ -84,16 +84,51 @@
           </v-card>
         </v-flex>
       </v-layout>
-				
+
 			<v-card color="transparent">
 				<v-card-title class="align-top mb-4">병사별 정신전력 교육 현황</v-card-title>
-				<v-slider v-model="day" max="4" step="1" ticks="always" tick-size="4" :tick-labels="ticksLables"></v-slider>
 				<!--데이터가 들어가는 리스트 부분 시작, 데이터가 주차가 안되어 없다면 v-if로 div만들어서 아직 자료가 없다고 표시하게 만들 예정-->
 				<template>
-					<v-container fluid>
+					<v-stepper non-linear v-model="e1">
+						<!--월 선택 버튼-->
+						<v-dialog ref="dialog" v-model="modal"
+							:return-value.sync="date" persistent width="290px">
+							<template v-slot:activator="{ on, attrs }">
+							<v-text-field
+								v-model="date"
+								label="월 선택"
+								prepend-icon="mdi-calendar"
+								readonly
+								v-bind="attrs"
+								v-on="on"
+							></v-text-field>
+							</template>
+							<v-date-picker v-model="date" type="month" scrollable>
+							<v-spacer></v-spacer>
+							<v-btn text color="primary"
+								@click="modal = false">
+								취소
+							</v-btn>
+							<v-btn text color="primary"
+								@click="hello">
+								확인
+							</v-btn>
+							</v-date-picker>
+						</v-dialog>
+						<!--월 선택 버튼-->
+						<v-stepper-header>
+							<template v-for="n in steps">
+								<v-stepper-step editable
+								:key="`${n}-step`"
+								:step="n">
+									{{n}}주차
+								</v-stepper-step>
+								<v-divider v-if="n !== steps" :key="n"></v-divider>
+							</template>
+						</v-stepper-header>
+
 						<v-row justify="center">
-						<v-subheader>{{day + 1}}주차</v-subheader>
-						<v-subheader>(위의 슬라이더로 주차를 변경해도 밑의 리스트가 바뀌지 않는 이유는 모든 주차의 데이터가 같기 때문, 각 주차별로 데이터를 달리하면 바뀜)</v-subheader>
+
 						<v-expansion-panels popout>
 							<v-expansion-panel
 							v-for="(message, i) in messages"
@@ -102,20 +137,6 @@
 							>
 							<v-expansion-panel-header>
 								<v-row align="center" class="spacer" no-gutters>
-								<v-col cols="4" sm="2" md="1">
-									<v-avatar size="36px">
-									<img
-										v-if="message.avatar"
-										alt="Avatar"
-										src="https://lh3.googleusercontent.com/ogw/ADGmqu92A3GO29sPEXyfoYIwCWRHIbhljaLOVkAyePpz=s32-c-mo"
-									>
-									<v-icon
-										v-else
-										:color="message.color"
-										v-text="message.icon"
-									></v-icon>
-									</v-avatar>
-								</v-col>
 								<v-col
 									class="hidden-xs-only"
 									sm="5"
@@ -136,17 +157,17 @@
 							</v-expansion-panel-header>
 							<v-expansion-panel-content>
 								<v-divider></v-divider>
-								<v-card-title>제출의견 확인하기</v-card-title>
-								<h4 style="color: red">Q1</h4><v-card-text v-text="question.one"></v-card-text>
-								A1.<v-card-text v-text="message.a1"></v-card-text>
-                <h4 style="color: red">Q2</h4><v-card-text v-text="question.two"></v-card-text>
-                A2.<v-card-text v-text="message.a2"></v-card-text>
-                <v-divider></v-divider>
+								<v-card-text class="texts">질문</v-card-text>
+								<v-card-text class="qtexts"><span class="texts">1. </span> {{question.one}}</v-card-text>
+								<v-card-text class="qtexts"><span class="texts">2. </span> {{question.two}}</v-card-text><v-divider></v-divider>
+								<v-card-text class="texts">답변</v-card-text>
+								<v-card-text class="qtexts"><span class="texts">1. </span> {{message.a1}}</v-card-text>
+								<v-card-text class="qtexts"><span class="texts">2. </span> {{message.a2}}</v-card-text>
 							</v-expansion-panel-content>
 							</v-expansion-panel>
 						</v-expansion-panels>
 						</v-row>
-					</v-container>
+					</v-stepper>
 				</template>
 			</v-card>
 		</v-container>
@@ -160,8 +181,15 @@ Vue.use(Chartkick.use(Chart))
 export default {
 	data () {
 		return {
+			// el - 초기값은 1주차, steps는 최대 5주차까지.
+			e1: 1,
+			steps: 5,
+			// 월 선택 텝
+			date: new Date().toISOString().substr(0, 7),
+			menu: false,
+			modal: false,
+
 			labels: ['일', '월', '화', '수', '목', '금', '토'],
-			day: 0,
 			fill: false,
 			// 이번주의 퀴즈 점수 데이터
 			score: {
@@ -267,3 +295,15 @@ export default {
 	}
 }
 </script>
+<style scoped>
+	.texts{
+		font-size: 1.5rem;
+		font-weight: 500;
+		letter-spacing: .0125em;
+	}
+	.qtexts{
+		font-size: 1rem;
+		font-weight: 400;
+		letter-spacing: .009375em;
+	}
+</style>
