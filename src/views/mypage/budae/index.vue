@@ -50,11 +50,12 @@
               :items="items"
               label="병사를 선택하세요"
             ></v-select>
+			<span>{{select}}</span>
             <template>
               <v-card color="green" max-height="500">
                 <v-sparkline
-                  height="135"
-                  :value="monthlyScore[1].현재"
+                  height="290"
+                  :value="monthlyScore.현수"
                   line-width="2"
                   padding="12"
                   stroke-linecap="round"
@@ -214,17 +215,15 @@ export default {
 			// 월간 퀴즈 점수 최신 4개를 가져와서 value에 넣고, 해당하는 그래프를 그리면 되는데
 			// 어떻게 해야할지 모르겠다
 			value: [80, 70, 90, 100],
-			monthlyScore: [
-				{
-					현수: [80, 70, 90, 100]
-				},
-				{
-					현재: [100, 90, 70, 80]
-				},
-				{
-					이현: [100, 60, 80, 90]
-				}
-			],
+			monthlyScore: {
+
+				현수: [80, 70, 90, 100],
+
+				현재: [100, 90, 70, 80],
+
+				이현: [100, 60, 80, 90]
+
+			},
 			select: '현수',
 			ticksLables: [
 				'1주차',
