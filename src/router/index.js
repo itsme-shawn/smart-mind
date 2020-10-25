@@ -13,11 +13,6 @@ const routes = [
 
 	{
 		path: '/login',
-		component: () => import('../views/login.vue')
-	},
-
-	{ // 새로 개발중인 login 페이지
-		path: '/login2',
 		component: () => import('../views/auth/sign.vue')
 	},
 
@@ -27,7 +22,8 @@ const routes = [
 		// mypage 같은 페이지들은 라우팅하기 전에 로그인 상태인지 체크하고 로그인이 안돼있으면, 강제로 로그인페이지로 리다이렉션 시킴.
 		beforeEnter: function (to, from, next) {
 			if (!store.state.user) {
-				router.push('/login')
+				router.push('/login').catch(() => {})
+				store.commit('setRouteTo', to)
 			} else next()
 		}
 	},
@@ -38,7 +34,8 @@ const routes = [
 		// mypage 같은 페이지들은 라우팅하기 전에 로그인 상태인지 체크하고 로그인이 안돼있으면, 강제로 로그인페이지로 리다이렉션 시킴.
 		beforeEnter: function (to, from, next) {
 			if (!store.state.user) {
-				router.push('/login')
+				router.push('/login').catch(() => {})
+				store.commit('setRouteTo', to)
 			} else next()
 		}
 	},
@@ -48,7 +45,8 @@ const routes = [
 		// mypage 같은 페이지들은 라우팅하기 전에 로그인 상태인지 체크하고 로그인이 안돼있으면, 강제로 로그인페이지로 리다이렉션 시킴.
 		beforeEnter: function (to, from, next) {
 			if (!store.state.user) {
-				router.push('/login')
+				router.push('/login').catch(() => {})
+				store.commit('setRouteTo', to)
 			} else next()
 		}
 	},

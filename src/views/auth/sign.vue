@@ -32,22 +32,6 @@ export default {
 			email: '',
 			password: ''
 		}
-	},
-	methods: {
-		// 아직 vuex 에 저장하는 로직은 미작성
-		async signInWithGoogle () {
-			const provider = new this.$firebase.auth.GoogleAuthProvider()
-			this.$firebase.auth().languageCode = 'ko'
-			await this.$firebase.auth().signInWithPopup(provider)
-		},
-		async signInEmail () {
-			const r = await this.$firebase.auth().createUserWithEmailAndPassword(this.email, this.password)
-			console.log(r)
-		},
-		async signOut () {
-			const r = await this.$firebase.auth().signOut()
-			console.log(r)
-		}
 	}
 }
 </script>

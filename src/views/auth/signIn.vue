@@ -14,7 +14,7 @@
         </span>
       </v-card-title>
       <v-card-actions>
-        <v-btn color="error" block>
+        <v-btn color="error" @click="signInWithGoogle" block>
           <v-icon>mdi-google</v-icon>
           <v-divider vertical class="mx-3"></v-divider>
           Google 계정으로 로그인
@@ -47,6 +47,40 @@
     </v-form>
   </v-card>
 </template>
+
+<script>
+export default {
+	data () {
+		return {
+			valid: ''
+		}
+	},
+	computed: {
+		routeTo () { // store.js에 저장돼있는 user 정보
+			return this.$store.state.routeTo
+		}
+	},
+	methods: {
+		async signInWithGoogle () {
+			const provider = new this.$firebase.auth.GoogleAuthProvider()
+			this.$firebase.auth().languageCode = 'ko'
+			try {
+				const sn = await this.$firebase.auth().signInWithPopup(provider)
+				this.$store.commit('setUser', sn.user)
+				this.$router.push(this.routeTo.path).catch(() => {})
+			} catch {
+				this.$router.push('/').catch(() => {})
+			} finally {
+				this.loading = false
+			}
+		},
+		async signInEmail () {
+			const r = await this.$firebase.auth().createUserWithEmailAndPassword(this.email, this.password)
+			console.log(r)
+		}
+	}
+}
+</script>
 
 <style scoped>
 
