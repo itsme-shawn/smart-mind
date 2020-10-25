@@ -4,7 +4,7 @@
   <v-container grid-list-md align-center justify-center style="margin-top: 140px;">
     <!-- 로고 이미지 -->
     <v-row wrap align="center" justify="center" no-gutters style="height: fit-content;" >
-      <v-col cols="4" md="auto" class="hidden-xs-only">
+      <v-col cols="4" md="auto" class="d-flex justify-center hidden-xs-only">
         <v-img src="../../assets/LOGO.png"></v-img>
 
       </v-col>
