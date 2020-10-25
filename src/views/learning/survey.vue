@@ -64,6 +64,7 @@ export default {
 			const temp = await this.$firebase.firestore().collection(this.collection).doc(this.document).get()
 			this.subject_kr = temp.data().title // survey_result 컬렉션에 subject의 한글이름을 저장하기 위함
 			// 사용자들의 survey 제출결과가 저장될 DB 주소 : survey_result > jungsin > [article_id] > [uid]
+			// survey_result 의 하위 문서(ex. jungsin) 를 만들어준다.
 			this.$firebase.firestore().collection('survey_result').doc(this.document).set({
 				count: ''
 			})

@@ -1,4 +1,4 @@
-<!-- 로그인 페이지 -->
+<!-- (구) 로그인 페이지 -->
 
 <template>
 <v-container fluid fill-height>
