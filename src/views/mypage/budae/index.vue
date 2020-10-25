@@ -126,47 +126,45 @@
 								<v-divider v-if="n !== steps" :key="n"></v-divider>
 							</template>
 						</v-stepper-header>
-
-						<v-row justify="center">
-
-						<v-expansion-panels popout>
-							<v-expansion-panel
-							v-for="(message, i) in messages"
-							:key="i"
-							hide-actions
-							>
-							<v-expansion-panel-header>
-								<v-row align="center" class="spacer" no-gutters>
-								<v-col
-									class="hidden-xs-only"
-									sm="5"
-									md="3"
-								>
-									<strong v-html="message.submitAuthor.displayName"></strong>
-									<span
-									v-if="message.total"
-									class="grey--text"
+						<v-stepper-items>
+						<v-stepper-content
+						v-for="n in steps"
+						:key="`${n}-content`"
+						:step="n">
+							<v-card>
+								<v-expansion-panels popout>
+									<v-expansion-panel
+									v-for="(message, i) in messages"
+									:key="i"
+									hide-actions
 									>
-									&nbsp;({{ message.total }})
-									</span>
-								</v-col>
-								<v-col class="text-no-wrap" cols="5" sm="3">
-									<strong v-html="message.subject_kr"></strong>
-								</v-col>
-								</v-row>
-							</v-expansion-panel-header>
-							<v-expansion-panel-content>
-								<v-divider></v-divider>
-								<v-card-text class="texts">질문</v-card-text>
-								<v-card-text class="qtexts"><span class="texts">1. </span> {{question.one}}</v-card-text>
-								<v-card-text class="qtexts"><span class="texts">2. </span> {{question.two}}</v-card-text><v-divider></v-divider>
-								<v-card-text class="texts">답변</v-card-text>
-								<v-card-text class="qtexts"><span class="texts">1. </span> {{message.a1}}</v-card-text>
-								<v-card-text class="qtexts"><span class="texts">2. </span> {{message.a2}}</v-card-text>
-							</v-expansion-panel-content>
-							</v-expansion-panel>
-						</v-expansion-panels>
-						</v-row>
+									<v-expansion-panel-header>
+										<v-row align="center" class="spacer" no-gutters>
+											<v-col class="hidden-xs-only" sm="5" md="3">
+												<strong v-html="message.submitAuthor.displayName"></strong>
+												<span v-if="message.total" class="grey--text" >
+													&nbsp;({{ message.total }})
+												</span>
+											</v-col>
+											<v-col class="text-no-wrap" cols="5" sm="3">
+												<strong v-html="message.subject_kr"></strong>
+											</v-col>
+										</v-row>
+									</v-expansion-panel-header>
+									<v-expansion-panel-content>
+										<v-divider></v-divider>
+										<v-card-text class="texts">질문</v-card-text>
+										<v-card-text class="qtexts"><span class="texts">1. </span> {{question.one}}</v-card-text>
+										<v-card-text class="qtexts"><span class="texts">2. </span> {{question.two}}</v-card-text><v-divider></v-divider>
+										<v-card-text class="texts">답변</v-card-text>
+										<v-card-text class="qtexts"><span class="texts">1. </span> {{message.a1}}</v-card-text>
+										<v-card-text class="qtexts"><span class="texts">2. </span> {{message.a2}}</v-card-text>
+									</v-expansion-panel-content>
+									</v-expansion-panel>
+								</v-expansion-panels>
+							</v-card>
+						</v-stepper-content>
+						</v-stepper-items>
 					</v-stepper>
 				</template>
 			</v-card>
@@ -291,6 +289,13 @@ export default {
 				})
 			})
 			// console.log(this.messages)
+		},
+		hello () {
+			// $refs.dialog.save(date)
+			this.$refs.dialog.save(this.date)
+			var ymdate = (this.date.split('-'))
+			ymdate = 'ym' + ymdate[0] + ymdate[1]
+			console.log(ymdate)
 		}
 	}
 }
