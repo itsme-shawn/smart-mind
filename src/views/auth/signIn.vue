@@ -40,7 +40,7 @@
 
       <v-card-actions>
         <v-spacer></v-spacer>
-        <v-btn color="primary">
+        <v-btn color="primary" @click='signInWithEmail'>
           로그인
         </v-btn>
       </v-card-actions>
@@ -82,9 +82,9 @@ export default {
 				this.loading = false
 			}
 		},
-		async signInEmail () {
-			const r = await this.$firebase.auth().createUserWithEmailAndPassword(this.email, this.password)
-			console.log(r)
+		async signInWithEmail () {
+			// const r = await this.$firebase.auth().createUserWithEmailAndPassword(this.email, this.password)
+			throw Error('이메일/비밀번호 로그인 기능은 현재 테스트 중입니다')
 		}
 	}
 }

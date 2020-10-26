@@ -103,11 +103,7 @@
                     <v-row style="height:30%">
                       <v-btn>참여하기</v-btn>
                     </v-row>
-                    
-                    
-                    
-                    
-                      
+
                   </v-card>
                 </v-expand-transition>
               </v-img>
@@ -154,7 +150,7 @@
                 class="white--text align-top"
                 height="225"
                 :src="require('../../../assets/yoon.jpg')"
-                
+
               >
                 <v-card-title><h5 style="color: black">9월 2주차 정신전력 교육</h5></v-card-title>
                 <v-expand-transition>
@@ -352,7 +348,6 @@
     </div>
     <v-divider></v-divider>
 
-    
     <template>
       <v-container fluid class="mb-10 px-10">
         <v-flex>
@@ -364,7 +359,7 @@
                 <template v-slot:default="{ hover }">
                   <v-card class="mx-auto mt-5" max-width="600">
                     <v-responsive :aspect-ratio="16 / 9">
-                      
+
                       <v-img
                         class="white--text align-top"
                         max-height="400"
@@ -372,7 +367,6 @@
                       >
                         <v-card-title>이번주의 정신전력 교육</v-card-title>
                       </v-img>
-                      
 
                       <v-card-subtitle class="pb-2">
                         10월 2주차
@@ -431,7 +425,7 @@
                         </v-card>
                       </template>
                     </v-hover>
-                    
+
                   </v-carousel-item>
                 </v-carousel>
               </template>
@@ -574,84 +568,83 @@
     </template>
     <v-divider></v-divider>
 
-
     <v-divider></v-divider>
   </v-container>
 </template>-->
 <script>
 export default {
-  data() {
-    return {
-      accountTitle: "부대명-(사용자에 따라 동적으로 수정해야 함)",
-      // sparkline (그래프 속성)
-      fill: false,
-      autoLineWidth: true,
-      lineCap: "round",
-      type: "trend",
-      // 이번달의 퀴즈 점수
-      monthlyScore: [100, 75, 100, 50],
-      items: [
-        {
-          title: "현재의 생일은??",
-          headline: "1117",
-          subtitle: "1117",
-        },
-        {
-          title: "지금 코딩하는 시간은 오후 10:29이다?",
-          headline: "O",
-          subtitle: "X",
-        },
-      ],
-      // 병사별 주간정신전력 현황 데이터
-      messages: [
-        {
-          avatar:
-            "https://lh3.googleusercontent.com/ogw/ADGmqu92A3GO29sPEXyfoYIwCWRHIbhljaLOVkAyePpz=s32-c-mo",
-          name: "현재",
-          title: "1주차 정신전력교육",
-          content1:
-            "4차 산업혁명 기술을 우리 군에 접목시키려면 우선 그에 따른 인프라가 구축되어야 한다. 대표적을 IoT기술의 경우 접목시킨다면 군에서 운용하는 여러 장비들에 네트워크를 부여할 수 있게 되는데, 대표적으로 위치 정보를 가져올 수 있고, 전투복에 접목된다면 병사의 신체 능력도 알 수 있어 부상이 있을 경우 빠른 대처가 가능해진다. 그러나 네트워크를 운용해야 하기 때문에 보안 문제 해결이 가장 시급한 과제인 것으로 보인다.",
-          content2:
-            "첨단 무기쳬계가 개발되고 도입이 되더라도 그에 맞는 개인의 전투기술과 작전계획, 전술, 전략의 수립이 중요하다. 강한 군대는 병력이 많거나 무기가 좋다고 강한 군대가 아니다. 균형있게 유무형의 전력을 갖추고 제대로 싸울 준비가 되어 있어야 강한 군대이다. ",
-        },
-        {
-          avatar: "",
-          name: "이현",
-          title: "1주차 정신전력교육",
-          content1: "지금까지 메인페이지 만드느라 수고해준 이현아 고맙다",
-          content2:
-            "앞으로 오늘 제외하고 개발할 시간은 3일밖에 없는데, 조금만 더 수고해줘",
-        },
-        {
-          avatar: "",
-          name: "현수",
-          title: "1주차 정신전력교육",
-          content1: "너도 힘들고 바쁠텐데 데이터베이스 다루느라 고생했어",
-          content2:
-            "마찬가지로 오늘 제외하고 개발할 시간은 3일밖에 없는데, 조금만 더 수고해줘",
-        },
-      ],
-      question: {
-        one:
-          "4차 산업혁명 기술을 우리 군에 접목하여 강한 군대를 만들 수 있는 현실성 있는 방안에 대해 말해보자",
-        two:
-          "첨단 무기체계가 개발되고 도입되는 상항에서도 장병 개인의 전투기술 연마와 정신적 대비태세가 중요한 이유에 대해 말해보자",
-      },
-      day: 0,
-      // 지난 정신전력 교육
-      overlay: false,
-      model: 0,
-      colors: ["secondary", "green", "yellow darken-2", "red", "orange"],
-      // 우리 역사 바로 알기
-      length: 4,
-      onboarding: 0,
-    };
-  },
-  computed: {
-    user() {
-      // Vuex state에 저장돼있는 user 정보
-      return this.$store.state.user;
-    },
-  },
-};
+	data () {
+		return {
+			accountTitle: '부대명-(사용자에 따라 동적으로 수정해야 함)',
+			// sparkline (그래프 속성)
+			fill: false,
+			autoLineWidth: true,
+			lineCap: 'round',
+			type: 'trend',
+			// 이번달의 퀴즈 점수
+			monthlyScore: [100, 75, 100, 50],
+			items: [
+				{
+					title: '현재의 생일은??',
+					headline: '1117',
+					subtitle: '1117'
+				},
+				{
+					title: '지금 코딩하는 시간은 오후 10:29이다?',
+					headline: 'O',
+					subtitle: 'X'
+				}
+			],
+			// 병사별 주간정신전력 현황 데이터
+			messages: [
+				{
+					avatar:
+            'https://lh3.googleusercontent.com/ogw/ADGmqu92A3GO29sPEXyfoYIwCWRHIbhljaLOVkAyePpz=s32-c-mo',
+					name: '현재',
+					title: '1주차 정신전력교육',
+					content1:
+            '4차 산업혁명 기술을 우리 군에 접목시키려면 우선 그에 따른 인프라가 구축되어야 한다. 대표적을 IoT기술의 경우 접목시킨다면 군에서 운용하는 여러 장비들에 네트워크를 부여할 수 있게 되는데, 대표적으로 위치 정보를 가져올 수 있고, 전투복에 접목된다면 병사의 신체 능력도 알 수 있어 부상이 있을 경우 빠른 대처가 가능해진다. 그러나 네트워크를 운용해야 하기 때문에 보안 문제 해결이 가장 시급한 과제인 것으로 보인다.',
+					content2:
+            '첨단 무기쳬계가 개발되고 도입이 되더라도 그에 맞는 개인의 전투기술과 작전계획, 전술, 전략의 수립이 중요하다. 강한 군대는 병력이 많거나 무기가 좋다고 강한 군대가 아니다. 균형있게 유무형의 전력을 갖추고 제대로 싸울 준비가 되어 있어야 강한 군대이다. '
+				},
+				{
+					avatar: '',
+					name: '이현',
+					title: '1주차 정신전력교육',
+					content1: '지금까지 메인페이지 만드느라 수고해준 이현아 고맙다',
+					content2:
+            '앞으로 오늘 제외하고 개발할 시간은 3일밖에 없는데, 조금만 더 수고해줘'
+				},
+				{
+					avatar: '',
+					name: '현수',
+					title: '1주차 정신전력교육',
+					content1: '너도 힘들고 바쁠텐데 데이터베이스 다루느라 고생했어',
+					content2:
+            '마찬가지로 오늘 제외하고 개발할 시간은 3일밖에 없는데, 조금만 더 수고해줘'
+				}
+			],
+			question: {
+				one:
+          '4차 산업혁명 기술을 우리 군에 접목하여 강한 군대를 만들 수 있는 현실성 있는 방안에 대해 말해보자',
+				two:
+          '첨단 무기체계가 개발되고 도입되는 상항에서도 장병 개인의 전투기술 연마와 정신적 대비태세가 중요한 이유에 대해 말해보자'
+			},
+			day: 0,
+			// 지난 정신전력 교육
+			overlay: false,
+			model: 0,
+			colors: ['secondary', 'green', 'yellow darken-2', 'red', 'orange'],
+			// 우리 역사 바로 알기
+			length: 4,
+			onboarding: 0
+		}
+	},
+	computed: {
+		user () {
+			// Vuex state에 저장돼있는 user 정보
+			return this.$store.state.user
+		}
+	}
+}
 </script>

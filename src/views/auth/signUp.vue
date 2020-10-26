@@ -101,7 +101,7 @@ export default {
 		},
 		createWithEmailAndPassword () {
 			if (!this.$refs.form.validate()) throw Error('입력 폼을 올바르게 작성해주세요.')
-			alert('ok')
+			throw Error ('이메일/비밀번호 로그인 기능은 현제 개발 테스트 중입니다 ')
 		}
 	}
 }

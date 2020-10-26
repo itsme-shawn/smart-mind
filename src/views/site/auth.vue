@@ -3,10 +3,10 @@
 <!-- appbar 우측상단 사용자 정보메뉴 표시 창 -->
 
 <template>
-	<v-progress-circular indeterminate v-if="loading"></v-progress-circular>
+	<v-progress-circular indeterminate v-if="loading "></v-progress-circular>
 
   <!-- 비로그인 상태일때 메뉴 표시 -->
-	<v-menu offset-y v-else-if="!$store.state.fireUser">
+	<v-menu offset-y v-else-if="!$store.state.user">
 		<template v-slot:activator="{on}">
 			<v-btn icon v-on="on" ><v-icon style="color:black">mdi-account</v-icon></v-btn>
 		</template>
@@ -24,7 +24,8 @@
 		<template v-slot:activator="{on}">
 			<v-btn icon v-on="on">
 				<v-avatar size="30">
-					<v-img :src="$store.state.user.photoURL"></v-img>
+          <v-progress-circular indeterminate v-if="!$store.state.user.photoURL "></v-progress-circular>
+					<v-img v-else :src="$store.state.user.photoURL"></v-img>
 					<!-- store/index.js 에 저장된 값 -->
 				</v-avatar>
 			</v-btn>

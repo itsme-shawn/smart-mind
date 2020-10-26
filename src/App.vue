@@ -19,11 +19,6 @@
       <site-menu :items="site.menu"></site-menu>
     </v-navigation-drawer>
     <v-main >
-      <!--
-			<v-btn @click="write">write test</v-btn>
-			<v-btn @click="read">read test</v-btn>
-			<v-btn @click="readOnce">read once test</v-btn>
-			-->
       <router-view />
 
     </v-main>
