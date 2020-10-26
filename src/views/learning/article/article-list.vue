@@ -103,7 +103,8 @@ export default {
 			const diff = current.diff(past, 'days')
 			if (diff <= 3) return true
             else return false
-        }
+        },
+        checkComplete
 	}
 }
 </script>

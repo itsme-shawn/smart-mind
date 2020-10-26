@@ -4,17 +4,22 @@
 
 <template >
   <v-container class="mt-5 mx-auto pa-5">
-    <v-divider/>
-    <br/>
-    <h2 style="color:rgb(21, 179, 137)">의견 제출</h2>
-    <h5 style="color:rgb(21, 179, 137)">자신의 생각을 작성해보세요</h5>
-    <br/>
-    <h3>1. {{q1}}</h3>
-    <v-textarea v-model="answer.a1" class="mt-3" auto-grow solo clearable clear-icon="mdi-close-circle" label="작성해주세요" ></v-textarea>
-    <h3>2. {{q2}}</h3>
-    <v-textarea v-model="answer.a2" class="mt-3" auto-grow solo clearable clear-icon="mdi-close-circle" label="작성해주세요" ></v-textarea>
-    <div align="right">
-    <v-btn  @click="submitOwn" dark rounded color="rgb(21, 179, 137)" large>제출</v-btn>
+    <div v-if="document === 'jungsin'">
+        <v-divider/>
+        <br/>
+        <h2 style="color:rgb(21, 179, 137)">의견 제출</h2>
+        <h5 style="color:rgb(21, 179, 137)">자신의 생각을 작성해보세요</h5>
+        <br/>
+        <h3>1. {{q1}}</h3>
+        <v-textarea v-model="answer.a1" class="mt-3" auto-grow solo clearable clear-icon="mdi-close-circle" label="작성해주세요" ></v-textarea>
+        <h3>2. {{q2}}</h3>
+        <v-textarea v-model="answer.a2" class="mt-3" auto-grow solo clearable clear-icon="mdi-close-circle" label="작성해주세요" ></v-textarea>
+        <div align="right">
+        <v-btn  @click="submitOwn" dark rounded color="rgb(21, 179, 137)" large>제출</v-btn>
+        </div>
+    </div>
+    <div align="right" v-else-if="document === 'daily_history'">
+        <v-btn  @click="submitOwn" dark rounded color="rgb(21, 179, 137)" large>수강 완료</v-btn>
     </div>
   </v-container>
 
@@ -30,7 +35,8 @@ export default {
 				a1: '',
 				a2: ''
 			},
-			ref: '', // firestore 주소
+			ref: '', // firestore 주소 (survey_result)
+            userRef: '', // user 관련 firestore 주소
 			exists: false,
 			loading: false,
 			subject_kr: ''
@@ -78,9 +84,11 @@ export default {
 				}
 			})
 		},
+        // DB 에 수강한 데이터를 저장하는 함수 !
 		async submitOwn () { // DB에 a1,a2(병사들의 의견)을 save
 			// console.log(this.a1, this.a2)
 			if (!this.user) throw Error('로그인 후 제출 가능합니다') // 권한 확인
+           // this.userRef = this.$firebase.firestore().collection('users').doc(this.user.uid).collection('complete_contents').doc(this.item.article_id) 미완성
 			const answer = {
 				a1: this.answer.a1,
 				a2: this.answer.a2,
