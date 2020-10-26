@@ -283,7 +283,7 @@ export default {
 			console.log('hello')
 		},
 		async fetch () {
-			this.ref = this.$firebase.firestore().collection('survey_result').doc('jungsin').collection('1603020093204')
+			this.ref = this.$firebase.firestore().collection('survey_result').doc('jungsin').collection('1603635065119')
 			await this.ref.get().then((querySnapshot) => {
 				querySnapshot.forEach((doc) => {
 					// doc.data() is never undefined for query doc snapshots

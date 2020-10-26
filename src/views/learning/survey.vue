@@ -2,7 +2,7 @@
   @/components/display-content.vue 의 자식 컴포넌트
 -->
 
-<template>
+<template >
   <v-container class="mt-5 mx-auto pa-5">
     <v-divider/>
     <br/>
