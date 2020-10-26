@@ -25,6 +25,7 @@
     </v-dialog>
   </div>
 </template>
+
 <script>
 import { head, last } from 'lodash'
 import DisplayTime from '@/components/display-time' // @ : src/
