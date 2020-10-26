@@ -62,7 +62,7 @@ $ yarn start or npm run start
  
 ## 팀 정보 (Team Information)
 - 최현수 (chs98105@gmail.com),  Github Id: [Keep-Going-HyeonSoo](https://github.com/Keep-Going-HyeonSoo)
-- 김현재
+- 김현재 (peterhyunjae@naver.com), Github Id: [itsnowkim](https://github.com/itsnowkim)
 - 최이현 (chyh0182@naver.com), Github Id: [Choieeh](https://github.com/Choieeh)
 
 
