@@ -1,17 +1,21 @@
 <template>
-  <v-container fluid v-if="items.length" >
+  <v-container fluid v-if="items.length" class="pa-5" >
     <template v-for="(item, i) in items">
-      <v-card :key="item.id" :class="i < items.length - 1 ? 'mb-4' : ''" @click="openDialog(item)">
+      <v-card :key="item.id" :class="i < items.length - 1 ? 'mb-5' : ''" @click="openDialog(item)">
         <v-subheader>
 
-          <v-chip color="info" label small class="mr-4">수강 전</v-chip>
-          <display-time :time="item.createdAt"></display-time>
+          <v-chip color="info" label small class="mr-4">수강 전</v-chip> <!-- 추후 사용자의 수강상태에 따라서 동적으로 수강 전/ 수강 완료 로 핸들링해줄 예정 -->
+          <v-chip color="error" label small class="mr-4">NEW</v-chip> <!-- 현재 시간과 비교해서 3일 전 게시글까지만 핸들링해줄 예정( 아직 미구현 ) -->
+          
           <v-spacer/>
         </v-subheader>
-        <v-card-title>
+        <v-card-title >
           {{item.title}}
         </v-card-title>
-
+        <v-subheader>
+        <v-spacer/>
+        <display-time :time="item.createdAt"></display-time>
+        </v-subheader>
       </v-card>
       <v-dialog :key="i" v-if="selectedItem" v-model="dialog" max-width="800"> <!-- selectedItem 이 들어올 때만 dialog 가 렌더링돼야함 (안 그러면 오류) -->
         <display-content :document="document" :collection="collection" :item="selectedItem" @close="dialog=false"></display-content> <!-- components/display-content.vue : 게시물 내용 표시 컴포넌트 -->
@@ -65,7 +69,7 @@ export default {
 		if (this.unsubscribe) this.unsubscribe()
 	},
 	methods: {
-		subscribe (arrow) {
+		subscribe () {
 			if (this.unsubscribe) this.unsubscribe()
 			this.ref = this.$firebase.firestore().collection(this.collection).doc(this.document).collection('articles').orderBy(this.order, this.sort)
 			this.unsubscribe = this.ref.onSnapshot(sn => {
@@ -84,6 +88,7 @@ export default {
 					item.updatedAt = item.updatedAt.toDate() // 마찬가지
 					return item
 				})
+				//console.log('this.items', this.items)
 			})
 		},
 		openDialog (item) {
