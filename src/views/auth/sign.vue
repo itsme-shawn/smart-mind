@@ -18,8 +18,8 @@
     <v-flex style="max-width:600px">
       <v-row align="center" justify="center" style="max-width:600px">
       <!-- 로그인 폼과 회원가입 폼 -->
-        <sign-in v-if="type"></sign-in>
-        <sign-up v-else></sign-up>
+        <sign-in v-if="type" @changeType = "type =! type"></sign-in>
+        <sign-up v-else @changeType = "type =! type"></sign-up>
       </v-row>
     
     </v-flex>
