@@ -36,7 +36,7 @@ export default {
 				a2: ''
 			},
 			ref: '', // firestore 주소 (survey_result)
-            userRef: '', // user 관련 firestore 주소
+			userRef: '', // user 관련 firestore 주소
 			exists: false,
 			loading: false,
 			subject_kr: ''
@@ -84,11 +84,12 @@ export default {
 				}
 			})
 		},
-        // DB 에 수강한 데이터를 저장하는 함수 !
+		// DB 에 수강한 데이터를 저장하는 함수 !
 		async submitOwn () { // DB에 a1,a2(병사들의 의견)을 save
 			// console.log(this.a1, this.a2)
 			if (!this.user) throw Error('로그인 후 제출 가능합니다') // 권한 확인
-           // this.userRef = this.$firebase.firestore().collection('users').doc(this.user.uid).collection('complete_contents').doc(this.item.article_id) 미완성
+			this.userRef = this.$firebase.firestore().collection('users').doc(this.user.uid).collection(this.document).doc(this.item.article_id)
+
 			const answer = {
 				a1: this.answer.a1,
 				a2: this.answer.a2,
@@ -101,7 +102,11 @@ export default {
 					answer.subject_en = this.document
 					answer.subject_kr = this.subject_kr
 					answer.submitAuthor = this.user // submit 한 user 정보
+					answer.article_id = this.item.article_id
+					answer.comment = ''
+					answer.complete = true
 					await this.ref.set(answer)
+					await this.userRef.set(answer)
 				} else {
 					await this.ref.update(answer)
 				}
