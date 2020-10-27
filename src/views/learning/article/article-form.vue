@@ -104,12 +104,10 @@ export default {
 			try {
 				const now = new Date()
 				const content = this.$refs.editor.invoke('getHtml') // 에디터에서 작성한 글 (html 파일로 변환)
-				const sn = await this.$firebase.storage().ref().child(this.collection).child(this.document).child(id + '.html').putString(content)
-				const url = await sn.ref.getDownloadURL()
 				const doc = {
 					title: this.form.title,
 					updatedAt: now,
-					url: url,
+					url: '',
 					question: {
 						Q1: this.form.Q1,
 						Q2: this.form.Q2
@@ -122,9 +120,15 @@ export default {
 					doc.article_id = now.getTime().toString() // 작성시간을 id로 사용 ( computed 에 있는 articleId 와는 다름! )
 					doc.createdAt = now
 					doc.uid = this.user.uid // 수정되면 안되는 정보이므로 일부러 새로 작성할 때만 정보 생성
+					const sn = await this.$firebase.storage().ref().child(this.collection).child(this.document).child(doc.article_id + '.html').putString(content)
+					const url = await sn.ref.getDownloadURL()
+					doc.url = url
 					batch.set(this.ref.collection('articles').doc(doc.article_id), doc)
 					batch.update(this.ref, { count: this.$firebase.firestore.FieldValue.increment(1) })
 				} else { // 기존 게시물을 수정할 때
+					const sn = await this.$firebase.storage().ref().child(this.collection).child(this.document).child(doc.article_id + '.html').putString(content)
+					const url = await sn.ref.getDownloadURL()
+					doc.url = url
 					batch.update(this.ref.collection('articles').doc(this.articleId), doc)
 				}
 				await batch.commit()
