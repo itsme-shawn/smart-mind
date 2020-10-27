@@ -186,8 +186,9 @@
                     <div style="color: black">
                       <h1>{{title[i]}}</h1>
                       <br />
-                      <h2 class="subheading">{{intext[i]}}</h2>
+                      <h2 class="subheading"><span v-html=intext[i]></span></h2>
                     </div>
+                    <br/>
                     <v-btn>살펴보기</v-btn>
                   </v-overlay>
                 </v-sheet>
@@ -319,11 +320,11 @@ export default {
         "행주대첩 바로알기"
       ],
       intext: [
-        "물어보면 바로 답하지 못했던 독도가 우리의 영토인 이유와 그 근거에 대해 알아보자",
-        "안창호가 했던 업적과 <br> 그의 정신에 대해 알아보자",
-        "6.25전쟁이 남침인지, 북침인지 헷갈리지 말고 <br> 전쟁에 대해 제대로 알아보자",
-        "3.1만세운동이 일어났던 이유와 <br> 그 배경에 대해서 알아보자",
-        "행주대첩이 유명해진 이유와 <br> 장수인 권율에 대해서 알아보자"
+        "물어보면 바로 답하지 못했던 독도가 우리의 영토인 이유와 <br/>그 근거에 대해 알아보자<br/>",
+        "안창호가 했던 업적과 <br> 그의 정신에 대해 알아보자<br/>",
+        "6.25전쟁이 남침인지, 북침인지 헷갈리지 말고 <br> 전쟁에 대해 제대로 알아보자<br/>",
+        "3.1만세운동이 일어났던 이유와 <br> 그 배경에 대해서 알아보자<br/>",
+        "행주대첩이 유명해진 이유와 <br> 장수인 권율에 대해서 알아보자<br/>"
       ],
       slides: [require('../assets/dokdo.jpg'),require('../assets/ahnchang.jpg'), require('../assets/625.jpg'), require('../assets/31.jpg'), require('../assets/hengju.jpg')],
       task: [
