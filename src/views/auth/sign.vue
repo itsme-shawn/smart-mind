@@ -11,7 +11,7 @@
         <v-img
         width="250"
         max-width="400" 
-        src="../../assets/LOGO2.png"></v-img>
+        src="../../assets/LOGO3.png"></v-img>
         
       </v-row>
     </v-flex>
