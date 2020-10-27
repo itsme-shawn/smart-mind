@@ -155,8 +155,8 @@
 									<v-expansion-panel-content>
 										<v-divider></v-divider>
 										<v-card-text class="texts">질문</v-card-text>
-										<v-card-text class="qtexts"><span class="texts">1. </span> {{question.one}}</v-card-text>
-										<v-card-text class="qtexts"><span class="texts">2. </span> {{question.two}}</v-card-text><v-divider></v-divider>
+										<v-card-text class="qtexts"><span class="texts">1. </span> {{Q1}}</v-card-text>
+										<v-card-text class="qtexts"><span class="texts">2. </span> {{Q2}}</v-card-text><v-divider></v-divider>
 										<v-card-text class="texts">답변</v-card-text>
 										<v-card-text class="qtexts"><span class="texts">1. </span> {{message.a1}}</v-card-text>
 										<v-card-text class="qtexts"><span class="texts">2. </span> {{message.a2}}</v-card-text>
@@ -225,7 +225,7 @@ export default {
 
 			},
 			select: '현수',
-			
+
 			ticksLables: [
 				'1주차',
 				'2주차',
@@ -259,10 +259,8 @@ export default {
         }
         */
 			],
-			question: {
-				one: '4차 산업혁명 기술을 우리 군에 접목하여 강한 군대를 만들 수 있는 현실성 있는 방안에 대해 말해보자',
-				two: '첨단 무기체계가 개발되고 도입되는 상항에서도 장병 개인의 전투기술 연마와 정신적 대비태세가 중요한 이유에 대해 말해보자'
-			},
+			Q1: '',
+			Q2: '',
 			ref: null
 		}
 	},
@@ -273,7 +271,7 @@ export default {
 		user () { // Vuex state에 저장돼있는 user 정보
 			return this.$store.state.user
 		},
-		selectS : function() {
+		selectS: function () {
 			return this.monthlyScore.select
 		}
 	},
@@ -283,7 +281,16 @@ export default {
 			console.log('hello')
 		},
 		async fetch () {
-			this.ref = this.$firebase.firestore().collection('survey_result').doc('jungsin').collection('1603635065119')
+			this.$firebase.firestore().collection('learning').doc('jungsin').collection('articles').doc('1603020093204').get()
+				.then(doc => {
+					 console.log('doc.data()', doc.data())
+					 this.Q1 = doc.data().question.Q1
+           this.Q2 = doc.data().question.Q2
+           console.log(this.Q1, this.Q2)
+				}
+
+				)
+			this.ref = this.$firebase.firestore().collection('survey_result').doc('jungsin').collection('1603020093204')
 			await this.ref.get().then((querySnapshot) => {
 				querySnapshot.forEach((doc) => {
 					// doc.data() is never undefined for query doc snapshots
@@ -299,8 +306,8 @@ export default {
 			var ymdate = (this.date.split('-'))
 			ymdate = 'ym' + ymdate[0] + ymdate[1]
 			console.log(ymdate)
-		},
-		
+		}
+
 	}
 }
 </script>

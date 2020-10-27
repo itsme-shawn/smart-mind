@@ -4,9 +4,9 @@
       <v-card :key="item.id" :class="i < items.length - 1 ? 'mb-5' : ''" @click="openDialog(item)">
         <v-subheader>
 
-          <div v-if="user">
-            <v-chip color="info" label small class="mr-4" v-if="!items.isComplete">수강 전</v-chip> <!-- 추후 사용자의 수강상태에 따라서 동적으로 수강 전/ 수강 완료 로 핸들링해줄 예정 -->
-            <v-chip color="success" label small class="mr-4" v-else >수강 완료</v-chip>
+          <div>
+            <v-chip color="success" label small class="mr-4" v-if="item.isComplete">수강 완료</v-chip> <!-- 추후 사용자의 수강상태에 따라서 동적으로 수강 전/ 수강 완료 로 핸들링해줄 예정 -->
+            <v-chip color="info" label small class="mr-4" v-else >수강 전</v-chip>
             <v-chip color="error" label small class="mr-4" v-if="item.isNew">NEW</v-chip> <!-- 현재 시간과 비교해서 3일 전 게시글까지만 핸들링해줄 예정-->
           </div>
 
@@ -82,6 +82,7 @@ export default {
 				}
 				this.docs = sn.docs
 				// console.log('sn.docs', sn.docs)
+
 				this.items = sn.docs.map((doc, idx) => {
 					// console.log('doc', doc)
 					// console.log('idx', idx)
@@ -94,11 +95,9 @@ export default {
 					this.checkComplete(item.id).then((result) => {
 						item.isComplete = result
 					})
-					// this.$set(this.items, idx, item)
-					// console.log('this', this.items)
+
 					return item
 				})
-
 				// console.log('this.items', this.items)
 			})
 		},
