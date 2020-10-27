@@ -104,7 +104,6 @@ export default {
 					answer.submitAuthor = this.user // submit 한 user 정보
 					answer.article_id = this.item.article_id
 					answer.comment = ''
-					answer.complete = true
 					await this.ref.set(answer)
 					await this.userRef.set(answer)
 				} else {
