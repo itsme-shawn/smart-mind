@@ -56,21 +56,31 @@
               >
                 <v-card-title><h3>이번주의 정신전력 교육</h3></v-card-title>
                 <v-expand-transition>
+                  
                   <div
                     v-if="hover"
-                    class="d-flex transition-fast-in-fast-out v-card--reveal white--text"
+                    class=" transition-fast-in-fast-out v-card--reveal white--text"
                     style="
                       height: 100%;
                       background-color: rgba(70, 70, 70, 0.5);
+                      
                     "
                   >
-                    <div>
+                  
+                    <v-row align="center" justify="center" xs12 class="pt-14">
                       <h2>이봉창 의사와 '애국헌신'</h2>
-                    </div>
+                    
                     <hr/>
                     <br />
+                    <br/>
+                    <br/>
+                    </v-row>
+                    <v-row align="center" justify="center" xs12>
                     <v-btn>참여하기</v-btn>
+                    </v-row>
+                  
                   </div>
+                  
                 </v-expand-transition>
               </v-img>
             </v-card>
@@ -91,17 +101,22 @@
                 <v-expand-transition>
                   <v-card
                     v-if="hover"
-                    class="d-flex transition-fast-in-fast-out v-card--reveal white--text"
+                    class="transition-fast-in-fast-out v-card--reveal white--text"
                     style="
                       height: 100%;
                       background-color: rgba(70, 70, 70, 0.5);
                     "
                   >
-                    <v-row style="height:30%">
-                    <h3 style="width:100%"> '명량대첩' 불가능을 가능하게 하다</h3>
+                    <v-row align="center" justify="center" xs12 class="pt-7">
+                      <h2>'명량대첩' 불가능을 가능하게 하다</h2>
+                    
+                    <hr/>
+                    <br />
+                    <br/>
+                    <br/>
                     </v-row>
-                    <v-row style="height:30%">
-                      <v-btn>참여하기</v-btn>
+                    <v-row align="center" justify="center" xs12>
+                    <v-btn>참여하기</v-btn>
                     </v-row>
 
                   </v-card>
@@ -123,17 +138,23 @@
                 <v-expand-transition>
                   <div
                     v-if="hover"
-                    class="d-flex transition-fast-in-fast-out v-card--reveal white--text"
+                    class="transition-fast-in-fast-out v-card--reveal white--text"
                     style="
                       height: 100%;
                       background-color: rgba(70, 70, 70, 0.5);
                     "
                   >
-                    <div>
+                    <v-row align="center" justify="center" xs12 class="pt-7">
                       <h2>동료애를 배우다 '핵소 고지'</h2>
-                    </div>
+                    
+                    <hr/>
                     <br />
+                    <br/>
+                    <br/>
+                    </v-row>
+                    <v-row align="center" justify="center" xs12>
                     <v-btn>참여하기</v-btn>
+                    </v-row>
                   </div>
                 </v-expand-transition>
               </v-img>
@@ -156,17 +177,23 @@
                 <v-expand-transition>
                   <div
                     v-if="hover"
-                    class="d-flex transition-fast-in-fast-out v-card--reveal white--text"
+                    class="transition-fast-in-fast-out v-card--reveal white--text"
                     style="
                       height: 100%;
                       background-color: rgba(70, 70, 70, 0.5);
                     "
                   >
-                    <div>
+                    <v-row align="center" justify="center" xs12 class="pt-7">
                       <h2>윤동주의 시에서 배우는 정신</h2>
-                    </div>
+                    
+                    <hr/>
                     <br />
+                    <br/>
+                    <br/>
+                    </v-row>
+                    <v-row align="center" justify="center" xs12>
                     <v-btn>참여하기</v-btn>
+                    </v-row>
                   </div>
                 </v-expand-transition>
               </v-img>
@@ -186,17 +213,23 @@
                 <v-expand-transition>
                   <div
                     v-if="hover"
-                    class="d-flex transition-fast-in-fast-out v-card--reveal white--text"
+                    class="transition-fast-in-fast-out v-card--reveal white--text"
                     style="
                       height: 100%;
                       background-color: rgba(70, 70, 70, 0.5);
                     "
                   >
-                    <div>
+                    <v-row align="center" justify="center" xs12 class="pt-7">
                       <h2>징기스칸의 전술은?</h2>
-                    </div>
+                    
+                    <hr/>
                     <br />
+                    <br/>
+                    <br/>
+                    </v-row>
+                    <v-row align="center" justify="center" xs12>
                     <v-btn>참여하기</v-btn>
+                    </v-row>
                   </div>
                 </v-expand-transition>
               </v-img>
@@ -215,15 +248,15 @@
                   <template>
                     <v-list-item-content>
                       <v-list-item-title
-                        v-text="item.title"
+                        v-html="item.title"
                       ></v-list-item-title>
 
                       <v-list-item-subtitle class="text--primary"
-                        >정답 : {{ item.headline }}</v-list-item-subtitle
+                        >답변 : <span v-html="item.headline"></span></v-list-item-subtitle
                       >
 
                       <v-list-item-subtitle
-                        >답변 : {{ item.subtitle }}</v-list-item-subtitle
+                        >정답 : <span v-html=" item.subtitle"></span></v-list-item-subtitle
                       >
                     </v-list-item-content>
 
@@ -585,14 +618,14 @@ export default {
 			monthlyScore: [100, 75, 100, 50],
 			items: [
 				{
-					title: '현재의 생일은??',
-					headline: '1117',
-					subtitle: '1117'
+					title: '1. 지능형 스마트 비행단이란?',
+					headline: '최신 기술이 접목된 비행기',
+					subtitle: '인공지능, 빅데이터, 증강·가상현실(AR·VR), 사물인터넷(IoT) 등 4차 산업혁명 신기술이 적용된 스마트 부대를 구축하여<br> 모든 부대 현황과 작전상황을 실시간으로 가시화하고 부대운영과 관련된 각 기능을 융합하여 신속하고 효율적으로 작전을 수행하는 비행'
 				},
 				{
-					title: '지금 코딩하는 시간은 오후 10:29이다?',
-					headline: 'O',
-					subtitle: 'X'
+					title: '2. 첨단 무기체계가 도입되는 상황에서도 장병 개인의 정신적 대비태세가 중요한 이유에 대해 말해보자.',
+					headline: '장병 개개인의 집중력과 정신전력이 가장 중요하기 때문이다.',
+					subtitle: '북한의 현실적인 군사적 위협과 코로나 19라는 신종 감염병의 위협 속에서 확고한 대비태세를 유지하고 <br>실전 같은 교육훈련에 매진하는 동시에 미래를 대비한 무기체계를 개발하고 이에 맞는 교리와 계획을 수립해야 한다'
 				}
 			],
 			// 병사별 주간정신전력 현황 데이터
