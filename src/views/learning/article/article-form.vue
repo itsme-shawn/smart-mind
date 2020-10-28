@@ -22,13 +22,13 @@
           <v-container fluid>
             <v-row align="center">
               <v-col class="d-flex" cols="2" sm="2">
-                <v-select v-model="form.year" :items="year" label="년"></v-select>
+                <v-select v-model="form.year" :items="yearList" label="년"></v-select>
               </v-col>
               <v-col class="d-flex" cols="2" sm="2">
-                <v-select v-model="form.month" :items="month" label="월"></v-select>
+                <v-select v-model="form.month" :items="monthList" label="월"></v-select>
               </v-col>
               <v-col class="d-flex" cols="2" sm="2">
-                <v-select v-model="form.week" :items="week" label="주차"></v-select>
+                <v-select v-model="form.week" :items="weekList" label="주차"></v-select>
               </v-col>
             </v-row>
           </v-container>
@@ -62,9 +62,9 @@ export default {
 	props: ['collection', 'document', 'action'],
 	data () {
 		return {
-      year: ['2020년', '2021년'],
-			month: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
-			week: ['1주차', '2주차', '3주차', '4주차', '5주차'],
+            yearList: ['2020년', '2021년'],
+			monthList: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+			weekList: ['1주차', '2주차', '3주차', '4주차', '5주차'],
 			editor_options: {
 				language: 'ko',
 				hideModeSwitch: true
@@ -75,8 +75,8 @@ export default {
 				Q1: '',
 				Q2: '',
 				month: '',
-        week: '',
-        year: ''
+                week: '',
+                year: ''
 			},
 			exists: false,
 			loading: false,

@@ -89,44 +89,25 @@
 			<v-card color="transparent">
 				<v-card-title class="align-top mb-4">병사별 정신전력 교육 현황</v-card-title>
 				<!--데이터가 들어가는 리스트 부분 시작, 데이터가 주차가 안되어 없다면 v-if로 div만들어서 아직 자료가 없다고 표시하게 만들 예정-->
-				<template>
-					<v-stepper non-linear v-model="e1">
-						<!--월 선택 버튼-->
-						<v-dialog ref="dialog" v-model="modal"
-							:return-value.sync="date" persistent width="290px">
-							<template v-slot:activator="{ on, attrs }">
-							<v-text-field
-								v-model="date"
-								label="월 선택"
-								prepend-icon="mdi-calendar"
-								readonly
-								v-bind="attrs"
-								v-on="on"
-							></v-text-field>
-							</template>
-							<v-date-picker v-model="date" type="month" scrollable>
-							<v-spacer></v-spacer>
-							<v-btn text color="primary"
-								@click="modal = false">
-								취소
-							</v-btn>
-							<v-btn text color="primary"
-								@click="selectYearAndMonth">
-								확인
-							</v-btn>
-							</v-date-picker>
-						</v-dialog>
-						<!--월 선택 버튼-->
-						<v-stepper-header>
-							<template v-for="n in steps">
-								<v-stepper-step editable :key="`${n}-step`" :step="n" @click="selectWeek(n)">
-									{{n}}주차
-								</v-stepper-step>
-								<v-divider v-if="n !== steps" :key="n"></v-divider>
-							</template>
-						</v-stepper-header>
-						<v-stepper-items>
-						<v-stepper-content v-for="n in steps" :key="`${n}-content`" :step="n">
+
+        <!-- 날짜 선택 부분 -->
+				<v-container fluid>
+            <v-form v-model="valid" ref="form" >
+            <v-row align="center">
+                <v-col class="d-flex" cols="2" sm="2">
+                  <v-select v-model="year" :items="yearList" label="년" required :rules="[rule.required]"></v-select>
+                </v-col>
+                <v-col class="d-flex" cols="2" sm="2">
+                  <v-select v-model="month" :items="monthList" label="월" required :rules="[rule.required]"></v-select>
+                </v-col>
+                <v-col class="d-flex" cols="2" sm="2">
+                  <v-select v-model="week" :items="weekList" label="주차" required :rules="[rule.required]"></v-select>
+                </v-col>
+              </v-row>
+              <v-btn :disabled="!valid" color="success" @click="selectYearMonthWeek">조회</v-btn>
+            </v-form>
+          </v-container>
+        <!-- 날짜 선택 부분 -->
 							<v-card>
 								<v-expansion-panels popout>
 									<v-expansion-panel
@@ -145,7 +126,7 @@
 												<strong >{{msg.submitAuthor.displayName}}</strong>
                       </v-col>
 											<v-col class="text-no-wrap" cols="5" sm="3">
-												<strong >{{msg.subject_kr}} {{n}}주차</strong> <!-- 나중에 각 주차별 타이틀로 바꿔줄것 -->
+												<strong >{{msg.subject_kr}} </strong> <!-- 나중에 각 주차별 타이틀로 바꿔줄것 -->
 											</v-col>
 										</v-row>
 									</v-expansion-panel-header>
@@ -161,10 +142,7 @@
 									</v-expansion-panel>
 								</v-expansion-panels>
 							</v-card>
-						</v-stepper-content>
-						</v-stepper-items>
-					</v-stepper>
-				</template>
+
 			</v-card>
 		</v-container>
 	</v-container>
@@ -177,9 +155,13 @@ Vue.use(Chartkick.use(Chart))
 export default {
 	data () {
 		return {
-			// el - 초기값은 1주차, steps는 최대 5주차까지.
-			e1: 1,
-			steps: 5,
+      yearList: ['2020년', '2021년'],
+			monthList: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+			weekList: ['1주차', '2주차', '3주차', '4주차', '5주차'],
+      valid: false,
+      rule : { required: v => !!v || '필수 항목입니다.' },
+      selectedArticleId: '',
+      selectedArticleTitle: '',
 			// 월 선택 텝
 			date: new Date().toISOString().substr(0, 7),
 			menu: false,
@@ -240,20 +222,21 @@ export default {
 		}
 	},
 	created () {
-		this.fetch()
+		// this.fetch()
 	},
 	watch: {
-    /*
+		/*
 		year () {
 			this.fetch()
 		},
 		month () {
 			this.fetch()
     },
-    */
+    
 		week () {
 			this.fetch()
 		}
+    */
 	},
 	computed: {
 		user () { // Vuex state에 저장돼있는 user 정보
@@ -272,23 +255,28 @@ export default {
 			this.msgs.splice(0) // fetch 전 배열 비우기
 
 			// 관리자가 선택한 year,month,week 을 바탕으로 해당 articles의 id 값을 가져오기
-      // console.log(this.year, this.month, this.week)
+			// console.log('fetch',this.year, this.month, this.week)
+      await this.$firebase.firestore().collection('learning').doc('jungsin').collection('articles')
+      .where("year", "==", this.year).where("month", "==", this.month).where("week", "==", this.week)
+      .get()
+      .then((querySnapshot) => {
+          querySnapshot.forEach((doc) => {
+              // console.log(doc.id, " => ", doc.data());
+              this.selectedArticleId = doc.data().article_id
+              this.selectedArticleTitle = doc.data().title
+              console.log('id',this.selectedArticleId)
+              // id 값이 없을 때 다음으로 그냥 넘어가므로 없을때의 핸들링필요함
+              
+          });
+      })
+      .catch(function(error) {
+          console.log("Error getting documents: ", error);
+      });
 
-      // 중첩쿼리문으로 작성 month week
-			this.$firebase.firestore().collection('learning').doc('jungsin').collection('articles')
-				.where('year', '==', this.year)
-				.then(function (querySnapshot) {
-					querySnapshot.forEach(function (doc) {
-						// doc.data() is never undefined for query doc snapshots
-						console.log(doc.id, ' => ', doc.data())
-					})
-				})
-				.catch(function (error) {
-					console.log('Error getting documents: ', error)
-				})
-
+        
+        
 			// question 받아오기
-			this.$firebase.firestore().collection('learning').doc('jungsin').collection('articles').doc('1603020093204').get()
+			await this.$firebase.firestore().collection('learning').doc('jungsin').collection('articles').doc(this.selectedArticleId).get()
 				.then(doc => {
 					// console.log('doc.data()', doc.data())
 					this.Q1 = doc.data().question.Q1
@@ -299,7 +287,7 @@ export default {
 				)
 
 			// 사용자가 survey 한 데이터 받아오기
-			this.ref = this.$firebase.firestore().collection('survey_result').doc('jungsin').collection('1603020093204')
+			this.ref = this.$firebase.firestore().collection('survey_result').doc('jungsin').collection(this.selectedArticleId)
 			await this.ref.get().then((querySnapshot) => {
 				querySnapshot.forEach((doc) => {
 					// doc.data() is never undefined for query doc snapshots
@@ -309,19 +297,11 @@ export default {
 			})
 			// console.log(this.msgs)
 		},
-		selectYearAndMonth () {
-			// $refs.dialog.save(date)
-			this.$refs.dialog.save(this.date)
-			var ymdate = this.date.split('-')
-			this.year = ymdate[0] + '년' // 2020년 (string)
-			this.month = ymdate[1] + '월' // 10월
-			ymdate = `${ymdate[0]}-${ymdate[1]}` // '2020-10'
-			console.log('ty,tm', this.year, this.month)
-		},
-		selectWeek (n) {
-			this.week = n + '주차'
-			console.log('week', this.week) // 3주차
-		}
+    selectYearMonthWeek () { // form 에서 조회 버튼을 눌렀을 때 DB에서 해당 survey 데이터를 fetch 를 시킴
+      // console.log('YMW',this.year,this.month,this.week)
+      this.msgs.splice(0) // fetch 전 배열 비우기
+      this.fetch()
+    }
 
 	}
 }
