@@ -111,7 +111,7 @@
 								취소
 							</v-btn>
 							<v-btn text color="primary"
-								@click="hello">
+								@click="selectYearAndMonth">
 								확인
 							</v-btn>
 							</v-date-picker>
@@ -119,36 +119,33 @@
 						<!--월 선택 버튼-->
 						<v-stepper-header>
 							<template v-for="n in steps">
-								<v-stepper-step editable
-								:key="`${n}-step`"
-								:step="n">
+								<v-stepper-step editable :key="`${n}-step`" :step="n" @click="selectWeek(n)">
 									{{n}}주차
 								</v-stepper-step>
 								<v-divider v-if="n !== steps" :key="n"></v-divider>
 							</template>
 						</v-stepper-header>
 						<v-stepper-items>
-						<v-stepper-content
-						v-for="n in steps"
-						:key="`${n}-content`"
-						:step="n">
+						<v-stepper-content v-for="n in steps" :key="`${n}-content`" :step="n">
 							<v-card>
 								<v-expansion-panels popout>
 									<v-expansion-panel
-									v-for="(message, i) in messages"
+									v-for="(msg, i) in msgs"
 									:key="i"
 									hide-actions
 									>
 									<v-expansion-panel-header>
 										<v-row align="center" class="spacer" no-gutters>
+                      <v-col cols="4" sm="2" md="1">
+                        <v-avatar size="36px">
+                          <v-img :src="msg.submitAuthor.photoURL" alt="Avatar"/>
+                        </v-avatar>
+                      </v-col>
 											<v-col class="hidden-xs-only" sm="5" md="3">
-												<strong v-html="message.name"></strong>
-												<span v-if="message.total" class="grey--text" >
-													&nbsp;({{ message.total }})
-												</span>
-											</v-col>
+												<strong >{{msg.submitAuthor.displayName}}</strong>
+                      </v-col>
 											<v-col class="text-no-wrap" cols="5" sm="3">
-												<strong v-html="message.title"></strong>
+												<strong >{{msg.subject_kr}} {{n}}주차</strong> <!-- 나중에 각 주차별 타이틀로 바꿔줄것 -->
 											</v-col>
 										</v-row>
 									</v-expansion-panel-header>
@@ -158,8 +155,8 @@
 										<v-card-text class="qtexts"><span class="texts">1. </span> {{Q1}}</v-card-text>
 										<v-card-text class="qtexts"><span class="texts">2. </span> {{Q2}}</v-card-text><v-divider></v-divider>
 										<v-card-text class="texts">답변</v-card-text>
-										<v-card-text class="qtexts"><span class="texts">1. </span> {{message.content1}}</v-card-text>
-										<v-card-text class="qtexts"><span class="texts">2. </span> {{message.content2}}</v-card-text>
+										<v-card-text class="qtexts"><span class="texts">1. </span> {{msg.a1}}</v-card-text>
+										<v-card-text class="qtexts"><span class="texts">2. </span> {{msg.a2}}</v-card-text>
 									</v-expansion-panel-content>
 									</v-expansion-panel>
 								</v-expansion-panels>
@@ -187,7 +184,9 @@ export default {
 			date: new Date().toISOString().substr(0, 7),
 			menu: false,
 			modal: false,
-
+			year: '',
+			month: '',
+			week: '',
 			labels: ['일', '월', '화', '수', '목', '금', '토'],
 			fill: false,
 			// 이번주의 퀴즈 점수 데이터
@@ -234,31 +233,7 @@ export default {
 				'5주차'
 			],
 			// 병사별 주간정신전력 현황 데이터
-			messages: [
-				
-				{
-					avatar: 'https://lh3.googleusercontent.com/ogw/ADGmqu92A3GO29sPEXyfoYIwCWRHIbhljaLOVkAyePpz=s32-c-mo',
-					name: '현재',
-					title: '1주차 정신전력교육',
-					content1: '4차 산업혁명 기술을 우리 군에 접목시키려면 우선 그에 따른 인프라가 구축되어야 한다. 대표적을 IoT기술의 경우 접목시킨다면 군에서 운용하는 여러 장비들에 네트워크를 부여할 수 있게 되는데, 대표적으로 위치 정보를 가져올 수 있고, 전투복에 접목된다면 병사의 신체 능력도 알 수 있어 부상이 있을 경우 빠른 대처가 가능해진다. 그러나 네트워크를 운용해야 하기 때문에 보안 문제 해결이 가장 시급한 과제인 것으로 보인다.',
-					content2: '첨단 무기쳬계가 개발되고 도입이 되더라도 그에 맞는 개인의 전투기술과 작전계획, 전술, 전략의 수립이 중요하다. 강한 군대는 병력이 많거나 무기가 좋다고 강한 군대가 아니다. 균형있게 유무형의 전력을 갖추고 제대로 싸울 준비가 되어 있어야 강한 군대이다. '
-				},
-				{
-					avatar: '',
-					name: '이현',
-					title: '1주차 정신전력교육',
-					content1: '대표적을 IoT기술의 경우 접목시킨다면 군에서 운용하는 여러 장비들에 네트워크를 부여할 수 있게 되는데, 대표적으로 위치 정보를 가져올 수 있고, 전투복에 접목된다면 병사의 신체 능력도 알 수 있어 부상이 있을 경우 빠른 대처가 가능해진다. 그러나 네트워크를 운용해야 하기 때문에 보안 문제 해결이 가장 시급한 과제인 것으로 보인다',
-					content2: '균형있게 유무형의 전력을 갖추고 제대로 싸울 준비가 되어 있어야 강한 군대이다.'
-				},
-				{
-					avatar: '',
-					name: '현수',
-					title: '1주차 정신전력교육',
-					content1: '너도 힘들고 바쁠텐데 데이터베이스 다루느라 고생했어',
-					content2: '마찬가지로 오늘 제외하고 개발할 시간은 3일밖에 없는데, 조금만 더 수고해줘'
-        }
-        
-			],
+			msgs: [],
 			Q1: '',
 			Q2: '',
 			ref: null
@@ -266,6 +241,19 @@ export default {
 	},
 	created () {
 		this.fetch()
+	},
+	watch: {
+    /*
+		year () {
+			this.fetch()
+		},
+		month () {
+			this.fetch()
+    },
+    */
+		week () {
+			this.fetch()
+		}
 	},
 	computed: {
 		user () { // Vuex state에 저장돼있는 user 정보
@@ -281,31 +269,58 @@ export default {
 			console.log('hello')
 		},
 		async fetch () {
+			this.msgs.splice(0) // fetch 전 배열 비우기
+
+			// 관리자가 선택한 year,month,week 을 바탕으로 해당 articles의 id 값을 가져오기
+      // console.log(this.year, this.month, this.week)
+
+      // 중첩쿼리문으로 작성 month week
+			this.$firebase.firestore().collection('learning').doc('jungsin').collection('articles')
+				.where('year', '==', this.year)
+				.then(function (querySnapshot) {
+					querySnapshot.forEach(function (doc) {
+						// doc.data() is never undefined for query doc snapshots
+						console.log(doc.id, ' => ', doc.data())
+					})
+				})
+				.catch(function (error) {
+					console.log('Error getting documents: ', error)
+				})
+
+			// question 받아오기
 			this.$firebase.firestore().collection('learning').doc('jungsin').collection('articles').doc('1603020093204').get()
 				.then(doc => {
-					 console.log('doc.data()', doc.data())
-					 this.Q1 = doc.data().question.Q1
-           this.Q2 = doc.data().question.Q2
-           console.log(this.Q1, this.Q2)
+					// console.log('doc.data()', doc.data())
+					this.Q1 = doc.data().question.Q1
+					this.Q2 = doc.data().question.Q2
+					// console.log(this.Q1, this.Q2)
 				}
 
 				)
+
+			// 사용자가 survey 한 데이터 받아오기
 			this.ref = this.$firebase.firestore().collection('survey_result').doc('jungsin').collection('1603020093204')
 			await this.ref.get().then((querySnapshot) => {
 				querySnapshot.forEach((doc) => {
 					// doc.data() is never undefined for query doc snapshots
 					// console.log(doc.id, ' => ', doc.data())
-					this.messages.push(doc.data())
+					this.msgs.push(doc.data())
 				})
 			})
-			// console.log(this.messages)
+			// console.log(this.msgs)
 		},
-		hello () {
+		selectYearAndMonth () {
 			// $refs.dialog.save(date)
 			this.$refs.dialog.save(this.date)
-			var ymdate = (this.date.split('-'))
-			ymdate = 'ym' + ymdate[0] + ymdate[1]
-			console.log(ymdate)
+			var ymdate = this.date.split('-')
+			this.year = ymdate[0] + '년' // 2020년 (string)
+			this.month = ymdate[1] + '월' // 10월
+			ymdate = `${ymdate[0]}-${ymdate[1]}` // '2020-10'
+			console.log('ty,tm', this.year, this.month)
+		},
+		selectWeek (n) {
+			this.week = n + '주차'
+			console.log('week', this.week) // 3주차
 		}
 
 	}

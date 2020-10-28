@@ -74,6 +74,7 @@ export default {
 			this.$firebase.firestore().collection('survey_result').doc(this.document).set({
 				count: ''
 			})
+			// this.ref : survey_result 컬렉션 하위에 각 사용자의 uid 로 survey 결과를 save할 주소이다.
 			this.ref = this.$firebase.firestore().collection('survey_result').doc(this.document).collection(this.item.article_id).doc(this.user.uid)
 			this.unsubscribe = this.ref.onSnapshot(doc => {
 				this.exists = doc.exists
@@ -85,6 +86,9 @@ export default {
 			})
 		},
 		// DB 에 수강한 데이터를 저장하는 함수 !
+		// users 컬렉션과 survey_result 컬렉션에 둘 다 저장한다.
+		// users 컬렉션의 목적은 개인이 마이페이지에서 자신의 survey 제출 현황을 볼 수 있게 하기 위함이고,
+		// survey_result 컬렉션의 목적은 관리자가 보기 쉽게 하기 위함이다.
 		async submitOwn () { // DB에 a1,a2(병사들의 의견)을 save
 			// console.log(this.a1, this.a2)
 			if (!this.user) throw Error('로그인 후 제출 가능합니다') // 권한 확인
@@ -108,6 +112,7 @@ export default {
 					await this.userRef.set(answer)
 				} else {
 					await this.ref.update(answer)
+					await this.userRef.update(answer)
 				}
 				// this.$router.push('/' + this.collection + '/' + this.document)
 			} finally {

@@ -21,11 +21,13 @@
           <v-text-field v-model="form.title" outlined label="게시물 제목"></v-text-field>
           <v-container fluid>
             <v-row align="center">
-              <v-col class="d-flex" cols="1" sm="1">
+              <v-col class="d-flex" cols="2" sm="2">
+                <v-select v-model="form.year" :items="year" label="년"></v-select>
+              </v-col>
+              <v-col class="d-flex" cols="2" sm="2">
                 <v-select v-model="form.month" :items="month" label="월"></v-select>
               </v-col>
-
-              <v-col class="d-flex" cols="1" sm="1">
+              <v-col class="d-flex" cols="2" sm="2">
                 <v-select v-model="form.week" :items="week" label="주차"></v-select>
               </v-col>
             </v-row>
@@ -60,6 +62,7 @@ export default {
 	props: ['collection', 'document', 'action'],
 	data () {
 		return {
+      year: ['2020년', '2021년'],
 			month: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
 			week: ['1주차', '2주차', '3주차', '4주차', '5주차'],
 			editor_options: {
@@ -72,7 +75,8 @@ export default {
 				Q1: '',
 				Q2: '',
 				month: '',
-				week: ''
+        week: '',
+        year: ''
 			},
 			exists: false,
 			loading: false,
@@ -113,7 +117,8 @@ export default {
 			const r = await axios.get(item.url)
 			this.form.content = r.data
 			this.form.month = item.month
-			this.form.week = item.week
+      this.form.week = item.week
+      this.form.year = item.year
 		},
 		async save () { // 작성한 글 저장 함수 : 비동기 로직 포함 ( firestore DB에 저장 )
 			if (this.user.level !== 'admin') throw Error('관리자만 가능합니다!') // 권한 확인
@@ -130,7 +135,8 @@ export default {
 						Q2: this.form.Q2
 					},
 					month: this.form.month,
-					week: this.form.week
+          week: this.form.week,
+          year: this.form.year
 				}
 
 				const batch = await this.$firebase.firestore().batch()
