@@ -73,10 +73,10 @@ export default {
 							title: '우리 역사 바로알기',
 							to: '/learning/daily_history'
 						},
-						{
+					/*	{
 							title: '임시',
 							to: '/learning/temp'
-						}
+						}*/
 					]
 				},
 				{
