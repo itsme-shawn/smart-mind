@@ -128,7 +128,7 @@
                   <v-img
                     class="white--text"
                     max-height="500"
-                    src="https://cdn.vuetifyjs.com/images/cards/docks.jpg"
+                    :src="require('../assets/bongchang-2.jpg')"
                   >
                     <v-card-title>이번주의 정신전력 교육</v-card-title>
                   </v-img>
@@ -138,9 +138,9 @@
                   <v-card-subtitle class="pb-2"> 10월 2주차 </v-card-subtitle>
                   <!--이번이 몇 주차인지 알 수 있게 하기 위해 변동되어야 하는 부분-->
                   <v-card-text class="text--primary">
-                    <h3>믿음직하고 든든한 국군, ‘대체불가’ 특수전부대</h3>
+                    <h3>이봉창 의사와 '애국헌신'</h3>
 
-                    <div>김 관 용 이데일리 정치부 외교안보팀장</div>
+                    <div>독립운동가로 살다가 돌아가신 이봉창 의사를 통해 '애국헌신'을 배우다</div>
                   </v-card-text>
                   <v-fade-transition>
                     <v-overlay v-if="hover" absolute color="#dedede">
@@ -180,14 +180,15 @@
               <template v-slot:default="{ hover }">
                 <v-sheet :color="colors[i]" height="100%">
                   <v-row class="fill-height" align="center" justify="center">
-                    <div class="display-3">{{ slide }} Slide</div>
+                    <div class="display-3"><img :src="slide" height="400"></div>
                   </v-row>
                   <v-overlay v-if="hover" absolute color="#dedede">
                     <div style="color: black">
-                      <h1>제목</h1>
+                      <h1>{{title[i]}}</h1>
                       <br />
-                      <h2 class="subheading">설명~~~~!!!!!!@~!~!~!~!@~</h2>
+                      <h2 class="subheading"><span v-html=intext[i]></span></h2>
                     </div>
+                    <br/>
                     <v-btn>살펴보기</v-btn>
                   </v-overlay>
                 </v-sheet>
@@ -305,13 +306,27 @@ export default {
       },
       fontcolor: "black",
       colors: [
-        "indigo",
-        "warning",
-        "pink darken-2",
-        "red lighten-1",
-        "deep-purple accent-4",
+        "white",
+        "white",
+        "white",
+        "white",
+        "white"
       ],
-      slides: ["First", "Second", "Third", "Fourth", "Fifth"],
+      title:[
+        "독도 바로알기",
+        "안창호 바로알기",
+        "6.25전쟁 바로알기",
+        "3.1 만세 운동 바로알기",
+        "행주대첩 바로알기"
+      ],
+      intext: [
+        "물어보면 바로 답하지 못했던 독도가 우리의 영토인 이유와 <br/>그 근거에 대해 알아보자<br/>",
+        "안창호가 했던 업적과 <br> 그의 정신에 대해 알아보자<br/>",
+        "6.25전쟁이 남침인지, 북침인지 헷갈리지 말고 <br> 전쟁에 대해 제대로 알아보자<br/>",
+        "3.1만세운동이 일어났던 이유와 <br> 그 배경에 대해서 알아보자<br/>",
+        "행주대첩이 유명해진 이유와 <br> 장수인 권율에 대해서 알아보자<br/>"
+      ],
+      slides: [require('../assets/dokdo.jpg'),require('../assets/ahnchang.jpg'), require('../assets/625.jpg'), require('../assets/31.jpg'), require('../assets/hengju.jpg')],
       task: [
         {
           name: "국가안보의 중요성",

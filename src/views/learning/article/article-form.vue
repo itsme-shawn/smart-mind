@@ -19,6 +19,19 @@
         </v-toolbar>
         <v-card-text>
           <v-text-field v-model="form.title" outlined label="게시물 제목"></v-text-field>
+          <v-container fluid>
+            <v-row align="center">
+              <v-col class="d-flex" cols="2" sm="2">
+                <v-select v-model="form.year" :items="year" label="년"></v-select>
+              </v-col>
+              <v-col class="d-flex" cols="2" sm="2">
+                <v-select v-model="form.month" :items="month" label="월"></v-select>
+              </v-col>
+              <v-col class="d-flex" cols="2" sm="2">
+                <v-select v-model="form.week" :items="week" label="주차"></v-select>
+              </v-col>
+            </v-row>
+          </v-container>
           <v-toolbar-title class="mt-1">본문 작성</v-toolbar-title>
           <!-- articleId 가 없다는 것은 글 최초 작성 -->
           <editor v-if="!articleId" initialEditType='wysiwyg' :options="editor_options" :initialValue="form.content" ref="editor"></editor>
@@ -49,6 +62,9 @@ export default {
 	props: ['collection', 'document', 'action'],
 	data () {
 		return {
+      year: ['2020년', '2021년'],
+			month: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+			week: ['1주차', '2주차', '3주차', '4주차', '5주차'],
 			editor_options: {
 				language: 'ko',
 				hideModeSwitch: true
@@ -57,7 +73,10 @@ export default {
 				title: '',
 				content: '', // content 는 이미지,동영상 같은 파일들이므로 Storage 에 넣어야 함
 				Q1: '',
-				Q2: ''
+				Q2: '',
+				month: '',
+        week: '',
+        year: ''
 			},
 			exists: false,
 			loading: false,
@@ -97,35 +116,44 @@ export default {
 			this.form.Q2 = item.question.Q2
 			const r = await axios.get(item.url)
 			this.form.content = r.data
+			this.form.month = item.month
+      this.form.week = item.week
+      this.form.year = item.year
 		},
 		async save () { // 작성한 글 저장 함수 : 비동기 로직 포함 ( firestore DB에 저장 )
 			if (this.user.level !== 'admin') throw Error('관리자만 가능합니다!') // 권한 확인
 			this.loading = true
 			try {
 				const now = new Date()
-				const id = now.getTime().toString() // 작성시간을 id로 사용
 				const content = this.$refs.editor.invoke('getHtml') // 에디터에서 작성한 글 (html 파일로 변환)
-				const sn = await this.$firebase.storage().ref().child(this.collection).child(this.document).child(id + '.html').putString(content)
-				const url = await sn.ref.getDownloadURL()
 				const doc = {
 					title: this.form.title,
 					updatedAt: now,
-					url: url,
+					url: '',
 					question: {
 						Q1: this.form.Q1,
 						Q2: this.form.Q2
 					},
-					article_id: id // computed 에 있는 articleId 와는 다름!
+					month: this.form.month,
+          week: this.form.week,
+          year: this.form.year
 				}
 
 				const batch = await this.$firebase.firestore().batch()
 
 				if (!this.articleId) { // 새로 작성할 때
+					doc.article_id = now.getTime().toString() // 작성시간을 id로 사용 ( computed 에 있는 articleId 와는 다름! )
 					doc.createdAt = now
 					doc.uid = this.user.uid // 수정되면 안되는 정보이므로 일부러 새로 작성할 때만 정보 생성
-					batch.set(this.ref.collection('articles').doc(id), doc)
+					const sn = await this.$firebase.storage().ref().child(this.collection).child(this.document).child(doc.article_id + '.html').putString(content)
+					const url = await sn.ref.getDownloadURL()
+					doc.url = url
+					batch.set(this.ref.collection('articles').doc(doc.article_id), doc)
 					batch.update(this.ref, { count: this.$firebase.firestore.FieldValue.increment(1) })
 				} else { // 기존 게시물을 수정할 때
+					const sn = await this.$firebase.storage().ref().child(this.collection).child(this.document).child(doc.article_id + '.html').putString(content)
+					const url = await sn.ref.getDownloadURL()
+					doc.url = url
 					batch.update(this.ref.collection('articles').doc(this.articleId), doc)
 				}
 				await batch.commit()

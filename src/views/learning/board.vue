@@ -8,7 +8,6 @@
     게시물들의 리스트를 보여주기 위해 article-list.vue 를 컴포넌트로 사용한다
 -->
 
-
 <template>
   <v-container fluid :grid-list-md="!$vuetify.breakpoint.xs" :class="$vuetify.breakpoint.xs ? 'pa-0' : ''">
 

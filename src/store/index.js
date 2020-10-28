@@ -8,7 +8,8 @@ Vue.use(Vuex)
 export default new Vuex.Store({
 	state: {
 		fireUser: null,
-		user: null
+		user: null,
+		routeTo: null
 	},
 	mutations: {
 		setFireUser (state, fu) {
@@ -16,7 +17,10 @@ export default new Vuex.Store({
 		},
 		setUser (state, user) {
 			state.user = user
-			//console.log(state.user)
+			// console.log(state.user)
+		},
+		setRouteTo (state, to) {
+			state.routeTo = to
 		}
 	},
 	actions: {

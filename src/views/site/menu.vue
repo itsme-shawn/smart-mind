@@ -84,7 +84,7 @@ export default {
 					icon: 'mdi-account',
 					subItems: [
 						{
-							title: '개인정보수정',
+							title: '내 정보',
 							to: '/mypage/account'
 						},
 						{
