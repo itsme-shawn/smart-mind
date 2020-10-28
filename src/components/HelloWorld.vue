@@ -143,9 +143,9 @@
                     <div>독립운동가로 살다가 돌아가신 이봉창 의사를 통해 '애국헌신'을 배우다</div>
                   </v-card-text>
                   <v-fade-transition>
-                    <v-overlay v-if="hover" absolute color="#dedede">
+                <!--    <v-overlay v-if="hover" absolute color="#dedede">
                       <v-btn>참여하기</v-btn>
-                    </v-overlay>
+                    </v-overlay>-->
                   </v-fade-transition>
                 </v-responsive>
               </v-card>
@@ -189,7 +189,7 @@
                       <h2 class="subheading"><span v-html=intext[i]></span></h2>
                     </div>
                     <br/>
-                    <v-btn>살펴보기</v-btn>
+                   <!-- <v-btn>살펴보기</v-btn>-->
                   </v-overlay>
                 </v-sheet>
               </template>

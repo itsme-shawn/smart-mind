@@ -11,7 +11,7 @@
 				<v-responsive :aspect-ratio="16/9">
 				<!--해당 컨텐츠에 맞게 이미지를 넣어야 함-->
 					<v-img class="white--text align-top" max-height="400"
-					src="https://cdn.vuetifyjs.com/images/cards/docks.jpg">
+					:src="require('../../../assets/bongchang-2.jpg')">
 					<v-card-title>이번주의 정신전력 교육</v-card-title>
 					</v-img>
 				<!--해당 컨텐츠에 맞게 이미지를 넣어야 함-->
@@ -22,9 +22,9 @@
 					</v-card-subtitle>
 					<!--이번이 몇 주차인지 알 수 있게 하기 위해 변동되어야 하는 부분-->
 					<v-card-text class="text--primary">
-					<h3>믿음직하고 든든한 국군, ‘대체불가’ 특수전부대</h3>
+					<h3>이봉창 의사와 '애국헌신'</h3>
 
-					<div>김 관 용 이데일리 정치부 외교안보팀장</div>
+					<div>독립운동가로 살다가 돌아가신 이봉창 의사를 통해 '애국헌신'을 배우다</div>
 					</v-card-text>
 					<v-fade-transition>
 					<v-overlay v-if="hover" absolute color="#dedede">

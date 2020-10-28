@@ -12,7 +12,7 @@
 				<v-responsive :aspect-ratio="16/9">
 				<!--해당 컨텐츠에 맞게 이미지를 넣어야 함-->
 					<v-img class="white--text align-top" max-height="400"
-					src="https://cdn.vuetifyjs.com/images/cards/docks.jpg">
+					:src="require('../../../assets/bongchang-2.jpg')">
 					<v-card-title>이번주의 정신전력 교육</v-card-title>
 					</v-img>
 				<!--해당 컨텐츠에 맞게 이미지를 넣어야 함-->
@@ -22,8 +22,8 @@
 					</v-card-subtitle>
 					<!--이번이 몇 주차인지 알 수 있게 하기 위해 변동되어야 하는 부분-->
 					<v-card-text class="text--primary">
-					<h3>믿음직하고 든든한 국군, '대체불가' 특수전부대</h3>
-					<div>김 관 용 이데일리 정치부 외교안보팀장</div>
+					<h3>이봉창 의사와 '애국헌신'</h3>
+					<div>독립운동가로 살다가 돌아가신 이봉창 의사를 통해 '애국헌신'을 배우다</div>
 					</v-card-text>
 					<v-fade-transition>
 					<v-overlay v-if="hover" absolute color="#dedede">
@@ -40,7 +40,7 @@
                 <v-toolbar-title class="font-weight-bold ml-5">부대 관리</v-toolbar-title>
             </v-card-text>
         </div>
-		<v-container>
+	<!--	<v-container>
 			<v-layout wrap row class="px-12" align-center justify-center>
         <v-flex class="justify-center mb-12 pa-7" xs12 md6>
           <v-card class="" max-height="500">
@@ -85,13 +85,13 @@
           </v-card>
         </v-flex>
       </v-layout>
-
+-->
 			<v-card color="transparent">
 				<v-card-title class="align-top mb-4">병사별 정신전력 교육 현황</v-card-title>
 				<!--데이터가 들어가는 리스트 부분 시작, 데이터가 주차가 안되어 없다면 v-if로 div만들어서 아직 자료가 없다고 표시하게 만들 예정-->
 
         <!-- 날짜 선택 부분 -->
-				<v-container fluid>
+				<v-container fluid class="pa-10">
             <v-form v-model="valid" ref="form" >
             <v-row align="center">
                 <v-col class="d-flex" cols="2" sm="2">
