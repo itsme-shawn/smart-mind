@@ -24,11 +24,6 @@
                   </div>
                 </v-card-title>
               </v-flex>
-              <v-flex xs5>
-                <v-card-title primary-title>
-                  <h4 class="headline">부대명 (부대마다 유동적으로 설정)</h4>
-                </v-card-title>
-              </v-flex>
             </v-layout>
             <v-divider light></v-divider>
             <div v-if="user !== null">

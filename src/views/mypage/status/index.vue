@@ -80,7 +80,6 @@ export default {
 			valid: false,
 			rule: { required: v => !!v || '필수 항목입니다.' },
 			selectedArticleId: '',
-			selectedArticleTitle: '',
 			year: '',
 			month: '',
 			week: '',
