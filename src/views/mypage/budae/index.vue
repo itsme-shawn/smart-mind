@@ -10,6 +10,44 @@
     </div>
 		<v-divider></v-divider>
 
+	<!--sparkline 추가-->
+	<!--꺾은선그래프 graph들어가는 부분-->
+		<v-container class="mb-12">
+			<v-card-text>
+				<v-toolbar-title class="font-weight-bold mt-5">병사별 정신전력교육 점수</v-toolbar-title>
+			</v-card-text>
+			<v-card
+			class="mx-auto text-center"
+			color="green"
+			dark>
+				<template>
+					<v-sparkline
+						height="80"
+						:value="value"
+						padding="10"
+						:smooth="radius || false"
+						:line-width="width"
+						:stroke-linecap="lineCap"
+						color="rgba(255, 255, 255, .7)"
+						:gradient-direction="gradientDirection"
+						:type="type"
+						:auto-line-width="autoLineWidth"
+						auto-draw
+					><template v-slot:label="item">
+					{{ item.value }}
+					</template>
+					</v-sparkline>
+				</template>
+				<v-card-text>
+				<div class="display-1 font-weight-thin">
+					Keep it up!
+				</div>
+				</v-card-text>
+			</v-card>
+		</v-container>
+	<!--graph들어가는 부분 end-->
+	<!--sparkline 추가-->
+
     <!-- 주차별 -->
     <v-card color="transparent">
       <v-card-title class="align-top font-weight-bold mb-4">주차별 정신전력 교육 현황</v-card-title>
@@ -94,7 +132,17 @@ export default {
 			Q1: '',
 			Q2: '',
 			ref: null,
-			isEmpty: false // DB에 조회했을 때 data 가 존재하면 false
+			isEmpty: false, // DB에 조회했을 때 data 가 존재하면 false
+
+			//graph 들어가는부분 data
+			width: 2,
+			lineCap: 'round',
+			radius : 4,
+			// value가 데이터가 되는 부분
+			value: [2, 5, 1, 4, 3],
+			gradientDirection: 'top',
+			type: 'trend',
+			autoLineWidth: false,
 		}
 	},
 	computed: {
