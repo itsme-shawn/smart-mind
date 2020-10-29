@@ -26,7 +26,7 @@
 ## 기능 설계
  -  발사믹, 카카오 오븐 등 본인이 편한 목업 프레임워크를 이용하여 제작 후 링크 
  - 수기로 작성시 찍어서 올려주세요
-
+  <a href="https://ovenapp.io/view/e3xbSgDSvHHfOtzvoxsaMCY55vfirBg9/wWcRb">Oven으로 확인</a>
  > 역사를 잊은 민족에게 미래는 없다
 
 ## 컴퓨터 구성 / 필수 조건 안내 (Prerequisites)
