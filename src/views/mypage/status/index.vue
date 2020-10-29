@@ -8,14 +8,41 @@
             </v-card-text>
             </div>
 		<v-divider></v-divider>
-			<v-container class="mb-12">
+		<!--graph들어가는 부분-->
+		<v-container class="mb-12">
+			<v-card-text>
+				<v-toolbar-title class="font-weight-bold mt-5">나의 정신전력교육 점수</v-toolbar-title>
+			</v-card-text>
+			<v-card
+			class="mx-auto text-center"
+			color="green"
+			dark>
+				<template>
+					<v-sparkline
+						height="80"
+						:value="value"
+						padding="10"
+						:smooth="radius || false"
+						:line-width="width"
+						:stroke-linecap="lineCap"
+						color="rgba(255, 255, 255, .7)"
+						:gradient-direction="gradientDirection"
+						:type="type"
+						:auto-line-width="autoLineWidth"
+						auto-draw
+					><template v-slot:label="item">
+					{{ item.value }}
+					</template>
+					</v-sparkline>
+				</template>
 				<v-card-text>
-                	<v-toolbar-title class="font-weight-bold mt-5">나의 정신전력교육 점수</v-toolbar-title>
-            	</v-card-text>
-				<v-card>
-					
-				</v-card>
-			</v-container>
+				<div class="display-1 font-weight-thin">
+					Keep it up!
+				</div>
+				</v-card-text>
+			</v-card>
+		</v-container>
+		<!--graph들어가는 부분 end-->
 		<v-divider></v-divider>
 		</v-container>
 
@@ -98,7 +125,17 @@ export default {
 			Q2: '',
 			ref: null,
 			isEmpty: true, // DB에 조회했을 때 data 가 존재하면 false
-			beforeFilteredArticleId: []
+			beforeFilteredArticleId: [],
+
+			//graph 들어가는부분 data
+			width: 2,
+			lineCap: 'round',
+			radius : 4,
+			// value가 데이터가 되는 부분
+			value: [2, 5, 1, 4, 3],
+			gradientDirection: 'top',
+			type: 'trend',
+			autoLineWidth: false,
 		}
 	},
 	computed: {
