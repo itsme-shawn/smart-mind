@@ -7,25 +7,64 @@
                 <v-card-text class="mt-3">나의 현재 정신전력 현황을 살펴봅시다</v-card-text>
             </v-card-text>
             </div>
+		<v-divider></v-divider>
+		<!--graph들어가는 부분-->
+		<v-container class="mb-12">
+			<v-card-text>
+				<v-toolbar-title class="font-weight-bold mt-5">나의 정신전력교육 점수</v-toolbar-title>
+			</v-card-text>
+			<v-card
+			class="mx-auto text-center"
+			color="green"
+			dark>
+				<template>
+					<v-sparkline
+						height="80"
+						:value="value"
+						padding="10"
+						:smooth="radius || false"
+						:line-width="width"
+						:stroke-linecap="lineCap"
+						color="rgba(255, 255, 255, .7)"
+						:gradient-direction="gradientDirection"
+						:type="type"
+						:auto-line-width="autoLineWidth"
+						auto-draw
+					><template v-slot:label="item">
+					{{ item.value }}
+					</template>
+					</v-sparkline>
+				</template>
+				<v-card-text>
+				<div class="display-1 font-weight-thin">
+					Keep it up!
+				</div>
+				</v-card-text>
+			</v-card>
+		</v-container>
+		<!--graph들어가는 부분 end-->
+		<v-divider></v-divider>
 
 		</v-container>
 
     <!-- 개인별 -->
     <v-card color="transparent">
       <v-card-title class="align-top font-weight-bold mb-4">내 정신전력 교육 현황</v-card-title>
-      <v-card-text>나의 정신전력 교육 제출 현황을 조회할 수 있습니다.</v-card-text>
+      <v-card-text>나의 정신전력교육 제출 현황을 조회할 수 있습니다.</v-card-text>
       <!-- 날짜 선택 부분(년/월까지만 입력받음) -->
       <v-container fluid class="pa-3">
-          <v-form v-model="valid" ref="form" >
-          <v-row align="center">
-              <v-col class="d-flex" cols="6" sm="2" xs="6">
+          <v-form v-model="valid" ref="form">
+          <v-row>
+              <v-col cols="5" md="4">
                 <v-select v-model="year" :items="yearList" label="년" required :rules="[rule.required]"></v-select>
               </v-col>
-              <v-col class="d-flex" cols="6" sm="2" xs="6">
+              <v-col cols="5" md="4">
                 <v-select v-model="month" :items="monthList" label="월" required :rules="[rule.required]"></v-select>
               </v-col>
+			  <v-col class="d-flex justify-end" cols="2" md="4">
+				  <v-btn  :disabled="!valid" color="success" @click="selectYearMonth">조회</v-btn>
+			  </v-col>
             </v-row>
-            <v-btn :disabled="!valid" color="success" @click="selectYearMonth">조회</v-btn>
           </v-form>
       </v-container>
       <!-- 날짜 선택 부분 -->
@@ -86,7 +125,17 @@ export default {
 			Q2: '',
 			ref: null,
 			isEmpty: true, // DB에 조회했을 때 data 가 존재하면 false
-			beforeFilteredArticleId: []
+			beforeFilteredArticleId: [],
+
+			//graph 들어가는부분 data
+			width: 2,
+			lineCap: 'round',
+			radius : 4,
+			// value가 데이터가 되는 부분
+			value: [2, 5, 1, 4, 3],
+			gradientDirection: 'top',
+			type: 'trend',
+			autoLineWidth: false,
 		}
 	},
 	computed: {
