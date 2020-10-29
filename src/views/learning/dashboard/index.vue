@@ -56,20 +56,20 @@
               >
                 <v-card-title><h3>이번주의 정신전력 교육</h3></v-card-title>
                 <v-expand-transition>
-                  
+
                   <div
                     v-if="hover"
                     class=" transition-fast-in-fast-out v-card--reveal white--text"
                     style="
                       height: 100%;
                       background-color: rgba(70, 70, 70, 0.5);
-                      
+
                     "
                   >
-                  
+
                     <v-row align="center" justify="center" xs12 class="pt-14">
                       <h2>이봉창 의사와 '애국헌신'</h2>
-                    
+
                     <hr/>
                     <br />
                     <br/>
@@ -78,9 +78,9 @@
                     <v-row align="center" justify="center" xs12>
                     <v-btn>참여하기</v-btn>
                     </v-row>
-                  
+
                   </div>
-                  
+
                 </v-expand-transition>
               </v-img>
             </v-card>
@@ -109,7 +109,7 @@
                   >
                     <v-row align="center" justify="center" xs12 class="pt-7">
                       <h2>'명량대첩' 불가능을 가능하게 하다</h2>
-                    
+
                     <hr/>
                     <br />
                     <br/>
@@ -146,7 +146,7 @@
                   >
                     <v-row align="center" justify="center" xs12 class="pt-7">
                       <h2>동료애를 배우다 '핵소 고지'</h2>
-                    
+
                     <hr/>
                     <br />
                     <br/>
@@ -185,7 +185,7 @@
                   >
                     <v-row align="center" justify="center" xs12 class="pt-7">
                       <h2>윤동주의 시에서 배우는 정신</h2>
-                    
+
                     <hr/>
                     <br />
                     <br/>
@@ -221,7 +221,7 @@
                   >
                     <v-row align="center" justify="center" xs12 class="pt-7">
                       <h2>징기스칸의 전술은?</h2>
-                    
+
                     <hr/>
                     <br />
                     <br/>
@@ -631,8 +631,8 @@ export default {
 			// 병사별 주간정신전력 현황 데이터
 			messages: [
 				{
-					/*avatar:
-            'https://lh3.googleusercontent.com/ogw/ADGmqu92A3GO29sPEXyfoYIwCWRHIbhljaLOVkAyePpz=s32-c-mo',*/
+					/* avatar:
+            'https://lh3.googleusercontent.com/ogw/ADGmqu92A3GO29sPEXyfoYIwCWRHIbhljaLOVkAyePpz=s32-c-mo', */
 					name: '김현재',
 					title: '2주차 정신전력교육',
 					content1:

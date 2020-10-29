@@ -50,6 +50,17 @@ const routes = [
 			} else next()
 		}
 	},
+	{
+		path: '/learning/dashboard',
+		component: () => import('../views/learning/dashboard/index.vue'),
+		// mypage 같은 페이지들은 라우팅하기 전에 로그인 상태인지 체크하고 로그인이 안돼있으면, 강제로 로그인페이지로 리다이렉션 시킴.
+		beforeEnter: function (to, from, next) {
+			if (!store.state.user) {
+				router.push('/login').catch(() => {})
+				store.commit('setRouteTo', to)
+			} else next()
+		}
+	},
 
 	// 동적 라우팅 생성 ( renderer.vue 를 통해 렌더링 )
 
