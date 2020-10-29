@@ -1,9 +1,12 @@
 <template>
-	<v-container>
+	<v-container class="mb-12 pa-5">
 		<v-container>
+            <div>
             <v-card-text>
-                <v-toolbar-title class="font-weight-bold ml-5">정신전력 현황</v-toolbar-title>
+                <v-toolbar-title class="text-h4 font-weight-bold ">정신전력 현황</v-toolbar-title>
+                <v-card-text class="mt-3">나의 현재 정신전력 현황을 살펴봅시다</v-card-text>
             </v-card-text>
+            </div>
 		<v-divider></v-divider>
 		<v-hover class="mb-10">
 			<template v-slot:default="{ hover }">
@@ -38,84 +41,62 @@
 		<v-divider></v-divider>
 		</v-container>
 
-		<!--지난 정신전력 현황, 본인이 참여했던 교육들, 퀴즈 볼 수 있도록.-->
-		<v-container class="mb-10">
-            <v-card-text class="mt-12">
-                <v-toolbar-title class="font-weight-bold ml-5">나의 지난 정신전력</v-toolbar-title>
-            </v-card-text>
-			<v-divider></v-divider>
-			<template>
-				<v-stepper non-linear v-model="e1">
-					<!--월 선택 버튼-->
-						<v-dialog ref="dialog" v-model="modal"
-							:return-value.sync="date" persistent width="290px">
-							<template v-slot:activator="{ on, attrs }">
-							<v-text-field
-								v-model="date"
-								label="월 선택"
-								prepend-icon="mdi-calendar"
-								readonly
-								v-bind="attrs"
-								v-on="on"
-							></v-text-field>
-							</template>
-							<v-date-picker v-model="date" type="month" scrollable>
-							<v-spacer></v-spacer>
-							<v-btn text color="primary"
-								@click="modal = false">
-								취소
-							</v-btn>
-							<v-btn text color="primary"
-								@click="hello">
-								확인
-							</v-btn>
-							</v-date-picker>
-						</v-dialog>
-					<v-stepper-header>
-						<template v-for="n in steps">
-							<v-stepper-step editable
-							:key="`${n}-step`"
-							:step="n">
-								{{n}}주차
-							</v-stepper-step>
-							<v-divider v-if="n !== steps" :key="n"></v-divider>
-						</template>
-					</v-stepper-header>
+    <!-- 개인별 -->
+    <v-card color="transparent">
+      <v-card-title class="align-top font-weight-bold mb-4">내 정신전력 교육 현황</v-card-title>
+      <v-card-text>나의 정신전력 교육 제출 현황을 조회할 수 있습니다.</v-card-text>
+      <!-- 날짜 선택 부분(년/월까지만 입력받음) -->
+      <v-container fluid class="pa-3">
+          <v-form v-model="valid" ref="form" >
+          <v-row align="center">
+              <v-col class="d-flex" cols="2" sm="2">
+                <v-select v-model="year" :items="yearList" label="년" required :rules="[rule.required]"></v-select>
+              </v-col>
+              <v-col class="d-flex" cols="2" sm="2">
+                <v-select v-model="month" :items="monthList" label="월" required :rules="[rule.required]"></v-select>
+              </v-col>
+            </v-row>
+            <v-btn :disabled="!valid" color="success" @click="selectYearMonth">조회</v-btn>
+          </v-form>
+      </v-container>
+      <!-- 날짜 선택 부분 -->
+      <v-card>
+        <v-expansion-panels popout >
+          <v-expansion-panel
+          v-for="(msg, i) in msgs"
+          :key="i"
+          hide-actions
+          >
+          <v-expansion-panel-header >
+            <v-row align="center" class="spacer" no-gutters>
+              <v-col class="hidden-xs-only" cols="4" sm="2" md="1">
+                <v-avatar size="24px">
+                  <v-img :src="msg.submitAuthor.photoURL" alt="Avatar"/>
+                </v-avatar>
+              </v-col>
+              <v-col  sm="5" md="3">
+                <strong >{{msg.submitAuthor.displayName}}</strong>
+              </v-col>
+              <v-col class="text-no-wrap" cols="5" sm="3">
+                <strong >{{msg.title}} </strong>
+              </v-col>
+            </v-row>
+          </v-expansion-panel-header>
+          <v-expansion-panel-content>
+            <v-divider></v-divider>
+            <v-card-text class="texts">질문</v-card-text>
+            <v-card-text class="qtexts"><span class="texts">1. </span> {{msg.question.Q1}}</v-card-text>
+            <v-card-text class="qtexts"><span class="texts">2. </span> {{msg.question.Q2}}</v-card-text><v-divider></v-divider>
+            <v-card-text class="texts">답변</v-card-text>
+            <v-card-text class="qtexts"><span class="texts">1. </span> {{msg.a1}}</v-card-text>
+            <v-card-text class="qtexts"><span class="texts">2. </span> {{msg.a2}}</v-card-text>
+          </v-expansion-panel-content>
+          </v-expansion-panel>
+        </v-expansion-panels>
+      </v-card>
+    </v-card>
+    <!-- 개인별 끝 -->
 
-					<v-stepper-items>
-						<v-stepper-content
-						v-for="n in steps"
-						:key="`${n}-content`"
-						:step="n">
-						<div v-if="question.one[n-1] !== null">
-							<v-card class="mb-12" color="#e6e6e6">
-								<v-card-title>Q1 - {{ question.one[n-1] }}</v-card-title>
-								<v-card-text class="body-1">{{ answer.one[n-1] }}</v-card-text>
-								<v-card-title>Q2 - {{ question.two[n-1] }}</v-card-title>
-								<v-card-text class="body-1">{{ answer.two[n-1] }}</v-card-text>
-							</v-card>
-							<v-card class="mb-12" color="#e6e6e6">
-								<v-card-title>퀴즈 점수</v-card-title>
-								<v-card-text>전체 문항 수 : {{ quiz.answer[n-1] }}</v-card-text>
-								<v-card-text>정답 수 : {{ quiz.user[n-1] }}</v-card-text>
-								<v-card-text>점수 : {{ quiz.user[n-1]/quiz.answer[n-1]*100 }}</v-card-text>
-							</v-card>
-							<v-btn color="primary">
-							다시 보기
-							</v-btn>
-						</div>
-							<v-card v-else>
-								<v-card-title>아직 작성되지 않았어요!</v-card-title>
-								<img aspect-ratio="1.7" contain lazy-src="https://picsum.photos/id/11/10/6" src="https://picsum.photos/510/300?random" alt="미작성 게시물">
-							</v-card>
-
-						</v-stepper-content>
-					</v-stepper-items>
-				</v-stepper>
-			</template>
-        </v-container>
-
-		<!--지난 정신전력 현황, 본인이 참여했던 교육들, 퀴즈 볼 수 있도록.-->
 	</v-container>
 </template>
 
@@ -123,42 +104,83 @@
 export default {
 	data () {
 		return {
-			// el - 초기값은 1주차, steps는 최대 5주차까지.
-			e1: 1,
-			steps: 5,
-
-			// 질문 받아오기
-			question: {
-				one: ['1주차 질문a', 'bb', 'cc', 'dd', null],
-				two: ['1주차 질문b', 'BB', 'CC', 'DD', null]
-			},
-			// 답변 받아오기
-			answer: {
-				one: ['Lorem Ipsum is simply dummy text of the printing and typesetting industry.', 'Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.', 'It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.', ' It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', 'There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don\'t look even slightly believable.'],
-				two: ['It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.', 'The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', making it look like readable English.', 'Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for \'lorem ipsum\' will uncover many web sites still in their infancy.', 'Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).', 'If you are going to use a passage of Lorem Ipsum, you need to be sure there isn\'t anything embarrassing hidden in the middle of text. ']
-			},
-			// 해당 주차의 퀴즈 점수
-			quiz: {
-				answer: [5, 10, 5, 10, 5],
-				user: [4, 9, 4, 7, 4]
-			},
-
-			date: new Date().toISOString().substr(0, 7),
-			menu: false,
-			modal: false
-
+			yearList: ['2020년', '2021년'],
+			monthList: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+			valid: false,
+			rule: { required: v => !!v || '필수 항목입니다.' },
+			selectedArticleId: '',
+			selectedArticleTitle: '',
+			year: '',
+			month: '',
+			week: '',
+			msgs: [],
+			Q1: '',
+			Q2: '',
+			ref: null,
+			isEmpty: true, // DB에 조회했을 때 data 가 존재하면 false
+			beforeFilteredArticleId: []
+		}
+	},
+	computed: {
+		user () { // Vuex state에 저장돼있는 user 정보
+			return this.$store.state.user
 		}
 	},
 	methods: {
-		hello () {
-			// $refs.dialog.save(date)
-			this.$refs.dialog.save(this.date)
-			var ymdate = (this.date.split('-'))
-			ymdate = 'ym' + ymdate[0] + ymdate[1]
-			console.log(ymdate)
+		async fetch () {
+			this.msgs.splice(0) // fetch 전 배열 비우기
+			this.beforeFilteredArticleId.splice(0)
+			this.selectedArticleId = ''
+			// console.log('uid',this.user.uid)
+
+			// 사용자의 uid를 바탕으로 users 컬렉션에서 자신이 제출한 articles의 id 값들 가져오기 (beforeFilteredArticleId)
+
+			// /learning/jungsin/articles/ 에서 해당 articles id 을 검색한 뒤 사용자가 선택한 year,month 와 비교해서 일치하는 article id 만 필터링 (afterFilteredArticleId)
+
+			// 필터링된 id 로만 survey_result 에서 데이터 가져오기
+
+			await this.$firebase.firestore().collection('users').doc(this.user.uid).collection('jungsin')
+				.get()
+				.then((sn) => {
+					sn.forEach((doc) => {
+						// console.log(doc.id, ' => ', doc.data())
+						this.beforeFilteredArticleId.push(doc.id)
+					})
+				})
+				.catch(function (error) {
+					console.log('Error getting documents: ', error)
+				})
+
+			// console.log('before',this.beforeFilteredArticleId)
+
+			await this.beforeFilteredArticleId.forEach((id) => {
+        	// /learning/jungsin/articles/ 에서 해당 articles id 을 검색한 뒤 사용자가 선택한 year,month 와 비교해서 일치하는 article id 만 필터링 (afterFilteredArticleId)
+				this.$firebase.firestore().collection('learning').doc('jungsin').collection('articles')
+					.where('article_id', '==', id).where('year', '==', this.year).where('month', '==', this.month)
+					.get()
+					.then((querySnapshot) => {
+						querySnapshot.forEach((doc) => {
+							// console.log(doc.id, ' => ', doc.data())
+							// aid,year,month 로 필터링된 id 로 survey_result에서 데이터 가져오기
+							this.$firebase.firestore().collection('survey_result').doc('jungsin').collection(doc.id)
+								.where('submitAuthor.uid', '==', this.user.uid)
+								.get()
+								.then((sn) => {
+									sn.forEach((doc) => {
+										// console.log(doc.id, ' => ', doc.data())
+										this.msgs.push(doc.data())
+									})
+								})
+						})
+					})
+			})
+
 		},
-
+		selectYearMonth () { // form 에서 조회 버튼을 눌렀을 때 DB에서 해당 survey 데이터를 fetch 를 시킴
+			// console.log('YMW',this.year,this.month,this.week)
+			this.msgs.splice(0) // fetch 전 배열 비우기
+			this.fetch()
+		}
 	}
-
 }
 </script>
