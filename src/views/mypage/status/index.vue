@@ -7,38 +7,9 @@
                 <v-card-text class="mt-3">나의 현재 정신전력 현황을 살펴봅시다</v-card-text>
             </v-card-text>
             </div>
-		<v-divider></v-divider>
-		<v-hover class="mb-10">
-			<template v-slot:default="{ hover }">
-				<v-card class="mx-auto mt-5" max-width="600">
-				<v-responsive :aspect-ratio="16/9">
-				<!--해당 컨텐츠에 맞게 이미지를 넣어야 함-->
-					<v-img class="white--text align-top" max-height="400"
-					:src="require('../../../assets/bongchang-2.jpg')">
-					<v-card-title>이번주의 정신전력 교육</v-card-title>
-					</v-img>
-				<!--해당 컨텐츠에 맞게 이미지를 넣어야 함-->
 
-					<!--이번이 몇 주차인지 알 수 있게 하기 위해 변동되어야 하는 부분-->
-					<v-card-subtitle class="pb-2">
-					10월 3주차
-					</v-card-subtitle>
-					<!--이번이 몇 주차인지 알 수 있게 하기 위해 변동되어야 하는 부분-->
-					<v-card-text class="text--primary">
-					<h3>이봉창 의사와 '애국헌신'</h3>
 
-					<div>독립운동가로 살다가 돌아가신 이봉창 의사를 통해 '애국헌신'을 배우다</div>
-					</v-card-text>
-					<v-fade-transition>
-					<v-overlay v-if="hover" absolute color="#dedede">
-						<v-btn>참여하기</v-btn>
-					</v-overlay>
-					</v-fade-transition>
-					</v-responsive>
-				</v-card>
-			</template>
-		</v-hover>
-		<v-divider></v-divider>
+
 		</v-container>
 
     <!-- 개인별 -->
