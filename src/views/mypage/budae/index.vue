@@ -16,15 +16,29 @@
 			<v-card-text>
 				<v-toolbar-title class="font-weight-bold mt-5">병사별 정신전력교육 점수</v-toolbar-title>
 			</v-card-text>
+			<!--병사를 선택하지 않았을 경우 보여지게 되는 card-->
+			<v-card
+			class="mx-auto"
+			color="#385F73"
+			dark
+			v-if="notloadSparkline"
+			>
+				<v-card-title class="headline">병사를 선택하지 않았어요!</v-card-title>
+				<v-card-subtitle>점수 조회를 원하는 병사를 선택한 뒤 확인을 누르세요.</v-card-subtitle>
+				<v-img src="https://cdn.pixabay.com/photo/2020/10/10/14/38/leaves-5643327_960_720.png" max-height="300"></v-img>
+			</v-card>
+			<!--병사를 선택하지 않았을 경우 보여지게 되는 card 종료-->
+			<!--병사를 선택한 후 보여지게 되는 graph-->
 			<v-card
 			class="mx-auto text-center"
 			color="green"
-			dark>
+			dark
+			v-else>
 				<template>
 					<v-sparkline
 						height="80"
 						:value="value"
-						padding="10"
+						padding="15"
 						:smooth="radius || false"
 						:line-width="width"
 						:stroke-linecap="lineCap"
@@ -34,7 +48,7 @@
 						:auto-line-width="autoLineWidth"
 						auto-draw
 					><template v-slot:label="item">
-					{{ item.value }}
+					{{ item.value }}점
 					</template>
 					</v-sparkline>
 				</template>
@@ -44,6 +58,7 @@
 				</div>
 				</v-card-text>
 			</v-card>
+			<!--병사를 선택한 후 보여지게 되는 graph 종료-->
 		</v-container>
 	<!--graph들어가는 부분 end-->
 	<!--sparkline 추가-->
@@ -55,18 +70,20 @@
       <!-- 날짜 선택 부분 -->
       <v-container fluid class="pa-3">
           <v-form v-model="valid" ref="form" >
-          <v-row align="center">
-              <v-col class="d-flex" cols="4" sm="2" xs="3">
+          <v-row>
+              <v-col cols="3">
                 <v-select v-model="year" :items="yearList" label="년" required :rules="[rule.required]"></v-select>
               </v-col>
-              <v-col class="d-flex" cols="4" sm="2" xs="3">
+              <v-col cols="3">
                 <v-select v-model="month" :items="monthList" label="월" required :rules="[rule.required]"></v-select>
               </v-col>
-              <v-col class="d-flex" cols="4" sm="2" xs="6">
+              <v-col cols="3">
                 <v-select v-model="week" :items="weekList" label="주차" required :rules="[rule.required]"></v-select>
               </v-col>
+			  <v-col class="d-flex justify-end" cols="3">
+				<v-btn :disabled="!valid" color="success" @click="selectYearMonthWeek">조회</v-btn>
+			  </v-col>
             </v-row>
-            <v-btn :disabled="!valid" color="success" @click="selectYearMonthWeek">조회</v-btn>
           </v-form>
       </v-container>
       <!-- 날짜 선택 부분 -->
@@ -135,14 +152,17 @@ export default {
 			isEmpty: false, // DB에 조회했을 때 data 가 존재하면 false
 
 			//graph 들어가는부분 data
+			labels: ['1주차', '2주차', '3주차', '4주차', '5주차'],
 			width: 2,
 			lineCap: 'round',
 			radius : 4,
-			// value가 데이터가 되는 부분
-			value: [2, 5, 1, 4, 3],
 			gradientDirection: 'top',
 			type: 'trend',
 			autoLineWidth: false,
+			// value가 데이터가 되는 부분
+			value: [2, 5, 1, 4, 3],
+			//form에서 선택하지 않았을 경우 보여지는 vue를 위한 값
+			notloadSparkline: true
 		}
 	},
 	computed: {
