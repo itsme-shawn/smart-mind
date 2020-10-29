@@ -49,10 +49,10 @@
       <v-container fluid class="pa-3">
           <v-form v-model="valid" ref="form" >
           <v-row align="center">
-              <v-col class="d-flex" cols="2" sm="2">
+              <v-col class="d-flex" cols="6" sm="2" xs="6">
                 <v-select v-model="year" :items="yearList" label="년" required :rules="[rule.required]"></v-select>
               </v-col>
-              <v-col class="d-flex" cols="2" sm="2">
+              <v-col class="d-flex" cols="6" sm="2" xs="6">
                 <v-select v-model="month" :items="monthList" label="월" required :rules="[rule.required]"></v-select>
               </v-col>
             </v-row>
@@ -78,7 +78,7 @@
                 <strong >{{msg.submitAuthor.displayName}}</strong>
               </v-col>
               <v-col class="text-no-wrap" cols="5" sm="3">
-                <strong >{{msg.title}} </strong>
+                <strong >{{(msg.title).substring(0,7)}} </strong>
               </v-col>
             </v-row>
           </v-expansion-panel-header>

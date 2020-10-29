@@ -117,7 +117,7 @@ export default {
 			// console.log('checkComplete', this.$firebase.firestore().collection('users').doc(this.user.uid).collection(this.document).doc(id).get())
 			const user = this.$firebase.auth().currentUser
 			const temp = await this.$firebase.firestore().collection('users').doc(user.uid).collection(this.document).doc(id).get()
-			console.log('et', temp.exists)
+			// console.log('et', temp.exists)
 			if (temp.exists) return true // 해당 users 의 DB에 survey 한 데이터가 있다면 제출을 완료한 것
 			else return false // 아니라면 false 리턴
 		}

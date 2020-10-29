@@ -18,13 +18,13 @@
       <v-container fluid class="pa-3">
           <v-form v-model="valid" ref="form" >
           <v-row align="center">
-              <v-col class="d-flex" cols="2" sm="2">
+              <v-col class="d-flex" cols="4" sm="2" xs="3">
                 <v-select v-model="year" :items="yearList" label="년" required :rules="[rule.required]"></v-select>
               </v-col>
-              <v-col class="d-flex" cols="2" sm="2">
+              <v-col class="d-flex" cols="4" sm="2" xs="3">
                 <v-select v-model="month" :items="monthList" label="월" required :rules="[rule.required]"></v-select>
               </v-col>
-              <v-col class="d-flex" cols="2" sm="2">
+              <v-col class="d-flex" cols="4" sm="2" xs="6">
                 <v-select v-model="week" :items="weekList" label="주차" required :rules="[rule.required]"></v-select>
               </v-col>
             </v-row>
