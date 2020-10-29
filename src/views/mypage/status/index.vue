@@ -8,8 +8,6 @@
             </v-card-text>
             </div>
 
-
-
 		</v-container>
 
     <!-- 개인별 -->
@@ -144,7 +142,6 @@ export default {
 						})
 					})
 			})
-
 		},
 		selectYearMonth () { // form 에서 조회 버튼을 눌렀을 때 DB에서 해당 survey 데이터를 fetch 를 시킴
 			// console.log('YMW',this.year,this.month,this.week)
