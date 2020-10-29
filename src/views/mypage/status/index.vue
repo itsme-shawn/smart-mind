@@ -44,6 +44,9 @@
 		</v-container>
 		<!--graph들어가는 부분 end-->
 		<v-divider></v-divider>
+
+
+
 		</v-container>
 
     <!-- 개인별 -->
@@ -116,7 +119,6 @@ export default {
 			valid: false,
 			rule: { required: v => !!v || '필수 항목입니다.' },
 			selectedArticleId: '',
-			selectedArticleTitle: '',
 			year: '',
 			month: '',
 			week: '',

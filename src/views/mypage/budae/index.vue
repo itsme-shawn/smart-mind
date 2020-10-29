@@ -4,7 +4,7 @@
       <v-card-text>
           <v-toolbar-title class="text-h4 font-weight-bold ">부대 관리</v-toolbar-title>
           <v-card-text class="mt-3">
-          해당 부대 병사들의 교육 현황을 확인하고 평가할 수 있습니다.
+          해당 부대 용사들의 교육 현황을 확인하고 평가할 수 있습니다.
       </v-card-text>
       </v-card-text>
     </div>
@@ -66,7 +66,7 @@
     <!-- 주차별 -->
     <v-card color="transparent">
       <v-card-title class="align-top font-weight-bold mb-4">주차별 정신전력 교육 현황</v-card-title>
-      <v-card-text>병사들의 정신전력 교육 제출 현황과 제출 의견을 조회할 수 있습니다.</v-card-text>
+      <v-card-text>용사들의 정신전력 교육 제출 현황과 제출 의견을 조회할 수 있습니다.</v-card-text>
       <!-- 날짜 선택 부분 -->
       <v-container fluid class="pa-3">
           <v-form v-model="valid" ref="form" >
@@ -106,15 +106,15 @@
                 <strong >{{msg.submitAuthor.displayName}}</strong>
               </v-col>
               <v-col class="text-no-wrap" cols="5" sm="3">
-                <strong >{{selectedArticleTitle}} </strong>
+                <strong >{{(msg.title).substring(0,7)}} </strong>
               </v-col>
             </v-row>
           </v-expansion-panel-header>
           <v-expansion-panel-content>
             <v-divider></v-divider>
             <v-card-text class="texts">질문</v-card-text>
-            <v-card-text class="qtexts"><span class="texts">1. </span> {{Q1}}</v-card-text>
-            <v-card-text class="qtexts"><span class="texts">2. </span> {{Q2}}</v-card-text><v-divider></v-divider>
+            <v-card-text class="qtexts"><span class="texts">1. </span> {{msg.question.Q1}}</v-card-text>
+            <v-card-text class="qtexts"><span class="texts">2. </span> {{msg.question.Q2}}</v-card-text><v-divider></v-divider>
             <v-card-text class="texts">답변</v-card-text>
             <v-card-text class="qtexts"><span class="texts">1. </span> {{msg.a1}}</v-card-text>
             <v-card-text class="qtexts"><span class="texts">2. </span> {{msg.a2}}</v-card-text>
@@ -184,7 +184,6 @@ export default {
 					querySnapshot.forEach((doc) => {
 						// console.log(doc.id, ' => ', doc.data())
 						this.selectedArticleId = doc.data().article_id
-						this.selectedArticleTitle = doc.data().title
 						this.isEmpty = false
 						// console.log('id', this.selectedArticleId)
 					})
