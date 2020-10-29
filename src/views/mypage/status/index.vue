@@ -8,55 +8,35 @@
             </v-card-text>
             </div>
 		<v-divider></v-divider>
-		<v-hover class="mb-10">
-			<template v-slot:default="{ hover }">
-				<v-card class="mx-auto mt-5" max-width="600">
-				<v-responsive :aspect-ratio="16/9">
-				<!--해당 컨텐츠에 맞게 이미지를 넣어야 함-->
-					<v-img class="white--text align-top" max-height="400"
-					:src="require('../../../assets/bongchang-2.jpg')">
-					<v-card-title>이번주의 정신전력 교육</v-card-title>
-					</v-img>
-				<!--해당 컨텐츠에 맞게 이미지를 넣어야 함-->
-
-					<!--이번이 몇 주차인지 알 수 있게 하기 위해 변동되어야 하는 부분-->
-					<v-card-subtitle class="pb-2">
-					10월 3주차
-					</v-card-subtitle>
-					<!--이번이 몇 주차인지 알 수 있게 하기 위해 변동되어야 하는 부분-->
-					<v-card-text class="text--primary">
-					<h3>이봉창 의사와 '애국헌신'</h3>
-
-					<div>독립운동가로 살다가 돌아가신 이봉창 의사를 통해 '애국헌신'을 배우다</div>
-					</v-card-text>
-					<v-fade-transition>
-					<v-overlay v-if="hover" absolute color="#dedede">
-						<v-btn>참여하기</v-btn>
-					</v-overlay>
-					</v-fade-transition>
-					</v-responsive>
+			<v-container class="mb-12">
+				<v-card-text>
+                	<v-toolbar-title class="font-weight-bold mt-5">나의 정신전력교육 점수</v-toolbar-title>
+            	</v-card-text>
+				<v-card>
+					
 				</v-card>
-			</template>
-		</v-hover>
+			</v-container>
 		<v-divider></v-divider>
 		</v-container>
 
     <!-- 개인별 -->
     <v-card color="transparent">
       <v-card-title class="align-top font-weight-bold mb-4">내 정신전력 교육 현황</v-card-title>
-      <v-card-text>나의 정신전력 교육 제출 현황을 조회할 수 있습니다.</v-card-text>
+      <v-card-text>나의 정신전력교육 제출 현황을 조회할 수 있습니다.</v-card-text>
       <!-- 날짜 선택 부분(년/월까지만 입력받음) -->
       <v-container fluid class="pa-3">
-          <v-form v-model="valid" ref="form" >
-          <v-row align="center">
-              <v-col class="d-flex" cols="6" sm="2" xs="6">
+          <v-form v-model="valid" ref="form">
+          <v-row>
+              <v-col cols="5" md="4">
                 <v-select v-model="year" :items="yearList" label="년" required :rules="[rule.required]"></v-select>
               </v-col>
-              <v-col class="d-flex" cols="6" sm="2" xs="6">
+              <v-col cols="5" md="4">
                 <v-select v-model="month" :items="monthList" label="월" required :rules="[rule.required]"></v-select>
               </v-col>
+			  <v-col class="d-flex justify-end" cols="2" md="4">
+				  <v-btn  :disabled="!valid" color="success" @click="selectYearMonth">조회</v-btn>
+			  </v-col>
             </v-row>
-            <v-btn :disabled="!valid" color="success" @click="selectYearMonth">조회</v-btn>
           </v-form>
       </v-container>
       <!-- 날짜 선택 부분 -->
