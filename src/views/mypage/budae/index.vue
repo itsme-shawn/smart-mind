@@ -160,18 +160,22 @@
                     :gradient-direction="graphData.gradientDirection"
                     :type="graphData.type"
                     :auto-line-width="graphData.autoLineWidth"
-                    :labels="graphData.labels"
+
                     auto-draw
                     show-labels
-                ><template v-slot:label="item">
-                {{ item.value }}
+                >
+                <template v-slot:label="item" >
+
+                  {{ item.labels }}
+
                 </template>
                 </v-sparkline>
             </template>
             <v-card-text>
             <div class="display-1 font-weight-thin">
-                Keep it up!
+                {{graphData.title}} 의 평점 통계
             </div>
+            {{graphData.labels}}
             </v-card-text>
         </v-card>
         </v-container>
@@ -278,7 +282,7 @@ export default {
 			// graph 들어가는부분 data
 			graphData: {
 				show: false,
-				labels: ['1주차', '2주차', '3주차', '4주차', '5주차'],
+				labels: [], // 구분이름(몇주차)
 				width: 2,
 				lineCap: 'round',
 				radius: 4,
@@ -286,7 +290,8 @@ export default {
 				type: 'trend',
 				autoLineWidth: false,
 				// value가 데이터가 되는 부분
-				value: [2, 5, 1, 4, 3]
+				value: [],
+				title: ''
 			}
 
 		}
@@ -362,7 +367,8 @@ export default {
 				.then((sn) => {
 					sn.forEach((doc) => {
 						// console.log(doc.id, ' => ', doc.data())
-						this.userList.push(doc.data().displayName)
+            this.userList.push(doc.data().displayName)
+
 					})
 				})
 
@@ -375,19 +381,25 @@ export default {
 			this.graphData.show = true
 			this.soldierLoading = true
 
-			this.msgs2.splice(0)
+      this.msgs2.splice(0)
+      this.graphData.labels.splice(0)
+
 			await this.$firebase.firestore().collection('users')
 				.where('displayName', '==', this.sUser)
 				.get()
 				.then((sn) => {
 					sn.forEach((doc) => {
 						// console.log(doc.id, ' => ', doc.data())
-						const uid = doc.id // form 에서 입력받은 사용자의 uid
+            const uid = doc.id // form 에서 입력받은 사용자의 uid
+            this.graphData.title = doc.data().displayName
 						this.$firebase.firestore().collection('users').doc(uid).collection('jungsin')
 							.get()
 							.then((sn2) => {
 								sn2.forEach((doc2) => {
 									this.msgs2.push(doc2.data())
+                  // console.log(doc2.id, ' => ', doc2.data())
+                  this.graphData.labels.push(doc2.data().title)
+
 								})
 							})
 					})
@@ -395,6 +407,14 @@ export default {
 				.catch(function (error) {
 					console.log('Error getting documents: ', error)
 				})
+
+      // console.log('m2', this.msgs2)
+       console.log('label',this.graphData.labels)
+
+
+
+
+
 			this.soldierLoading = false
 		},
 		// 관리자가 작성한 comment 와 rating 을 db 에 저장하는 함수
