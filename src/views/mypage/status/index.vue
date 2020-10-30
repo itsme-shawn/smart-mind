@@ -1,13 +1,15 @@
 <template>
 	<v-container class="mb-12 pa-5">
 		<v-container>
-            <div>
-            <v-card-text>
-                <v-toolbar-title class="text-h4 font-weight-bold ">정신전력 현황</v-toolbar-title>
-                <v-card-text class="mt-3">나의 현재 정신전력 현황을 살펴봅시다</v-card-text>
-            </v-card-text>
-            </div>
-		<v-divider></v-divider>
+      <div>
+      <v-card-text>
+          <v-toolbar-title class="text-h4 font-weight-bold ">정신전력 현황</v-toolbar-title>
+          <v-card-text class="mt-3">나의 현재 정신전력 현황을 살펴봅시다</v-card-text>
+      </v-card-text>
+      </div>
+		  <v-divider></v-divider>
+    </v-container>
+    
 		<!--graph들어가는 부분-->
 		<v-container class="mb-12">
 			<v-card-text>
@@ -45,7 +47,7 @@
 		<!--graph들어가는 부분 end-->
 		<v-divider></v-divider>
 
-		</v-container>
+		
 
     <!-- 개인별 -->
     <v-card color="transparent">
@@ -90,6 +92,10 @@
               <v-col class="text-no-wrap" cols="5" sm="3">
                 <strong >{{(msg.title).substring(0,7)}} </strong>
               </v-col>
+              <v-col cols="5" sm="3">
+                <v-chip color="success" label small class="mr-4" v-if="msg.rating && msg.comment">평가 완료</v-chip> <!-- 추후 사용자의 수강상태에 따라서 동적으로 수강 전/ 수강 완료 로 핸들링해줄 예정 -->
+                <v-chip color="error" label small class="mr-4" v-else >평가 미작성</v-chip>
+              </v-col>
             </v-row>
           </v-expansion-panel-header>
           <v-expansion-panel-content>
@@ -100,6 +106,10 @@
             <v-card-text class="texts">답변</v-card-text>
             <v-card-text class="qtexts"><span class="texts">1. </span> {{msg.a1}}</v-card-text>
             <v-card-text class="qtexts"><span class="texts">2. </span> {{msg.a2}}</v-card-text>
+            <v-card-text class="texts mt-2">평가</v-card-text>
+            <v-subheader>각 부대의 관리자가 남긴 평가입니다.</v-subheader>
+            <v-textarea v-model="msg.comment" filled readonly auto-grow ></v-textarea>
+            <v-rating v-model="msg.rating" readonly half-increments hover background-color="grey lighten-1" color="warning" large value="5"></v-rating>
           </v-expansion-panel-content>
           </v-expansion-panel>
         </v-expansion-panels>

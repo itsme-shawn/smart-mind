@@ -117,11 +117,10 @@
     </v-container>
     <!-- 주차별 평가하기 끝 -->
 
-
     <!-- 통계보기 -->
 		<v-container class="mb-12" v-if="option === 'graph'" >
 
-    <!-- 용사별 -->
+    <!-- 용사별 정신전력 현황 -->
     <v-card color="transparent" class="mt-5">
       <v-card-title class="align-top font-weight-bold mb-4">용사별 정신전력 교육 현황</v-card-title>
       <v-card-text>특정 용사의 교육 현황을 조회할 수 있습니다</v-card-text>
@@ -133,10 +132,52 @@
                 <v-select v-model="sUser" :items="userList" label="용사 선택" required :rules="[rule.required]"></v-select>
               </v-col>
             </v-row>
-            <v-btn :disabled="!valid2" color="success" @click="selectUser">조회</v-btn>
+            <v-btn :disabled="!valid2" color="success" @click="selectUser" :loading="soldierLoading">조회</v-btn>
           </v-form>
       </v-container>
-      <!-- 용사 선택 부분 -->
+  <!-- 용사 선택 부분 끝 -->
+
+      <!--sparkline 시작-->
+        <!--병사를 선택하지 않았을 경우 보여지게 되는 card-->
+      <v-container class="mb-6 mt-3" >
+        <v-card max-width="800" class="mx-auto" color="#385F73" dark v-if="!graphData.show">
+            <v-card-title class="headline">병사를 선택하지 않았어요!</v-card-title>
+            <v-card-subtitle>점수 조회를 원하는 병사를 선택한 뒤 확인을 누르세요.</v-card-subtitle>
+            <v-img src="https://cdn.pixabay.com/photo/2020/10/10/14/38/leaves-5643327_960_720.png" max-height="300"></v-img>
+        </v-card>
+        <!--병사를 선택하지 않았을 경우 보여지게 되는 card 종료-->
+        <!--병사를 선택한 후 보여지게 되는 graph-->
+        <v-card max-width="800" class="mx-auto text-center" color="green" dark v-if="graphData.show">
+            <template>
+                <v-sparkline
+                    height="80"
+                    :value="graphData.value"
+                    padding="15"
+                    :smooth="graphData.radius || false"
+                    :line-width="graphData.width"
+                    :stroke-linecap="graphData.lineCap"
+                    color="rgba(255, 255, 255, .7)"
+                    :gradient-direction="graphData.gradientDirection"
+                    :type="graphData.type"
+                    :auto-line-width="graphData.autoLineWidth"
+                    :labels="graphData.labels"
+                    auto-draw
+                    show-labels
+                ><template v-slot:label="item">
+                {{ item.value }}
+                </template>
+                </v-sparkline>
+            </template>
+            <v-card-text>
+            <div class="display-1 font-weight-thin">
+                Keep it up!
+            </div>
+            </v-card-text>
+        </v-card>
+        </v-container>
+        <!--sparkline 끝-->
+
+      <!-- expanstion 패널 -->
       <v-card>
         <v-expansion-panels popout >
           <v-expansion-panel
@@ -157,6 +198,10 @@
               <v-col class="text-no-wrap" cols="5" sm="3">
                 <strong >{{(msg2.title).substring(0,7)}} </strong>
               </v-col>
+              <v-col cols="5" sm="3">
+                <v-chip color="success" label small class="mr-4" v-if="msg2.rating && msg2.comment">평가 완료</v-chip> <!-- 추후 사용자의 수강상태에 따라서 동적으로 수강 전/ 수강 완료 로 핸들링해줄 예정 -->
+                <v-chip color="error" label small class="mr-4" v-else >평가 미작성</v-chip>
+              </v-col>
             </v-row>
           </v-expansion-panel-header>
           <v-expansion-panel-content>
@@ -167,72 +212,32 @@
             <v-card-text class="texts mt-2">답변</v-card-text>
             <v-card-text class="qtexts"><span class="texts">1. </span> {{msg2.a1}}</v-card-text>
             <v-card-text class="qtexts"><span class="texts">2. </span> {{msg2.a2}}</v-card-text>
+            <v-card-text class="texts mt-2">평가</v-card-text>
+            <v-subheader>각 부대의 관리자가 남긴 평가입니다.</v-subheader>
+            <v-textarea v-model="msg2.comment" filled readonly auto-grow ></v-textarea>
+            <v-rating v-model="msg2.rating" readonly half-increments hover background-color="grey lighten-1" color="warning" large value="5"></v-rating>
             <v-divider/>
 
           </v-expansion-panel-content>
           </v-expansion-panel>
         </v-expansion-panels>
       </v-card>
+      <!-- expanstion 패널 끝 -->
     </v-card>
-    <!-- 용사별 끝 -->
+    <!-- 용사별 정신전력 현황 끝 -->
 
-    <!--sparkline 추가-->
-    <!--꺾은선그래프 graph들어가는 부분-->
-			<!--병사를 선택하지 않았을 경우 보여지게 되는 card-->
-			<v-card
-			class="mx-auto"
-			color="#385F73"
-			dark
-			v-if="notloadSparkline"
-			>
-				<v-card-title class="headline">병사를 선택하지 않았어요!</v-card-title>
-				<v-card-subtitle>점수 조회를 원하는 병사를 선택한 뒤 확인을 누르세요.</v-card-subtitle>
-				<v-img src="https://cdn.pixabay.com/photo/2020/10/10/14/38/leaves-5643327_960_720.png" max-height="300"></v-img>
-			</v-card>
-			<!--병사를 선택하지 않았을 경우 보여지게 되는 card 종료-->
-			<!--병사를 선택한 후 보여지게 되는 graph-->
-			<v-card
-			class="mx-auto text-center"
-			color="green"
-			dark
-			v-else>
-				<template>
-					<v-sparkline
-						height="80"
-						:value="value"
-						padding="15"
-						:smooth="radius || false"
-						:line-width="width"
-						:stroke-linecap="lineCap"
-						color="rgba(255, 255, 255, .7)"
-						:gradient-direction="gradientDirection"
-						:type="type"
-						:auto-line-width="autoLineWidth"
-						auto-draw
-					><template v-slot:label="item">
-					{{ item.value }}점
-					</template>
-					</v-sparkline>
-				</template>
-				<v-card-text>
-				<div class="display-1 font-weight-thin">
-					Keep it up!
-				</div>
-				</v-card-text>
-			</v-card>
-			<!--병사를 선택한 후 보여지게 되는 graph 종료-->
-		</v-container>
-	<!--graph들어가는 부분 end-->
-	<!--sparkline 추가-->
+    </v-container>
+	<!--통계보기 끝-->
 
-  </v-container>
+  </v-container> <!-- 최상위 컨테이너 끝 -->
 
-  
+  <!-- 스낵바 시작 -->
   <v-snackbar v-model="snackbar" :timeout="3000">평가가 등록되었습니다
     <template v-slot:action="{ attrs }">
       <v-btn color="blue" text v-bind="attrs" @click="snackbar = false">Close</v-btn>
     </template>
   </v-snackbar>
+  <!-- 스낵바 끝 -->
   </div>
 </template>
 <script>
@@ -243,7 +248,7 @@ Vue.use(Chartkick.use(Chart))
 export default {
 	data () {
 		return {
-      option: '',
+			option: '',
 			yearList: ['2020년', '2021년'],
 			monthList: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
 			weekList: ['1주차', '2주차', '3주차', '4주차', '5주차'],
@@ -263,24 +268,27 @@ export default {
 			Q2: '',
 			ref: null,
 			isEmpty: false, // DB에 조회했을 때 data 가 존재하면 false
-      comment: '',
+			comment: '',
 			rating: '',
-      value: 0,
-      seeLoading: false,
-      submitLoading: false,
-      snackbar: false,
+			// value: 0,
+			seeLoading: false,
+			submitLoading: false,
+			soldierLoading: false,
+			snackbar: false,
 			// graph 들어가는부분 data
-			labels: ['1주차', '2주차', '3주차', '4주차', '5주차'],
-			width: 2,
-			lineCap: 'round',
-			radius: 4,
-			gradientDirection: 'top',
-			type: 'trend',
-			autoLineWidth: false,
-			// value가 데이터가 되는 부분
-			value: [2, 5, 1, 4, 3],
-			// form에서 선택하지 않았을 경우 보여지는 vue를 위한 값
-			notloadSparkline: true
+			graphData: {
+				show: false,
+				labels: ['1주차', '2주차', '3주차', '4주차', '5주차'],
+				width: 2,
+				lineCap: 'round',
+				radius: 4,
+				gradientDirection: 'top',
+				type: 'trend',
+				autoLineWidth: false,
+				// value가 데이터가 되는 부분
+				value: [2, 5, 1, 4, 3]
+			}
+
 		}
 	},
 	computed: {
@@ -293,7 +301,7 @@ export default {
 	},
 	methods: {
 		async fetch () {
-      this.seeLoading = true
+			this.seeLoading = true
 			this.msgs.splice(0) // fetch 전 배열 비우기
 			this.selectedArticleId = ''
 
@@ -340,14 +348,13 @@ export default {
 			} else {
 				this.isEmpty = true
 			}
-      this.seeLoading = false
+			this.seeLoading = false
 		},
 		selectYearMonthWeek () { // form 에서 조회 버튼을 눌렀을 때 DB에서 해당 survey 데이터를 fetch 를 시킴
 			// console.log('YMW',this.year,this.month,this.week)
-			
-      this.msgs.splice(0) // fetch 전 배열 비우기
+
+			this.msgs.splice(0) // fetch 전 배열 비우기
 			this.fetch()
-      
 		},
 		async loadUserList () { // 용사별 정신전력 교육 현황을 위해 user list 를 불러온다
 			await this.$firebase.firestore().collection('users')
@@ -364,6 +371,9 @@ export default {
 		async selectUser () {
 			// 1. form 에서 입력 받은 displayName(this.sUser) 으로 uid 찾기
 			// 2. uid 로 users 컬렉션에서 제출한 게시물들 가져오기
+
+			this.graphData.show = true
+			this.soldierLoading = true
 
 			this.msgs2.splice(0)
 			await this.$firebase.firestore().collection('users')
@@ -385,27 +395,28 @@ export default {
 				.catch(function (error) {
 					console.log('Error getting documents: ', error)
 				})
+			this.soldierLoading = false
 		},
-    // 관리자가 작성한 comment 와 rating 을 db 에 저장하는 함수
-    // item 파라미터 : comment와 rating 을 남길 survey 에 대한 데이터
-    async submitCommentandRating (item) { 
-      // console.log(this.comment, typeof this.rating)
-      // item 에서 넘어온 article_id 와 uid 를 바탕으로 this.comment 와 this.rating 을 해당 survey_result 컬렉션과 user 컬렉션에 저장한다.
-      this.submitLoading = true
-      const surveyResultRef = this.$firebase.firestore().collection('survey_result').doc('jungsin').collection(item.article_id).doc(this.user.uid)
-      const userRef = this.$firebase.firestore().collection('users').doc(this.user.uid).collection('jungsin').doc(item.article_id)
+		// 관리자가 작성한 comment 와 rating 을 db 에 저장하는 함수
+		// item 파라미터 : comment와 rating 을 남길 survey 에 대한 데이터
+		async submitCommentandRating (item) {
+			// console.log(this.comment, typeof this.rating)
+			// item 에서 넘어온 article_id 와 uid 를 바탕으로 this.comment 와 this.rating 을 해당 survey_result 컬렉션과 user 컬렉션에 저장한다.
+			this.submitLoading = true
+			const surveyResultRef = this.$firebase.firestore().collection('survey_result').doc('jungsin').collection(item.article_id).doc(item.submitAuthor.uid)
+			const userRef = this.$firebase.firestore().collection('users').doc(item.submitAuthor.uid).collection('jungsin').doc(item.article_id)
 
-      const answer = {
-        comment : item.comment,
-        rating : item.rating
-      }
+			const answer = {
+				comment: item.comment,
+				rating: item.rating
+			}
 
-      await surveyResultRef.update(answer)
+			await surveyResultRef.update(answer)
 			await userRef.update(answer)
 
-      this.submitLoading = false
-      this.snackbar = true
-    }
+			this.submitLoading = false
+			this.snackbar = true
+		}
 
 	}
 }
