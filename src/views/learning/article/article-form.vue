@@ -62,7 +62,7 @@ export default {
 	props: ['collection', 'document', 'action'],
 	data () {
 		return {
-            yearList: ['2020년', '2021년'],
+			yearList: ['2020년', '2021년'],
 			monthList: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
 			weekList: ['1주차', '2주차', '3주차', '4주차', '5주차'],
 			editor_options: {
@@ -75,8 +75,8 @@ export default {
 				Q1: '',
 				Q2: '',
 				month: '',
-                week: '',
-                year: ''
+				week: '',
+				year: ''
 			},
 			exists: false,
 			loading: false,
@@ -117,8 +117,8 @@ export default {
 			const r = await axios.get(item.url)
 			this.form.content = r.data
 			this.form.month = item.month
-      this.form.week = item.week
-      this.form.year = item.year
+			this.form.week = item.week
+			this.form.year = item.year
 		},
 		async save () { // 작성한 글 저장 함수 : 비동기 로직 포함 ( firestore DB에 저장 )
 			if (this.user.level !== 'admin') throw Error('관리자만 가능합니다!') // 권한 확인
@@ -135,8 +135,8 @@ export default {
 						Q2: this.form.Q2
 					},
 					month: this.form.month,
-          week: this.form.week,
-          year: this.form.year
+					week: this.form.week,
+					year: this.form.year
 				}
 
 				const batch = await this.$firebase.firestore().batch()

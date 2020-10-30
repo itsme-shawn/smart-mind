@@ -21,7 +21,7 @@
         </v-subheader>
       </v-card>
       <v-dialog :key="i" v-if="selectedItem" v-model="dialog" max-width="800"> <!-- selectedItem 이 들어올 때만 dialog 가 렌더링돼야함 (안 그러면 오류) -->
-        <display-content :document="document" :collection="collection" :item="selectedItem" @close="dialog=false"></display-content> <!-- components/display-content.vue : 게시물 내용 표시 컴포넌트 -->
+        <display-content :document="document" :collection="collection" :item="selectedItem" @close="closeEvent"></display-content> <!-- components/display-content.vue : 게시물 내용 표시 컴포넌트 -->
       </v-dialog>
     </template>
 
@@ -49,7 +49,8 @@ export default {
 			order: 'createdAt',
 			sort: 'desc',
 			dialog: false,
-			selectedItem: null
+			selectedItem: null,
+			completedArticleId: []
 		}
 	},
 	computed: {
@@ -74,6 +75,18 @@ export default {
 	methods: {
 		async subscribe () {
 			if (this.unsubscribe) this.unsubscribe()
+
+			this.completedArticleId.splice(0) // 초기화
+
+			await this.$firebase.firestore().collection('users').doc(this.user.uid).collection(this.document)
+				.get()
+				.then((sn) => {
+					sn.forEach((doc) => {
+						// console.log(doc.id, ' => ', doc.data())
+						this.completedArticleId.push(doc.id) // this.completedArticleId 배열에는 user 가 수강완료(submit)한 article 들의 id가 담겨있음
+					})
+				})
+
 			this.ref = this.$firebase.firestore().collection(this.collection).doc(this.document).collection('articles').orderBy(this.order, this.sort)
 			this.unsubscribe = await this.ref.onSnapshot(sn => {
 				if (sn.empty) {
@@ -92,13 +105,11 @@ export default {
 					item.createdAt = item.createdAt.toDate() // 타임스탬프를 일반 시간으로 변환
 					item.updatedAt = item.updatedAt.toDate() // 마찬가지
 					item.isNew = this.checkNew(item.createdAt)
-					this.checkComplete(item.id).then((result) => {
-						item.isComplete = result
-					})
+					item.isComplete = this.completedArticleId.includes(item.id)
 
 					return item
 				})
-				// console.log('this.items', this.items)
+				 // console.log('this.items', this.items)
 			})
 		},
 		openDialog (item) {
@@ -113,13 +124,9 @@ export default {
 			if (diff <= 3) return true
 			else return false
 		},
-		async checkComplete (id) {
-			// console.log('checkComplete', this.$firebase.firestore().collection('users').doc(this.user.uid).collection(this.document).doc(id).get())
-			const user = this.$firebase.auth().currentUser
-			const temp = await this.$firebase.firestore().collection('users').doc(user.uid).collection(this.document).doc(id).get()
-			// console.log('et', temp.exists)
-			if (temp.exists) return true // 해당 users 의 DB에 survey 한 데이터가 있다면 제출을 완료한 것
-			else return false // 아니라면 false 리턴
+		closeEvent () {
+			this.dialog = false
+			this.subscribe()
 		}
 	}
 }
