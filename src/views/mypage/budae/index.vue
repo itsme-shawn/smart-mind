@@ -160,15 +160,12 @@
                     :gradient-direction="graphData.gradientDirection"
                     :type="graphData.type"
                     :auto-line-width="graphData.autoLineWidth"
+                    :labels="graphData.labels"
 
                     auto-draw
                     show-labels
                 >
-                <template v-slot:label="item" >
 
-                  {{ item.labels }}
-
-                </template>
                 </v-sparkline>
             </template>
             <v-card-text>
@@ -245,10 +242,6 @@
   </div>
 </template>
 <script>
-import Vue from 'vue'
-import Chartkick from 'vue-chartkick'
-import Chart from 'chart.js'
-Vue.use(Chartkick.use(Chart))
 export default {
 	data () {
 		return {
@@ -303,6 +296,7 @@ export default {
 	},
 	created () {
 		this.loadUserList()
+		console.log('labels 배열 push 전', this.graphData.labels)
 	},
 	methods: {
 		async fetch () {
@@ -367,8 +361,7 @@ export default {
 				.then((sn) => {
 					sn.forEach((doc) => {
 						// console.log(doc.id, ' => ', doc.data())
-            this.userList.push(doc.data().displayName)
-
+						this.userList.push(doc.data().displayName)
 					})
 				})
 
@@ -381,8 +374,8 @@ export default {
 			this.graphData.show = true
 			this.soldierLoading = true
 
-      this.msgs2.splice(0)
-      this.graphData.labels.splice(0)
+			this.msgs2.splice(0)
+			this.graphData.labels.splice(0)
 
 			await this.$firebase.firestore().collection('users')
 				.where('displayName', '==', this.sUser)
@@ -390,16 +383,15 @@ export default {
 				.then((sn) => {
 					sn.forEach((doc) => {
 						// console.log(doc.id, ' => ', doc.data())
-            const uid = doc.id // form 에서 입력받은 사용자의 uid
-            this.graphData.title = doc.data().displayName
+						const uid = doc.id // form 에서 입력받은 사용자의 uid
+						this.graphData.title = doc.data().displayName
 						this.$firebase.firestore().collection('users').doc(uid).collection('jungsin')
 							.get()
 							.then((sn2) => {
 								sn2.forEach((doc2) => {
 									this.msgs2.push(doc2.data())
-                  // console.log(doc2.id, ' => ', doc2.data())
-                  this.graphData.labels.push(doc2.data().title)
-
+									// console.log(doc2.id, ' => ', doc2.data())
+									 this.graphData.labels.push(doc2.data().title)
 								})
 							})
 					})
@@ -408,12 +400,8 @@ export default {
 					console.log('Error getting documents: ', error)
 				})
 
-      // console.log('m2', this.msgs2)
-       console.log('label',this.graphData.labels)
-
-
-
-
+			// console.log('m2', this.msgs2)
+			console.log('labels 배열 push 후', this.graphData.labels)
 
 			this.soldierLoading = false
 		},
