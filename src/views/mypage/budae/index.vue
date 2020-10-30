@@ -51,7 +51,7 @@
           <v-form v-model="valid" ref="form" >
             <v-row>
                 <v-col cols="4" xs="4" sm="4">
-                  <v-select v-model="year" :items="yearList" label="년" required :rules="[rule.required]"></v-select>
+                  <v-select v-model="year" :items="yearList" label="년" required :rules="[rule.required]" ></v-select>
                 </v-col>
                 <v-col cols="4" xs="4" sm="4">
                   <v-select v-model="month" :items="monthList" label="월" required :rules="[rule.required]"></v-select>
@@ -62,7 +62,7 @@
             </v-row>
             <v-row>
               <v-col class="d-flex justify-start" cols="8">
-                <v-btn :disabled="!valid" color="success" @click="selectYearMonthWeek">조회</v-btn>
+                <v-btn :disabled="!valid" color="success" @click="selectYearMonthWeek" :loading="seeLoading">조회</v-btn>
               </v-col>
             </v-row>
           </v-form>
@@ -89,6 +89,10 @@
               <v-col class="text-no-wrap" cols="5" sm="3">
                 <strong >{{(msg.title).substring(0,7)}} </strong>
               </v-col>
+              <v-col cols="5" sm="3">
+                <v-chip color="success" label small class="mr-4" v-if="msg.rating && msg.comment">평가 완료</v-chip> <!-- 추후 사용자의 수강상태에 따라서 동적으로 수강 전/ 수강 완료 로 핸들링해줄 예정 -->
+                <v-chip color="error" label small class="mr-4" v-else >평가 미작성</v-chip>
+              </v-col>
             </v-row>
           </v-expansion-panel-header>
           <v-expansion-panel-content>
@@ -101,9 +105,9 @@
             <v-card-text class="qtexts"><span class="texts">2. </span> {{msg.a2}}</v-card-text>
             <v-card-text class="texts mt-2">평가하기</v-card-text>
             <v-subheader>용사가 제출한 답변에 대해 comment 와 별점을 매겨주세요</v-subheader>
-            <v-textarea filled label="Comment를 작성해주세요" auto-grow></v-textarea>
-            <v-rating v-model="rating" hover background-color="grey lighten-1" color="warning" large ></v-rating>
-            <v-btn color="error" class='mt-5 ml-2' elevation="3">평가완료</v-btn>
+            <v-textarea v-model="msg.comment" filled label="Comment를 작성해주세요" auto-grow clearable clear-icon="mdi-close-circle" ></v-textarea>
+            <v-rating v-model="msg.rating" half-increments hover background-color="grey lighten-1" color="warning" large value="5"></v-rating>
+            <v-btn color="error" class='mt-5 ml-2' elevation="3" @click="submitCommentandRating(msg)" :loading="submitLoading">평가완료</v-btn>
           </v-expansion-panel-content>
           </v-expansion-panel>
         </v-expansion-panels>
@@ -250,7 +254,11 @@ export default {
 			Q2: '',
 			ref: null,
 			isEmpty: false, // DB에 조회했을 때 data 가 존재하면 false
+      comment: '',
 			rating: '',
+      value: 0,
+      seeLoading: false,
+      submitLoading: false,
 			// graph 들어가는부분 data
 			labels: ['1주차', '2주차', '3주차', '4주차', '5주차'],
 			width: 2,
@@ -275,6 +283,7 @@ export default {
 	},
 	methods: {
 		async fetch () {
+      this.seeLoading = true
 			this.msgs.splice(0) // fetch 전 배열 비우기
 			this.selectedArticleId = ''
 
@@ -317,15 +326,18 @@ export default {
 						this.msgs.push(doc.data())
 					})
 				})
-				// console.log(this.msgs)
+				// console.log('msgs',this.msgs)
 			} else {
 				this.isEmpty = true
 			}
+      this.seeLoading = false
 		},
 		selectYearMonthWeek () { // form 에서 조회 버튼을 눌렀을 때 DB에서 해당 survey 데이터를 fetch 를 시킴
 			// console.log('YMW',this.year,this.month,this.week)
-			this.msgs.splice(0) // fetch 전 배열 비우기
+			
+      this.msgs.splice(0) // fetch 전 배열 비우기
 			this.fetch()
+      
 		},
 		async loadUserList () { // 용사별 정신전력 교육 현황을 위해 user list 를 불러온다
 			await this.$firebase.firestore().collection('users')
@@ -363,7 +375,26 @@ export default {
 				.catch(function (error) {
 					console.log('Error getting documents: ', error)
 				})
-		}
+		},
+    // 관리자가 작성한 comment 와 rating 을 db 에 저장하는 함수
+    // item 파라미터 : comment와 rating 을 남길 survey 에 대한 데이터
+    async submitCommentandRating (item) { 
+      // console.log(this.comment, typeof this.rating)
+      // item 에서 넘어온 article_id 와 uid 를 바탕으로 this.comment 와 this.rating 을 해당 survey_result 컬렉션과 user 컬렉션에 저장한다.
+      this.submitLoading = true
+      const surveyResultRef = this.$firebase.firestore().collection('survey_result').doc('jungsin').collection(item.article_id).doc(this.user.uid)
+      const userRef = this.$firebase.firestore().collection('users').doc(this.user.uid).collection('jungsin').doc(item.article_id)
+
+      const answer = {
+        comment : item.comment,
+        rating : item.rating
+      }
+
+      await surveyResultRef.update(answer)
+			await userRef.update(answer)
+
+      this.submitLoading = false
+    }
 
 	}
 }

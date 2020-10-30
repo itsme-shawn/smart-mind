@@ -114,6 +114,7 @@ export default {
 					answer.subject_kr = this.subject_kr
 					answer.article_id = this.item.article_id
 					answer.comment = ''
+                    answer.rating = 0
 					answer.title = this.item.title
 					answer.question = this.item.question
 					await this.ref.set(answer)
