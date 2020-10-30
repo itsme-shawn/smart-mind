@@ -54,16 +54,18 @@
       <!-- 날짜 선택 부분(년/월까지만 입력받음) -->
       <v-container fluid class="pa-3">
           <v-form v-model="valid" ref="form">
-          <v-row>
-              <v-col cols="5" md="4">
-                <v-select v-model="year" :items="yearList" label="년" required :rules="[rule.required]"></v-select>
+            <v-row>
+                <v-col cols="5" md="4">
+                  <v-select v-model="year" :items="yearList" label="년" required :rules="[rule.required]"></v-select>
+                </v-col>
+                <v-col cols="5" md="4">
+                  <v-select v-model="month" :items="monthList" label="월" required :rules="[rule.required]"></v-select>
+                </v-col>
+            </v-row>
+            <v-row>
+              <v-col class="d-flex justify-start" cols="2" md="4">
+                <v-btn  :disabled="!valid" color="success" @click="selectYearMonth">조회</v-btn>
               </v-col>
-              <v-col cols="5" md="4">
-                <v-select v-model="month" :items="monthList" label="월" required :rules="[rule.required]"></v-select>
-              </v-col>
-			  <v-col class="d-flex justify-end" cols="2" md="4">
-				  <v-btn  :disabled="!valid" color="success" @click="selectYearMonth">조회</v-btn>
-			  </v-col>
             </v-row>
           </v-form>
       </v-container>

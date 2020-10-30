@@ -10,83 +10,61 @@
     </div>
 		<v-divider></v-divider>
 
-	<!--sparkline 추가-->
-	<!--꺾은선그래프 graph들어가는 부분-->
-		<v-container class="mb-12">
-			<v-card-text>
-				<v-toolbar-title class="font-weight-bold mt-5">병사별 정신전력교육 점수</v-toolbar-title>
-			</v-card-text>
-			<!--병사를 선택하지 않았을 경우 보여지게 되는 card-->
-			<v-card
-			class="mx-auto"
-			color="#385F73"
-			dark
-			v-if="notloadSparkline"
-			>
-				<v-card-title class="headline">병사를 선택하지 않았어요!</v-card-title>
-				<v-card-subtitle>점수 조회를 원하는 병사를 선택한 뒤 확인을 누르세요.</v-card-subtitle>
-				<v-img src="https://cdn.pixabay.com/photo/2020/10/10/14/38/leaves-5643327_960_720.png" max-height="300"></v-img>
-			</v-card>
-			<!--병사를 선택하지 않았을 경우 보여지게 되는 card 종료-->
-			<!--병사를 선택한 후 보여지게 되는 graph-->
-			<v-card
-			class="mx-auto text-center"
-			color="green"
-			dark
-			v-else>
-				<template>
-					<v-sparkline
-						height="80"
-						:value="value"
-						padding="15"
-						:smooth="radius || false"
-						:line-width="width"
-						:stroke-linecap="lineCap"
-						color="rgba(255, 255, 255, .7)"
-						:gradient-direction="gradientDirection"
-						:type="type"
-						:auto-line-width="autoLineWidth"
-						auto-draw
-					><template v-slot:label="item">
-					{{ item.value }}점
-					</template>
-					</v-sparkline>
-				</template>
-				<v-card-text>
-				<div class="display-1 font-weight-thin">
-					Keep it up!
-				</div>
-				</v-card-text>
-			</v-card>
-			<!--병사를 선택한 후 보여지게 되는 graph 종료-->
-		</v-container>
-	<!--graph들어가는 부분 end-->
-	<!--sparkline 추가-->
+  <!-- 토글 버튼 -->
+    <v-row class="pa-5">
+      <v-col
+        cols="12"
+        class="py-1"
+      >
+        <v-btn-toggle
+          v-model="option"
+          color="deep-purple accent-3"
+          mandatory
+        >
+          <v-btn value="comment">
+            <span class="text-h6">평가하기</span>
 
-    <!-- 주차별 -->
+            <v-icon right>
+              mdi-comment-edit
+            </v-icon>
+          </v-btn>
+
+          <v-btn value="graph">
+            <span class="text-h6">통계보기</span>
+
+            <v-icon right>
+              mdi-file-chart
+            </v-icon>
+          </v-btn>
+
+        </v-btn-toggle>
+      </v-col>
+    </v-row>
+
+    <!-- 주차별 평가하기 -->
+    <v-container v-if="option === 'comment'">
     <v-card color="transparent">
       <v-card-title class="align-top font-weight-bold mb-4">주차별 정신전력 교육 현황</v-card-title>
       <v-card-text>각 주차별 용사들의 정신전력 교육 제출 현황과 제출 의견을 조회할 수 있습니다.</v-card-text>
       <!-- 날짜 선택 부분 -->
       <v-container fluid class="pa-3">
           <v-form v-model="valid" ref="form" >
-          <v-row>
-              <v-col cols="3">
-                <v-select v-model="year" :items="yearList" label="년" required :rules="[rule.required]"></v-select>
-              </v-col>
-              <v-col cols="3">
-                <v-select v-model="month" :items="monthList" label="월" required :rules="[rule.required]"></v-select>
-              </v-col>
-              <v-col cols="3">
-                <v-select v-model="week" :items="weekList" label="주차" required :rules="[rule.required]"></v-select>
-              </v-col>
-			  <v-col class="d-flex justify-end" cols="3">
-				<v-btn :disabled="!valid" color="success" @click="selectYearMonthWeek">조회</v-btn>
-			  </v-col>
+            <v-row>
+                <v-col cols="4" xs="4" sm="4">
+                  <v-select v-model="year" :items="yearList" label="년" required :rules="[rule.required]"></v-select>
+                </v-col>
+                <v-col cols="4" xs="4" sm="4">
+                  <v-select v-model="month" :items="monthList" label="월" required :rules="[rule.required]"></v-select>
+                </v-col>
+                <v-col cols="4" xs="4" sm="4">
+                  <v-select v-model="week" :items="weekList" label="주차" required :rules="[rule.required]"></v-select>
+                </v-col>
             </v-row>
-            <v-btn :disabled="!valid" color="success" @click="selectYearMonthWeek">조회</v-btn>
-            <v-spacer/>
-
+            <v-row>
+              <v-col class="d-flex justify-start" cols="8">
+                <v-btn :disabled="!valid" color="success" @click="selectYearMonthWeek">조회</v-btn>
+              </v-col>
+            </v-row>
           </v-form>
       </v-container>
       <!-- 날짜 선택 부분 -->
@@ -105,7 +83,7 @@
                   <v-img :src="msg.submitAuthor.photoURL" alt="Avatar"/>
                 </v-avatar>
               </v-col>
-              <v-col  sm="5" md="3">
+              <v-col cols="4" sm="5" md="3">
                 <strong >{{msg.submitAuthor.displayName}}</strong>
               </v-col>
               <v-col class="text-no-wrap" cols="5" sm="3">
@@ -121,12 +99,22 @@
             <v-card-text class="texts">답변</v-card-text>
             <v-card-text class="qtexts"><span class="texts">1. </span> {{msg.a1}}</v-card-text>
             <v-card-text class="qtexts"><span class="texts">2. </span> {{msg.a2}}</v-card-text>
+            <v-card-text class="texts mt-2">평가하기</v-card-text>
+            <v-subheader>용사가 제출한 답변에 대해 comment 와 별점을 매겨주세요</v-subheader>
+            <v-textarea filled label="Comment를 작성해주세요" auto-grow></v-textarea>
+            <v-rating v-model="rating" hover background-color="grey lighten-1" color="warning" large ></v-rating>
+            <v-btn color="error" class='mt-5 ml-2' elevation="3">평가완료</v-btn>
           </v-expansion-panel-content>
           </v-expansion-panel>
         </v-expansion-panels>
       </v-card>
     </v-card>
-    <!-- 주차별 끝 -->
+    </v-container>
+    <!-- 주차별 평가하기 끝 -->
+
+
+    <!-- 통계보기 -->
+		<v-container class="mb-12" v-if="option === 'graph'" >
 
     <!-- 용사별 -->
     <v-card color="transparent" class="mt-5">
@@ -175,17 +163,62 @@
             <v-card-text class="qtexts"><span class="texts">1. </span> {{msg2.a1}}</v-card-text>
             <v-card-text class="qtexts"><span class="texts">2. </span> {{msg2.a2}}</v-card-text>
             <v-divider/>
-            <v-card-text class="texts mt-2">평가하기</v-card-text>
-            <v-subheader>용사가 제출한 답변에 대해 comment 와 별점을 매겨주세요</v-subheader>
-            <v-textarea filled label="Comment를 작성해주세요" auto-grow></v-textarea>
-            <v-rating v-model="rating" hover background-color="grey lighten-1" color="warning" large ></v-rating>
-            <v-btn color="error" class='mt-5 ml-2' elevation="3">평가완료</v-btn>
+
           </v-expansion-panel-content>
           </v-expansion-panel>
         </v-expansion-panels>
       </v-card>
     </v-card>
     <!-- 용사별 끝 -->
+
+    <!--sparkline 추가-->
+    <!--꺾은선그래프 graph들어가는 부분-->
+			<!--병사를 선택하지 않았을 경우 보여지게 되는 card-->
+			<v-card
+			class="mx-auto"
+			color="#385F73"
+			dark
+			v-if="notloadSparkline"
+			>
+				<v-card-title class="headline">병사를 선택하지 않았어요!</v-card-title>
+				<v-card-subtitle>점수 조회를 원하는 병사를 선택한 뒤 확인을 누르세요.</v-card-subtitle>
+				<v-img src="https://cdn.pixabay.com/photo/2020/10/10/14/38/leaves-5643327_960_720.png" max-height="300"></v-img>
+			</v-card>
+			<!--병사를 선택하지 않았을 경우 보여지게 되는 card 종료-->
+			<!--병사를 선택한 후 보여지게 되는 graph-->
+			<v-card
+			class="mx-auto text-center"
+			color="green"
+			dark
+			v-else>
+				<template>
+					<v-sparkline
+						height="80"
+						:value="value"
+						padding="15"
+						:smooth="radius || false"
+						:line-width="width"
+						:stroke-linecap="lineCap"
+						color="rgba(255, 255, 255, .7)"
+						:gradient-direction="gradientDirection"
+						:type="type"
+						:auto-line-width="autoLineWidth"
+						auto-draw
+					><template v-slot:label="item">
+					{{ item.value }}점
+					</template>
+					</v-sparkline>
+				</template>
+				<v-card-text>
+				<div class="display-1 font-weight-thin">
+					Keep it up!
+				</div>
+				</v-card-text>
+			</v-card>
+			<!--병사를 선택한 후 보여지게 되는 graph 종료-->
+		</v-container>
+	<!--graph들어가는 부분 end-->
+	<!--sparkline 추가-->
 
   </v-container>
 </template>
@@ -197,6 +230,7 @@ Vue.use(Chartkick.use(Chart))
 export default {
 	data () {
 		return {
+      option: '',
 			yearList: ['2020년', '2021년'],
 			monthList: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
 			weekList: ['1주차', '2주차', '3주차', '4주차', '5주차'],
@@ -210,30 +244,25 @@ export default {
 			year: '',
 			month: '',
 			week: '',
-      msgs: [],
-      msgs2: [],
+			msgs: [],
+			msgs2: [],
 			Q1: '',
 			Q2: '',
 			ref: null,
-<<<<<<< HEAD
-      isEmpty: false, // DB에 조회했을 때 data 가 존재하면 false
-      rating: ''
-=======
 			isEmpty: false, // DB에 조회했을 때 data 가 존재하면 false
-
-			//graph 들어가는부분 data
+			rating: '',
+			// graph 들어가는부분 data
 			labels: ['1주차', '2주차', '3주차', '4주차', '5주차'],
 			width: 2,
 			lineCap: 'round',
-			radius : 4,
+			radius: 4,
 			gradientDirection: 'top',
 			type: 'trend',
 			autoLineWidth: false,
 			// value가 데이터가 되는 부분
 			value: [2, 5, 1, 4, 3],
-			//form에서 선택하지 않았을 경우 보여지는 vue를 위한 값
+			// form에서 선택하지 않았을 경우 보여지는 vue를 위한 값
 			notloadSparkline: true
->>>>>>> master
 		}
 	},
 	computed: {
