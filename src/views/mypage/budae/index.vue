@@ -1,4 +1,5 @@
 <template>
+  <div>
 	<v-container class="mb-12 pa-5">
 		<div>
       <v-card-text>
@@ -225,6 +226,14 @@
 	<!--sparkline 추가-->
 
   </v-container>
+
+  
+  <v-snackbar v-model="snackbar" :timeout="3000">평가가 등록되었습니다
+    <template v-slot:action="{ attrs }">
+      <v-btn color="blue" text v-bind="attrs" @click="snackbar = false">Close</v-btn>
+    </template>
+  </v-snackbar>
+  </div>
 </template>
 <script>
 import Vue from 'vue'
@@ -259,6 +268,7 @@ export default {
       value: 0,
       seeLoading: false,
       submitLoading: false,
+      snackbar: false,
 			// graph 들어가는부분 data
 			labels: ['1주차', '2주차', '3주차', '4주차', '5주차'],
 			width: 2,
@@ -394,6 +404,7 @@ export default {
 			await userRef.update(answer)
 
       this.submitLoading = false
+      this.snackbar = true
     }
 
 	}

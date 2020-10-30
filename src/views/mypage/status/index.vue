@@ -64,7 +64,7 @@
             </v-row>
             <v-row>
               <v-col class="d-flex justify-start" cols="2" md="4">
-                <v-btn  :disabled="!valid" color="success" @click="selectYearMonth">조회</v-btn>
+                <v-btn  :disabled="!valid" color="success" @click="selectYearMonth" :loading="loading">조회</v-btn>
               </v-col>
             </v-row>
           </v-form>
@@ -128,11 +128,11 @@ export default {
 			ref: null,
 			isEmpty: true, // DB에 조회했을 때 data 가 존재하면 false
 			beforeFilteredArticleId: [],
-
-			//graph 들어가는부분 data
+      loading: false,
+			// graph 들어가는부분 data
 			width: 2,
 			lineCap: 'round',
-			radius : 4,
+			radius: 4,
 			// value가 데이터가 되는 부분
 			value: [2, 5, 1, 4, 3],
 			gradientDirection: 'top',
@@ -147,6 +147,7 @@ export default {
 	},
 	methods: {
 		async fetch () {
+      this.loading = true
 			this.msgs.splice(0) // fetch 전 배열 비우기
 			this.beforeFilteredArticleId.splice(0)
 			this.selectedArticleId = ''
@@ -193,6 +194,7 @@ export default {
 						})
 					})
 			})
+      this.loading = false
 		},
 		selectYearMonth () { // form 에서 조회 버튼을 눌렀을 때 DB에서 해당 survey 데이터를 fetch 를 시킴
 			// console.log('YMW',this.year,this.month,this.week)
@@ -202,3 +204,16 @@ export default {
 	}
 }
 </script>
+
+<style scoped>
+	.texts{
+		font-size: 1.5rem;
+		font-weight: 500;
+		letter-spacing: .0125em;
+	}
+	.qtexts{
+		font-size: 1rem;
+		font-weight: 400;
+		letter-spacing: .009375em;
+	}
+</style>
