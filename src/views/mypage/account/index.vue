@@ -1,8 +1,9 @@
 <template>
+  <v-container class="mb-12 pa-5">
     <div v-if="user">
-        <div >
+        <div>
             <v-card-text>
-                <v-toolbar-title class="font-weight-bold ml-5">마이 페이지</v-toolbar-title>
+                <v-toolbar-title class="text-h4 font-weight-bold ">내 정보</v-toolbar-title>
             </v-card-text>
         </div>
         <v-divider></v-divider>
@@ -42,125 +43,9 @@
             </v-list-item>
 
         </v-card>
-        <!--클릭시 해당하는 정신전력 강의로 이동할 수 있도록 할 예정-->
-        <!--해당하는 DB는 구현 안되있어서 임시로 만들었음.-->
-        <v-card class="mx-auto" max-width="500" elevation ="4">
-            <v-simple-table>
-                <template v-slot:default>
-                <thead>
-                    <tr>
-                    <th class="text-left">
-                        강의명
-                    </th>
-                    <th class="text-left">
-                        학습시각
-                    </th>
-                    <th class="text-left">
-                        이수 여부
-                    </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr
-                    v-for="item in task"
-                    :key="item.name"
-                    >
-                    <td>{{ item.name }}</td>
-                    <td>{{ item.time }}</td>
-                    <td>{{ item.complete }}</td>
-                    </tr>
-                </tbody>
-                </template>
-            </v-simple-table>
-        </v-card>
-
-        <!--dialog로 회원 정보 수정 form 만들 예정. -->
-        <!--
-        <v-row justify="center">
-            <v-dialog v-model="dialog" persistent max-width="600px">
-            <v-card>
-                <v-card-title>
-                <span class="headline">회원정보수정</span>
-                </v-card-title>
-                <v-divider></v-divider>
-                <v-card-text>
-                <v-container>
-
-                    <v-row>
-
-                        <v-col cols="12">
-                            <v-text-field
-                            label="Email*"
-                            required
-                            ></v-text-field>
-                        </v-col>
-                        <v-col cols="12">
-                            <v-text-field
-                            label="소속 부대(중대급까지)*"
-                            type="password"
-                            required
-                            ></v-text-field>
-                        </v-col>
-                        <v-col
-                            cols="12"
-                            sm="6"
-                        >
-                            <v-select
-                            :items="['국방부', '국방부 직할부대', '육군', '해군','해병대','공군','생도','후보생','군무원']"
-                            label="회원분류*"
-                            required
-                            ></v-select>
-                        </v-col>
-                        <v-col
-                            cols="12"
-                            sm="6"
-                        >
-                            <v-select
-                            :items="['간부','병장','상등병','일등병','이등병']"
-                            label="계급/등급*"
-                            required
-                            ></v-select>
-                        </v-col>
-                        <v-col cols="12">
-                            <v-text-field
-                            label="생년월일(ex-19981117)"
-                            required
-                            ></v-text-field>
-                        </v-col>
-                        <v-col cols="12" sm="6" md="4">
-                            <v-select
-                            :items="['남성','여성']"
-                            label="성별*"
-                            required
-                            ></v-select>
-                        </v-col>
-                        <v-col cols="12" sm="6" md="8">
-                            <v-text-field
-                            label="휴대폰"
-                            type="password"
-                            hint="*변경 시에만 입력해주세요"
-                            ></v-text-field>
-                        </v-col>
-                    </v-row>
-
-                </v-container>
-                <small>*indicates required field</small>
-                </v-card-text>
-                <v-card-actions>
-                <v-spacer></v-spacer>
-                <v-btn color="blue darken-1" text @click="dialog = false">
-                    취소
-                </v-btn>
-                <v-btn color="blue darken-1" text @click="dialog = false">
-                    저장
-                </v-btn>
-                </v-card-actions>
-            </v-card>
-            </v-dialog>
-        </v-row>
-        -->
 
     </div>
+  </v-container>
 </template>
 
 <script>

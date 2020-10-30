@@ -24,11 +24,6 @@
                   </div>
                 </v-card-title>
               </v-flex>
-              <v-flex xs5>
-                <v-card-title primary-title>
-                  <h4 class="headline">부대명 (부대마다 유동적으로 설정)</h4>
-                </v-card-title>
-              </v-flex>
             </v-layout>
             <v-divider light></v-divider>
             <div v-if="user !== null">
@@ -56,20 +51,20 @@
               >
                 <v-card-title><h3>이번주의 정신전력 교육</h3></v-card-title>
                 <v-expand-transition>
-                  
+
                   <div
                     v-if="hover"
                     class=" transition-fast-in-fast-out v-card--reveal white--text"
                     style="
                       height: 100%;
                       background-color: rgba(70, 70, 70, 0.5);
-                      
+
                     "
                   >
-                  
+
                     <v-row align="center" justify="center" xs12 class="pt-14">
                       <h2>이봉창 의사와 '애국헌신'</h2>
-                    
+
                     <hr/>
                     <br />
                     <br/>
@@ -78,9 +73,9 @@
                     <v-row align="center" justify="center" xs12>
                     <v-btn>참여하기</v-btn>
                     </v-row>
-                  
+
                   </div>
-                  
+
                 </v-expand-transition>
               </v-img>
             </v-card>
@@ -109,7 +104,7 @@
                   >
                     <v-row align="center" justify="center" xs12 class="pt-7">
                       <h2>'명량대첩' 불가능을 가능하게 하다</h2>
-                    
+
                     <hr/>
                     <br />
                     <br/>
@@ -146,7 +141,7 @@
                   >
                     <v-row align="center" justify="center" xs12 class="pt-7">
                       <h2>동료애를 배우다 '핵소 고지'</h2>
-                    
+
                     <hr/>
                     <br />
                     <br/>
@@ -185,7 +180,7 @@
                   >
                     <v-row align="center" justify="center" xs12 class="pt-7">
                       <h2>윤동주의 시에서 배우는 정신</h2>
-                    
+
                     <hr/>
                     <br />
                     <br/>
@@ -221,7 +216,7 @@
                   >
                     <v-row align="center" justify="center" xs12 class="pt-7">
                       <h2>징기스칸의 전술은?</h2>
-                    
+
                     <hr/>
                     <br />
                     <br/>
@@ -238,9 +233,9 @@
         </v-hover>
       </v-flex>
 
-      <v-flex xs12 sm7 class="pb-2">
+      <v-flex xs12 sm12 class="pb-2">
         <v-card height="370px" :color="`#${i}12345`">
-          <v-card-title>나의 퀴즈 점수</v-card-title>
+          <v-card-title>이번주 나의 의견</v-card-title>
           <v-list two-line>
             <v-list-item-group v-model="selected" multiple>
               <template v-for="(item, index) in items">
@@ -273,7 +268,7 @@
           </v-list>
         </v-card>
       </v-flex>
-      <v-flex xs12 sm5 class="pb-2">
+    <!--  <v-flex xs12 sm5 class="pb-2">
         <v-card height="370px" :color="`#${i}12345`">
           <template>
             <v-card class="mx-auto text-center" min-width="300" height="370">
@@ -304,7 +299,7 @@
             </v-card>
           </template>
         </v-card>
-      </v-flex>
+      </v-flex>-->
       <v-flex xs12 class="pb-2">
         <v-container fluid class="mt-10">
           <v-card>
@@ -631,10 +626,10 @@ export default {
 			// 병사별 주간정신전력 현황 데이터
 			messages: [
 				{
-					avatar:
-            'https://lh3.googleusercontent.com/ogw/ADGmqu92A3GO29sPEXyfoYIwCWRHIbhljaLOVkAyePpz=s32-c-mo',
-					name: '현재',
-					title: '1주차 정신전력교육',
+					/* avatar:
+            'https://lh3.googleusercontent.com/ogw/ADGmqu92A3GO29sPEXyfoYIwCWRHIbhljaLOVkAyePpz=s32-c-mo', */
+					name: '김현재',
+					title: '2주차 정신전력교육',
 					content1:
             '4차 산업혁명 기술을 우리 군에 접목시키려면 우선 그에 따른 인프라가 구축되어야 한다. 대표적을 IoT기술의 경우 접목시킨다면 군에서 운용하는 여러 장비들에 네트워크를 부여할 수 있게 되는데, 대표적으로 위치 정보를 가져올 수 있고, 전투복에 접목된다면 병사의 신체 능력도 알 수 있어 부상이 있을 경우 빠른 대처가 가능해진다. 그러나 네트워크를 운용해야 하기 때문에 보안 문제 해결이 가장 시급한 과제인 것으로 보인다.',
 					content2:
@@ -642,16 +637,16 @@ export default {
 				},
 				{
 					avatar: '',
-					name: '이현',
-					title: '1주차 정신전력교육',
-					content1: '지금까지 메인페이지 만드느라 수고해준 이현아 고맙다',
+					name: '최이현',
+					title: '2주차 정신전력교육',
+					content1: 'IOT와 기타 최신 기술들을 이용한다면 국군의 전투력 향상뿐만 아니라 사기 증진에도 효과가 있다고 생각한다.',
 					content2:
-            '앞으로 오늘 제외하고 개발할 시간은 3일밖에 없는데, 조금만 더 수고해줘'
+            '무형의 정신전력이 가장 중요한것 처럼 최신 기술에만 의존하는 것이 아닌 우리의 마음가짐이 중요한 것 같다.'
 				},
 				{
 					avatar: '',
-					name: '현수',
-					title: '1주차 정신전력교육',
+					name: '최현수',
+					title: '2주차 정신전력교육',
 					content1: '너도 힘들고 바쁠텐데 데이터베이스 다루느라 고생했어',
 					content2:
             '마찬가지로 오늘 제외하고 개발할 시간은 3일밖에 없는데, 조금만 더 수고해줘'
@@ -663,7 +658,7 @@ export default {
 				two:
           '첨단 무기체계가 개발되고 도입되는 상항에서도 장병 개인의 전투기술 연마와 정신적 대비태세가 중요한 이유에 대해 말해보자'
 			},
-			day: 0,
+			day: 1,
 			// 지난 정신전력 교육
 			overlay: false,
 			model: 0,

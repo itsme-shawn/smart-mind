@@ -66,6 +66,7 @@ export default {
 	},
 	methods: {
 		async subscribe () {
+			console.log(this.$firebase.auth().currentUser)
 			if (this.unsubscribe) this.unsubscribe() // unsubscribe 가 참이면 unsubscribe 에 DB 정보를 담게된다.
 			const temp = await this.$firebase.firestore().collection(this.collection).doc(this.document).get()
 			this.subject_kr = temp.data().title // survey_result 컬렉션에 subject의 한글이름을 저장하기 위함
@@ -90,14 +91,20 @@ export default {
 		// users 컬렉션의 목적은 개인이 마이페이지에서 자신의 survey 제출 현황을 볼 수 있게 하기 위함이고,
 		// survey_result 컬렉션의 목적은 관리자가 보기 쉽게 하기 위함이다.
 		async submitOwn () { // DB에 a1,a2(병사들의 의견)을 save
-			// console.log(this.a1, this.a2)
+			 console.log('su', this.user.displayName)
 			if (!this.user) throw Error('로그인 후 제출 가능합니다') // 권한 확인
 			this.userRef = this.$firebase.firestore().collection('users').doc(this.user.uid).collection(this.document).doc(this.item.article_id)
 
 			const answer = {
 				a1: this.answer.a1,
 				a2: this.answer.a2,
-				updatedAt: new Date()
+				updatedAt: new Date(),
+				submitAuthor: {
+					displayName: this.user.displayName,
+					email: this.user.email,
+					photoURL: this.user.photoURL,
+					uid: this.user.uid
+				}
 			}
 			this.loading = true
 			try {
@@ -105,9 +112,11 @@ export default {
 					answer.submittedAt = new Date()
 					answer.subject_en = this.document
 					answer.subject_kr = this.subject_kr
-					answer.submitAuthor = this.user // submit 한 user 정보
 					answer.article_id = this.item.article_id
 					answer.comment = ''
+                    answer.rating = 0
+					answer.title = this.item.title
+					answer.question = this.item.question
 					await this.ref.set(answer)
 					await this.userRef.set(answer)
 				} else {

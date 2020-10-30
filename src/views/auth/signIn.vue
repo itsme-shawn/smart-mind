@@ -34,8 +34,8 @@
         </v-row>
       </v-container>
       <v-card-text>
-        <v-text-field label="이메일"></v-text-field>
-        <v-text-field label="비밀번호"></v-text-field>
+        <v-text-field disabled label="이메일"></v-text-field>
+        <v-text-field disabled label="비밀번호"></v-text-field>
       </v-card-text>
 
       <v-card-actions>
@@ -84,7 +84,7 @@ export default {
 		},
 		async signInWithEmail () {
 			// const r = await this.$firebase.auth().createUserWithEmailAndPassword(this.email, this.password)
-			throw Error('이메일/비밀번호 로그인 기능은 현재 테스트 중입니다')
+			throw Error('이메일/비밀번호 로그인 기능은 현재 테스트 중입니다. 구글로그인으로 진행헤주세요')
 		}
 	}
 }

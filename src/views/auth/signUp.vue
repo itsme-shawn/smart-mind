@@ -34,19 +34,19 @@
         </v-row>
       </v-container>
       <v-card-text>
-        <v-text-field
+        <v-text-field disabled
           label="이름"
           v-model="form.name"
           :rules="[rule.required, rule.minLength(1), rule.maxLength(10)]"
           required
           ></v-text-field>
         <v-text-field
-          label="이메일"
+          label="이메일" disabled
           v-model="form.email"
           :rules="[rule.required, rule.email]"
           required
           ></v-text-field>
-        <v-text-field
+        <v-text-field disabled
           label="비밀번호"
           v-model="form.password"
           :rules="[rule.required, rule.minLength(6), rule.maxLength(50)]"
@@ -101,7 +101,7 @@ export default {
 		},
 		createWithEmailAndPassword () {
 			if (!this.$refs.form.validate()) throw Error('입력 폼을 올바르게 작성해주세요.')
-			else throw Error('이메일/비밀번호 로그인 기능은 현제 개발 테스트 중입니다 ')
+			else throw Error('이메일/비밀번호 로그인 기능은 현제 개발 테스트 중입니다. 구글로그인으로 진행헤주세요 ')
 		}
 	}
 }
