@@ -141,18 +141,17 @@
         <!--병사를 선택하지 않았을 경우 보여지게 되는 card-->
       <v-container class="mb-6 mt-3" >
         <v-card max-width="800" class="mx-auto" color="#385F73" dark v-if="!graphData.show">
-            <v-card-title class="headline">병사를 선택하지 않았어요!</v-card-title>
-            <v-card-subtitle>점수 조회를 원하는 병사를 선택한 뒤 확인을 누르세요.</v-card-subtitle>
-            <v-img src="https://cdn.pixabay.com/photo/2020/10/10/14/38/leaves-5643327_960_720.png" max-height="300"></v-img>
+            <v-card-title class="headline">용사를 선택하지 않았어요!</v-card-title>
+            <v-card-subtitle>점수 조회를 원하는 용사를 선택한 뒤 조회을 누르세요.</v-card-subtitle>
         </v-card>
         <!--병사를 선택하지 않았을 경우 보여지게 되는 card 종료-->
         <!--병사를 선택한 후 보여지게 되는 graph-->
-        <v-card max-width="800" class="mx-auto text-center" color="green" dark v-if="graphData.show">
+        <v-card max-width="900" class="mx-auto text-center" color="green" dark v-if="graphData.show">
             <template>
                 <v-sparkline
                     height="80"
                     :value="graphData.value"
-                    padding="15"
+                    padding="30"
                     :smooth="graphData.radius || false"
                     :line-width="graphData.width"
                     :stroke-linecap="graphData.lineCap"
@@ -161,18 +160,15 @@
                     :type="graphData.type"
                     :auto-line-width="graphData.autoLineWidth"
                     :labels="graphData.labels"
-
                     auto-draw
                     show-labels
                 >
-
                 </v-sparkline>
             </template>
             <v-card-text>
             <div class="display-1 font-weight-thin">
                 {{graphData.title}} 의 평점 통계
             </div>
-            {{graphData.labels}}
             </v-card-text>
         </v-card>
         </v-container>
@@ -275,15 +271,14 @@ export default {
 			// graph 들어가는부분 data
 			graphData: {
 				show: false,
-				labels: [], // 구분이름(몇주차)
+				labels: [], // 몇주차 (그래프 x축)
 				width: 2,
 				lineCap: 'round',
 				radius: 4,
 				gradientDirection: 'top',
 				type: 'trend',
 				autoLineWidth: false,
-				// value가 데이터가 되는 부분
-				value: [],
+				value: [], // DB에서 받아오는 rating값이 담길 배열
 				title: ''
 			}
 
@@ -296,7 +291,9 @@ export default {
 	},
 	created () {
 		this.loadUserList()
-		console.log('labels 배열 push 전', this.graphData.labels)
+	},
+	mounted () {
+
 	},
 	methods: {
 		async fetch () {
@@ -367,7 +364,7 @@ export default {
 
 			// console.log(this.userList)
 		},
-		async selectUser () {
+		async selectUser () { // '통계보기' 버튼 click 이벤트리스너
 			// 1. form 에서 입력 받은 displayName(this.sUser) 으로 uid 찾기
 			// 2. uid 로 users 컬렉션에서 제출한 게시물들 가져오기
 
@@ -376,6 +373,8 @@ export default {
 
 			this.msgs2.splice(0)
 			this.graphData.labels.splice(0)
+			this.graphData.value.splice(0)
+			console.log('labels 배열 push 전', this.graphData.labels)
 
 			await this.$firebase.firestore().collection('users')
 				.where('displayName', '==', this.sUser)
@@ -390,8 +389,9 @@ export default {
 							.then((sn2) => {
 								sn2.forEach((doc2) => {
 									this.msgs2.push(doc2.data())
-									// console.log(doc2.id, ' => ', doc2.data())
-									 this.graphData.labels.push(doc2.data().title)
+									 console.log(doc2.id, ' => ', doc2.data())
+									this.graphData.labels.push(doc2.data().title.substring(0, 7))
+									this.graphData.value.push(doc2.data().rating)
 								})
 							})
 					})
@@ -401,7 +401,8 @@ export default {
 				})
 
 			// console.log('m2', this.msgs2)
-			console.log('labels 배열 push 후', this.graphData.labels)
+      console.log('labels 배열 push 후', this.graphData.labels)
+      console.log('value 배열 push 후', this.graphData.value)
 
 			this.soldierLoading = false
 		},
