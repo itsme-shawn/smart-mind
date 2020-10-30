@@ -68,14 +68,26 @@ const routes = [
 	{
 		path: '/:collection/:document',
 		name: 'Dynamic routing',
-		component: () => import('./renderer.vue')
+		component: () => import('./renderer.vue'),
+		beforeEnter: function (to, from, next) {
+			if (!store.state.user) {
+				router.push('/login').catch(() => {})
+				store.commit('setRouteTo', to)
+			} else next()
+		}
 
 	},
 
 	// action (read,write 등) 동적라우터 추가
 	{
 		path: '/:collection/:document/:action',
-		component: () => import('./renderer.vue')
+		component: () => import('./renderer.vue'),
+		beforeEnter: function (to, from, next) {
+			if (!store.state.user) {
+				router.push('/login').catch(() => {})
+				store.commit('setRouteTo', to)
+			} else next()
+		}
 	},
 
 	// 지정하지 않은 라우터 => 에러처리

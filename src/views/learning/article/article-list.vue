@@ -1,14 +1,15 @@
-<template>
+<template >
   <v-container fluid v-if="items.length" class="pa-5" >
     <template v-for="(item, i) in items">
       <v-card :key="item.id" :class="i < items.length - 1 ? 'mb-5' : ''" @click="openDialog(item)">
         <v-subheader>
 
-          <div>
+          <div v-if="collection=='leaning'">
             <v-chip color="success" label small class="mr-4" v-if="item.isComplete">수강 완료</v-chip> <!-- 추후 사용자의 수강상태에 따라서 동적으로 수강 전/ 수강 완료 로 핸들링해줄 예정 -->
             <v-chip color="info" label small class="mr-4" v-else >수강 전</v-chip>
-            <v-chip color="error" label small class="mr-4" v-if="item.isNew">NEW</v-chip> <!-- 현재 시간과 비교해서 3일 전 게시글까지만 핸들링해줄 예정-->
           </div>
+            <v-chip color="error" label small class="mr-4" v-if="item.isNew">NEW</v-chip> <!-- 현재 시간과 비교해서 3일 전 게시글까지만 핸들링해줄 예정-->
+
 
           <v-spacer/>
         </v-subheader>
@@ -74,6 +75,7 @@ export default {
 	},
 	methods: {
 		async subscribe () {
+
 			if (this.unsubscribe) this.unsubscribe()
 
 			this.completedArticleId.splice(0) // 초기화
