@@ -50,7 +50,7 @@
    </tr>
    <tr>
     <td>
-     <img src="/src/assets/dashboard.png" width="800" height="700">
+     <img src="/src/assets/dashboard.png" width="600" height="400">
     </td>
    </tr>
  </tbody>
@@ -100,7 +100,7 @@
    </tr>
    <tr>
     <td>
-     <img src="/src/assets/history.png" width="800" height="500">
+     <img src="/src/assets/history.png" width="600" height="400">
     </td>
    </tr>
  </tbody>
@@ -144,7 +144,7 @@
    </tr>
    <tr>
     <td>
-     <img src="/src/assets/hyun.png" width="800" height="500">
+     <img src="/src/assets/hyun.png" width="600" height="400">
     </td>
    </tr>
  </tbody>
@@ -154,6 +154,11 @@
 * ECMAScript 6 지원 브라우저 사용
 * 권장: Google Chrome 버젼 77 이상
 
+
+## 프로젝트 구조도
+
+ <img src="/src/assets/struct.png" width="600" height"400">
+ 
 ## 기술 스택 (Technique Used) 
 
  
