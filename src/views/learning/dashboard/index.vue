@@ -46,12 +46,57 @@
 
     <!-- 이번주 나의 부대원들은-->
     <v-row>
-      <v-col cols="12"> <v-card height="200px" >이번 주 나의 부대원들은?</v-card></v-col>
+      <v-col cols="12">
+          <v-container >
+          <v-card color="transparent">
+          <v-card-title class="align-top font-weight-bold "> {{this.cYear}} {{this.cMonth}} {{this.cWeek}}</v-card-title>
+            <v-card-title class="align-top font-weight-bold mb-4">이번 주 나의 전우들은?</v-card-title>
+
+            <v-card-text>이번 주 정신전력교육 주제에 대해 전우들은 어떻게 생각했을까요?</v-card-text>
+            <v-card>
+            <v-alert v-if="isEmpty" type="error" border="left" class="mb-0">조회한 데이터가 없습니다.</v-alert>
+            <v-expansion-panels popout v-else>
+              <v-expansion-panel
+              v-for="(msg, i) in msgs"
+              :key="i"
+              hide-actions
+              >
+              <v-expansion-panel-header >
+                <v-row align="center" class="spacer" no-gutters>
+                  <v-col class="hidden-xs-only" cols="4" sm="2" md="1">
+                    <v-avatar size="24px">
+                      <v-img :src="msg.submitAuthor.photoURL" alt="Avatar"/>
+                    </v-avatar>
+                  </v-col>
+                  <v-col cols="4" sm="5" md="3">
+                    <strong >{{msg.submitAuthor.displayName}}</strong>
+                  </v-col>
+                  <v-col class="text-no-wrap" cols="5" sm="3">
+                    <strong >{{(msg.title).substring(0,7)}} </strong>
+                  </v-col>
+                  <v-col cols="5" sm="3">
+                    <v-chip color="success" label small class="mr-4" v-if="msg.rating && msg.comment">평가 완료</v-chip> <!-- 추후 사용자의 수강상태에 따라서 동적으로 수강 전/ 수강 완료 로 핸들링해줄 예정 -->
+                    <v-chip color="error" label small class="mr-4" v-else >평가 미작성</v-chip>
+                  </v-col>
+                </v-row>
+              </v-expansion-panel-header>
+              <v-expansion-panel-content>
+                <v-divider></v-divider>
+                <v-card-text class="texts">질문</v-card-text>
+                <v-card-text class="qtexts"><span class="texts">1. </span> {{msg.question.Q1}}</v-card-text>
+                <v-card-text class="qtexts"><span class="texts">2. </span> {{msg.question.Q2}}</v-card-text><v-divider></v-divider>
+                <v-card-text class="texts">답변</v-card-text>
+                <v-card-text class="qtexts"><span class="texts">1. </span> {{msg.a1}}</v-card-text>
+                <v-card-text class="qtexts"><span class="texts">2. </span> {{msg.a2}}</v-card-text>
+              </v-expansion-panel-content>
+              </v-expansion-panel>
+            </v-expansion-panels>
+          </v-card>
+        </v-card>
+        </v-container>
+      </v-col>
     </v-row>
     <!-- 이번주 나의 부대원들은 끝-->
-
-
-
   </v-container>
 </template>
 
@@ -397,76 +442,145 @@
 export default {
 	data () {
 		return {
-			accountTitle: '부대명-(사용자에 따라 동적으로 수정해야 함)',
-			// sparkline (그래프 속성)
-			fill: false,
-			autoLineWidth: true,
-			lineCap: 'round',
-			type: 'trend',
-			// 이번달의 퀴즈 점수
-			monthlyScore: [100, 75, 100, 50],
-			items: [
-				{
-					title: '1. 지능형 스마트 비행단이란?',
-					headline: '최신 기술이 접목된 비행기',
-					subtitle: '인공지능, 빅데이터, 증강·가상현실(AR·VR), 사물인터넷(IoT) 등 4차 산업혁명 신기술이 적용된 스마트 부대를 구축하여<br> 모든 부대 현황과 작전상황을 실시간으로 가시화하고 부대운영과 관련된 각 기능을 융합하여 신속하고 효율적으로 작전을 수행하는 비행'
-				},
-				{
-					title: '2. 첨단 무기체계가 도입되는 상황에서도 장병 개인의 정신적 대비태세가 중요한 이유에 대해 말해보자.',
-					headline: '장병 개개인의 집중력과 정신전력이 가장 중요하기 때문이다.',
-					subtitle: '북한의 현실적인 군사적 위협과 코로나 19라는 신종 감염병의 위협 속에서 확고한 대비태세를 유지하고 <br>실전 같은 교육훈련에 매진하는 동시에 미래를 대비한 무기체계를 개발하고 이에 맞는 교리와 계획을 수립해야 한다'
-				}
-			],
-			// 병사별 주간정신전력 현황 데이터
-			messages: [
-				{
-					/* avatar:
-            'https://lh3.googleusercontent.com/ogw/ADGmqu92A3GO29sPEXyfoYIwCWRHIbhljaLOVkAyePpz=s32-c-mo', */
-					name: '김현재',
-					title: '2주차 정신전력교육',
-					content1:
-            '4차 산업혁명 기술을 우리 군에 접목시키려면 우선 그에 따른 인프라가 구축되어야 한다. 대표적을 IoT기술의 경우 접목시킨다면 군에서 운용하는 여러 장비들에 네트워크를 부여할 수 있게 되는데, 대표적으로 위치 정보를 가져올 수 있고, 전투복에 접목된다면 병사의 신체 능력도 알 수 있어 부상이 있을 경우 빠른 대처가 가능해진다. 그러나 네트워크를 운용해야 하기 때문에 보안 문제 해결이 가장 시급한 과제인 것으로 보인다.',
-					content2:
-            '첨단 무기쳬계가 개발되고 도입이 되더라도 그에 맞는 개인의 전투기술과 작전계획, 전술, 전략의 수립이 중요하다. 강한 군대는 병력이 많거나 무기가 좋다고 강한 군대가 아니다. 균형있게 유무형의 전력을 갖추고 제대로 싸울 준비가 되어 있어야 강한 군대이다. '
-				},
-				{
-					avatar: '',
-					name: '최이현',
-					title: '2주차 정신전력교육',
-					content1: 'IOT와 기타 최신 기술들을 이용한다면 국군의 전투력 향상뿐만 아니라 사기 증진에도 효과가 있다고 생각한다.',
-					content2:
-            '무형의 정신전력이 가장 중요한것 처럼 최신 기술에만 의존하는 것이 아닌 우리의 마음가짐이 중요한 것 같다.'
-				},
-				{
-					avatar: '',
-					name: '최현수',
-					title: '2주차 정신전력교육',
-					content1: '너도 힘들고 바쁠텐데 데이터베이스 다루느라 고생했어',
-					content2:
-            '마찬가지로 오늘 제외하고 개발할 시간은 3일밖에 없는데, 조금만 더 수고해줘'
-				}
-			],
-			question: {
-				one:
-          '4차 산업혁명 기술을 우리 군에 접목하여 강한 군대를 만들 수 있는 현실성 있는 방안에 대해 말해보자',
-				two:
-          '첨단 무기체계가 개발되고 도입되는 상항에서도 장병 개인의 전투기술 연마와 정신적 대비태세가 중요한 이유에 대해 말해보자'
-			},
-			day: 1,
-			// 지난 정신전력 교육
-			overlay: false,
-			model: 0,
-			colors: ['secondary', 'green', 'yellow darken-2', 'red', 'orange'],
-			// 우리 역사 바로 알기
-			length: 4,
-			onboarding: 0
+			isEmpty: true,
+			msgs: [],
+			selectedArticleId: '',
+			cYear: '',
+			cMonth: '',
+			cWeek: ''
 		}
+	},
+	created () {
+		this.fetch()
 	},
 	computed: {
 		user () {
 			// Vuex state에 저장돼있는 user 정보
 			return this.$store.state.user
 		}
+	},
+	methods: {
+		async fetch () {
+			this.msgs.splice(0)
+			const now = new Date()
+			const yearMonthWeek = this.weekNumberByMonth(new Date(now.getFullYear(), now.getMonth(), now.getDate()))
+			this.cYear = yearMonthWeek.year.toString() + '년'
+			 this.cMonth = yearMonthWeek.month.toString() + '월'
+			 this.cWeek = yearMonthWeek.weekNo.toString() + '주차'
+			console.log(this.cYear, this.cMonth, this.cWeek)
+			this.selectedArticleId = ''
+
+			// year,month,week 을 바탕으로 해당 articles의 id 값을 가져오기
+			// console.log('fetch',this.year, this.month, this.week)
+			await this.$firebase.firestore().collection('learning').doc('jungsin').collection('articles')
+				.where('year', '==', this.cYear).where('month', '==', this.cMonth).where('week', '==', this.cWeek)
+				.get()
+				.then((querySnapshot) => {
+					querySnapshot.forEach((doc) => {
+						// console.log(doc.id, ' => ', doc.data())
+						this.selectedArticleId = doc.data().article_id
+						this.isEmpty = false
+						// console.log('id', this.selectedArticleId)
+					})
+				})
+				.catch(function (error) {
+					console.log('Error getting documents: ', error)
+				})
+
+			if (this.selectedArticleId) // 관리자가 선택한 year,month,week 에 해당하는 article 이 존재할 때
+			{
+				// question,title 받아오기
+				await this.$firebase.firestore().collection('learning').doc('jungsin').collection('articles').doc(this.selectedArticleId).get()
+					.then(doc => {
+						// console.log('doc.data()', doc.data())
+						this.Q1 = doc.data().question.Q1
+						this.Q2 = doc.data().question.Q2
+						// console.log(this.Q1, this.Q2)
+					}
+
+					)
+
+				// 사용자가 survey 한 데이터 받아오기
+				this.ref = this.$firebase.firestore().collection('survey_result').doc('jungsin').collection(this.selectedArticleId)
+				await this.ref.get().then((querySnapshot) => {
+					querySnapshot.forEach((doc) => {
+						// doc.data() is never undefined for query doc snapshots
+						// console.log(doc.id, ' => ', doc.data())
+						this.msgs.push(doc.data())
+					})
+				})
+				// console.log('msgs',this.msgs)
+			} else {
+				this.isEmpty = true
+			}
+		},
+
+		// 기준요일에 따른 주차구하는 함수.
+		// 해당 주차 / 해당주차 시작날짜 / 해당주차 끝나는날짜를 리턴.
+		weekNumberByMonth (dateFormat) {
+			const inputDate = new Date(dateFormat)
+
+			// 인풋의 년, 월
+			let year = inputDate.getFullYear()
+			let month = inputDate.getMonth() + 1
+
+			// 수요일 기준 주차 구하기
+			const weekNumberByWedFnc = (paramDate) => {
+				const year = paramDate.getFullYear()
+				const month = paramDate.getMonth()
+				const date = paramDate.getDate()
+
+				// 인풋한 달의 첫 날과 마지막 날의 요일
+				const firstDate = new Date(year, month, 1)
+				const lastDate = new Date(year, month + 1, 0)
+				const firstDayOfWeek = firstDate.getDay() === 0 ? 7 : firstDate.getDay()
+				const lastDayOfweek = lastDate.getDay()
+
+				// 인풋한 달의 마지막 일
+				const lastDay = lastDate.getDate()
+
+				// 첫 날의 요일이 목, 금, 토, 일요일 이라면 true
+				const firstWeekCheck = firstDayOfWeek === 4 || firstDayOfWeek === 5 || firstDayOfWeek === 6 || firstDayOfWeek === 7
+				// 마지막 날의 요일이 월, 화 라면 true
+				const lastWeekCheck = lastDayOfweek === 1 || lastDayOfweek === 2
+
+				// 해당 달이 총 몇주까지 있는지
+				const lastWeekNo = Math.ceil((firstDayOfWeek - 1 + lastDay) / 7)
+
+				// 날짜 기준으로 몇주차 인지
+				let weekNo = Math.ceil((firstDayOfWeek - 1 + date) / 7)
+
+				// 인풋한 날짜가 첫 주에 있고 첫 날이 월, 화, 수로 시작한다면 'prev'(전달 마지막 주)
+				if (weekNo === 1 && firstWeekCheck) weekNo = 'prev'
+				// 인풋한 날짜가 마지막 주에 있고 마지막 날이 월, 화로 끝난다면 'next'(다음달 첫 주)
+				else if (weekNo === lastWeekNo && lastWeekCheck) weekNo = 'next'
+				// 인풋한 날짜의 첫 주는 아니지만 첫날이 월, 화 수로 시작하면 -1;
+				else if (firstWeekCheck) weekNo = weekNo - 1
+
+				return weekNo
+			}
+
+			// 수요일 기준의 주차
+			let weekNo = weekNumberByWedFnc(inputDate)
+
+			// 이전달의 마지막 주차일 떄
+			if (weekNo === 'prev') {
+				// 이전 달의 마지막날
+				const afterDate = new Date(year, month - 1, 0)
+				year = month === 1 ? year - 1 : year
+				month = month === 1 ? 12 : month - 1
+				weekNo = weekNumberByWedFnc(afterDate)
+			}
+			// 다음달의 첫 주차일 때
+			if (weekNo === 'next') {
+				year = month === 12 ? year + 1 : year
+				month = month === 12 ? 1 : month + 1
+				weekNo = 1
+			}
+
+			return { year, month, weekNo }
+		}
+
 	}
 }
 </script>
