@@ -4,32 +4,24 @@
     <!-- 사용자 정보 카드 -->
     <v-row>
       <v-col cols="12">
-        <v-card >
+        <v-card class="d-flex">
          <v-card-title primary-title>
-          <div v-if="user !== null">
             <div class="grey--text">현재 사용자</div>
             <h3 class="headline">
               <v-icon medium color="success">mdi-account</v-icon
               >{{ user.displayName }} 님
             </h3>
-          </div>
-          <div v-else>
-            <div class="grey--text">현재 사용자</div>
-            <h3 class="headline">
-              <v-icon medium color="success">mdi-account</v-icon
-              >로그인해주세요
-            </h3>
-          </div>
         </v-card-title>
+        <v-card-title class="ml-auto mt-2 align-top font-weight-bold "> {{this.cYear}} {{this.cMonth}} {{this.cWeek}}</v-card-title>
         </v-card>
       </v-col>
     </v-row>
     <!-- 사용자 정보 카드 끝 -->
 
-      <v-row class="pa-3" justify="center">
+      <v-row class="pa-5" justify="center">
         <!-- 주간정신전력교육 최근컨텐츠 시작 -->
-        <v-col cols="9" md="6">
-          <v-card height="400" color="#1F7087" dark>
+        <v-col cols="12" md="6">
+          <v-card height="500" color="#1F7087" dark>
             <div class="d-flex">
               <v-card-title class="headline">주간정신전력교육</v-card-title>
               <v-subheader class="ml-auto mt-2">
@@ -54,8 +46,8 @@
         <!-- 주간정신전력교육 최근컨텐츠 끝-->
 
         <!-- 우리역사바로알기의 최근컨텐츠 시작 -->
-        <v-col cols="9" md="6">
-          <v-card height="400" color="#385F73" dark>
+        <v-col cols="12" md="6">
+          <v-card height="500" color="#385F73" dark>
             <div class="d-flex">
               <v-card-title class="headline">우리역사 바로알기</v-card-title>
               <v-subheader class="ml-auto mt-2">
@@ -81,11 +73,11 @@
       </v-row>
 
     <!-- 이번주 나의 부대원들은-->
-    <v-row>
+    <v-row class="pb-12">
       <v-col cols="12">
           <v-container >
           <v-card color="transparent">
-          <v-card-title class="align-top font-weight-bold "> {{this.cYear}} {{this.cMonth}} {{this.cWeek}}</v-card-title>
+
             <v-card-title class="align-top font-weight-bold mb-4">이번 주 나의 전우들은?</v-card-title>
 
             <v-card-text>이번 주 정신전력교육 주제에 대해 전우들은 어떻게 생각했을까요?</v-card-text>
@@ -133,7 +125,7 @@
       </v-col>
     </v-row>
     <!-- 이번주 나의 부대원들은 끝-->
->>>>>>> 38c5d8534b9cc325933174ebfabf415b1810fc76
+
   </v-container>
 </template>
 
