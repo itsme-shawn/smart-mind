@@ -49,7 +49,7 @@
             </v-container>
           </template>
           <v-spacer/>
-          <v-container v-if="document === 'learning'"> <!-- 공지사항과 우리역사바로알기에는 렌더링 안함 -->
+          <v-container v-if="document === 'jungsin'"> <!-- 공지사항과 우리역사바로알기에는 렌더링 안함 -->
           <v-toolbar-title class="mt-5">평가 질문 작성</v-toolbar-title>
           <v-text-field v-model="form.Q1" outlined label="질문1"></v-text-field>
           <v-text-field v-model="form.Q2" outlined label="질문2"></v-text-field>

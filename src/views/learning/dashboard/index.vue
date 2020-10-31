@@ -187,7 +187,7 @@ export default {
 				await this.ref.get().then((querySnapshot) => {
 					querySnapshot.forEach((doc) => {
 						// doc.data() is never undefined for query doc snapshots
-						// console.log(doc.id, ' => ', doc.data())
+						 console.log(doc.id, ' => ', doc.data())
 						this.msgs.push(doc.data())
 					})
 				})
@@ -293,3 +293,15 @@ export default {
 	}
 }
 </script>
+<style scoped>
+	.texts{
+		font-size: 1.5rem;
+		font-weight: 500;
+		letter-spacing: .0125em;
+	}
+	.qtexts{
+		font-size: 1rem;
+		font-weight: 400;
+		letter-spacing: .009375em;
+	}
+</style>
