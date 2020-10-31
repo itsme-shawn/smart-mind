@@ -36,11 +36,13 @@
 ## 기능 설계
  
   <a href="https://ovenapp.io/view/e3xbSgDSvHHfOtzvoxsaMCY55vfirBg9/wWcRb">Oven으로 확인</a>
-  |스크린샷|내용설명|
-|------|------|
-|<img src="/src/assets/dashboard.png" width="500" height="400">|**대시보드**<br>대시보드에서는 이번주의 정신전력을 비롯한<br>지난 정신전력들을 확인할 수 있고 우리 부대원들의 응답도 확인할 수 있습니다.|
-|<img src="/src/assets/weekly-2.png" width="500" height="400">|**주간정신전력**<br>주간정신전력에서는 정신전력을 수강할 수 있고<br> 수강후에는 간단한 평가가 가능합니다.|
-|<img src="/src/assets/history.png" width="500" height="400">|**우리역사바로알기**<br>우리역사 바로알기에서는 다양한 역사, 안보관 자료들을 수강할 수 있습니다.<br> > 역사를 잊은 민족에게 미래는 없다|
+  
+<img src="/src/assets/dashboard.png" width="500" height="400">**대시보드**<br>대시보드에서는 이번주의 정신전력을 비롯한<br>지난 정신전력들을 확인할 수 있고 우리 부대원들의 응답도 확인할 수 있습니다.
+**주간정신전력**<br>주간정신전력에서는 정신전력을 수강할 수 있으며 수강후에는 간단한 평가가 가능합니다.
+<img src="https://user-images.githubusercontent.com/47639762/97774382-a3166700-1b9a-11eb-8a82-e9c6698ce4a3.png" width="300" height"200">
+<img src="/src/assets/weekly-2.png" width="500" height="400">**주간정신전력**<br>주간정신전력에서는 정신전력을 수강할 수 있고<br> 수강후에는 간단한 평가가 가능합니다.
+
+<img src="/src/assets/history.png" width="500" height="400">**우리역사바로알기**<br>우리역사 바로알기에서는 다양한 역사, 안보관 자료들을 수강할 수 있습니다.<br> > 역사를 잊은 민족에게 미래는 없다
 
 
 ## 컴퓨터 구성 / 필수 조건 안내 (Prerequisites)
@@ -62,9 +64,7 @@
   <td>
 <img src="/src/assets/js.png" width="100" height"100">
   </td>
-  <td>
-<img src="/src/assets/npm.svg" width="100" height"100">
-  </td>
+  
  </tr>
  <tr>
   <td>
@@ -76,9 +76,7 @@ Vuetify
   <td>
 JavaScript
   </td>
-  <td>
-npm
-  </td>
+  
  </tr>
  </table>
  
@@ -88,10 +86,16 @@ npm
   <td>
 <img src="https://user-images.githubusercontent.com/47639762/97767923-cd4c3280-1b62-11eb-824f-98e50d7db5cb.png" width="100" height"100">
   </td>
+  <td>
+<img src="https://user-images.githubusercontent.com/47639762/97774574-4916a100-1b9c-11eb-8b3e-5145073f3558.png" width="100" height"100">
+  </td>
  </tr>
  <tr>
   <td>
 Firebase
+  </td>
+  <td>
+   Node.js
   </td>
  </tr>
  </table>
