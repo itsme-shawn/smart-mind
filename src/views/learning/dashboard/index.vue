@@ -20,7 +20,7 @@
 
       <v-row class="pa-5" justify="center">
         <!-- 주간정신전력교육 최근컨텐츠 시작 -->
-        <v-col cols="12" md="6">
+        <v-col cols="12" md="5">
           <v-card height="500" color="#1F7087" dark>
             <div class="d-flex">
               <v-card-title class="headline">주간정신전력교육</v-card-title>
@@ -46,7 +46,7 @@
         <!-- 주간정신전력교육 최근컨텐츠 끝-->
 
         <!-- 우리역사바로알기의 최근컨텐츠 시작 -->
-        <v-col cols="12" md="6">
+        <v-col cols="12" md="5">
           <v-card height="500" color="#385F73" dark>
             <div class="d-flex">
               <v-card-title class="headline">우리역사 바로알기</v-card-title>
