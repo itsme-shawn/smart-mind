@@ -89,7 +89,7 @@ export default {
 				answer: '관리자에게 문의하면 심의 후 추가될 수 있어요.'
 			},
 			{
-				title: 'ㅁㅁ',
+				title: '감사합니다!',
 				answer: '<a href="https://github.com/Keep-Going-HyeonSoo/WEB_SmartMind_CameToWin" target="_blank" style="text-decoration:none">"정신차렷!" github </a> 에 star 하나 부탁드려요! 감사합니다:)'
 			}
 
