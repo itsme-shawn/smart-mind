@@ -23,21 +23,20 @@
             <div class="d-flex">
               <v-card-title class="headline">주간정신전력교육</v-card-title>
               <v-subheader class="ml-auto mt-2">
-                <!-- <div v-if="collection=='learning'">
-                  <v-chip color="success" label small class="mr-4" v-if="item.isComplete">수강 완료</v-chip>
-                  <v-chip color="info" label small class="mr-4" v-else >수강 전</v-chip>
-                </div>-->
+              <!--
                 <div>
                   <v-chip color="success" label small class="mr-4" v-if="isComplete">수강 완료</v-chip>
                   <v-chip color="info" label small class="mr-4" v-else >수강 전</v-chip>
                 </div>
+              -->
                 <v-spacer/>
               </v-subheader>
             </div>
             <v-divider></v-divider>
-            <v-container class="d-flex align-end flex-column"><v-card-subtitle class="mt-auto">이번 주의 주간정신전력을 한눈에 볼 수 있습니다.</v-card-subtitle></v-container>
+            <v-container class="d-flex align-end flex-column"><v-card-subtitle class="mt-auto">이번 주 주간정신전력 교육 컨텐츠입니다.</v-card-subtitle></v-container>
             <!--data가 들어갈 부분-->
-            <v-text class="pl-4">10월 x주차 정신전력교육 - 봉오동 전투</v-text>
+            <v-text class="pl-4 " v-if="weekJungsin[0]">{{weekJungsin[0].title}}</v-text>
+            <v-card-actions class="mt-10 ml-2"><v-btn to="/learning/jungsin">이동하기</v-btn></v-card-actions>
             <!--data가 들어갈 부분 끝-->
           </v-card>
         </v-col>
@@ -49,17 +48,20 @@
             <div class="d-flex">
               <v-card-title class="headline">우리역사 바로알기</v-card-title>
               <v-subheader class="ml-auto mt-2">
+              <!--
                 <div>
                   <v-chip color="success" label small class="mr-4" v-if="isComplete">수강 완료</v-chip>
                   <v-chip color="info" label small class="mr-4" v-else >수강 전</v-chip>
                 </div>
+              -->
                 <v-spacer/>
               </v-subheader>
             </div>
             <v-divider></v-divider>
-            <v-container class="d-flex align-end flex-column"><v-card-subtitle class="mt-auto">최신의 우리역사 바로알기를 한눈에 볼 수 있습니다.</v-card-subtitle></v-container>
+            <v-container class="d-flex align-end flex-column"><v-card-subtitle class="mt-auto">이번 주 우리역사 바로알기 컨텐츠입니다.</v-card-subtitle></v-container>
             <!--data가 들어갈 부분-->
-            <v-text class="pl-4">우리역사바로알기의ㄻㅈㄷㄹ</v-text>
+            <v-text class="pl-4" v-if="weekHistory[0]">{{weekHistory[0].title}}</v-text>
+            <v-card-actions class="mt-10 ml-2"><v-btn to="/learning/daily_history">이동하기</v-btn></v-card-actions>
             <!--data가 들어갈 부분 끝-->
           </v-card>
         </v-col>
@@ -124,7 +126,10 @@ export default {
 		return {
 			isEmpty: true,
 			msgs: [],
+			weekJungsin: [],
+			weekHistory: [],
 			selectedArticleId: '',
+			selectedArticleId2: '',
 			cYear: '',
 			cMonth: '',
 			cWeek: ''
@@ -147,11 +152,11 @@ export default {
 			this.cYear = yearMonthWeek.year.toString() + '년'
 			this.cMonth = yearMonthWeek.month.toString() + '월'
 			this.cWeek = yearMonthWeek.weekNo.toString() + '주차'
-			console.log(this.cYear, this.cMonth, this.cWeek)
+			// console.log(this.cYear, this.cMonth, this.cWeek)
 			this.selectedArticleId = ''
+			this.selectedArticleId2 = ''
 
-			// year,month,week 을 바탕으로 해당 articles의 id 값을 가져오기
-			// console.log('fetch',this.year, this.month, this.week)
+			// year,month,week 을 바탕으로 해당 주간정신전력교육articles의 id 값을 가져오기
 			await this.$firebase.firestore().collection('learning').doc('jungsin').collection('articles')
 				.where('year', '==', this.cYear).where('month', '==', this.cMonth).where('week', '==', this.cWeek)
 				.get()
@@ -164,7 +169,7 @@ export default {
 					})
 				})
 				.catch(function (error) {
-					console.log('Error getting documents: ', error)
+				  console.log('Error getting documents: ', error)
 				})
 
 			if (this.selectedArticleId) { // 관리자가 선택한 year,month,week 에 해당하는 article 이 존재할 때
@@ -172,12 +177,10 @@ export default {
 				await this.$firebase.firestore().collection('learning').doc('jungsin').collection('articles').doc(this.selectedArticleId).get()
 					.then(doc => {
 						// console.log('doc.data()', doc.data())
-						this.Q1 = doc.data().question.Q1
-						this.Q2 = doc.data().question.Q2
-						// console.log(this.Q1, this.Q2)
-					}
+						this.weekJungsin.push(doc.data())
 
-					)
+						// console.log(this.Q1, this.Q2)
+					})
 
 				// 사용자가 survey 한 데이터 받아오기
 				this.ref = this.$firebase.firestore().collection('survey_result').doc('jungsin').collection(this.selectedArticleId)
@@ -191,6 +194,33 @@ export default {
 				// console.log('msgs',this.msgs)
 			} else {
 				this.isEmpty = true
+			}
+
+			// 우리역사 바로알기 데이터 fetch
+			// year,month,week 을 바탕으로 해당 우리역사바로알기의 articles의 id 값을 가져오기
+			await this.$firebase.firestore().collection('learning').doc('daily_history').collection('articles')
+				.where('year', '==', this.cYear).where('month', '==', this.cMonth).where('week', '==', this.cWeek)
+				.get()
+				.then((querySnapshot) => {
+					querySnapshot.forEach((doc) => {
+						// console.log(doc.id, ' => ', doc.data())
+						this.selectedArticleId2 = doc.data().article_id
+						// console.log('id', this.selectedArticleId)
+					})
+				})
+				.catch(function (error) {
+					console.log('Error getting documents: ', error)
+				})
+
+			if (this.selectedArticleId2) { // 관리자가 선택한 year,month,week 에 해당하는 article 이 존재할 때
+				// question,title 받아오기
+				await this.$firebase.firestore().collection('learning').doc('daily_history').collection('articles').doc(this.selectedArticleId2).get()
+					.then(doc => {
+						// console.log('history doc.data()', doc.data())
+						this.weekHistory.push(doc.data())
+
+						// console.log(this.Q1, this.Q2)
+					})
 			}
 		},
 
