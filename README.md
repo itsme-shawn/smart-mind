@@ -39,7 +39,7 @@
   <a href="https://ovenapp.io/view/e3xbSgDSvHHfOtzvoxsaMCY55vfirBg9/wWcRb">Oven으로 확인</a>
   
 ### 대시보드<br>
-<img src="/src/assets/dashboard.png" width="1500" height="1000"><br>
+<img src="/src/assets/dashboard.png" width="1500" height="600"><br>
 대시보드에서는 이번주의 정신전력과 최신의 우리역사 바로알기 컨텐츠를 확인할 수 있으며, <br>
 우리 부대원들의 정신전력교육 응답도 확인할 수 있습니다.<br>
 
