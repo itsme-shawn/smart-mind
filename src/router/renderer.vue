@@ -15,7 +15,6 @@
     v-else-if="(collection === 'learning' || collection === 'notice') && (action === 'article-write' || action==='article-update') " :collection="collection" :document="document" :action="action"> <!-- 게시물 작성과 수정을 같은 컴포넌트로 재활용 -->
   </learning-article-form>
 
-  <mypage-account v-else-if="collection === 'mypage' && document === 'account'"></mypage-account>
   <mypage-status v-else-if="collection === 'mypage' && document === 'status'"></mypage-status>
   <mypage-budae v-else-if="collection === 'mypage' && document === 'budae'"></mypage-budae>
 
@@ -35,7 +34,6 @@ import LearningBoardForm from '../views/learning/board-form'
 import LearningArticleForm from '../views/learning/article/article-form'
 
 // Mypage (마이페이지 배너)
-import MypageAccount from '../views/mypage/account/index.vue'
 import MypageStatus from '../views/mypage/status/index.vue'
 import MypageBudae from '../views/mypage/budae/index.vue'
 
@@ -52,7 +50,6 @@ export default {
 		LearningBoard,
 		LearningBoardForm,
 		LearningArticleForm,
-		MypageAccount,
 		MypageBudae,
 		MypageStatus,
 		HelpFaq,
