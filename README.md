@@ -105,9 +105,9 @@ $ yarn start or npm run start
  #### 팀장
 
 - 김현재 (peterhyunjae@naver.com)  
- [![Gmail Badge](https://img.shields.io/badge/Gmail-d14836?style=flat-square&logo=Gmail&logoColor=white&link=mailto:peter.hyunjae@gamil.com)](mailto:peter.hyunjae@gamil.com)
- <a href="https://github.com/itsnowkim">
- <img 
+[![Gmail Badge](https://img.shields.io/badge/Gmail-d14836?style=flat-square&logo=Gmail&logoColor=white&link=mailto:peter.hyunjae@gamil.com)](mailto:peter.hyunjae@gamil.com)
+  <a href="https://github.com/itsnowkim">
+  <img 
         src="http://img.shields.io/badge/-Tech%20Blog-655ced?style=flat&logo=github&link=https://github.com/itsnowkim"
         style="height : auto; margin-left : 10px; margin-right : 10px;"/>
  </a>
@@ -115,12 +115,13 @@ $ yarn start or npm run start
   #### 팀원
  
 - 최현수 (chs98105@gmail.com)  
- [![Gmail Badge](https://img.shields.io/badge/Gmail-d14836?style=flat-square&logo=Gmail&logoColor=white&link=mailto:chs98105@gmail.com)](mailto:chs98105@gmail.com)
- <a href="https://github.com/Keep-Going-HyeonSoo">
- <img 
+[![Gmail Badge](https://img.shields.io/badge/Gmail-d14836?style=flat-square&logo=Gmail&logoColor=white&link=mailto:chs98105@gmail.com)](mailto:chs98105@gmail.com)
+  <a href="https://github.com/Keep-Going-HyeonSoo">
+  <img 
         src="http://img.shields.io/badge/-Tech%20Blog-655ced?style=flat&logo=github&link=https://github.com/Keep-Going-HyeonSoo"
         style="height : auto; margin-left : 10px; margin-right : 10px;"/>
- </a>
+ </a> 
+
 
 - 최이현 (chyh0182@naver.com)  
  [![Gmail Badge](https://img.shields.io/badge/Gmail-d14836?style=flat-square&logo=Gmail&logoColor=white&link=mailto:chldldgus123@gmail.com)](mailto:chldlgus123@gmail.com)
