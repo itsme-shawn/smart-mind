@@ -1,4 +1,4 @@
-<img src="https://img.shields.io/github/forks/Keep-Going-HyeonSoo/WEB_SmartMind_CameToWin?style=plastic"> <img src="https://img.shields.io/github/commit-activity/m/Keep-Going-HyeonSoo/WEB_SmartMind_CameToWin?style=plastic"> <img src="https://img.shields.io/apm/l/vim-mode?style=plastic"> <img src="https://img.shields.io/badge/Osam2020-SmartMind-yellow?style=plastic">
+<img src="https://img.shields.io/github/forks/Keep-Going-HyeonSoo/WEB_SmartMind_CameToWin?style=plastic"> <img src="https://img.shields.io/apm/l/vim-mode?style=plastic"> <img src="https://img.shields.io/badge/Osam2020-SmartMind-yellow?style=plastic">
 
 
 ## 💡정신차렷!
