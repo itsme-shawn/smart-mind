@@ -8,7 +8,7 @@
 		<v-divider></v-divider>
 
 	<v-sheet class="pt-10">
-		<h1>정신전력 교육을 쉽고 간편하게.</h1><br>
+		<h1>정신전력 교육을<br> 쉽고 간편하게.</h1><br>
 		<h3>정신차렷은 불편하고 번거로운 정신전력교육을 개선하기 위해 만들어졌습니다.</h3><br>
 		<h3>어렵고 불편한 사용법 대신 직관적이고 간편한 사용을 위해 노력했습니다.</h3><br>
 		<h3>쉽게 참여하고, 쉽게 관리/감독을 시작하세요.</h3><br>
@@ -17,7 +17,7 @@
 	</v-sheet>
 
 	<v-sheet class="pt-10 text-center">
-		<h1>어떠한 순간에도, 정신차렷으로.</h1><br>
+		<h1>어떠한 순간에도,<br> 정신차렷으로.</h1><br>
 		<h3>일과시간 특수한 보직으로 참여할 수 없는 병사들도,</h3><br>
 		<h3>휴가 복귀로 격리되어 참여할 수 없는 병사들도,</h3><br>
 		<h3>근무나 당직으로 참여할 수 없는 병사들도,</h3><br>
@@ -64,13 +64,16 @@
 		<v-divider></v-divider>
 	</v-sheet>
 
+
 	<!--캡처해서 colors 대신에 캡처 사진 url 넣으면 끝-->
+  <!--
 	<template>
 	<v-carousel
 		class="mb-15"
 		cycle
 		hide-delimiter-background
 		show-arrows-on-hover
+    max-width="300"
 	>
 		<v-carousel-item
 		v-for="(slide, i) in slides"
@@ -89,6 +92,7 @@
 		</v-carousel-item>
 	</v-carousel>
 	</template>
+  -->
 
 
     </v-container>
@@ -128,7 +132,7 @@
 		],
 
         slides: [
-		   require('../../../assets/help_intention1.png'),
+		  // require('../../../assets/help_intention1.png'),
 		  // require('../../../assets/help_intention2.png'),
 		  // require('../../../assets/help_intention3.png'),
 		  // require('../../../assets/help_intention4.png'),
