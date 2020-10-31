@@ -169,7 +169,7 @@ export default {
 					})
 				})
 				.catch(function (error) {
-				  console.log('Error getting documents: ', error)
+					console.log('Error getting documents: ', error)
 				})
 
 			if (this.selectedArticleId) { // 관리자가 선택한 year,month,week 에 해당하는 article 이 존재할 때
