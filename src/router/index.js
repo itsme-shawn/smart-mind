@@ -15,19 +15,6 @@ const routes = [
 		path: '/login',
 		component: () => import('../views/auth/sign.vue')
 	},
-
-	{
-		path: '/mypage/account',
-		component: () => import('../views/mypage/account/index.vue'),
-		// mypage 같은 페이지들은 라우팅하기 전에 로그인 상태인지 체크하고 로그인이 안돼있으면, 강제로 로그인페이지로 리다이렉션 시킴.
-		beforeEnter: function (to, from, next) {
-			if (!store.state.user) {
-				router.push('/login').catch(() => {})
-				store.commit('setRouteTo', to)
-			} else next()
-		}
-	},
-
 	{
 		path: '/mypage/budae',
 		component: () => import('../views/mypage/budae/index.vue'),
