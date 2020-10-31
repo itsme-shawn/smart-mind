@@ -74,10 +74,6 @@
                   <v-col class="text-no-wrap" cols="5" sm="3">
                     <strong >{{(msg.title).substring(0,7)}} </strong>
                   </v-col>
-                  <v-col cols="5" sm="3">
-                    <v-chip color="success" label small class="mr-4" v-if="msg.rating && msg.comment">평가 완료</v-chip> <!-- 추후 사용자의 수강상태에 따라서 동적으로 수강 전/ 수강 완료 로 핸들링해줄 예정 -->
-                    <v-chip color="error" label small class="mr-4" v-else >평가 미작성</v-chip>
-                  </v-col>
                 </v-row>
               </v-expansion-panel-header>
               <v-expansion-panel-content>
