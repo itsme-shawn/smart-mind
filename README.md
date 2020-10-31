@@ -10,6 +10,7 @@
  > '차렷'이 군인의 가장 기본적인 제식인 만큼,  
  정신전력 또한 가장 근본적이고 중요함을 강조하는 의도로  
  프로젝트명을 '정신 차렷!' 으로 지었습니다.
+
 <br><br>
 ## 💭기존 정신전력 교육의 문제점
  - 정신전력교육을 위한 시간과 공간이 한정적이기 때문에 근무, 휴가, 특수보직 등의 이유로 열외한다면 교육을 듣고 싶어도 들을 수가 없었음.
@@ -37,12 +38,23 @@
  
   <a href="https://ovenapp.io/view/e3xbSgDSvHHfOtzvoxsaMCY55vfirBg9/wWcRb">Oven으로 확인</a>
   
-<img src="/src/assets/dashboard.png" width="500" height="400">**대시보드**<br>대시보드에서는 이번주의 정신전력을 비롯한<br>지난 정신전력들을 확인할 수 있고 우리 부대원들의 응답도 확인할 수 있습니다.
-**주간정신전력**<br>주간정신전력에서는 정신전력을 수강할 수 있으며 수강후에는 간단한 평가가 가능합니다.
-<img src="https://user-images.githubusercontent.com/47639762/97774382-a3166700-1b9a-11eb-8a82-e9c6698ce4a3.png" width="300" height"200">
-<img src="/src/assets/weekly-2.png" width="500" height="400">**주간정신전력**<br>주간정신전력에서는 정신전력을 수강할 수 있고<br> 수강후에는 간단한 평가가 가능합니다.
+### 대시보드<br>
+<img src="/src/assets/dashboard.png" width="500" height="400"><br>
+대시보드에서는 이번주의 정신전력과 최신의 우리역사 바로알기 컨텐츠를 확인할 수 있으며, <br>
+우리 부대원들의 정신전력교육 응답도 확인할 수 있습니다.<br>
 
-<img src="/src/assets/history.png" width="500" height="400">**우리역사바로알기**<br>우리역사 바로알기에서는 다양한 역사, 안보관 자료들을 수강할 수 있습니다.<br> > 역사를 잊은 민족에게 미래는 없다
+### 주간정신전력<br>
+<img src="https://user-images.githubusercontent.com/47639762/97774382-a3166700-1b9a-11eb-8a82-e9c6698ce4a3.png" width="500" height="400"><br>
+주간정신전력에서는 정신전력을 수강할 수 있으며 수강후에는 간단한 평가가 가능합니다.<br>
+<img src="/src/assets/weekly-2.png" width="500" height="400"><br>
+
+### 주간정신전력<br>
+주간정신전력에서는 정신전력을 수강할 수 있고<br> 수강후에는 간단한 평가가 가능합니다.<br>
+<img src="/src/assets/history.png" width="500" height="400"><br>
+
+### 우리역사바로알기<br>
+우리역사 바로알기에서는 다양한 역사, 안보관 자료들을 수강할 수 있습니다.<br>
+> 역사를 잊은 민족에게 미래는 없다<br>
 
 
 ## 컴퓨터 구성 / 필수 조건 안내 (Prerequisites)
