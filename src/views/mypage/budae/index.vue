@@ -138,8 +138,8 @@
   <!-- 용사 선택 부분 끝 -->
 
       <!--sparkline 시작-->
-        <!--병사를 선택하지 않았을 경우 보여지게 되는 card-->
       <v-container class="mb-6 mt-3" >
+        <!--병사를 선택하지 않았을 경우 보여지게 되는 card-->
         <v-card max-width="800" class="mx-auto" color="#385F73" dark v-if="!graphData.show">
             <v-card-title class="headline">용사를 선택하지 않았어요!</v-card-title>
             <v-card-subtitle>점수 조회를 원하는 용사를 선택한 뒤 조회을 누르세요.</v-card-subtitle>
@@ -268,7 +268,7 @@ export default {
 			submitLoading: false,
 			soldierLoading: false,
 			snackbar: false,
-			// graph 들어가는부분 data
+			// graph data
 			graphData: {
 				show: false,
 				labels: [], // 몇주차 (그래프 x축)
@@ -374,7 +374,7 @@ export default {
 			this.msgs2.splice(0)
 			this.graphData.labels.splice(0)
 			this.graphData.value.splice(0)
-			console.log('labels 배열 push 전', this.graphData.labels)
+			// console.log('labels 배열 push 전', this.graphData.labels)
 
 			await this.$firebase.firestore().collection('users')
 				.where('displayName', '==', this.sUser)
@@ -389,7 +389,7 @@ export default {
 							.then((sn2) => {
 								sn2.forEach((doc2) => {
 									this.msgs2.push(doc2.data())
-									 console.log(doc2.id, ' => ', doc2.data())
+									// console.log(doc2.id, ' => ', doc2.data())
 									this.graphData.labels.push(doc2.data().title.substring(0, 7))
 									this.graphData.value.push(doc2.data().rating)
 								})
@@ -401,8 +401,8 @@ export default {
 				})
 
 			// console.log('m2', this.msgs2)
-      console.log('labels 배열 push 후', this.graphData.labels)
-      console.log('value 배열 push 후', this.graphData.value)
+			// console.log('labels 배열 push 후', this.graphData.labels)
+			// console.log('value 배열 push 후', this.graphData.value)
 
 			this.soldierLoading = false
 		},

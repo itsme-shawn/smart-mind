@@ -1,5 +1,5 @@
 <template>
-    <v-container>
+    <v-container class="pa-3">
         <div>
             <v-card-text>
                 <v-toolbar-title class="font-weight-bold mt-5 ml-10">FAQ</v-toolbar-title>
@@ -33,7 +33,7 @@
 
 					<v-expansion-panel-content>
 						<v-divider></v-divider>
-						<v-card-text v-text="message.answer"></v-card-text>
+						<v-card-text v-html="message.answer"></v-card-text>
 					</v-expansion-panel-content>
 					</v-expansion-panel>
 				</v-expansion-panels>
@@ -83,6 +83,14 @@ export default {
 			{
 				title: '추가적으로 이런 기능이 있으면 좋을 것 같아요!',
 				answer: '좋은 의견이 있다면 언제든지 홈페이지의 하단의 관리자에게 연락하십시오. 언제든지 기다리고 있습니다.'
+			},
+			{
+				title: '<우리 역사 바로알기>에 다른 사람들이 알았으면 하는 새로운 주제가 있어요.',
+				answer: '관리자에게 문의하면 심의 후 추가될 수 있어요.'
+			},
+			{
+				title: 'ㅁㅁ',
+				answer: '<a href="https://github.com/Keep-Going-HyeonSoo/WEB_SmartMind_CameToWin" target="_blank" style="text-decoration:none">"정신차렷!" github </a> 에 star 하나 부탁드려요! 감사합니다:)'
 			}
 
 		]

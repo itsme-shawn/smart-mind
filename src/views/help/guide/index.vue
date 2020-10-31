@@ -1,8 +1,8 @@
 <template>
-    <v-container>
+    <v-container class="pa-3">
         <div>
             <v-card-text>
-                <v-toolbar-title class="font-weight-bold mt-5 ml-10">사용 가이드</v-toolbar-title>
+                <v-toolbar-title class="font-weight-bold mt-1 ml-4 text-h5">사용 가이드</v-toolbar-title>
             </v-card-text>
         </div>
 		<v-divider></v-divider>

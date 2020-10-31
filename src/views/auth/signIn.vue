@@ -19,7 +19,16 @@
           <v-divider vertical class="mx-3"></v-divider>
           Google 계정으로 로그인
         </v-btn>
+        </v-card-actions>
+        <!--
+        <v-card-actions>
+        <v-btn color="primary" @click="signInWithFacebook" block>
+          <v-icon>mdi-facebook</v-icon>
+          <v-divider vertical class="mx-3"></v-divider>
+          Facebook 계정으로 로그인
+        </v-btn>
       </v-card-actions>
+      -->
       <v-container grid-list-md fluid class="mt-3">
         <v-row row wrap>
           <v-col cols='5' xs='3'>
@@ -71,6 +80,19 @@ export default {
 	methods: {
 		async signInWithGoogle () {
 			const provider = new this.$firebase.auth.GoogleAuthProvider()
+			this.$firebase.auth().languageCode = 'ko'
+			try {
+				const sn = await this.$firebase.auth().signInWithPopup(provider)
+				this.$store.commit('setUser', sn.user)
+				this.$router.push(this.routeTo.path).catch(() => {})
+			} catch {
+				this.$router.push('/').catch(() => {})
+			} finally {
+				this.loading = false
+			}
+		},
+		async signInWithFacebook () {
+			const provider = new this.$firebase.auth.FacebookAuthProvider()
 			this.$firebase.auth().languageCode = 'ko'
 			try {
 				const sn = await this.$firebase.auth().signInWithPopup(provider)
