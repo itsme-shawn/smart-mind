@@ -52,19 +52,18 @@
 ### 우리역사바로알기<br>
 우리역사 바로알기에서는 다양한 역사, 안보관 자료들을 수강할 수 있습니다.<br>
 <img src="/src/assets/history.png" width="800" height="500"><br>
-> 역사를 잊은 민족에게 미래는 없다<br>
 
 ### 부대관리<br>
 부대관리에서는 제출된 정신전력교육에 대해 피드백과 평점을 남길 수 있고, 용사별로 평점의 변화도를 한눈에 볼 수 있습니다.<br>
-평가 남기는 화면<br>
+#### 평가 남기는 화면<br>
 <img src="/src/assets/budae3.png" width="800" height="800"><br>
-통계 화면<br>
+#### 통계 화면<br>
 <img src="/src/assets/budae5.png" width="800" height="800"><br>
 
 
 ### 정신전력현황<br>
 정신전력현황에서는 본인이 제출한 정신전력교육을 다시 열람하고 관리자로부터 받은 평가와 피드백을 확인할 수 있습니다.<br>
-<img src="/src/assets/history.png" width="800" height="500"><br>
+<img src="/src/assets/hyun.png" width="800" height="800"><br>
 
 ## 컴퓨터 구성 / 필수 조건 안내 (Prerequisites)
 * ECMAScript 6 지원 브라우저 사용
