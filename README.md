@@ -87,7 +87,12 @@
   <td>
 <img src="/src/assets/js.png" width="100" height"100">
   </td>
-  
+  <td>
+<img src="https://user-images.githubusercontent.com/47639762/97780694-82193a80-1bc9-11eb-9a7e-1325dc81d495.png" width="100" height"100">
+  </td>
+  <td>
+<img src="https://user-images.githubusercontent.com/47639762/97780706-92311a00-1bc9-11eb-90c9-4bd8f8ab86db.jpg" width="100" height"100">
+  </td>
  </tr>
  <tr>
   <td>
@@ -98,6 +103,12 @@ Vuetify
   </td>
   <td>
 JavaScript
+  </td>
+ <td>
+Webpack
+  </td>
+ <td>
+babel
   </td>
   
  </tr>
@@ -112,6 +123,7 @@ JavaScript
   <td>
 <img src="https://user-images.githubusercontent.com/47639762/97774574-4916a100-1b9c-11eb-8b3e-5145073f3558.png" width="100" height"100">
   </td>
+  
  </tr>
  <tr>
   <td>
@@ -120,6 +132,7 @@ Firebase
   <td>
    Node.js
   </td>
+  
  </tr>
  </table>
  
@@ -137,7 +150,7 @@ $ yarn start or npm run start
 
  #### 팀장
 
-- 김현재 (peterhyunjae@naver.com) : Front_end 담당, 발표자료 제작  
+- 김현재 - Front_end 담당, 발표자료 제작  
 [![Gmail Badge](https://img.shields.io/badge/Gmail-d14836?style=flat-square&logo=Gmail&logoColor=white&link=mailto:peter.hyunjae@gamil.com)](mailto:peter.hyunjae@gamil.com)
   <a href="https://github.com/itsnowkim">
   <img 
@@ -147,7 +160,7 @@ $ yarn start or npm run start
  
   #### 팀원
  
-- 최현수 (chs98105@gmail.com) : Back_end 담당, DB 설계  
+- 최현수 - Back_end 담당, DB 설계  
 [![Gmail Badge](https://img.shields.io/badge/Gmail-d14836?style=flat-square&logo=Gmail&logoColor=white&link=mailto:chs98105@gmail.com)](mailto:chs98105@gmail.com)
   <a href="https://github.com/Keep-Going-HyeonSoo">
   <img 
@@ -156,7 +169,7 @@ $ yarn start or npm run start
  </a> 
 
 
-- 최이현 (chyh0182@naver.com) : Front_end 담당, 시연 영상 제작, README 작성  
+- 최이현 - Front_end 담당, 시연 영상 제작, README 작성  
  [![Gmail Badge](https://img.shields.io/badge/Gmail-d14836?style=flat-square&logo=Gmail&logoColor=white&link=mailto:chldldgus123@gmail.com)](mailto:chldlgus123@gmail.com)
   <a href="https://github.com/Choieeh">
   <img 
