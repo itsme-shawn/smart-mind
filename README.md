@@ -45,7 +45,7 @@
 
 ### 주간정신전력<br>
 주간정신전력에서는 정신전력을 수강할 수 있습니다.<br>
-<img src="/src/assets/weekly1.png" width="1500" height="1000"><br>
+<img src="/src/assets/weekly1.png" width="1200" height="1000"><br>
 <img src="/src/assets/weeksubmit.png" width="1500" height="1000"><br>
 <img src="/src/assets/weekly2.png" width="1500" height="1000"><br>
 
