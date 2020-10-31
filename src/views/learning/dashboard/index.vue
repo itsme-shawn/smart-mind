@@ -5,6 +5,9 @@
     <v-row>
       <v-col cols="12">
         <v-card >
+        <v-container>
+        <v-layout row xs7>
+        <v-flex xs7>
          <v-card-title primary-title>
           <div v-if="user !== null">
             <div class="grey--text">현재 사용자</div>
@@ -14,13 +17,22 @@
             </h3>
           </div>
           <div v-else>
-            <div class="grey--text">현재 사용자</div>
+            <div class="grey--tFext">현재 사용자</div>
             <h3 class="headline">
               <v-icon medium color="success">mdi-account</v-icon
               >로그인해주세요
             </h3>
           </div>
-        </v-card-title>
+          </v-card-title>
+          </v-flex>
+          
+          <v-layout align-end justify-end xs5>
+          <v-flex>
+          <v-card-title class="justify-end">{{this.cYear}} {{this.cMonth}} {{this.cWeek}}</v-card-title>
+          </v-flex>
+          </v-layout>
+          </v-layout>
+          </v-container>
         </v-card>
       </v-col>
     </v-row>
@@ -49,7 +61,7 @@
       <v-col cols="12">
           <v-container >
           <v-card color="transparent">
-          <v-card-title class="align-top font-weight-bold "> {{this.cYear}} {{this.cMonth}} {{this.cWeek}}</v-card-title>
+          
             <v-card-title class="align-top font-weight-bold mb-4">이번 주 나의 전우들은?</v-card-title>
 
             <v-card-text>이번 주 정신전력교육 주제에 대해 전우들은 어떻게 생각했을까요?</v-card-text>
