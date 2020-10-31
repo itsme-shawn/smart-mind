@@ -22,13 +22,13 @@
           <v-text-field v-model="form.title" outlined label="게시물 제목" required :rules="[rule.required]"></v-text-field>
           <v-container fluid>
             <v-row align="center">
-              <v-col class="d-flex" cols="2" sm="2">
+              <v-col class="d-flex" cols="4" sm="2">
                 <v-select v-model="form.year" :items="yearList" label="년" required :rules="[rule.required]"></v-select>
               </v-col>
-              <v-col class="d-flex" cols="2" sm="2">
+              <v-col class="d-flex" cols="4" sm="2">
                 <v-select v-model="form.month" :items="monthList" label="월" required :rules="[rule.required]"></v-select>
               </v-col>
-              <v-col class="d-flex" cols="2" sm="2">
+              <v-col class="d-flex" cols="4" sm="2">
                 <v-select v-model="form.week" :items="weekList" label="주차" required :rules="[rule.required]"></v-select>
               </v-col>
             </v-row>

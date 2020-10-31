@@ -1,3 +1,5 @@
+<img src="https://img.shields.io/github/forks/Keep-Going-HyeonSoo/WEB_SmartMind_CameToWin?style=plastic"> <img src="https://img.shields.io/github/commit-activity/m/Keep-Going-HyeonSoo/WEB_SmartMind_CameToWin?style=plastic"> <img src="https://img.shields.io/apm/l/vim-mode?style=plastic"> <img src="https://img.shields.io/badge/Osam2020-SmartMind-yellow?style=plastic">
+
 
 ## 💡정신차렷!
 
@@ -11,7 +13,16 @@
  정신전력 또한 가장 근본적이고 중요함을 강조하는 의도로  
  프로젝트명을 '정신 차렷!' 으로 지었습니다.
 
-<br><br>
+<br>
+
+
+<div align="center">
+ <b><a href="https://osam-hackathon.web.app/">Demo보기(https://osam-hackathon.web.app)</a></b>
+ </div>
+<br>
+<br>
+
+
 ## 💭기존 정신전력 교육의 문제점
  - 정신전력교육을 위한 시간과 공간이 한정적이기 때문에 근무, 휴가, 특수보직 등의 이유로 열외한다면 교육을 듣고 싶어도 들을 수가 없었음.
  - 매주 한명당 한장의 종이만 쓴다고 하더라도 일주일이면 60만장, 일년이면 3120만장의 종이를 낭비함.
@@ -21,7 +32,7 @@
 
 ## 프로젝트 설명 동영상
 
-[![Watch the video](https://img.youtube.com/vi/LjX3eVQdIyk/0.jpg)](https://www.youtube.com/watch?time_continue=117&v=LjX3eVQdIyk)
+[![Watch the video](https://img.youtube.com/vi/FrEMI7wRuGs/0.jpg)](https://www.youtube.com/watch?v=FrEMI7wRuGs&feature=youtu.be)
 
 <br>
 
@@ -37,27 +48,127 @@
 ## 기능 설계
  
   <a href="https://ovenapp.io/view/e3xbSgDSvHHfOtzvoxsaMCY55vfirBg9/wWcRb">Oven으로 확인</a>
-  
-### 대시보드<br>
-<img src="/src/assets/dashboard.png" width="500" height="400"><br>
-대시보드에서는 이번주의 정신전력과 최신의 우리역사 바로알기 컨텐츠를 확인할 수 있으며, <br>
-우리 부대원들의 정신전력교육 응답도 확인할 수 있습니다.<br>
+ 
+### 대시보드
+ 
+ <table>
+  <tbody>
+   <tr>
+    <td colspan=2>
+     <b>대시보드에서는 이번주의 정신전력과 최신의 우리역사 바로알기 컨텐츠를 확인할 수 있으며, <br>
+우리 부대원들의 정신전력교육 응답도 확인할 수 있습니다.</b><br>
+    </td>
+   </tr>
+   <tr>
+    <td>
+     <img src="/src/assets/dashboard.png" width="600" height="450">
+    </td>
+   </tr>
+ </tbody>
+</table>
+   
+### 주간 정신전력
+ <table>
+  <tbody>
+   <tr>
+    <td colspan=2>
+     <b>주간정신전력에서는 정신전력을 수강하고 간단한 평가를 볼 수 있습니다.</b><br>
+    </td>
+   </tr>
+   <tr>
+    <td>
+     <div align="center">
+     <img src="/src/assets/weekly1.png" width="80%" height="50%">
+      </div>
+    </td>
+    <td width="20%">수강 전 화면</td>
+   </tr>
+   <tr>
+    <td >
+     <div align="center">
+      <img src="/src/assets/weeksubmit.png" width="80%" height="50%"></div>
+    </td>
+    <td width="20%">수강 중 화면</td>
+   </tr>
+   <tr>
+    <td>
+     <div align="center">
+      <img src="/src/assets/weekly2.png" width="80%" height="50%"></div>
+    </td>
+    <td width="20%">수강 후 화면</td>
+   </tr>
+ </tbody>
+</table>
 
-### 주간정신전력<br>
-주간정신전력에서는 정신전력을 수강할 수 있으며 수강후에는 간단한 평가가 가능합니다.<br>
-<img src="https://user-images.githubusercontent.com/47639762/97774382-a3166700-1b9a-11eb-8a82-e9c6698ce4a3.png" width="500" height="400"><br>
-<img src="/src/assets/weekly-2.png" width="500" height="400"><br>
+### 우리역사바로알기
+ 
+ <table>
+  <tbody>
+   <tr>
+    <td colspan=2>
+     <b>우리역사 바로알기에서는 다양한 역사, 안보관 자료들을 수강할 수 있습니다.</b><br>
+    </td>
+   </tr>
+   <tr>
+    <td>
+     <img src="/src/assets/history.png" width="600" height="400">
+    </td>
+   </tr>
+ </tbody>
+</table>
 
-### 우리역사바로알기<br>
-우리역사 바로알기에서는 다양한 역사, 안보관 자료들을 수강할 수 있습니다.<br>
-<img src="/src/assets/history.png" width="500" height="400"><br>
-> 역사를 잊은 민족에게 미래는 없다<br>
+### 부대관리
+ <table>
+  <tbody>
+   <tr>
+    <td colspan=2>
+     <b>부대관리에서는 제출된 정신전력교육에 대해 피드백과 평점을 남길 수 있고, 용사별로 평점의 변화도를 한눈에 볼 수 있습니다.</b><br>
+    </td>
+   </tr>
+   <tr>
+    <td>
+     <div align="center">
+     <img src="/src/assets/budae3.png" width="80%" height="50%">
+      </div>
+    </td>
+    <td width="20%">평가 화면</td>
+   </tr>
+   <tr>
+    <td >
+     <div align="center">
+      <img src="/src/assets/budae5.png" width="80%" height="50%"></div>
+    </td>
+    <td width="20%">통계 화면</td>
+   </tr>
+   
+ </tbody>
+</table>
 
+### 정신전력현황
+ 
+ <table>
+  <tbody>
+   <tr>
+    <td colspan=2>
+     <b>정신전력현황에서는 본인이 제출한 정신전력교육을 다시 열람하고 관리자로부터 받은 평가와 피드백을 확인할 수 있습니다.</b><br>
+    </td>
+   </tr>
+   <tr>
+    <td>
+     <img src="/src/assets/hyun.png" width="600" height="400">
+    </td>
+   </tr>
+ </tbody>
+</table>
 
 ## 컴퓨터 구성 / 필수 조건 안내 (Prerequisites)
 * ECMAScript 6 지원 브라우저 사용
 * 권장: Google Chrome 버젼 77 이상
 
+
+## 프로젝트 서버 구조도
+<img src="/src/assets/struct.png" width="700" height="500">
+ 
 ## 기술 스택 (Technique Used) 
 
  
@@ -73,7 +184,12 @@
   <td>
 <img src="/src/assets/js.png" width="100" height"100">
   </td>
-  
+  <td>
+<img src="https://user-images.githubusercontent.com/47639762/97780694-82193a80-1bc9-11eb-9a7e-1325dc81d495.png" width="100" height"100">
+  </td>
+  <td>
+<img src="https://user-images.githubusercontent.com/47639762/97780706-92311a00-1bc9-11eb-90c9-4bd8f8ab86db.jpg" width="100" height"100">
+  </td>
  </tr>
  <tr>
   <td>
@@ -84,6 +200,12 @@ Vuetify
   </td>
   <td>
 JavaScript
+  </td>
+ <td>
+Webpack
+  </td>
+ <td>
+babel
   </td>
   
  </tr>
@@ -98,6 +220,7 @@ JavaScript
   <td>
 <img src="https://user-images.githubusercontent.com/47639762/97774574-4916a100-1b9c-11eb-8b3e-5145073f3558.png" width="100" height"100">
   </td>
+  
  </tr>
  <tr>
   <td>
@@ -106,27 +229,25 @@ Firebase
   <td>
    Node.js
   </td>
+  
  </tr>
  </table>
  
- #### firebase를 backend로 사용한 이유
- > 각 부대의 지휘관이 서비스의 관리자가 되어 플랫폼을 운영해야 하기 때문에 가입자(부대원)과 데이터를 직관적으로 볼 수 있고 관리가 편하며, 여러가지 부가기능이 있는 firebase가 관리 및 운용에 적합하기 때문입니다.
 
 ## 설치 및 실행 방법
 ```bash
 $ git clone https://github.com/osamhack2020/WEB_SmartMind_CameToWin
-$ yarn or npm install
-$ yarn start or npm run start
+$ npm install
+$ npm run serve
 ```
 
-## 지휘관을 위한 Firesbase 사용법
 
  
 ## 팀 정보 (Team Information)
 
  #### 팀장
 
-- 김현재 (peterhyunjae@naver.com) : Front_end 담당, 발표자료 제작  
+- 김현재 - Front_end 담당, 발표자료 제작  
 [![Gmail Badge](https://img.shields.io/badge/Gmail-d14836?style=flat-square&logo=Gmail&logoColor=white&link=mailto:peter.hyunjae@gamil.com)](mailto:peter.hyunjae@gamil.com)
   <a href="https://github.com/itsnowkim">
   <img 
@@ -136,7 +257,7 @@ $ yarn start or npm run start
  
   #### 팀원
  
-- 최현수 (chs98105@gmail.com) : Back_end 담당, DB 설계  
+- 최현수 - Back_end 담당, DB 설계  
 [![Gmail Badge](https://img.shields.io/badge/Gmail-d14836?style=flat-square&logo=Gmail&logoColor=white&link=mailto:chs98105@gmail.com)](mailto:chs98105@gmail.com)
   <a href="https://github.com/Keep-Going-HyeonSoo">
   <img 
@@ -145,7 +266,7 @@ $ yarn start or npm run start
  </a> 
 
 
-- 최이현 (chyh0182@naver.com) : Front_end 담당, 시연 영상 제작, README 작성  
+- 최이현 - Front_end 담당, 시연 영상 제작, README 작성  
  [![Gmail Badge](https://img.shields.io/badge/Gmail-d14836?style=flat-square&logo=Gmail&logoColor=white&link=mailto:chldldgus123@gmail.com)](mailto:chldlgus123@gmail.com)
   <a href="https://github.com/Choieeh">
   <img 
