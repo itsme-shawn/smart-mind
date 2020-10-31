@@ -10,25 +10,28 @@
  > '차렷'이 군인의 가장 기본적인 제식인 만큼,  
  정신전력 또한 가장 근본적이고 중요함을 강조하는 의도로  
  프로젝트명을 '정신 차렷!' 으로 지었습니다.
-
+<br><br>
 ## 💭기존 정신전력 교육의 문제점
  - 정신전력교육을 위한 시간과 공간이 한정적이기 때문에 근무, 휴가, 특수보직 등의 이유로 열외한다면 교육을 듣고 싶어도 들을 수가 없었음.
  - 매주 한명당 한장의 종이만 쓴다고 하더라도 일주일이면 60만장, 일년이면 3120만장의 종이를 낭비함.
  - 지휘관 입장에서는 정신전력 교육 후 용사들의 답변을 종이로 확인하는데 불편함이 있었고 이전 정신전력교육에 대한 제출물을 찾기도 어려움.
 
+<br>
 
 ## 프로젝트 설명 동영상
 
 [![Watch the video](https://img.youtube.com/vi/LjX3eVQdIyk/0.jpg)](https://www.youtube.com/watch?time_continue=117&v=LjX3eVQdIyk)
 
+<br>
 
 ## 💡정신차렷!의 장점
- - 코로나 19로 인해 **비대면**이 강조되는 상황에서 여러명이 모이지 않고도 정신전력 교육을 받을 수 있음.
- - 휴가, 근무나 사정상 불참한 인원들이 **열외없이** 정신전력 교육에 참여할 수 있음.
- - 각 부대 지휘관이 부대원의 정신전력 현황을 실시간으로 파악할 수 있어 **부대관리**에 용이함.
- - 정신전력 교육 자료에 사용되는 종이를 **절약**할 수 있음.
- - 오픈소스 형식으로 부대별 **특색있는 운영**이 가능함.
+ - 코로나 19로 인해 **비대면**이 강조되는 상황에서 여러명이 모이지 않고도 정신전력 교육을 받을 수 있음.<br>
+ - 휴가, 근무나 사정상 불참한 인원들이 **열외없이** 정신전력 교육에 참여할 수 있음.<br>
+ - 각 부대 지휘관이 부대원의 정신전력 현황을 실시간으로 파악할 수 있어 **부대관리**에 용이함.<br>
+ - 정신전력 교육 자료에 사용되는 종이를 **절약**할 수 있음.<br>
+ - 오픈소스 형식으로 부대별 **특색있는 운영**이 가능함.<br>
 
+<br>
 
 ## 기능 설계
  
@@ -57,6 +60,9 @@
 <img src="/src/assets/vuetify.svg" width="100" height"100">
   </td>
   <td>
+<img src="/src/assets/js.png" width="100" height"100">
+  </td>
+  <td>
 <img src="/src/assets/npm.svg" width="100" height"100">
   </td>
  </tr>
@@ -65,7 +71,10 @@
 Vue.js
   </td>
   <td>
-vuetify
+Vuetify
+  </td>
+  <td>
+JavaScript
   </td>
   <td>
 npm
@@ -90,9 +99,9 @@ Firebase
  #### firebase를 backend로 사용한 이유
  > 각 부대의 지휘관이 서비스의 관리자가 되어 플랫폼을 운영해야 하기 때문에 가입자(부대원)과 데이터를 직관적으로 볼 수 있고 관리가 편하며, 여러가지 부가기능이 있는 firebase가 관리 및 운용에 적합하기 때문입니다.
 
-## 설치 안내 (Installation Process)
+## 설치 및 실행 방법
 ```bash
-$ git clone git주소
+$ git clone https://github.com/osamhack2020/WEB_SmartMind_CameToWin
 $ yarn or npm install
 $ yarn start or npm run start
 ```
@@ -104,7 +113,7 @@ $ yarn start or npm run start
 
  #### 팀장
 
-- 김현재 (peterhyunjae@naver.com)  
+- 김현재 (peterhyunjae@naver.com) : Front_end 담당, 발표자료 제작  
 [![Gmail Badge](https://img.shields.io/badge/Gmail-d14836?style=flat-square&logo=Gmail&logoColor=white&link=mailto:peter.hyunjae@gamil.com)](mailto:peter.hyunjae@gamil.com)
   <a href="https://github.com/itsnowkim">
   <img 
@@ -114,7 +123,7 @@ $ yarn start or npm run start
  
   #### 팀원
  
-- 최현수 (chs98105@gmail.com)  
+- 최현수 (chs98105@gmail.com) : Back_end 담당, DB 설계  
 [![Gmail Badge](https://img.shields.io/badge/Gmail-d14836?style=flat-square&logo=Gmail&logoColor=white&link=mailto:chs98105@gmail.com)](mailto:chs98105@gmail.com)
   <a href="https://github.com/Keep-Going-HyeonSoo">
   <img 
@@ -123,7 +132,7 @@ $ yarn start or npm run start
  </a> 
 
 
-- 최이현 (chyh0182@naver.com)  
+- 최이현 (chyh0182@naver.com) : Front_end 담당, 시연 영상 제작, README 작성  
  [![Gmail Badge](https://img.shields.io/badge/Gmail-d14836?style=flat-square&logo=Gmail&logoColor=white&link=mailto:chldldgus123@gmail.com)](mailto:chldlgus123@gmail.com)
   <a href="https://github.com/Choieeh">
   <img 
