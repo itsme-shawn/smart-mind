@@ -45,8 +45,9 @@
 
 ### 주간정신전력<br>
 주간정신전력에서는 정신전력을 수강할 수 있습니다.<br>
-<img src="https://user-images.githubusercontent.com/47639762/97774382-a3166700-1b9a-11eb-8a82-e9c6698ce4a3.png" width="1500" height="1000"><br>
-<img src="/src/assets/weekly-2.png" width="1500" height="1000"><br>
+<img src="/src/assets/weekly1.png" width="1500" height="1000"><br>
+<img src="/src/assets/weeksubmit.png" width="1500" height="1000"><br>
+<img src="/src/assets/weekly2.png" width="1500" height="1000"><br>
 
 ### 우리역사바로알기<br>
 우리역사 바로알기에서는 다양한 역사, 안보관 자료들을 수강할 수 있습니다.<br>
