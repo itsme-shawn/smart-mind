@@ -50,7 +50,7 @@
    </tr>
    <tr>
     <td>
-     <img src="/src/assets/dashboard.png" width="600" height="400">
+     <img src="/src/assets/dashboard.png" width="600" height="450">
     </td>
    </tr>
  </tbody>
@@ -155,9 +155,8 @@
 * 권장: Google Chrome 버젼 77 이상
 
 
-## 프로젝트 구조도
-
- <img src="/src/assets/struct.png" width="600" height"400">
+## 프로젝트 서버 구조도
+<img src="/src/assets/struct.png" width="700" height="500">
  
 ## 기술 스택 (Technique Used) 
 
