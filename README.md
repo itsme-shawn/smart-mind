@@ -64,9 +64,7 @@
   <td>
 <img src="/src/assets/js.png" width="100" height"100">
   </td>
-  <td>
-<img src="/src/assets/npm.svg" width="100" height"100">
-  </td>
+  
  </tr>
  <tr>
   <td>
@@ -78,9 +76,7 @@ Vuetify
   <td>
 JavaScript
   </td>
-  <td>
-npm
-  </td>
+  
  </tr>
  </table>
  
@@ -90,10 +86,16 @@ npm
   <td>
 <img src="https://user-images.githubusercontent.com/47639762/97767923-cd4c3280-1b62-11eb-824f-98e50d7db5cb.png" width="100" height"100">
   </td>
+  <td>
+<img src="https://user-images.githubusercontent.com/47639762/97774574-4916a100-1b9c-11eb-8b3e-5145073f3558.png" width="100" height"100">
+  </td>
  </tr>
  <tr>
   <td>
 Firebase
+  </td>
+  <td>
+   Node.js
   </td>
  </tr>
  </table>
