@@ -4,7 +4,7 @@
       <v-card :key="item.id" :class="i < items.length - 1 ? 'mb-5' : ''" @click="openDialog(item)">
         <v-subheader>
 
-          <div v-if="collection=='leaning'">
+          <div v-if="collection=='learning'">
             <v-chip color="success" label small class="mr-4" v-if="item.isComplete">수강 완료</v-chip> <!-- 추후 사용자의 수강상태에 따라서 동적으로 수강 전/ 수강 완료 로 핸들링해줄 예정 -->
             <v-chip color="info" label small class="mr-4" v-else >수강 전</v-chip>
           </div>
