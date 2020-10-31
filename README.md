@@ -13,7 +13,16 @@
  정신전력 또한 가장 근본적이고 중요함을 강조하는 의도로  
  프로젝트명을 '정신 차렷!' 으로 지었습니다.
 
-<br><br>
+<br>
+
+
+<div align="center">
+ <b><a href="https://osam-hackathon.web.app/">Demo보기</a></b>
+ </div>
+<br>
+<br>
+
+
 ## 💭기존 정신전력 교육의 문제점
  - 정신전력교육을 위한 시간과 공간이 한정적이기 때문에 근무, 휴가, 특수보직 등의 이유로 열외한다면 교육을 듣고 싶어도 들을 수가 없었음.
  - 매주 한명당 한장의 종이만 쓴다고 하더라도 일주일이면 60만장, 일년이면 3120만장의 종이를 낭비함.
@@ -173,9 +182,6 @@
 <img src="/src/assets/vuetify.svg" width="100" height"100">
   </td>
   <td>
-<img src="/src/assets/vuex.png" width="100" height"100">
-  </td>
-  <td>
 <img src="/src/assets/js.png" width="100" height"100">
   </td>
   <td>
@@ -184,7 +190,6 @@
   <td>
 <img src="https://user-images.githubusercontent.com/47639762/97780706-92311a00-1bc9-11eb-90c9-4bd8f8ab86db.jpg" width="100" height"100">
   </td>
-  
  </tr>
  <tr>
   <td>
@@ -194,16 +199,13 @@ Vue.js
 Vuetify
   </td>
   <td>
-Vuex
-  </td>
-  <td>
 JavaScript
   </td>
  <td>
-Babel
+Webpack
   </td>
  <td>
-Webpack
+babel
   </td>
   
  </tr>
