@@ -45,6 +45,34 @@
 * 권장: Google Chrome 버젼 77 이상
 
 ## 기술 스택 (Technique Used) 
+
+ 
+### front-end
+<table>
+ <tr>
+  <td>
+<img src="/src/assets/vuejs.svg" width="100" height"100">
+  </td>
+  <td>
+<img src="/src/assets/vuetify.svg" width="100" height"100">
+  </td>
+  <td>
+<img src="/src/assets/npm.svg" width="100" height"100">
+  </td>
+ </tr>
+ <tr>
+  <td>
+Vue.js
+  </td>
+  <td>
+vuetify
+  </td>
+  <td>
+npm
+  </td>
+ </tr>
+ </table>
+ 
 ### Server(back-end)
 <table>
  <tr>
@@ -59,24 +87,8 @@ Firebase
  </tr>
  </table>
  
- 
-### front-end
-<table>
- <tr>
-  <td>
-<img src="https://user-images.githubusercontent.com/47639762/97767923-cd4c3280-1b62-11eb-824f-98e50d7db5cb.png" width="100" height"100">
-  </td>
- </tr>
- <tr>
-  <td>
-Vue.js
-  </td>
- </tr>
- </table>
- -  Vue.js
- -  Vuetify
- -  Vue Router
- 
+ #### firebase를 backend로 사용한 이유
+ > 각 부대의 지휘관이 서비스의 관리자가 되어 플랫폼을 운영해야 하기 때문에 가입자(부대원)과 데이터를 직관적으로 볼 수 있고 관리가 편하며, 여러가지 부가기능이 있는 firebase가 관리 및 운용에 적합하기 때문입니다.
 
 ## 설치 안내 (Installation Process)
 ```bash
