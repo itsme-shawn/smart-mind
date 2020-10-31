@@ -133,7 +133,6 @@ $ yarn or npm install
 $ yarn start or npm run start
 ```
 
-## 지휘관을 위한 Firesbase 사용법
 
  
 ## 팀 정보 (Team Information)
