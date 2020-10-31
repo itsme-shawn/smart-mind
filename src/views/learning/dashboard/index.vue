@@ -6,13 +6,11 @@
       <v-col cols="12">
         <v-card class="d-flex">
          <v-card-title primary-title>
-            <div class="grey--text">현재 사용자</div>
-            <h3 class="headline">
-              <v-icon medium color="success">mdi-account</v-icon
-              >{{ user.displayName }} 님
-            </h3>
+            <div class="grey--text mr-5">현재 사용자</div>
+              <v-icon medium color="success" class="hidden-xs-only">mdi-account</v-icon>{{ user.displayName }}
+
         </v-card-title>
-        <v-card-title class="ml-auto mt-2 align-top font-weight-bold "> {{this.cYear}} {{this.cMonth}} {{this.cWeek}}</v-card-title>
+        <v-card-title class="ml-auto align-top font-weight-bold hidden-xs-only"> {{this.cYear}} {{this.cMonth}} {{this.cWeek}}</v-card-title>
         </v-card>
       </v-col>
     </v-row>
@@ -21,7 +19,7 @@
       <v-row class="pa-5" justify="center">
         <!-- 주간정신전력교육 최근컨텐츠 시작 -->
         <v-col cols="12" md="5">
-          <v-card height="500" color="#1F7087" dark>
+          <v-card height="300" color="#1F7087" dark>
             <div class="d-flex">
               <v-card-title class="headline">주간정신전력교육</v-card-title>
               <v-subheader class="ml-auto mt-2">
@@ -47,14 +45,10 @@
 
         <!-- 우리역사바로알기의 최근컨텐츠 시작 -->
         <v-col cols="12" md="5">
-          <v-card height="500" color="#385F73" dark>
+          <v-card height="300" color="#385F73" dark>
             <div class="d-flex">
               <v-card-title class="headline">우리역사 바로알기</v-card-title>
               <v-subheader class="ml-auto mt-2">
-                <!-- <div v-if="collection=='learning'">
-                  <v-chip color="success" label small class="mr-4" v-if="item.isComplete">수강 완료</v-chip>
-                  <v-chip color="info" label small class="mr-4" v-else >수강 전</v-chip>
-                </div>-->
                 <div>
                   <v-chip color="success" label small class="mr-4" v-if="isComplete">수강 완료</v-chip>
                   <v-chip color="info" label small class="mr-4" v-else >수강 전</v-chip>
@@ -73,8 +67,8 @@
       </v-row>
 
     <!-- 이번주 나의 부대원들은-->
-    <v-row class="pb-12">
-      <v-col cols="12">
+    <v-row class="pb-12" justify="center">
+      <v-col cols="12" md="10">
           <v-container >
           <v-card color="transparent">
             <v-card-title class="align-top font-weight-bold mb-4">이번 주 나의 전우들은?</v-card-title>
@@ -123,344 +117,6 @@
 
   </v-container>
 </template>
-
-<!--
-<template>
-  <v-container fluid :grid-list-md="!$vuetify.breakpoint.xs" class="pa-7">
-    <v-layout wrap row align-center justify-center>
-      <v-flex xs12 class="pb-2">
-        <v-card>
-          <v-container pa-1>
-            <v-layout row>
-              <v-flex xs7>
-                <v-card-title primary-title>
-                  <div v-if="user !== null">
-                    <div class="grey--text">현재 사용자</div>
-
-                    <h3 class="headline">
-                      <v-icon medium color="success">mdi-account</v-icon
-                      >{{ user.displayName }} 님
-                    </h3>
-                  </div>
-                  <div v-else>
-                    <div class="grey--text">현재 사용자</div>
-                    <h3 class="headline">
-                      <v-icon medium color="success">mdi-account</v-icon
-                      >로그인해주세요
-                    </h3>
-                  </div>
-                </v-card-title>
-              </v-flex>
-            </v-layout>
-            <v-divider light></v-divider>
-            <div v-if="user !== null">
-              <v-card-actions class="pa-2">
-                <h4>권한 {{ user.level }}</h4>
-                <v-spacer></v-spacer>
-              </v-card-actions>
-            </div>
-            <div v-else>
-              <h4>권한 guest</h4>
-            </div>
-          </v-container>
-        </v-card>
-      </v-flex>
-
-      <v-flex xs12 md6 class="pb-2">
-        <v-hover>
-          <template v-slot:default="{ hover }">
-            <v-card height="462px">
-              <v-img
-                :aspect-ratio="16 / 9"
-                class="white--text align-top"
-                height="462"
-                :src="require('../../../assets/bongchang-2.jpg')"
-              >
-                <v-card-title><h3>이번주의 정신전력 교육</h3></v-card-title>
-                <v-expand-transition>
-
-                  <div
-                    v-if="hover"
-                    class=" transition-fast-in-fast-out v-card--reveal white--text"
-                    style="
-                      height: 100%;
-                      background-color: rgba(70, 70, 70, 0.5);
-
-                    "
-                  >
-
-                    <v-row align="center" justify="center" xs12 class="pt-14">
-                      <h2>이봉창 의사와 '애국헌신'</h2>
-
-                    <hr/>
-                    <br />
-                    <br/>
-                    <br/>
-                    </v-row>
-                    <v-row align="center" justify="center" xs12>
-                    <v-btn>참여하기</v-btn>
-                    </v-row>
-
-                  </div>
-
-                </v-expand-transition>
-              </v-img>
-            </v-card>
-          </template>
-        </v-hover>
-      </v-flex>
-      <v-flex xs12 md3 class="pb-2">
-        <v-hover>
-          <template v-slot:default="{ hover }">
-            <v-card height="225px">
-              <v-img
-                :aspect-ratio="16 / 9"
-                class="white--text align-top"
-                height="225"
-                :src="require('../../../assets/myeong2.jpg')"
-              >
-                <v-card-title><h5 style="color: black">9월 1주차 정신전력 교육</h5></v-card-title>
-                <v-expand-transition>
-                  <v-card
-                    v-if="hover"
-                    class="transition-fast-in-fast-out v-card--reveal white--text"
-                    style="
-                      height: 100%;
-                      background-color: rgba(70, 70, 70, 0.5);
-                    "
-                  >
-                    <v-row align="center" justify="center" xs12 class="pt-7">
-                      <h2>'명량대첩' 불가능을 가능하게 하다</h2>
-
-                    <hr/>
-                    <br />
-                    <br/>
-                    <br/>
-                    </v-row>
-                    <v-row align="center" justify="center" xs12>
-                    <v-btn>참여하기</v-btn>
-                    </v-row>
-
-                  </v-card>
-                </v-expand-transition>
-              </v-img>
-            </v-card>
-          </template>
-        </v-hover>
-        <v-hover class="mt-3">
-          <template v-slot:default="{ hover }">
-            <v-card height="225px">
-              <v-img
-                :aspect-ratio="16 / 9"
-                class="white--text align-top"
-                height="225"
-                :src="require('../../../assets/hexo.jpg')"
-              >
-                <v-card-title><h5 style="color: black">9월 3주차 정신전력 교육</h5></v-card-title>
-                <v-expand-transition>
-                  <div
-                    v-if="hover"
-                    class="transition-fast-in-fast-out v-card--reveal white--text"
-                    style="
-                      height: 100%;
-                      background-color: rgba(70, 70, 70, 0.5);
-                    "
-                  >
-                    <v-row align="center" justify="center" xs12 class="pt-7">
-                      <h2>동료애를 배우다 '핵소 고지'</h2>
-
-                    <hr/>
-                    <br />
-                    <br/>
-                    <br/>
-                    </v-row>
-                    <v-row align="center" justify="center" xs12>
-                    <v-btn>참여하기</v-btn>
-                    </v-row>
-                  </div>
-                </v-expand-transition>
-              </v-img>
-            </v-card>
-          </template>
-        </v-hover>
-      </v-flex>
-      <v-flex xs12 md3 class="pb-2">
-        <v-hover>
-          <template v-slot:default="{ hover }">
-            <v-card height="225px">
-              <v-img
-                :aspect-ratio="16 / 9"
-                class="white--text align-top"
-                height="225"
-                :src="require('../../../assets/yoon.jpg')"
-
-              >
-                <v-card-title><h5 style="color: black">9월 2주차 정신전력 교육</h5></v-card-title>
-                <v-expand-transition>
-                  <div
-                    v-if="hover"
-                    class="transition-fast-in-fast-out v-card--reveal white--text"
-                    style="
-                      height: 100%;
-                      background-color: rgba(70, 70, 70, 0.5);
-                    "
-                  >
-                    <v-row align="center" justify="center" xs12 class="pt-7">
-                      <h2>윤동주의 시에서 배우는 정신</h2>
-
-                    <hr/>
-                    <br />
-                    <br/>
-                    <br/>
-                    </v-row>
-                    <v-row align="center" justify="center" xs12>
-                    <v-btn>참여하기</v-btn>
-                    </v-row>
-                  </div>
-                </v-expand-transition>
-              </v-img>
-            </v-card>
-          </template>
-        </v-hover>
-        <v-hover class="mt-3">
-          <template v-slot:default="{ hover }">
-            <v-card height="225px">
-              <v-img
-                :aspect-ratio="16 / 9"
-                class="white--text align-top"
-                height="225"
-                :src="require('../../../assets/won2.jpg')"
-              >
-                <v-card-title><h5 style="color: black">9월 4주차 정신전력 교육</h5></v-card-title>
-                <v-expand-transition>
-                  <div
-                    v-if="hover"
-                    class="transition-fast-in-fast-out v-card--reveal white--text"
-                    style="
-                      height: 100%;
-                      background-color: rgba(70, 70, 70, 0.5);
-                    "
-                  >
-                    <v-row align="center" justify="center" xs12 class="pt-7">
-                      <h2>징기스칸의 전술은?</h2>
-
-                    <hr/>
-                    <br />
-                    <br/>
-                    <br/>
-                    </v-row>
-                    <v-row align="center" justify="center" xs12>
-                    <v-btn>참여하기</v-btn>
-                    </v-row>
-                  </div>
-                </v-expand-transition>
-              </v-img>
-            </v-card>
-          </template>
-        </v-hover>
-      </v-flex>
-
-      <v-flex xs12 sm12 class="pb-2">
-        <v-card height="370px" :color="`#${i}12345`">
-          <v-card-title>이번주 나의 의견</v-card-title>
-          <v-list two-line>
-            <v-list-item-group v-model="selected" multiple>
-              <template v-for="(item, index) in items">
-                <v-list-item :key="item.title">
-                  <template>
-                    <v-list-item-content>
-                      <v-list-item-title
-                        v-html="item.title"
-                      ></v-list-item-title>
-
-                      <v-list-item-subtitle class="text--primary"
-                        >답변 : <span v-html="item.headline"></span></v-list-item-subtitle
-                      >
-
-                      <v-list-item-subtitle
-                        >정답 : <span v-html=" item.subtitle"></span></v-list-item-subtitle
-                      >
-                    </v-list-item-content>
-
-                    <v-list-item-action> </v-list-item-action>
-                  </template>
-                </v-list-item>
-
-                <v-divider
-                  v-if="index < items.length - 1"
-                  :key="index"
-                ></v-divider>
-              </template>
-            </v-list-item-group>
-          </v-list>
-        </v-card>
-      </v-flex>
-
-      <v-flex xs12 class="pb-2">
-        <v-container fluid class="mt-10">
-          <v-card>
-            <v-card-title>이번 주 나의 부대원들은?</v-card-title>
-            <template>
-              <v-container fluid>
-                <v-row justify="center">
-                  <v-subheader>{{ day + 1 }}주차</v-subheader>
-                  <v-expansion-panels popout>
-                    <v-expansion-panel
-                      v-for="(message, i) in messages"
-                      :key="i"
-                      hide-actions
-                    >
-                      <v-expansion-panel-header>
-                        <v-row align="center" class="spacer" no-gutters>
-                          <v-col cols="4" sm="2" md="1">
-                            <v-avatar size="36px">
-                              <img
-                                v-if="message.avatar"
-                                alt="Avatar"
-                                src="https://lh3.googleusercontent.com/ogw/ADGmqu92A3GO29sPEXyfoYIwCWRHIbhljaLOVkAyePpz=s32-c-mo"
-                              />
-                              <v-icon
-                                v-else
-                                :color="message.color"
-                                v-text="message.icon"
-                              ></v-icon>
-                            </v-avatar>
-                          </v-col>
-                          <v-col class="hidden-xs-only" sm="5" md="3">
-                            <strong v-html="message.name"></strong>
-                            <span v-if="message.total" class="grey--text">
-                              &nbsp;({{ message.total }})
-                            </span>
-                          </v-col>
-
-                          <v-col class="text-no-wrap" cols="5" sm="3">
-                            <strong v-html="message.title"></strong>
-                          </v-col>
-                        </v-row>
-                      </v-expansion-panel-header>
-
-                      <v-expansion-panel-content>
-                        <v-divider></v-divider>
-                        <v-card-title>질문</v-card-title>
-                        <v-card-text v-text="question.one"></v-card-text>
-                        <v-card-text v-text="question.two"></v-card-text>
-                        <v-divider></v-divider>
-                        <v-card-title>답변</v-card-title>
-                        <v-card-text v-text="message.content1"></v-card-text>
-                        <v-card-text v-text="message.content2"></v-card-text>
-                      </v-expansion-panel-content>
-                    </v-expansion-panel>
-                  </v-expansion-panels>
-                </v-row>
-              </v-container>
-            </template>
-          </v-card>
-        </v-container>
-      </v-flex>
-    </v-layout>
-  </v-container>
-</template>
--->
 
 <script>
 export default {

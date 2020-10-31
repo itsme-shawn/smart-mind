@@ -15,9 +15,9 @@
       <v-toolbar dense flat dark elevation="4" rounded>
         <v-toolbar-title v-text="info.title"></v-toolbar-title>
       <v-spacer/>
-      <template v-if="user">
-        <v-btn icon @click="board_write" class="mr-2" v-if="user.level == 'admin'"  ><v-icon>mdi-pencil</v-icon></v-btn> <!-- 강의실 정보 수정 -->
-        <v-btn icon @click="article_write" v-if="user.level == 'admin'" ><v-icon>mdi-plus</v-icon></v-btn> <!-- 게시물 작성 버튼 -->
+      <template >
+        <v-btn icon @click="board_write" class="mr-2"><v-icon>mdi-pencil</v-icon></v-btn> <!-- 강의실 정보 수정 -->
+        <v-btn icon @click="article_write"><v-icon>mdi-plus</v-icon></v-btn> <!-- 게시물 작성 버튼 -->
       </template>
       </v-toolbar>
       <v-card-text v-if="info.createdAt">
