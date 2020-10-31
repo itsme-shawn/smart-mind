@@ -39,31 +39,31 @@
   <a href="https://ovenapp.io/view/e3xbSgDSvHHfOtzvoxsaMCY55vfirBg9/wWcRb">Oven으로 확인</a>
   
 ### 대시보드<br>
-<img src="/src/assets/dashboard.png" width="500" height="400"><br>
+<img src="/src/assets/dashboard.png" width="1200" height="800"><br>
 대시보드에서는 이번주의 정신전력과 최신의 우리역사 바로알기 컨텐츠를 확인할 수 있으며, <br>
 우리 부대원들의 정신전력교육 응답도 확인할 수 있습니다.<br>
 
 ### 주간정신전력<br>
 주간정신전력에서는 정신전력을 수강할 수 있습니다.<br>
-<img src="https://user-images.githubusercontent.com/47639762/97774382-a3166700-1b9a-11eb-8a82-e9c6698ce4a3.png" width="500" height="400"><br>
-<img src="/src/assets/weekly-2.png" width="500" height="400"><br>
+<img src="https://user-images.githubusercontent.com/47639762/97774382-a3166700-1b9a-11eb-8a82-e9c6698ce4a3.png" width="1200" height="800"><br>
+<img src="/src/assets/weekly-2.png" width="1200" height="800"><br>
 
 ### 우리역사바로알기<br>
 우리역사 바로알기에서는 다양한 역사, 안보관 자료들을 수강할 수 있습니다.<br>
-<img src="/src/assets/history.png" width="500" height="400"><br>
+<img src="/src/assets/history.png" width="1200" height="800"><br>
 > 역사를 잊은 민족에게 미래는 없다<br>
 
 ### 부대관리<br>
 부대관리에서는 제출된 정신전력교육에 대해 피드백과 평점을 남길 수 있고, 용사별로 평점의 변화도를 한눈에 볼 수 있습니다.<br>
 평가 남기는 화면<br>
-<img src="/src/assets/budae3.png" width="500" height="400"><br>
+<img src="/src/assets/budae3.png" width="1200" height="800"><br>
 통계 화면<br>
-<img src="/src/assets/budae5.png" width="500" height="400"><br>
+<img src="/src/assets/budae5.png" width="1200" height="800"><br>
 
 
 ### 정신전력현황<br>
 정신전력현황에서는 본인이 제출한 정신전력교육을 다시 열람하고 관리자로부터 받은 평가와 피드백을 확인할 수 있습니다.<br>
-<img src="/src/assets/history.png" width="500" height="400"><br>
+<img src="/src/assets/history.png" width="1200" height="800"><br>
 
 ## 컴퓨터 구성 / 필수 조건 안내 (Prerequisites)
 * ECMAScript 6 지원 브라우저 사용
