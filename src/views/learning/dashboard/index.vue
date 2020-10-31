@@ -46,6 +46,9 @@
             </div>
             <v-divider></v-divider>
             <v-container class="d-flex align-end flex-column"><v-card-subtitle class="mt-auto">이번 주의 주간정신전력을 한눈에 볼 수 있습니다.</v-card-subtitle></v-container>
+            <!--data가 들어갈 부분-->
+            <v-text class="pl-4">10월 x주차 정신전력교육 - 봉오동 전투</v-text>
+            <!--data가 들어갈 부분 끝-->
           </v-card>
         </v-col>
         <!-- 주간정신전력교육 최근컨텐츠 끝-->
@@ -68,8 +71,10 @@
               </v-subheader>
             </div>
             <v-divider></v-divider>
-            <v-container class="d-flex align-end flex-column"><v-card-subtitle class="mt-auto">가장 최신의 주간정신전력을 한눈에 볼 수 있습니다.</v-card-subtitle></v-container>
-
+            <v-container class="d-flex align-end flex-column"><v-card-subtitle class="mt-auto">최신의 우리역사 바로알기를 한눈에 볼 수 있습니다.</v-card-subtitle></v-container>
+            <!--data가 들어갈 부분-->
+            <v-text class="pl-4">우리역사바로알기의ㄻㅈㄷㄹ</v-text>
+            <!--data가 들어갈 부분 끝-->
           </v-card>
         </v-col>
         <!-- 우리역사바로알기의 최근컨텐츠 끝 -->
