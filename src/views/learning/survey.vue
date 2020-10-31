@@ -92,7 +92,7 @@ export default {
 		// survey_result 컬렉션의 목적은 관리자가 보기 쉽게 하기 위함이다.
 		async submitOwn () { // DB에 a1,a2(병사들의 의견)을 save
 			// console.log('su', this.user.displayName)
-      if (!this.user) throw Error('로그인 후 제출 가능합니다') // 권한 확인
+			if (!this.user) throw Error('로그인 후 제출 가능합니다') // 권한 확인
 
 			this.userRef = this.$firebase.firestore().collection('users').doc(this.user.uid).collection(this.document).doc(this.item.article_id)
 
