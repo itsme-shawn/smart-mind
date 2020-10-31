@@ -4,64 +4,79 @@
     <!-- 사용자 정보 카드 -->
     <v-row>
       <v-col cols="12">
-        <v-card >
-        <v-container>
-        <v-layout row xs7>
-        <v-flex xs7>
+        <v-card class="d-flex">
          <v-card-title primary-title>
-          <div v-if="user !== null">
             <div class="grey--text">현재 사용자</div>
             <h3 class="headline">
               <v-icon medium color="success">mdi-account</v-icon
               >{{ user.displayName }} 님
             </h3>
-          </div>
-          <div v-else>
-            <div class="grey--tFext">현재 사용자</div>
-            <h3 class="headline">
-              <v-icon medium color="success">mdi-account</v-icon
-              >로그인해주세요
-            </h3>
-          </div>
-          </v-card-title>
-          </v-flex>
-          
-          <v-layout align-end justify-end xs5>
-          <v-flex>
-          <v-card-title class="justify-end">{{this.cYear}} {{this.cMonth}} {{this.cWeek}}</v-card-title>
-          </v-flex>
-          </v-layout>
-          </v-layout>
-          </v-container>
+        </v-card-title>
+        <v-card-title class="ml-auto mt-2 align-top font-weight-bold "> {{this.cYear}} {{this.cMonth}} {{this.cWeek}}</v-card-title>
         </v-card>
       </v-col>
     </v-row>
     <!-- 사용자 정보 카드 끝 -->
 
-    <v-row>
-      <!-- 주간정신전력교육 최근컨텐츠 시작 -->
-      <v-col cols="6" >
-        <v-card height="300" >
-          주간정신전력교육 최근컨텐츠
-        </v-card>
-      </v-col>
-      <!-- 주간정신전력교육 최근컨텐츠 끝-->
+      <v-row class="pa-5" justify="center">
+        <!-- 주간정신전력교육 최근컨텐츠 시작 -->
+        <v-col cols="12" md="6">
+          <v-card height="500" color="#1F7087" dark>
+            <div class="d-flex">
+              <v-card-title class="headline">주간정신전력교육</v-card-title>
+              <v-subheader class="ml-auto mt-2">
+                <!-- <div v-if="collection=='learning'">
+                  <v-chip color="success" label small class="mr-4" v-if="item.isComplete">수강 완료</v-chip>
+                  <v-chip color="info" label small class="mr-4" v-else >수강 전</v-chip>
+                </div>-->
+                <div>
+                  <v-chip color="success" label small class="mr-4" v-if="isComplete">수강 완료</v-chip>
+                  <v-chip color="info" label small class="mr-4" v-else >수강 전</v-chip>
+                </div>
+                <v-spacer/>
+              </v-subheader>
+            </div>
+            <v-divider></v-divider>
+            <v-container class="d-flex align-end flex-column"><v-card-subtitle class="mt-auto">이번 주의 주간정신전력을 한눈에 볼 수 있습니다.</v-card-subtitle></v-container>
+            <!--data가 들어갈 부분-->
+            <v-text class="pl-4">10월 x주차 정신전력교육 - 봉오동 전투</v-text>
+            <!--data가 들어갈 부분 끝-->
+          </v-card>
+        </v-col>
+        <!-- 주간정신전력교육 최근컨텐츠 끝-->
 
-      <!-- 우리역사바로알기의 최근컨텐츠 시작 -->
-      <v-col cols="6" >
-        <v-card height="300" >
-          우리역사바로알기의 최근컨텐츠
-        </v-card>
-      </v-col>
-      <!-- 우리역사바로알기의 최근컨텐츠 끝 -->
-    </v-row>
+        <!-- 우리역사바로알기의 최근컨텐츠 시작 -->
+        <v-col cols="12" md="6">
+          <v-card height="500" color="#385F73" dark>
+            <div class="d-flex">
+              <v-card-title class="headline">우리역사 바로알기</v-card-title>
+              <v-subheader class="ml-auto mt-2">
+                <!-- <div v-if="collection=='learning'">
+                  <v-chip color="success" label small class="mr-4" v-if="item.isComplete">수강 완료</v-chip>
+                  <v-chip color="info" label small class="mr-4" v-else >수강 전</v-chip>
+                </div>-->
+                <div>
+                  <v-chip color="success" label small class="mr-4" v-if="isComplete">수강 완료</v-chip>
+                  <v-chip color="info" label small class="mr-4" v-else >수강 전</v-chip>
+                </div>
+                <v-spacer/>
+              </v-subheader>
+            </div>
+            <v-divider></v-divider>
+            <v-container class="d-flex align-end flex-column"><v-card-subtitle class="mt-auto">최신의 우리역사 바로알기를 한눈에 볼 수 있습니다.</v-card-subtitle></v-container>
+            <!--data가 들어갈 부분-->
+            <v-text class="pl-4">우리역사바로알기의ㄻㅈㄷㄹ</v-text>
+            <!--data가 들어갈 부분 끝-->
+          </v-card>
+        </v-col>
+        <!-- 우리역사바로알기의 최근컨텐츠 끝 -->
+      </v-row>
 
     <!-- 이번주 나의 부대원들은-->
-    <v-row>
+    <v-row class="pb-12">
       <v-col cols="12">
           <v-container >
           <v-card color="transparent">
-          
             <v-card-title class="align-top font-weight-bold mb-4">이번 주 나의 전우들은?</v-card-title>
 
             <v-card-text>이번 주 정신전력교육 주제에 대해 전우들은 어떻게 생각했을까요?</v-card-text>
@@ -105,6 +120,7 @@
       </v-col>
     </v-row>
     <!-- 이번주 나의 부대원들은 끝-->
+
   </v-container>
 </template>
 
@@ -473,8 +489,8 @@ export default {
 			const now = new Date()
 			const yearMonthWeek = this.weekNumberByMonth(new Date(now.getFullYear(), now.getMonth(), now.getDate()))
 			this.cYear = yearMonthWeek.year.toString() + '년'
-			 this.cMonth = yearMonthWeek.month.toString() + '월'
-			 this.cWeek = yearMonthWeek.weekNo.toString() + '주차'
+			this.cMonth = yearMonthWeek.month.toString() + '월'
+			this.cWeek = yearMonthWeek.weekNo.toString() + '주차'
 			console.log(this.cYear, this.cMonth, this.cWeek)
 			this.selectedArticleId = ''
 
@@ -495,8 +511,7 @@ export default {
 					console.log('Error getting documents: ', error)
 				})
 
-			if (this.selectedArticleId) // 관리자가 선택한 year,month,week 에 해당하는 article 이 존재할 때
-			{
+			if (this.selectedArticleId) { // 관리자가 선택한 year,month,week 에 해당하는 article 이 존재할 때
 				// question,title 받아오기
 				await this.$firebase.firestore().collection('learning').doc('jungsin').collection('articles').doc(this.selectedArticleId).get()
 					.then(doc => {
