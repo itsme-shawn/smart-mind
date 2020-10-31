@@ -37,41 +37,127 @@
 ## 기능 설계
  
   <a href="https://ovenapp.io/view/e3xbSgDSvHHfOtzvoxsaMCY55vfirBg9/wWcRb">Oven으로 확인</a>
-  
-### 대시보드<br>
-<img src="/src/assets/dashboard.png" width="800" height="800"><br>
-대시보드에서는 이번주의 정신전력과 최신의 우리역사 바로알기 컨텐츠를 확인할 수 있으며, <br>
-우리 부대원들의 정신전력교육 응답도 확인할 수 있습니다.<br>
+ 
+### 대시보드
+ 
+ <table>
+  <tbody>
+   <tr>
+    <td colspan=2>
+     <b>대시보드에서는 이번주의 정신전력과 최신의 우리역사 바로알기 컨텐츠를 확인할 수 있으며, <br>
+우리 부대원들의 정신전력교육 응답도 확인할 수 있습니다.</b><br>
+    </td>
+   </tr>
+   <tr>
+    <td>
+     <img src="/src/assets/dashboard.png" width="600" height="450">
+    </td>
+   </tr>
+ </tbody>
+</table>
+   
+### 주간 정신전력
+ <table>
+  <tbody>
+   <tr>
+    <td colspan=2>
+     <b>주간정신전력에서는 정신전력을 수강하고 간단한 평가를 볼 수 있습니다.</b><br>
+    </td>
+   </tr>
+   <tr>
+    <td>
+     <div align="center">
+     <img src="/src/assets/weekly1.png" width="80%" height="50%">
+      </div>
+    </td>
+    <td width="20%">수강 전 화면</td>
+   </tr>
+   <tr>
+    <td >
+     <div align="center">
+      <img src="/src/assets/weeksubmit.png" width="80%" height="50%"></div>
+    </td>
+    <td width="20%">수강 중 화면</td>
+   </tr>
+   <tr>
+    <td>
+     <div align="center">
+      <img src="/src/assets/weekly2.png" width="80%" height="50%"></div>
+    </td>
+    <td width="20%">수강 후 화면</td>
+   </tr>
+ </tbody>
+</table>
 
-### 주간정신전력<br>
-주간정신전력에서는 정신전력을 수강할 수 있습니다.<br><br>
-#### 수강 전 화면<br><br>
-<img src="/src/assets/weekly1.png" width="800" height="500"><br><br>
-#### 수강 중 화면<br><br>
-<img src="/src/assets/weeksubmit.png" width="800" height="900"><br>
-#### 수강 후 화면<br><br>
-<img src="/src/assets/weekly2.png" width="800" height="500"><br><br>
+### 우리역사바로알기
+ 
+ <table>
+  <tbody>
+   <tr>
+    <td colspan=2>
+     <b>우리역사 바로알기에서는 다양한 역사, 안보관 자료들을 수강할 수 있습니다.</b><br>
+    </td>
+   </tr>
+   <tr>
+    <td>
+     <img src="/src/assets/history.png" width="600" height="400">
+    </td>
+   </tr>
+ </tbody>
+</table>
 
-### 우리역사바로알기<br>
-우리역사 바로알기에서는 다양한 역사, 안보관 자료들을 수강할 수 있습니다.<br>
-<img src="/src/assets/history.png" width="800" height="500"><br>
+### 부대관리
+ <table>
+  <tbody>
+   <tr>
+    <td colspan=2>
+     <b>부대관리에서는 제출된 정신전력교육에 대해 피드백과 평점을 남길 수 있고, 용사별로 평점의 변화도를 한눈에 볼 수 있습니다.</b><br>
+    </td>
+   </tr>
+   <tr>
+    <td>
+     <div align="center">
+     <img src="/src/assets/budae3.png" width="80%" height="50%">
+      </div>
+    </td>
+    <td width="20%">평가 화면</td>
+   </tr>
+   <tr>
+    <td >
+     <div align="center">
+      <img src="/src/assets/budae5.png" width="80%" height="50%"></div>
+    </td>
+    <td width="20%">통계 화면</td>
+   </tr>
+   
+ </tbody>
+</table>
 
-### 부대관리<br>
-부대관리에서는 제출된 정신전력교육에 대해 피드백과 평점을 남길 수 있고, 용사별로 평점의 변화도를 한눈에 볼 수 있습니다.<br>
-#### 평가 남기는 화면<br>
-<img src="/src/assets/budae3.png" width="800" height="800"><br>
-#### 통계 화면<br>
-<img src="/src/assets/budae5.png" width="800" height="800"><br>
-
-
-### 정신전력현황<br>
-정신전력현황에서는 본인이 제출한 정신전력교육을 다시 열람하고 관리자로부터 받은 평가와 피드백을 확인할 수 있습니다.<br>
-<img src="/src/assets/hyun.png" width="800" height="800"><br>
+### 정신전력현황
+ 
+ <table>
+  <tbody>
+   <tr>
+    <td colspan=2>
+     <b>정신전력현황에서는 본인이 제출한 정신전력교육을 다시 열람하고 관리자로부터 받은 평가와 피드백을 확인할 수 있습니다.</b><br>
+    </td>
+   </tr>
+   <tr>
+    <td>
+     <img src="/src/assets/hyun.png" width="600" height="400">
+    </td>
+   </tr>
+ </tbody>
+</table>
 
 ## 컴퓨터 구성 / 필수 조건 안내 (Prerequisites)
 * ECMAScript 6 지원 브라우저 사용
 * 권장: Google Chrome 버젼 77 이상
 
+
+## 프로젝트 서버 구조도
+<img src="/src/assets/struct.png" width="700" height="500">
+ 
 ## 기술 스택 (Technique Used) 
 
  
@@ -140,8 +226,8 @@ Firebase
 ## 설치 및 실행 방법
 ```bash
 $ git clone https://github.com/osamhack2020/WEB_SmartMind_CameToWin
-$ yarn or npm install
-$ yarn start or npm run start
+$ npm install
+$ npm run serve
 ```
 
 
