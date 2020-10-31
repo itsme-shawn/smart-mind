@@ -1,5 +1,5 @@
 <template>
-    <v-container>
+    <v-container class="pa-3">
         <div>
             <v-card-text>
                 <v-toolbar-title class="font-weight-bold mt-5 ml-10">FAQ</v-toolbar-title>
@@ -33,7 +33,7 @@
 
 					<v-expansion-panel-content>
 						<v-divider></v-divider>
-						<v-card-text v-text="message.answer"></v-card-text>
+						<v-card-text v-html="message.answer"></v-card-text>
 					</v-expansion-panel-content>
 					</v-expansion-panel>
 				</v-expansion-panels>
@@ -74,11 +74,11 @@ export default {
 			},
 			{
 				title: '<기획의도>를 읽고 감명을 받았어요!',
-				answer: '홈페이지 하단에 개발자들에게 연락할 수 있는 방법이 적혀있어요. 칭찬 감사합니다.'
+				answer: '<a href="https://github.com/Keep-Going-HyeonSoo/WEB_SmartMind_CameToWin" target="_blank" style="text-decoration:none">"정신차렷!" github </a> 에 star 하나 부탁드려요! 감사합니다:)'
 			},
 			{
 				title: '<우리 역사 바로알기>에 다른 사람들이 알았으면 하는 새로운 주제가 있어요.',
-				answer: '홈페이지의 하단에 있는 관리자에게 문의하면 심의 후 추가될 수 있어요.'
+				answer: '관리자에게 문의하면 심의 후 추가될 수 있어요.'
 			}
 
 		]
