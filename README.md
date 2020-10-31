@@ -17,7 +17,7 @@
 
 
 <div align="center">
- <b><a href="https://osam-hackathon.web.app/">Demo보기</a></b>
+ <b><a href="https://osam-hackathon.web.app/">Demo보기(https://osam-hackathon.web.app)</a></b>
  </div>
 <br>
 <br>
