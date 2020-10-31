@@ -46,11 +46,33 @@
 
 ## 기술 스택 (Technique Used) 
 ### Server(back-end)
-|
- - Firebase  
+<table>
+ <tr>
+  <td>
+<img src="https://user-images.githubusercontent.com/47639762/97767923-cd4c3280-1b62-11eb-824f-98e50d7db5cb.png" width="100" height"100">
+  </td>
+ </tr>
+ <tr>
+  <td>
+Firebase
+  </td>
+ </tr>
+ </table>
  
  
 ### front-end
+<table>
+ <tr>
+  <td>
+<img src="https://user-images.githubusercontent.com/47639762/97767923-cd4c3280-1b62-11eb-824f-98e50d7db5cb.png" width="100" height"100">
+  </td>
+ </tr>
+ <tr>
+  <td>
+Vue.js
+  </td>
+ </tr>
+ </table>
  -  Vue.js
  -  Vuetify
  -  Vue Router
@@ -68,7 +90,7 @@ $ yarn start or npm run start
  
 ## 팀 정보 (Team Information)
 - 최현수 (chs98105@gmail.com),  Github Id: [Keep-Going-HyeonSoo](https://github.com/Keep-Going-HyeonSoo)
- [![Gmail Badge](https://img.shields.io/badge/Gmail-d14836?style=flat-square&logo=Gmail&logoColor=white&link=mailto:snugyun01@gmail.com)](mailto:snugyun01@gmail.com)
+ [![Gmail Badge](https://img.shields.io/badge/Gmail-d14836?style=flat-square&logo=Gmail&logoColor=white&link=mailto:chs98105@gmail.com)](mailto:chs98105@gmail.com)
   <img 
         src="http://img.shields.io/badge/-Tech%20Blog-655ced?style=flat&logo=github&link=https://github.com/Keep-Going-HyeonSoo"
         style="height : auto; margin-left : 10px; margin-right : 10px;"/>
