@@ -77,7 +77,6 @@
       <v-col cols="12">
           <v-container >
           <v-card color="transparent">
-
             <v-card-title class="align-top font-weight-bold mb-4">이번 주 나의 전우들은?</v-card-title>
 
             <v-card-text>이번 주 정신전력교육 주제에 대해 전우들은 어떻게 생각했을까요?</v-card-text>
