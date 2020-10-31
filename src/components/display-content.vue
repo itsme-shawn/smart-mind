@@ -77,6 +77,7 @@ export default {
 		async remove () { // 트랜잭션 처리를 위해 batch 사용
 			if (!this.$store.state.fireUser) throw Error('관리자만 가능합니다')
 			// 나중에 글 작성자만 삭제할 수 있게끔 수정해야함
+			this.$emit('close')
 			const batch = this.$firebase.firestore().batch()
 			batch.update(this.ref, { count: this.$firebase.firestore.FieldValue.increment(-1) })
 			batch.delete(this.ref.collection('articles').doc(this.item.id))
@@ -84,7 +85,6 @@ export default {
 			// await this.ref.collection('articles').doc(this.item.id).delete() // Firestore 에서 삭제 (title,시간정보들만 삭제됨)
 			await this.$firebase.storage().ref().child('learning').child(this.document).child(this.item.id + '.html').delete()
 			// Storage에 저장된 html 파일까지 삭제 완료
-			this.$emit('close')
 		}
 	}
 

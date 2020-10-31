@@ -15,23 +15,26 @@
           <v-toolbar-title>게시물 작성</v-toolbar-title>
         <v-spacer/>
         <v-btn icon @click="$router.push('/'+collection+ '/' + document)"><v-icon>mdi-arrow-left</v-icon></v-btn> <!-- 뒤로가기 -->
-        <v-btn icon @click="save"><v-icon>mdi-content-save</v-icon></v-btn>
+        <v-btn icon @click="save" :disabled="!valid"><v-icon>mdi-content-save</v-icon></v-btn>
         </v-toolbar>
         <v-card-text>
-          <v-text-field v-model="form.title" outlined label="게시물 제목"></v-text-field>
+          <v-form v-model="valid" ref="form">
+          <v-text-field v-model="form.title" outlined label="게시물 제목" required :rules="[rule.required]"></v-text-field>
           <v-container fluid>
             <v-row align="center">
               <v-col class="d-flex" cols="2" sm="2">
-                <v-select v-model="form.year" :items="yearList" label="년"></v-select>
+                <v-select v-model="form.year" :items="yearList" label="년" required :rules="[rule.required]"></v-select>
               </v-col>
               <v-col class="d-flex" cols="2" sm="2">
-                <v-select v-model="form.month" :items="monthList" label="월"></v-select>
+                <v-select v-model="form.month" :items="monthList" label="월" required :rules="[rule.required]"></v-select>
               </v-col>
               <v-col class="d-flex" cols="2" sm="2">
-                <v-select v-model="form.week" :items="weekList" label="주차"></v-select>
+                <v-select v-model="form.week" :items="weekList" label="주차" required :rules="[rule.required]"></v-select>
               </v-col>
             </v-row>
-          </v-container>
+            </v-container>
+            </v-form>
+
           <v-toolbar-title class="mt-1">본문 작성</v-toolbar-title>
           <!-- articleId 가 없다는 것은 글 최초 작성 -->
           <editor v-if="!articleId" initialEditType='wysiwyg' :options="editor_options" :initialValue="form.content" ref="editor"></editor>
@@ -46,7 +49,7 @@
             </v-container>
           </template>
           <v-spacer/>
-          <v-container v-if="!(document === 'posting')"> <!-- 공지사항에는 렌더링 안함 -->
+          <v-container v-if="document === 'jungsin'"> <!-- 공지사항과 우리역사바로알기에는 렌더링 안함 -->
           <v-toolbar-title class="mt-5">평가 질문 작성</v-toolbar-title>
           <v-text-field v-model="form.Q1" outlined label="질문1"></v-text-field>
           <v-text-field v-model="form.Q2" outlined label="질문2"></v-text-field>
@@ -62,7 +65,7 @@ export default {
 	props: ['collection', 'document', 'action'],
 	data () {
 		return {
-            yearList: ['2020년', '2021년'],
+			yearList: ['2020년', '2021년'],
 			monthList: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
 			weekList: ['1주차', '2주차', '3주차', '4주차', '5주차'],
 			editor_options: {
@@ -75,12 +78,14 @@ export default {
 				Q1: '',
 				Q2: '',
 				month: '',
-                week: '',
-                year: ''
+				week: '',
+				year: ''
 			},
 			exists: false,
 			loading: false,
-			ref: null
+      ref: null,
+      valid: false, // form valid
+      rule: { required: v => !!v || '필수 항목입니다.' }
 		}
 	},
 	computed: {
@@ -117,8 +122,8 @@ export default {
 			const r = await axios.get(item.url)
 			this.form.content = r.data
 			this.form.month = item.month
-      this.form.week = item.week
-      this.form.year = item.year
+			this.form.week = item.week
+			this.form.year = item.year
 		},
 		async save () { // 작성한 글 저장 함수 : 비동기 로직 포함 ( firestore DB에 저장 )
 			if (this.user.level !== 'admin') throw Error('관리자만 가능합니다!') // 권한 확인
@@ -135,8 +140,8 @@ export default {
 						Q2: this.form.Q2
 					},
 					month: this.form.month,
-          week: this.form.week,
-          year: this.form.year
+					week: this.form.week,
+					year: this.form.year
 				}
 
 				const batch = await this.$firebase.firestore().batch()

@@ -72,21 +72,13 @@ export default {
 						{
 							title: '우리 역사 바로알기',
 							to: '/learning/daily_history'
-						},
-					/*	{
-							title: '임시',
-							to: '/learning/temp'
-						}*/
+						}
 					]
 				},
 				{
 					title: '마이페이지',
 					icon: 'mdi-account',
 					subItems: [
-						{
-							title: '내 정보',
-							to: '/mypage/account'
-						},
 						{
 							title: '정신전력 현황',
 							to: '/mypage/status'
