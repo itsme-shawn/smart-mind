@@ -21,7 +21,7 @@
 
 ## 프로젝트 설명 동영상
 
-[![Watch the video](https://img.youtube.com/vi/LjX3eVQdIyk/0.jpg)](https://www.youtube.com/watch?v=FrEMI7wRuGs&feature=youtu.be)
+[![Watch the video](https://img.youtube.com/vi/FrEMI7wRuGs/0.jpg)](https://www.youtube.com/watch?v=FrEMI7wRuGs&feature=youtu.be)
 
 <br>
 
