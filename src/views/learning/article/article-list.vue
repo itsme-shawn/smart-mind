@@ -10,7 +10,6 @@
           </div>
             <v-chip color="error" label small class="mr-4" v-if="item.isNew">NEW</v-chip> <!-- 현재 시간과 비교해서 3일 전 게시글까지만 핸들링해줄 예정-->
 
-
           <v-spacer/>
         </v-subheader>
         <v-card-title >
@@ -75,7 +74,6 @@ export default {
 	},
 	methods: {
 		async subscribe () {
-
 			if (this.unsubscribe) this.unsubscribe()
 
 			this.completedArticleId.splice(0) // 초기화
