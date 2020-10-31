@@ -26,31 +26,60 @@
     </v-row>
     <!-- 사용자 정보 카드 끝 -->
 
-    <v-row>
-      <!-- 주간정신전력교육 최근컨텐츠 시작 -->
-      <v-col cols="6" >
-        <v-card height="300" >
-          주간정신전력교육 최근컨텐츠
-        </v-card>
-      </v-col>
-      <!-- 주간정신전력교육 최근컨텐츠 끝-->
+      <v-row class="pa-3" justify="center">
+        <!-- 주간정신전력교육 최근컨텐츠 시작 -->
+        <v-col cols="9" md="6">
+          <v-card height="400" color="#1F7087" dark>
+            <div class="d-flex">
+              <v-card-title class="headline">주간정신전력교육</v-card-title>
+              <v-subheader class="ml-auto mt-2">
+                <!-- <div v-if="collection=='learning'">
+                  <v-chip color="success" label small class="mr-4" v-if="item.isComplete">수강 완료</v-chip>
+                  <v-chip color="info" label small class="mr-4" v-else >수강 전</v-chip>
+                </div>-->
+                <div>
+                  <v-chip color="success" label small class="mr-4" v-if="isComplete">수강 완료</v-chip>
+                  <v-chip color="info" label small class="mr-4" v-else >수강 전</v-chip>
+                </div>
+                <v-spacer/>
+              </v-subheader>
+            </div>
+            <v-divider></v-divider>
+            <v-container class="d-flex align-end flex-column"><v-card-subtitle class="mt-auto">이번 주의 주간정신전력을 한눈에 볼 수 있습니다.</v-card-subtitle></v-container>
+          </v-card>
+        </v-col>
+        <!-- 주간정신전력교육 최근컨텐츠 끝-->
 
-      <!-- 우리역사바로알기의 최근컨텐츠 시작 -->
-      <v-col cols="6" >
-        <v-card height="300" >
-          우리역사바로알기의 최근컨텐츠
-        </v-card>
-      </v-col>
-      <!-- 우리역사바로알기의 최근컨텐츠 끝 -->
-    </v-row>
+        <!-- 우리역사바로알기의 최근컨텐츠 시작 -->
+        <v-col cols="9" md="6">
+          <v-card height="400" color="#385F73" dark>
+            <div class="d-flex">
+              <v-card-title class="headline">우리역사 바로알기</v-card-title>
+              <v-subheader class="ml-auto mt-2">
+                <!-- <div v-if="collection=='learning'">
+                  <v-chip color="success" label small class="mr-4" v-if="item.isComplete">수강 완료</v-chip>
+                  <v-chip color="info" label small class="mr-4" v-else >수강 전</v-chip>
+                </div>-->
+                <div>
+                  <v-chip color="success" label small class="mr-4" v-if="isComplete">수강 완료</v-chip>
+                  <v-chip color="info" label small class="mr-4" v-else >수강 전</v-chip>
+                </div>
+                <v-spacer/>
+              </v-subheader>
+            </div>
+            <v-divider></v-divider>
+            <v-container class="d-flex align-end flex-column"><v-card-subtitle class="mt-auto">가장 최신의 주간정신전력을 한눈에 볼 수 있습니다.</v-card-subtitle></v-container>
 
-    <!-- 이번주 나의 부대원들은-->
-    <v-row>
-      <v-col cols="12"> <v-card height="200px" >이번 주 나의 부대원들은?</v-card></v-col>
-    </v-row>
-    <!-- 이번주 나의 부대원들은 끝-->
+          </v-card>
+        </v-col>
+        <!-- 우리역사바로알기의 최근컨텐츠 끝 -->
+      </v-row>
 
-
+      <!-- 이번주 나의 부대원들은-->
+      <v-row class="pa-5">
+        <v-col cols="12"> <v-card height="200px" >이번 주 나의 부대원들은?</v-card></v-col>
+      </v-row>
+      <!-- 이번주 나의 부대원들은 끝-->
 
   </v-container>
 </template>
