@@ -18,7 +18,7 @@
               <v-img
                 :src="require('../assets/lamp2.png')"
                 contain
-                max-height="500"
+                max-height="200"
                 class="animated fadeInDown"
               ></v-img>
 
@@ -201,7 +201,7 @@
     <div>
       <v-divider></v-divider>
     </div>
-    <v-row align="center" justify="center" class="pa-6 py-10">
+    <v-row align="center" justify="center" class="pa-6 py-10 mb-5">
       <v-row align="center" justify="center" xs12 sm12 md6 lg6>
         <div
           style="text-align: center; vertial-align: middle"
@@ -248,8 +248,10 @@
         </v-card>
       </v-row>
     </v-row>
-    <v-sheet min-height="200" color="yellow lighten-3">
-      <v-row class="fill-height pa-6 px-15" align="start" justify="center">
+
+<!--
+    <v-sheet min-height="200" >
+      <v-row class="fill-height pa-6 px-15 mt-5" align="start" justify="center">
         <div class="last" style="min-width: 170px">
           <h3 class="subheading">Service</h3>
           <v-divider></v-divider>
@@ -286,6 +288,7 @@
         </div>
       </v-row>
     </v-sheet>
+-->
   </v-container>
 </template>
 <script>
@@ -365,15 +368,15 @@ export default {
 		height () {
 			switch (this.$vuetify.breakpoint.name) {
 			case 'xs':
-				return 920
+				return 660
 			case 'sm':
-				return 920
+				return 700
 			case 'md':
-				return 920
+				return 700
 			case 'lg':
-				return 1000
+				return 800
 			case 'xl':
-				return 1000
+				return 800
 			}
 		},
 		size1 () {

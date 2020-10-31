@@ -1,18 +1,18 @@
 <template>
-	<v-container>
+	<v-container class="pa-3">
         <div>
             <v-card-text>
                 <v-toolbar-title class="font-weight-bold mt-5">기획의도</v-toolbar-title>
             </v-card-text>
         </div>
 		<v-divider></v-divider>
-		
+
 	<v-sheet class="pt-10">
 		<h1>정신전력 교육을 쉽고 간편하게.</h1><br>
 		<h3>정신차렷은 불편하고 번거로운 정신전력교육을 개선하기 위해 만들어졌습니다.</h3><br>
 		<h3>어렵고 불편한 사용법 대신 직관적이고 간편한 사용을 위해 노력했습니다.</h3><br>
 		<h3>쉽게 참여하고, 쉽게 관리/감독을 시작하세요.</h3><br>
-		
+
 		<v-divider></v-divider>
 	</v-sheet>
 
@@ -76,7 +76,7 @@
 		v-for="(slide, i) in slides"
 		:key="i"
 		>
-		
+
 			<v-row
 			align="center"
 			justify="center"
@@ -84,12 +84,12 @@
 			<div class="display-3">
 				<img :src="slide" height="500">
 			</div>
-			
+
 			</v-row>
 		</v-carousel-item>
 	</v-carousel>
 	</template>
-		
+
 
     </v-container>
 </template>
@@ -117,7 +117,7 @@
 		  content: '근무나 당직이 있을 때 장소와 시간에 구애받기 때문에 정신전력교육에 참여할 수 없습니다. 정신차렷과 함께라면 언제, 어디서나 가능한 시간대에 정신전력 교육에 참여할 수 있습니다.'
         }
 	  ],
-	  
+
 	  // carousel data
 	  colors: [
           'indigo',
@@ -126,14 +126,14 @@
           'red lighten-1',
           'deep-purple accent-4',
 		],
-		
+
         slides: [
 		   require('../../../assets/help_intention1.png'),
 		  // require('../../../assets/help_intention2.png'),
 		  // require('../../../assets/help_intention3.png'),
 		  // require('../../../assets/help_intention4.png'),
 		  // require('../../../assets/help_intention5.png'),
-          
+
         ]
     }),
   }
