@@ -85,6 +85,9 @@
 <img src="/src/assets/vuetify.svg" width="100" height"100">
   </td>
   <td>
+<img src="/src/assets/vuex.png" width="100" height"100">
+  </td>
+  <td>
 <img src="/src/assets/js.png" width="100" height"100">
   </td>
   <td>
@@ -93,6 +96,7 @@
   <td>
 <img src="https://user-images.githubusercontent.com/47639762/97780706-92311a00-1bc9-11eb-90c9-4bd8f8ab86db.jpg" width="100" height"100">
   </td>
+  
  </tr>
  <tr>
   <td>
@@ -102,13 +106,16 @@ Vue.js
 Vuetify
   </td>
   <td>
+Vuex
+  </td>
+  <td>
 JavaScript
   </td>
  <td>
-Webpack
+Babel
   </td>
  <td>
-babel
+Webpack
   </td>
   
  </tr>
