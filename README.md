@@ -166,7 +166,7 @@
 * 권장: Google Chrome 버젼 77 이상
 
 
-## 프로젝트 서버 구조도
+## 프로젝트 구조도
 <img src="/src/assets/struct.png" width="700" height="500">
  
 ## 기술 스택 (Technique Used) 
