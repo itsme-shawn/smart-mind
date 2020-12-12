@@ -202,10 +202,10 @@ Vuetify
 JavaScript
   </td>
  <td>
-Webpack
+babel
   </td>
  <td>
-babel
+Webpack
   </td>
   
  </tr>
